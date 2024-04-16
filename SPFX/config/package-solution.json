@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "ejemplo-client-side-solution",
+    "id": "af95bc5b-9778-4980-aa79-30c03484cbbc",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.16.1"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "Ejemplo description"
+      },
+      "longDescription": {
+        "default": "Ejemplo description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "ejemplo Feature",
+        "description": "The feature that activates elements of the ejemplo solution.",
+        "id": "8d1c31e2-50cc-452d-82d3-20ef724fb04b",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/ejemplo.sppkg"
+  }
+}
