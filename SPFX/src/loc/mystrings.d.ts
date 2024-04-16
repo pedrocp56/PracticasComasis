@@ -1,4 +1,4 @@
-declare interface IEjemploWebpartWebPartStrings {
+declare interface IGestorPersonajesWebPartStrings {
   PropertyPaneDescription: string;
   BasicGroupName: string;
   DescriptionFieldLabel: string;
@@ -10,9 +10,10 @@ declare interface IEjemploWebpartWebPartStrings {
   AppTeamsTabEnvironment: string;
   AppOfficeEnvironment: string;
   AppOutlookEnvironment: string;
+  UnknownEnvironment: string;
 }
 
-declare module 'EjemploWebpartWebPartStrings' {
-  const strings: IEjemploWebpartWebPartStrings;
+declare module 'GestorPersonajesWebPartStrings' {
+  const strings: IGestorPersonajesWebPartStrings;
   export = strings;
 }

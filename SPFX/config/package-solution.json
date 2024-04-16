@@ -1,8 +1,8 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
   "solution": {
-    "name": "ejemplo-client-side-solution",
-    "id": "af95bc5b-9778-4980-aa79-30c03484cbbc",
+    "name": "spfx-client-side-solution",
+    "id": "a830b05a-1303-4eba-a5b1-f6cdf1a64551",
     "version": "1.0.0.0",
     "includeClientSideAssets": true,
     "skipFeatureDeployment": true,
@@ -12,14 +12,14 @@
       "websiteUrl": "",
       "privacyUrl": "",
       "termsOfUseUrl": "",
-      "mpnId": "Undefined-1.16.1"
+      "mpnId": "Undefined-1.18.2"
     },
     "metadata": {
       "shortDescription": {
-        "default": "Ejemplo description"
+        "default": "spfx description"
       },
       "longDescription": {
-        "default": "Ejemplo description"
+        "default": "spfx description"
       },
       "screenshotPaths": [],
       "videoUrl": "",
@@ -27,14 +27,14 @@
     },
     "features": [
       {
-        "title": "ejemplo Feature",
-        "description": "The feature that activates elements of the ejemplo solution.",
-        "id": "8d1c31e2-50cc-452d-82d3-20ef724fb04b",
+        "title": "spfx Feature",
+        "description": "The feature that activates elements of the spfx solution.",
+        "id": "5091ebb5-8d8b-4c68-a816-9f88ba44fffa",
         "version": "1.0.0.0"
       }
     ]
   },
   "paths": {
-    "zippedPackage": "solution/ejemplo.sppkg"
+    "zippedPackage": "solution/spfx.sppkg"
   }
 }

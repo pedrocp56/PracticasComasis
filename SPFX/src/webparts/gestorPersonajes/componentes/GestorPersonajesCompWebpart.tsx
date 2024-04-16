@@ -2,22 +2,22 @@ import { Spinner } from "@fluentui/react";
 import { WebPartContext } from "@microsoft/sp-webpart-base";
 import { SPFI } from "@pnp/sp";
 import * as React from "react";
-import { EjemplosLista } from "../../../Entidades/Ejemplos/EjemplosLista";
+import { ArmaLista } from "../../../Entidades/Arma/ArmaLista";
+import { useEffect, useRef, useState } from "react";
 
-export interface IEjemploWebpartProps {
+export interface IGestorPersonajesCompWebpartProps {
   SP: SPFI;
   WebPartContext: WebPartContext;
 }
 
-export default function EjemploWebpart(
-  props: IEjemploWebpartProps
+export default function GestorPersonajesCompWebpart(
+  props: IGestorPersonajesCompWebpartProps
 ): JSX.Element {
-  const [cargando, setCargando] = React.useState(true);
-  const lista = React.useRef<EjemplosLista>(null);
+  const [cargando, setCargando] = useState(true);
+  const ArmaL = useRef<ArmaLista>(new ArmaLista(props.SP.web, props.WebPartContext));
 
-  React.useEffect(() => {
-    lista.current = new EjemplosLista(props.SP.web, props.WebPartContext);
-    lista.current.CargarTodos().then((Items) => {
+  useEffect(() => {
+    ArmaL.current.CargarTodos().then((Items) => {
       console.log(Items);
     });
     setTimeout(() => {

@@ -1,6 +1,6 @@
 require('@rushstack/eslint-config/patch/modern-module-resolution');
 module.exports = {
-  extends: ['@microsoft/eslint-config-spfx/lib/profiles/react'],
+  extends: ['@microsoft/eslint-config-spfx/lib/profiles/default'],
   parserOptions: { tsconfigRootDir: __dirname },
   overrides: [
     {
@@ -118,7 +118,7 @@ module.exports = {
         //
         // STANDARDIZED BY:   @typescript-eslint\eslint-plugin\dist\configs\recommended.json
         // Set to 1 (warning) or 2 (error) to enable the rule
-        '@typescript-eslint/no-parameter-properties': 0,
+        '@typescript-eslint/parameter-properties': 0,
         // RATIONALE:         When left in shipping code, unused variables often indicate a mistake.  Dead code
         //                    may impact performance.
         //

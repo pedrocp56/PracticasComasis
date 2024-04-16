@@ -2,18 +2,17 @@
   "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
   "version": "2.0",
   "bundles": {
-    "ejemplo-webpart-web-part": {
+    "gestor-personajes-web-part": {
       "components": [
         {
-          "entrypoint": "./lib/webparts/ejemploWebpart/EjemploWebpartWebPart.js",
-          "manifest": "./src/webparts/ejemploWebpart/EjemploWebpartWebPart.manifest.json"
+          "entrypoint": "./lib/webparts/gestorPersonajes/GestorPersonajesWebPart.js",
+          "manifest": "./src/webparts/gestorPersonajes/GestorPersonajesWebPart.manifest.json"
         }
       ]
     }
   },
   "externals": {},
   "localizedResources": {
-    "EjemploWebpartWebPartStrings": "src/loc/{locale}.js",
-    "ControlStrings": "node_modules/@pnp/spfx-controls-react/lib/loc/{locale}.js"
+    "GestorPersonajesWebPartStrings": "lib/webparts/gestorPersonajes/loc/{locale}.js"
   }
 }

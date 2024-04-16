@@ -7,17 +7,17 @@ import {
 } from "@microsoft/sp-property-pane";
 import { BaseClientSideWebPart } from "@microsoft/sp-webpart-base";
 
-import * as strings from "EjemploWebpartWebPartStrings";
-import EjemploWebpart, {
-  IEjemploWebpartProps,
-} from "./components/EjemploWebpart";
+import * as strings from 'GestorPersonajesWebPartStrings';
+import GestorPersonajesCompWebpart, {
+  IGestorPersonajesCompWebpartProps,
+} from "./componentes/GestorPersonajesCompWebpart";
 import { SPFI, SPFx, spfi } from "@pnp/sp/presets/all";
-
-export interface IEjemploWebpartWebPartProps {
+export interface IGestorPersonajesWebPartProps {
   description: string;
 }
 
-export default class EjemploWebpartWebPart extends BaseClientSideWebPart<IEjemploWebpartWebPartProps> {
+export default class GestorPersonajesWebPart extends BaseClientSideWebPart<IGestorPersonajesWebPartProps> {
+
   private SP: SPFI;
 
   public render(): void {
@@ -25,8 +25,8 @@ export default class EjemploWebpartWebPart extends BaseClientSideWebPart<IEjempl
       SP: this.SP,
       WebPartContext: this.context,
     };
-    const element: React.ReactElement<IEjemploWebpartProps> =
-      React.createElement(EjemploWebpart, webpartProps);
+    const element: React.ReactElement<IGestorPersonajesCompWebpartProps> =
+      React.createElement(GestorPersonajesCompWebpart, webpartProps);
     ReactDom.render(element, this.domElement);
   }
 
