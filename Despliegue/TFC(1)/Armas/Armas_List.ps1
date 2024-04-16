@@ -1,6 +1,6 @@
 ﻿#creacion de la region de la lista
 
-$listTitle = "Lista_ArmaInfo"
+$listTitle = "Armas"
 $listDescription = "Lista Arma Informacion"
 $listTemplate = 100
 

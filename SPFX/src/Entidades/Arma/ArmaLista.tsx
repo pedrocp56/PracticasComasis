@@ -4,7 +4,7 @@ import { IItem, IWeb } from "@pnp/sp/presets/all";
 import { ArmaItem } from "./ArmaItem";
 
 export class ArmaLista {
-  public NombreLista = "Lista_ArmaInfo";
+  public NombreLista = "Armas";
   public SelectAllFields: string[] = [
     "*",
   ];
