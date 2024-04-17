@@ -1,11 +1,11 @@
 ﻿#creacion de la region de la lista
 
-$listTitle = "Armas"
-$listDescription = "Lista Arma Informacion"
+$listTitle = "Campañas"
+$listDescription = "Lista Campañas"
 $listTemplate = 100
 
 #añadir tipos de contenido
-$tipodecontenido = "ArmaInfo"
+$tipodecontenido = "CampañaInfo"
 
 $lci = New-Object Microsoft.SharePoint.Client.ListCreationInformation
 $lci.title = $listTitle
@@ -94,14 +94,10 @@ if ($vista) {
         $viewFields = $view.ViewFields;
         $context.Load($viewFields);
         $context.ExecuteQuery();
-        $view.ViewFields.Add("Arma_ID");
-        $view.ViewFields.Add("Arma_Ataque");
-        $view.ViewFields.Add("Arma_Daño");
-        $view.ViewFields.Add("Arma_Tipo");
-        $view.ViewFields.Add("Arma_Arrojadiza");
-        $view.ViewFields.Add("Arma_Car");
-        $view.ViewFields.Add("Arma_Caracteristicas");
-        $view.ViewFields.Add("Arma_Foto");
+        $view.ViewFields.Add("ID");
+        $view.ViewFields.Add("Campaña_Descripcion");
+        $view.ViewFields.Add("Campaña_Fecha");
+        $view.ViewFields.Add("Campaña_Foto");
 
         $view.ViewQuery = "<OrderBy><FieldRef Name='Title' Ascending='FALSE'/></OrderBy>"
         
@@ -122,7 +118,7 @@ if ($vista) {
 
     }
     
-    $list = $web.Lists.GetByTitle("Armas")
+    $list = $web.Lists.GetByTitle("Campañas")
     $context.Load($list)
     $context.executeQuery()
     
@@ -135,10 +131,10 @@ if ($vista) {
     $context.executeQuery()
        
 
-    $titleField.Title = "Nombre del arma"
+    $titleField.Title = "Nombre de la campaña"
     $titleField.Update()
 
-    $list = $web.Lists.GetByTitle("Armas")
+    $list = $web.Lists.GetByTitle("Campañas")
     $context.Load($list)
     $context.executeQuery()
 

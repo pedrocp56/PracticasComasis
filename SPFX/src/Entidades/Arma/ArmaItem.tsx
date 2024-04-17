@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any*/
 import { ArmaLista } from "./ArmaLista";
 import { IItem } from "@pnp/sp/items";
 
@@ -6,6 +7,7 @@ export class ArmaItem {
   public Lista: ArmaLista;
   public ItemEdit: ArmaItem;
 
+  public ID: number;
   public Nombre: string;
   public Ataque: number;
   public Daño: string;
@@ -20,8 +22,9 @@ export class ArmaItem {
     this.Lista = Lista;
   }
 
-  public MapearCampos() {
-    this.Nombre = this.ListItem.Arma_Nombre;
+  public MapearCampos():void {
+    this.ID = this.ListItem.ID;
+    this.Nombre = this.ListItem.Title;
     this.Ataque = this.ListItem.Arma_Ataque;
     this.Daño = this.ListItem.Arma_Daño;
     this.Tipo = this.ListItem.Arma_Tipo;
@@ -31,3 +34,4 @@ export class ArmaItem {
     this.Foto = this.ListItem.Arma_Foto;
   }
 }
+/* eslint-enable */

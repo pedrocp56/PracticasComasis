@@ -7,34 +7,24 @@ $context.ExecuteQuery();
 $fieldsArray = @();
 
 #Indexed="True"
-$fieldsArray += '<Field ID="{2dbb64cc-4d8e-44ef-8544-0d49705bfad5}" 
-                Name="Campaña_ID"
-                DisplayName="ID de la campaña" 
-                Type="Text"
-                Required="TRUE"
-                Unique="TRUE"
-                Indexed="False"
-                Group="FichaCampaña" 
-                xmlns="http://schemas.microsoft.com/sharepoint/">
-                </Field>';
 
-$fieldsArray += '<Field ID="{61808313-fe99-4abe-90a0-2c080db1bdea}" 
+$fieldsArray += '<Field ID="{e1e12a32-5ca9-4ee6-8df0-a2c75b68032f}" 
                 Name="Campaña_Descripcion"
                 DisplayName="Descripcion de la campaña" 
-                Type="Text" 
+                Type="Note" 
                 Group="FichaCampaña" 
                 xmlns="http://schemas.microsoft.com/sharepoint/">
                 </Field>';
 
-$fieldsArray += '<Field ID="{469ae8bf-2dfa-4bfd-b189-361b7afb6dda}" 
+$fieldsArray += '<Field ID="{9a1f7e3e-71c5-44bd-aa78-e5e334867dae}" 
                 Name="Campaña_Fecha" 
                 DisplayName="Fecha proxima sesión" 
-                Type="Date"
+                Type="DateTime"
                 Group="FichaCampaña" 
                 xmlns="http://schemas.microsoft.com/sharepoint/">
                 </Field>';
 
-$fieldsArray += '<Field ID="{2eeecf0b-1dbb-46cd-b355-1c69b6140b5f}" 
+$fieldsArray += '<Field ID="{a66cb79d-3de8-425e-a0fa-1f639f954549}" 
                 Name="Campaña_Foto" 
                 DisplayName="Foto de la campaña"  
                 Type="URL" 
