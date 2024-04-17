@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any*/
 import { ArmaLista } from "./ArmaLista";
-import { IItem } from "@pnp/sp/items";
 
 export class ArmaItem {
   public ListItem: any;
@@ -17,9 +16,10 @@ export class ArmaItem {
   public Caracteristicas: string;
   public Foto: any;
 
-  constructor(ListItem: IItem, Lista: ArmaLista) {
+  constructor(ListItem: any, Lista: ArmaLista) {
     this.ListItem = ListItem;
     this.Lista = Lista;
+    this.MapearCampos();
   }
 
   public MapearCampos():void {

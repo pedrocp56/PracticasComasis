@@ -8,7 +8,7 @@
     
 
 
-        $tiposdecontenido = "ArmaInfo"
+        $tiposdecontenido = "UsuarioInfo"
         $tiposBorrar = New-Object System.Collections.ArrayList($null);
 
         foreach($tipo in $tiposdecontenido) {

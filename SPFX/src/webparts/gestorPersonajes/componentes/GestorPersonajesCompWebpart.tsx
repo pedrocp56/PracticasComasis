@@ -3,7 +3,9 @@ import { WebPartContext } from "@microsoft/sp-webpart-base";
 import { SPFI } from "@pnp/sp";
 import * as React from "react";
 import { ArmaLista } from "../../../Entidades/Arma/ArmaLista";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
+import ArmaTabla from "../../../Entidades/Arma/Componentes/ArmaTabla";
+import { ArmaItem } from "../../../Entidades/Arma/ArmaItem";
 
 export interface IGestorPersonajesCompWebpartProps {
   SP: SPFI;
@@ -14,12 +16,16 @@ export default function GestorPersonajesCompWebpart(
   props: IGestorPersonajesCompWebpartProps
 ): JSX.Element {
   const [cargando, setCargando] = useState(true);
-  const ArmaL = useRef<ArmaLista>(new ArmaLista(props.SP.web, props.WebPartContext));
+  const [Items, setItems] = React.useState<ArmaItem[]>([]);
+  const ArmaL = React.useRef<ArmaLista>(new ArmaLista(props.SP.web, props.WebPartContext));
 
-  useEffect(() => {
-    ArmaL.current.CargarTodos().then((Items) => {
-      console.log(Items);
+  useEffect(():void => {
+    ArmaL.current.CargarTodos().then((i) => {
+      console.log(i);
+      setItems(i);
     });
+    console.log(Items);
+
     setTimeout(() => {
       setCargando(false);
       if (!cargando) console.log("Cargado");
@@ -32,12 +38,9 @@ export default function GestorPersonajesCompWebpart(
         <Spinner hidden={!cargando} />
       </div>
       <div hidden={cargando}>
-        <h1>Ejemplo Webpart</h1>
+        <h1>Mis armas Webpart</h1>
 
-        <p>Este es un ejemplo de webpart primer ejemplo</p>
-        <p>
-          Estamos en el sitio {props.WebPartContext.pageContext.web.absoluteUrl}
-        </p>
+        <ArmaTabla Items={Items}/>
       </div>
     </>
   );

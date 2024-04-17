@@ -9,7 +9,7 @@
 
         $context.ExecuteQuery();
 
-        $columns = "Arma_ID","Arma_Ataque","Arma_Daño","Arma_Tipo", "Arma_Arrojadiza", "Arma_Car", "Arma_Caracteristicas", "Arma_Foto";
+        $columns = "Usuario_Estado","Usuario_Foto";
 
         foreach($column in $columns) {
 

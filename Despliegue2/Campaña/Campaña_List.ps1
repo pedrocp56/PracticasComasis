@@ -99,7 +99,7 @@ if ($vista) {
         $view.ViewFields.Add("Campaña_Fecha");
         $view.ViewFields.Add("Campaña_Foto");
 
-        $view.ViewQuery = "<OrderBy><FieldRef Name='Title' Ascending='FALSE'/></OrderBy>"
+        $view.ViewQuery = "<OrderBy><FieldRef Name='ID' Ascending='FALSE'/></OrderBy>"
         
         
         $view.Update();

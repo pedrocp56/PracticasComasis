@@ -104,7 +104,7 @@ if ($vista) {
         $view.ViewFields.Add("Arma_Caracteristicas");
         $view.ViewFields.Add("Arma_Foto");
 
-        $view.ViewQuery = "<OrderBy><FieldRef Name='Title' Ascending='FALSE'/></OrderBy>"
+        $view.ViewQuery = "<OrderBy><FieldRef Name='ID' Ascending='FALSE'/></OrderBy>"
         
         
         $view.Update();

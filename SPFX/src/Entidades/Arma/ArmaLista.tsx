@@ -1,7 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any*/
 import { WebPartContext } from "@microsoft/sp-webpart-base";
 import { IList } from "@pnp/sp/lists";
 import { IItem, IWeb } from "@pnp/sp/presets/all";
 import { ArmaItem } from "./ArmaItem";
+import "@pnp/sp/presets/all";
+import "@pnp/sp/lists";
 
 export class ArmaLista {
   public NombreLista = "Armas";
@@ -19,13 +22,13 @@ export class ArmaLista {
     this.List = this.web.lists.getByTitle(this.NombreLista);
   }
 
-  public async CargarTodos(BatchedWeb?: IWeb): Promise<ArmaItem[] | void> {
+  public async CargarTodos(BatchedWeb?: IWeb): Promise<ArmaItem[]> {
     const Items = this.List.items
       .expand(this.ExpandAllFields.join())
       .orderBy("Title")
       .select(this.SelectAllFields.join())()
-      .then((Data: IItem[]) => {
-        return Data.map((I) => {
+      .then((Data: any) => {
+        return Data.map((I:IItem) => {
           return new ArmaItem(I, this);
         });
       })
@@ -36,3 +39,4 @@ export class ArmaLista {
     return await Items;
   }
 }
+/* eslint-enable */
