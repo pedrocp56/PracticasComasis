@@ -39,6 +39,7 @@ $fieldsArray += '<Field ID="{469ae8bf-2dfa-4bfd-b189-361b7afb6dda}"
                         <CHOICE>Contundente</CHOICE>
                         <CHOICE>Cortante</CHOICE>
                         <CHOICE>Frío</CHOICE>
+                        <CHOICE>Fuego</CHOICE>
                         <CHOICE>Fuerza</CHOICE>
                         <CHOICE>Necrótico</CHOICE>
                         <CHOICE>Perforante</CHOICE>

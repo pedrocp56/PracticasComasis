@@ -10,7 +10,7 @@ export class ArmaItem {
   public Nombre: string;
   public Ataque: number;
   public Daño: string;
-  public Tipo: string;
+  public Tipo: string[];
   public Arrojadiza: boolean;
   public Car: string;
   public Caracteristicas: string;
@@ -26,7 +26,7 @@ export class ArmaItem {
     this.ID = this.ListItem.ID;
     this.Nombre = this.ListItem.Title;
     this.Ataque = this.ListItem.Arma_Ataque;
-    this.Daño = this.ListItem.Arma_Daño;
+    this.Daño = this.ListItem.Arma_Da_x00f1_o;
     this.Tipo = this.ListItem.Arma_Tipo;
     this.Arrojadiza = this.ListItem.Arma_Arrojadiza;
     this.Car = this.ListItem.Arma_Car;
