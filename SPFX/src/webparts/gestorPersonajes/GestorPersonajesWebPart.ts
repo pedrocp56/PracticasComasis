@@ -8,10 +8,9 @@ import {
 import { BaseClientSideWebPart } from "@microsoft/sp-webpart-base";
 
 import * as strings from 'GestorPersonajesWebPartStrings';
-import GestorPersonajesCompWebpart, {
-  IGestorPersonajesCompWebpartProps,
-} from "./componentes/GestorPersonajesCompWebPart";
+
 import { SPFI, SPFx, spfi } from "@pnp/sp/presets/all";
+import GestorPersonajesCompWebpart, { IGestorPersonajesCompWebpartProps } from "./componentes/GestorPersonajesCompWebpart";
 export interface IGestorPersonajesWebPartProps {
   description: string;
 }
