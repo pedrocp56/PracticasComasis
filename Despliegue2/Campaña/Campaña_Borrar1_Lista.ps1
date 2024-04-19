@@ -1,5 +1,5 @@
 ﻿
-    $listTitles = "Armas"
+    $listTitles = "Campañas"
 
 
     foreach ($listTitle in $listTitles) {

@@ -1,11 +1,11 @@
 ﻿#creacion de la region de la lista
 
-$listTitle = "Armas"
-$listDescription = "Lista Arma Informacion"
+$listTitle = "Usuarios"
+$listDescription = "Lista Usuarios"
 $listTemplate = 100
 
 #añadir tipos de contenido
-$tipodecontenido = "ArmaInfo"
+$tipodecontenido = "UsuarioInfo"
 
 $lci = New-Object Microsoft.SharePoint.Client.ListCreationInformation
 $lci.title = $listTitle
@@ -94,16 +94,11 @@ if ($vista) {
         $viewFields = $view.ViewFields;
         $context.Load($viewFields);
         $context.ExecuteQuery();
-        $view.ViewFields.Add("Arma_Nombre");
-        $view.ViewFields.Add("Arma_Ataque");
-        $view.ViewFields.Add("Arma_Daño");
-        $view.ViewFields.Add("Arma_Tipo");
-        $view.ViewFields.Add("Arma_Arrojadiza");
-        $view.ViewFields.Add("Arma_Car");
-        $view.ViewFields.Add("Arma_Caracteristicas");
-        $view.ViewFields.Add("Arma_Foto");
+        $view.ViewFields.Add("ID");
+        $view.ViewFields.Add("Usuario_Estado");
+        $view.ViewFields.Add("Usuario_Foto");
 
-        $view.ViewQuery = "<OrderBy><FieldRef Name='Title' Ascending='FALSE'/></OrderBy>"
+        $view.ViewQuery = "<OrderBy><FieldRef Name='ID' Ascending='FALSE'/></OrderBy>"
         
         
         $view.Update();
@@ -120,28 +115,102 @@ if ($vista) {
         Write-Host "ERROR: no localizamos la vista" -ForegroundColor Red
     }
 
-
     }
-
     
-
+    $list = $web.Lists.GetByTitle("Usuarios")
+    $context.Load($list)
+    $context.executeQuery()
     
-        <#
-        $context.Load($list.Fields)
-        $context.executeQuery()
-        $titleField = $list.Fields| Where-Object {$_.InternalName -eq "Title"}
-        $titleField.DisplayName = "Nombre del arma"
-        $titleField.EnforceUniqueValues = "TRUE"
-        $titleField.Update()
-        #>
+    $context.Load($list.Fields)
+    $context.executeQuery()
         
-        #ver
+
+    $titleField = $list.Fields| Where-Object {$_.InternalName -eq "Title"}
+    $context.Load($titleField)
+    $context.executeQuery()
+       
+
+    $titleField.Title = "Nombre del Ususario"
+    $titleField.Update()
+
+    $list = $web.Lists.GetByTitle("Usuarios")
+    $context.Load($list)
+    $context.executeQuery()
+
+        
+        
+
+    <#
+    Comandos importantes
+
+    ejecutar
+    $context.Load($list)
+    $context.executeQuery()
+
+    cargar datos de una lista
+    $list = $web.Lists.GetByTitle("Armas")
+    $context.Load($list)
+    $context.executeQuery()
+    $context.Load($list.Fields)
+    $context.executeQuery()
+
+    buscar columna por internal name
+    $titleField = $list.Fields| Where-Object {$_.InternalName -eq "Title"}
+
+    mirar informacion de una columna
+    $titleField.SchemaXml
+
+    Cambiar informacion de un columna
+    a machete
+    $TitleField.SchemaXML ='<Field ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="Title" Group="_Hidden" Type="Text" Displ
+ayName="Nombre del arma" Required="TRUE" FromBaseType="TRUE" DelayActivateTemplateBinding="GROUP,SPSPERS,SITEPAGEPUBLISHING" Version="1" Sealed="FALSE" ColName="nvarchar1" RowOrdi
+nal="0" />'
+    poco a poco
+    $TitleField.Title = "Nombre del arma"
+
+    #>
+    
+     
+    
         <#
+        modificar title
+        $list = $web.Lists.GetByTitle("Armas")
+        $context.Load($list)
+        $context.executeQuery()
+        $list
+
         $context.Load($list.Fields)
         $context.executeQuery()
         $list.Fields
 
         $titleField = $list.Fields| Where-Object {$_.InternalName -eq "Title"}
+        $context.Load($titleField)
+        $context.executeQuery()
         $titleField
+
+        $TitleField.SchemaXML
+        $TitleField.Title = "Nombre del arma"
+        $titleField.Update()
+ 
+        
+        #>
+
+        <#
+        ver
+        $list = $web.Lists.GetByTitle("Armas")
+        $context.Load($list)
+        $context.executeQuery()
+        $list
+
+        $context.Load($list.Fields)
+        $context.executeQuery()
+        $list.Fields
+
+        $titleField = $list.Fields| Where-Object {$_.InternalName -eq "Title"}
+        $context.Load($titleField)
+        $context.executeQuery()
+        $titleField
+
+        $TitleField.SchemaXML
         #>
 

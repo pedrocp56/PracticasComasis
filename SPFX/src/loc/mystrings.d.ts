@@ -1,10 +1,19 @@
-declare interface IGestionPersonajesWebPartStrings {
+declare interface IGestorPersonajesWebPartStrings {
   PropertyPaneDescription: string;
-  BasicGroupName: string | undefined;
-  DescriptionFieldLabel: string | undefined;
+  BasicGroupName: string;
+  DescriptionFieldLabel: string;
+  AppLocalEnvironmentSharePoint: string;
+  AppLocalEnvironmentTeams: string;
+  AppLocalEnvironmentOffice: string;
+  AppLocalEnvironmentOutlook: string;
+  AppSharePointEnvironment: string;
+  AppTeamsTabEnvironment: string;
+  AppOfficeEnvironment: string;
+  AppOutlookEnvironment: string;
+  UnknownEnvironment: string;
 }
 
-declare module 'GestionPersonajesWebPartStrings' {
-  const strings: IGestionPersonajesWebPartStrings;
+declare module 'GestorPersonajesWebPartStrings' {
+  const strings: IGestorPersonajesWebPartStrings;
   export = strings;
 }

@@ -1,15 +1,14 @@
 import { WebPartContext } from "@microsoft/sp-webpart-base";
 import { IList } from "@pnp/sp/lists";
 import { IItem, IWeb } from "@pnp/sp/presets/all";
-import { PersonajeItem } from "./PersonajeItem";
+import { CampañaItem } from "./CampañaItem";
 
-export class PersonajeLista {
-  public NombreLista = "Personaje";
+export class CampañaLista {
+  public NombreLista = "Campañas";
   public SelectAllFields: string[] = [
     "*",
-    "Personaje_Usuario/Title",
   ];
-  public ExpandAllFields: string[] = ["Personaje_Usuario"];
+  public ExpandAllFields: string[] = [];
   public web: IWeb;
   public Context: WebPartContext;
   public List: IList;
@@ -20,14 +19,14 @@ export class PersonajeLista {
     this.List = this.web.lists.getByTitle(this.NombreLista);
   }
 
-  public async CargarTodos(BatchedWeb?: IWeb): Promise<PersonajeItem[] | void> {
+  public async CargarTodos(BatchedWeb?: IWeb): Promise<CampañaItem[] | void> {
     const Items = this.List.items
       .expand(this.ExpandAllFields.join())
       .orderBy("Title")
       .select(this.SelectAllFields.join())()
       .then((Data: IItem[]) => {
         return Data.map((I) => {
-          return new PersonajeItem(I, this);
+          return new CampañaItem(I, this);
         });
       })
       .catch(async (E: Error) => {
