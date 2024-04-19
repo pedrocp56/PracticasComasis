@@ -20,11 +20,12 @@
     "@microsoft/sp-property-pane": "1.18.2",
     "@microsoft/sp-webpart-base": "1.18.2",
     "@pnp/sp": "^3.13.0",
-    "antd": "^4.24.16",
+    "antd": "^4.23.6",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "tslib": "2.3.1"
   },
+ 
   "devDependencies": {
     "@microsoft/eslint-config-spfx": "1.18.2",
     "@microsoft/eslint-plugin-spfx": "1.18.2",
