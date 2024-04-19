@@ -56,7 +56,7 @@ export default class GestorPersonajesWebPartWebPart extends BaseClientSideWebPar
               groupName: strings.BasicGroupName,
               groupFields: [
                 PropertyPaneTextField('description', {
-                  label: strings.DescriptionFieldLabel
+                  label: strings.DescriptionFieldLabel.-*
                 })
               ]
             }
