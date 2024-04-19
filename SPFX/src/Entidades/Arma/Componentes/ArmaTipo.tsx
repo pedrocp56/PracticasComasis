@@ -51,7 +51,7 @@ export default function TipoCar(Props: tipoParaTablaProps): JSX.Element {
             break;
         case "Trueno":
             color = "#293462";
-            txtcolor = "#F7D716";;
+            txtcolor = "#F7D716";
             break;
         case "Veneno":
             color = "#874CCC";
