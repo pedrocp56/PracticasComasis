@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "gestor-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/gestor/GestorWebPart.js",
+          "manifest": "./src/webparts/gestor/GestorWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "GestorWebPartStrings": "lib/webparts/gestor/loc/{locale}.js"
+  }
+}
