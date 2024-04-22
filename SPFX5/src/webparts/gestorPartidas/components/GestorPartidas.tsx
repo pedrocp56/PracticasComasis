@@ -1,43 +1,47 @@
 import * as React from 'react';
-import styles from './GestorPartidas.module.scss';
-import { IGestorPartidasProps } from './IGestorPartidasProps';
-import { escape } from '@microsoft/sp-lodash-subset';
+import { Spinner } from "@fluentui/react";
+import { WebPartContext } from "@microsoft/sp-webpart-base";
+import { SPFI } from "@pnp/sp";
+import { ArmaLista } from "../../../Entidades/Arma/ArmaLista";
+import { useEffect, useState } from "react";
+import ArmaTabla from "../../../Entidades/Arma/Componentes/ArmaTabla";
+import { ArmaItem } from "../../../Entidades/Arma/ArmaItem";
 
-export default class GestorPartidas extends React.Component<IGestorPartidasProps, {}> {
-  public render(): React.ReactElement<IGestorPartidasProps> {
-    const {
-      description,
-      isDarkTheme,
-      environmentMessage,
-      hasTeamsContext,
-      userDisplayName
-    } = this.props;
+export interface IGestorPartidasCompWebpartProps {
+  SP: SPFI;
+  WebPartContext: WebPartContext;
+}
 
-    return (
-      <section className={`${styles.gestorPartidas} ${hasTeamsContext ? styles.teams : ''}`}>
-        <div className={styles.welcome}>
-          <img alt="" src={isDarkTheme ? require('../assets/welcome-dark.png') : require('../assets/welcome-light.png')} className={styles.welcomeImage} />
-          <h2>Well done, {escape(userDisplayName)}!</h2>
-          <div>{environmentMessage}</div>
-          <div>Web part property value: <strong>{escape(description)}</strong></div>
-        </div>
-        <div>
-          <h3>Welcome to SharePoint Framework!</h3>
-          <p>
-            The SharePoint Framework (SPFx) is a extensibility model for Microsoft Viva, Microsoft Teams and SharePoint. It&#39;s the easiest way to extend Microsoft 365 with automatic Single Sign On, automatic hosting and industry standard tooling.
-          </p>
-          <h4>Learn more about SPFx development:</h4>
-          <ul className={styles.links}>
-            <li><a href="https://aka.ms/spfx" target="_blank" rel="noreferrer">SharePoint Framework Overview</a></li>
-            <li><a href="https://aka.ms/spfx-yeoman-graph" target="_blank" rel="noreferrer">Use Microsoft Graph in your solution</a></li>
-            <li><a href="https://aka.ms/spfx-yeoman-teams" target="_blank" rel="noreferrer">Build for Microsoft Teams using SharePoint Framework</a></li>
-            <li><a href="https://aka.ms/spfx-yeoman-viva" target="_blank" rel="noreferrer">Build for Microsoft Viva Connections using SharePoint Framework</a></li>
-            <li><a href="https://aka.ms/spfx-yeoman-store" target="_blank" rel="noreferrer">Publish SharePoint Framework applications to the marketplace</a></li>
-            <li><a href="https://aka.ms/spfx-yeoman-api" target="_blank" rel="noreferrer">SharePoint Framework API reference</a></li>
-            <li><a href="https://aka.ms/m365pnp" target="_blank" rel="noreferrer">Microsoft 365 Developer Community</a></li>
-          </ul>
-        </div>
-      </section>
-    );
-  }
+export default function GestorPartidasCompWebpart(
+  props: IGestorPartidasCompWebpartProps
+): JSX.Element {
+  const [cargando, setCargando] = useState(true);
+  const [Items, setItems] = React.useState<ArmaItem[]>([]);
+  const ArmaL = React.useRef<ArmaLista>(new ArmaLista(props.SP.web, props.WebPartContext));
+
+  useEffect(():void => {
+    ArmaL.current.CargarTodos().then((i) => {
+      console.log(i);
+      setItems(i);
+    });
+    console.log(Items);
+
+    setTimeout(() => {
+      setCargando(false);
+      if (!cargando) console.log("Cargado");
+    }, 2000);
+  }, []);
+
+  return (
+    <>
+      <div>
+        <Spinner hidden={!cargando} />
+      </div>
+      <div hidden={cargando}>
+        <h1>Mis armas Webpart</h1>
+
+        <ArmaTabla Items={Items}/>
+      </div>
+    </>
+  );
 }

@@ -20,7 +20,12 @@
     "@microsoft/sp-property-pane": "1.16.1",
     "@microsoft/sp-webpart-base": "1.16.1",
     "@microsoft/sp-lodash-subset": "1.16.1",
-    "@microsoft/sp-office-ui-fabric-core": "1.16.1"
+    "@microsoft/sp-office-ui-fabric-core": "1.16.1",
+
+    "@microsoft/sp-component-base": "1.18.2",
+    "@fluentui/react": "^8.106.4",
+    "@pnp/sp": "^3.13.0",
+    "antd": "^4.24.16"
   },
   "devDependencies": {
     "@microsoft/rush-stack-compiler-4.5": "0.2.2",
@@ -35,6 +40,8 @@
     "@types/react": "17.0.45",
     "@types/react-dom": "17.0.17",
     "eslint-plugin-react-hooks": "4.3.0",
-    "@microsoft/sp-module-interfaces": "1.16.1"
+    "@microsoft/sp-module-interfaces": "1.16.1",
+
+    "eslint": "8.7.0"
   }
 }
