@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "gestor-partidas-client-side-solution",
+    "id": "f1ae4568-e04e-439a-91a9-eb79cebdc753",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.16.1"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "Gestor Partidas description"
+      },
+      "longDescription": {
+        "default": "Gestor Partidas description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "gestor-partidas Feature",
+        "description": "The feature that activates elements of the gestor-partidas solution.",
+        "id": "f6dba05f-94f8-4701-bf1c-a61826ca93d1",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/gestor-partidas.sppkg"
+  }
+}

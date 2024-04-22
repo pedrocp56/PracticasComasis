@@ -1,0 +1,21 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "nodeVersion": "14.19.3",
+    "sdksVersions": {
+      "@microsoft/microsoft-graph-client": "3.0.2",
+      "@microsoft/teams-js": "2.4.1"
+    },
+    "version": "1.16.1",
+    "libraryName": "gestor-partidas",
+    "libraryId": "f1ae4568-e04e-439a-91a9-eb79cebdc753",
+    "environment": "spo",
+    "packageManager": "npm",
+    "solutionName": "Gestor Partidas",
+    "solutionShortDescription": "Gestor Partidas description",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "componentType": "webpart"
+  }
+}
