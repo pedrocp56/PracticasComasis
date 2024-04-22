@@ -42,9 +42,11 @@ export default function ArmaWebpart(
       title: "Tipo",
       dataIndex: "Tipo",
       onFilter: (value: string, record) => record.Car.indexOf(value) === 0,
-      render: (tipo: string) => {
+      render: (tipo: string[]) => {
+        console.log(tipo);
+        console.log(typeof tipo);
         return (
-          <ArmaTipo tipo={tipo} />
+          <ArmaTipo tipo={tipo[0]} />
         );
       }
     },
