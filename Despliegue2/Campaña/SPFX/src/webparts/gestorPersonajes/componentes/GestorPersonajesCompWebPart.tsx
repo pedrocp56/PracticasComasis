@@ -1,19 +1,19 @@
-import * as React from 'react';
 import { Spinner } from "@fluentui/react";
 import { WebPartContext } from "@microsoft/sp-webpart-base";
 import { SPFI } from "@pnp/sp";
+import * as React from "react";
 import { ArmaLista } from "../../../Entidades/Arma/ArmaLista";
 import { useEffect, useState } from "react";
 import ArmaTabla from "../../../Entidades/Arma/Componentes/ArmaTabla";
 import { ArmaItem } from "../../../Entidades/Arma/ArmaItem";
 
-export interface IGestorPartidasCompWebpartProps {
+export interface IGestorPersonajesCompWebpartProps {
   SP: SPFI;
   WebPartContext: WebPartContext;
 }
 
-export default function GestorPartidasCompWebpart(
-  props: IGestorPartidasCompWebpartProps
+export default function GestorPersonajesCompWebpart(
+  props: IGestorPersonajesCompWebpartProps
 ): JSX.Element {
   const [cargando, setCargando] = useState(true);
   const [Items, setItems] = React.useState<ArmaItem[]>([]);
@@ -24,7 +24,8 @@ export default function GestorPartidasCompWebpart(
       console.log(i);
       setItems(i);
     });
-    
+    console.log(Items);
+
     setTimeout(() => {
       setCargando(false);
       if (!cargando) console.log("Cargado");

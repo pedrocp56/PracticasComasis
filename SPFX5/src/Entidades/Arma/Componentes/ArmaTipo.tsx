@@ -9,9 +9,6 @@ export default function TipoCar(Props: tipoParaTablaProps): JSX.Element {
   let color = "black";
   let txtcolor = "white";
   const tags = Props.tipo.map((t: string) => {
-    console.log("aaaaaaa");
-    console.log(t);
-    console.log("aaaaaaa");
     switch (t) {
       case "Contundente":
         color = "#A79277";
@@ -68,7 +65,7 @@ export default function TipoCar(Props: tipoParaTablaProps): JSX.Element {
     }
     return (
         <Tag
-          style={{ color: txtcolor, backgroundColor: color }}
+          style={{ color: txtcolor, backgroundColor: color, fontWeight:"bold"}}
           key={t}
         >
           {t.toUpperCase()}

@@ -33,7 +33,7 @@ export default function ArmaArr(Props: arrParaTablaProps): JSX.Element {
     }
     return (
         <>
-            <Tag style={{ color: txtcolor, backgroundColor: color, fontWeight:"bold"}} key={null}>
+            <Tag style={{ color: txtcolor, backgroundColor: color }} key={null}>
                 {txt.toUpperCase()}
             </Tag>
         </>

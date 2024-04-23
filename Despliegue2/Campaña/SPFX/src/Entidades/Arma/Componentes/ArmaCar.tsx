@@ -41,7 +41,7 @@ export default function ArmaCar(Props:carParaTablaProps):JSX.Element{
         
     return (
       <>
-        <Tag style={{ color: txtcolor, backgroundColor: color, fontWeight:"bold"}} key={Props.car}>
+        <Tag style={{ color: txtcolor, backgroundColor: color }} key={Props.car}>
           {Props.car.toUpperCase()}
         </Tag>
       </>

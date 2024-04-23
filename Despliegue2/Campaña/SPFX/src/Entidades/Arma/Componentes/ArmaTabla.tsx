@@ -1,11 +1,9 @@
 import * as React from "react";
-import { Table, TableColumnsType} from "antd";
+import { Table, TableColumnsType } from "antd";
 import { ArmaItem } from "../ArmaItem";
 import ArmaCar from "./ArmaCar";
 import ArmaTipo from "./ArmaTipo";
 import ArmaArr from "./ArmaArr";
-import Botones from "./ArmaBotones";
-import NuevaArma from "./ArmaNuevaBoton";
 
 export interface IArmaWebpartProps {
   Items: ArmaItem[];
@@ -44,7 +42,7 @@ export default function ArmaWebpart(
       title: "Tipo",
       dataIndex: "Tipo",
       onFilter: (value: string, record) => record.Car.indexOf(value) === 0,
-      render: (tipo: string[]) => {
+      render: (tipo: string) => {
         return (
           <ArmaTipo tipo={tipo} />
         );
@@ -102,7 +100,7 @@ export default function ArmaWebpart(
       title: "Caracteristicas",
       dataIndex: "Caracteristicas",
       render: (text: string) => (
-        <div style={{ whiteSpace: "pre-line" }}>{text}</div>
+        <span>{text ? text.split("\n").map((line, index) => <span key={index}>{line}<br /></span>) : null}</span>
       ),
     },
     {
@@ -113,17 +111,10 @@ export default function ArmaWebpart(
   ];
 
   return (
-    
-    <div>
-      <>
-      <NuevaArma/>
-      <Botones/>
-      <Table
-        columns={columns}
-        dataSource={Props.Items}
-      />
-      </>
-    </div>
+    <Table
+      columns={columns}
+      dataSource={Props.Items}
+    />
   );
 
 }

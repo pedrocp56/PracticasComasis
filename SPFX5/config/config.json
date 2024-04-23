@@ -13,6 +13,6 @@
   },
   "externals": {},
   "localizedResources": {
-    "GestorPartidasWebPartStrings": "lib/webparts/gestorPartidas/loc/{locale}.js"
+    "GestorPartidasWebPartStrings": "src/loc/{locale}.js"
   }
 }
