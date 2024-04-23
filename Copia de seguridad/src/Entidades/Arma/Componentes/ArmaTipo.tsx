@@ -6,6 +6,8 @@ export interface tipoParaTablaProps {
 }
 
 export default function TipoCar(Props: tipoParaTablaProps): JSX.Element {
+
+    
     let color = "black";
     let txtcolor = "white";
     switch (Props.tipo) {
