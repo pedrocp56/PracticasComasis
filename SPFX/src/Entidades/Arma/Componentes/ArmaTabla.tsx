@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Table, TableColumnsType, Tag } from "antd";
+import { Table, TableColumnsType } from "antd";
 import { ArmaItem } from "../ArmaItem";
 import ArmaCar from "./ArmaCar";
 import ArmaTipo from "./ArmaTipo";
