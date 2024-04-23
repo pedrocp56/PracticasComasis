@@ -21,9 +21,7 @@ const NuevaArma: React.FC = () => {
     };
 
     const handleOk = () => {
-        setTimeout(() => {
-            setIsModalOpen(false);
-        }, 3000);
+        setIsModalOpen(false);
     };
 
     const handleCancel = () => {

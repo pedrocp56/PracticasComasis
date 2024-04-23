@@ -1,11 +1,14 @@
 import * as React from "react";
-import { Table, TableColumnsType} from "antd";
+import { Table, TableColumnsType } from "antd";
 import { ArmaItem } from "../ArmaItem";
 import ArmaCar from "./ArmaCar";
 import ArmaTipo from "./ArmaTipo";
 import ArmaArr from "./ArmaArr";
 import Botones from "./ArmaBotones";
 import NuevaArma from "./ArmaNuevaBoton";
+import ArmaCaracteristicas from "./ArmaCaracteristicas";
+import ArmaInfo from "./ArmaInfo";
+import UsarImagen from "./UsarImagen";
 
 export interface IArmaWebpartProps {
   Items: ArmaItem[];
@@ -16,6 +19,17 @@ export default function ArmaWebpart(
 ): JSX.Element {
 
   const columns: TableColumnsType<ArmaItem> = [
+    {
+      key: "Resume",
+      title: "Resume",
+      dataIndex: "Resume",
+      render: (text: string, record: ArmaItem) => (
+        <div>
+          <ArmaInfo titulo="Info" text={text} info={record} />
+        </div>
+      )
+    },
+
     {
       key: "ID",
       title: "ID",
@@ -102,26 +116,31 @@ export default function ArmaWebpart(
       title: "Caracteristicas",
       dataIndex: "Caracteristicas",
       render: (text: string) => (
-        <div style={{ whiteSpace: "pre-line" }}>{text}</div>
+        <div>
+          <ArmaCaracteristicas text={text} />
+        </div>
       ),
     },
     {
       key: "Foto",
       title: "Foto",
-      dataIndex: "Foto"
+      dataIndex: "Foto",
+      render: (imageUrl: any) => (
+        <div>
+          <UsarImagen imageUrl={imageUrl} />
+        </div>
+      ),
     },
   ];
-
   return (
-    
     <div>
       <>
-      <NuevaArma/>
-      <Botones/>
-      <Table
-        columns={columns}
-        dataSource={Props.Items}
-      />
+        <NuevaArma />
+        <Botones />
+        <Table
+          columns={columns}
+          dataSource={Props.Items}
+        />
       </>
     </div>
   );

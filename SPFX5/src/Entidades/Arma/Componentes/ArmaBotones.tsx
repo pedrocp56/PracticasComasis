@@ -1,22 +1,18 @@
 import * as React from "react";
 import { Button, Dropdown, message, Modal } from "antd";
-import { DefaultPalette, IStackStyles, IStackTokens, Stack } from "@fluentui/react";
+import { IStackTokens, Stack } from "@fluentui/react";
 import { useState } from "react";
-
-const stackStyles: IStackStyles = {
-    root: {
-        background: DefaultPalette.white,
-    },
-};
-const horizontalGapStackTokens: IStackTokens = {
-    childrenGap: 10,
-    padding: 10,
-};
+import { GeneradorDeNumeroHexadecimal } from "./GeneradorDeNumeroHexadecimal";
 
 const Botones: React.FC = () => {
     const [isModalOpen1, setIsModalOpen1] = useState(false);
     const [isModalOpen2, setIsModalOpen2] = useState(false);
     const [isModalOpen3, setIsModalOpen3] = useState(false);
+
+    const horizontalGapStackTokens: IStackTokens = {
+        childrenGap: 10,
+        padding: 10,
+    };
 
     const showModal1 = () => {
         setIsModalOpen1(true);
@@ -66,19 +62,47 @@ const Botones: React.FC = () => {
         },
     ];
 
+    const buttonStyles = {
+        nuevaArma: {
+            backgroundColor: GeneradorDeNumeroHexadecimal(),
+            color: GeneradorDeNumeroHexadecimal()
+        },
+        pedro: {
+            backgroundColor: GeneradorDeNumeroHexadecimal(),
+            color: GeneradorDeNumeroHexadecimal()
+        },
+        candyCrush: {
+            backgroundColor: GeneradorDeNumeroHexadecimal(),
+            color: GeneradorDeNumeroHexadecimal()
+        },
+        mensaje: {
+            backgroundColor: GeneradorDeNumeroHexadecimal(),
+            color: GeneradorDeNumeroHexadecimal()
+        },
+        acciones: {
+            backgroundColor: GeneradorDeNumeroHexadecimal(),
+            color: GeneradorDeNumeroHexadecimal()
+        }
+    };
+
     return (
         <>
             {contextHolder}
-            <Stack enableScopedSelectors horizontal disableShrink styles={stackStyles} tokens={horizontalGapStackTokens}>
-                <Button type="primary" onClick={showModal1} size="large">
+            <Stack enableScopedSelectors horizontal disableShrink tokens={horizontalGapStackTokens}>
+                <Button type="primary" onClick={showModal1} size="large" style={buttonStyles.nuevaArma}>
                     Nueva arma
                 </Button>
-                <Modal title="Basic Modal" open={isModalOpen1} onOk={handleOk} onCancel={handleCancel}>
+                <Modal
+                    title="Basic Modal"
+                    open={isModalOpen1}
+                    onOk={handleOk}
+                    onCancel={handleCancel}
+                    style={buttonStyles.nuevaArma}>
                     <p>Nombre del arma</p>
                     <p>Ataque</p>
                     <p>Some contents...</p>
                 </Modal>
-                <Button type="primary" onClick={showModal2} size="large">
+                <Button type="primary" onClick={showModal2} size="large" style={buttonStyles.pedro}>
                     Pedro
                 </Button>
                 <Modal
@@ -86,11 +110,11 @@ const Botones: React.FC = () => {
                     title="Hacer Vistas de tablas"
                     onOk={handleOk}
                     onCancel={handleCancel}
-                >
+                    style={buttonStyles.pedro}>
                     <p>Estafa piramidal</p>
                     <p>Aceptas?</p>
                 </Modal>
-                <Button type="primary" onClick={showModal3} size="large">
+                <Button type="primary" onClick={showModal3} size="large" style={buttonStyles.candyCrush}>
                     Candy crush
                 </Button>
                 <Modal
@@ -98,14 +122,16 @@ const Botones: React.FC = () => {
                     title="Candy crush"
                     onOk={handleOk}
                     onCancel={handleCancel}
-                >
+                    style={buttonStyles.candyCrush}>
                     <p>Hackear candy crash con sharepoint</p>
                     <p>Aceptas?</p>
                 </Modal>
-                <Button type="primary" size="large" onClick={() => mostrarMensaje("Probando")}>
+                <Button type="primary" size="large" onClick={() => mostrarMensaje("¡¡¡¡¡¡¡¡¡¡¡¡¡CAMBIO DE COLOR!!!!!!!!")} style={buttonStyles.mensaje}>
                     Mensaje
                 </Button>
-                <Dropdown.Button menu={{ items }} type="primary" size="large">Acciones</Dropdown.Button>
+                <Dropdown.Button menu={{ items }} type="primary" size="large" style={buttonStyles.acciones}>
+                    Acciones
+                </Dropdown.Button>
             </Stack>
         </>
     );
