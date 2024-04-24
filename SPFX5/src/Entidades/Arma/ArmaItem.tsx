@@ -22,7 +22,7 @@ export class ArmaItem {
     this.MapearCampos();
   }
 
-  public MapearCampos():void {
+  public MapearCampos(): void {
     this.ID = this.ListItem.ID;
     this.Nombre = this.ListItem.Title;
     this.Ataque = this.ListItem.Arma_Ataque;
@@ -32,6 +32,40 @@ export class ArmaItem {
     this.Car = this.ListItem.Arma_Car;
     this.Caracteristicas = this.ListItem.Arma_Caracteristicas;
     this.Foto = this.ListItem.Arma_Foto;
+  }
+
+  public async updateItem(): Promise<boolean> {
+
+    let needUpdate = false;
+    const item: any = {}
+    if (this.ItemEdit.Nombre !== this.Nombre) {
+      item.Title = this.ItemEdit.Nombre;
+      needUpdate = true;
+    }
+    if (this.ItemEdit.Ataque !== this.Ataque) {
+      item.Arma_Ataque = this.ItemEdit.Ataque;
+      needUpdate = true;
+    }
+    if (this.ItemEdit.Daño !== this.Daño) {
+      item.Arma_Da_x00f1_o = this.ItemEdit.Daño;
+      needUpdate = true;
+    }
+    if (this.ItemEdit.Car !== this.Car) {
+      item.Arma_Car = this.ItemEdit.Car;
+      needUpdate = true;
+    }
+    
+    
+    if (needUpdate) {
+      await this.Lista.List.items.getById(this.ListItem.ID).update(item).then((result) => {
+        console.log("Actualizando");
+        this.ListItem = result;
+        this.MapearCampos();
+        return true;
+      });
+
+    }
+    else return false;
   }
 }
 /* eslint-enable */

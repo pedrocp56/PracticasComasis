@@ -13,3 +13,4 @@ export function GeneradorDeNumeroHexadecimal():string {
     // Agregar el símbolo "#" al principio y convertir a mayúsculas
     return "#" + hexString.toUpperCase();
 }
+/* eslint-enable */

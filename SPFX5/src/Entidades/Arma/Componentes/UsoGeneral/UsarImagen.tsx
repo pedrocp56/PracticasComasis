@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any*/
 import * as React from "react";
 import { Image } from 'antd';
 
@@ -12,6 +13,6 @@ const UsarImagen: React.FC<{ imageUrl: any }> = ({ imageUrl }) => {
 };
 
 export default UsarImagen;
-
+/* eslint-enable */
 
 

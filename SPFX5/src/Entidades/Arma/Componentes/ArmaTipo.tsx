@@ -79,3 +79,4 @@ export default function TipoCar(Props: tipoParaTablaProps): JSX.Element {
       </>
     );
   }
+  /* eslint-enable */

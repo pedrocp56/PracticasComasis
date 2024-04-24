@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-floating-promises*/
 import * as React from 'react';
 import { Spinner } from "@fluentui/react";
 import { WebPartContext } from "@microsoft/sp-webpart-base";
@@ -19,6 +20,14 @@ export default function GestorArmasCompWebpart(
   const [Items, setItems] = React.useState<ArmaItem[]>([]);
   const ArmaL = React.useRef<ArmaLista>(new ArmaLista(props.SP.web, props.WebPartContext));
 
+  const recargaDatos = async ():Promise<void> => {
+    await ArmaL.current.CargarTodos().then((i) => {
+      console.log(i);
+      setItems(i);
+    });
+    console.log(Items);
+  }
+
   useEffect(():void => {
     ArmaL.current.CargarTodos().then((i) => {
       console.log(i);
@@ -37,8 +46,9 @@ export default function GestorArmasCompWebpart(
         <Spinner hidden={!cargando} />
       </div>
       <div hidden={cargando}>
-        <ArmaTabla Items={Items}/>
+        <ArmaTabla Items={Items} callback={recargaDatos}/>
       </div>
     </>
   );
 }
+/* eslint-enable */

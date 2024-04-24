@@ -16,15 +16,15 @@ const horizontalGapStackTokens: IStackTokens = {
 const NuevaArma: React.FC = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const showModal = () => {
+    const showModal = ():void  => {
         setIsModalOpen(true);
     };
 
-    const handleOk = () => {
+    const handleOk = ():void  => {
         setIsModalOpen(false);
     };
 
-    const handleCancel = () => {
+    const handleCancel = ():void  => {
         setIsModalOpen(false);
     };
 
@@ -45,3 +45,4 @@ const NuevaArma: React.FC = () => {
 };
 
 export default NuevaArma;
+/* eslint-enable */

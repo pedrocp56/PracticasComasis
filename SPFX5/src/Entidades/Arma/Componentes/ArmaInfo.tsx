@@ -1,6 +1,7 @@
 import * as React from "react";
-import { Button, Modal } from "antd";
+import { Modal } from "antd";
 import { ArmaItem } from "../ArmaItem";
+import { ActionButton } from "@fluentui/react";
 
 export interface infoParaTablaProps {
     info: ArmaItem;
@@ -9,15 +10,15 @@ export interface infoParaTablaProps {
 const ArmaInfo: React.FC<{ titulo: string, info: ArmaItem }> = ({ titulo, info }) => {
     const [isModalOpen, setIsModalOpen] = React.useState(false);
 
-    const showModal = () => {
+    const showModal = (): void => {
         setIsModalOpen(true);
     };
 
-    const handleOk = () => {
+    const handleOk = (): void => {
         setIsModalOpen(false);
     };
 
-    const handleCancel = () => {
+    const handleCancel = (): void => {
         setIsModalOpen(false);
     };
     const buttonStyle = {
@@ -36,25 +37,26 @@ const ArmaInfo: React.FC<{ titulo: string, info: ArmaItem }> = ({ titulo, info }
             txt = "No";
             break;
     }
-    var foto = info.Foto;
-    var url;
+    const foto = info.Foto;
+    let url;
     if (!foto) {
         url = "Sin imagen";
     } else {
         url = foto.Url;
     }
-    var car = info.Caracteristicas;
+    let car = info.Caracteristicas;
     if (!car) {
         car = "Sin caracteristicas especiales";
     }
 
     return (
         <>
-            <Button type="primary"
+            <ActionButton type="primary"
                 onClick={showModal}
-                style={buttonStyle}>
+                style={buttonStyle}
+                iconProps={{ iconName: "ComplianceAudit" }}>
                 {titulo}
-            </Button>
+            </ActionButton>
             <Modal title={titulo} open={isModalOpen}
                 onOk={handleOk} onCancel={handleCancel}>
                 <p>ID: {info.ID}</p>
@@ -74,3 +76,4 @@ const ArmaInfo: React.FC<{ titulo: string, info: ArmaItem }> = ({ titulo, info }
 };
 
 export default ArmaInfo;
+/* eslint-enable */

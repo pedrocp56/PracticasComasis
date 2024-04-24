@@ -1,3 +1,5 @@
+/* eslint-disable  @typescript-eslint/no-floating-promises*/
+
 import * as React from "react";
 import { Button, Dropdown, message, Modal } from "antd";
 import { IStackTokens, Stack } from "@fluentui/react";
@@ -14,25 +16,25 @@ const Botones: React.FC = () => {
         padding: 10,
     };
 
-    const showModal1 = () => {
+    const showModal1 = ():void  => {
         setIsModalOpen1(true);
     };
 
-    const showModal2 = () => {
+    const showModal2 = ():void  => {
         setIsModalOpen2(true);
     };
 
-    const showModal3 = () => {
+    const showModal3 = ():void  => {
         setIsModalOpen3(true);
     };
 
-    const handleOk = () => {
+    const handleOk = ():void  => {
         setIsModalOpen1(false);
         setIsModalOpen2(false);
         setIsModalOpen3(false);
     };
 
-    const handleCancel = () => {
+    const handleCancel = ():void  => {
         setIsModalOpen1(false);
         setIsModalOpen2(false);
         setIsModalOpen3(false);
@@ -40,7 +42,7 @@ const Botones: React.FC = () => {
 
     const [messageApi, contextHolder] = message.useMessage();
 
-    const mostrarMensaje = (message: string) => {
+    const mostrarMensaje = (message: string):void => {
         messageApi.info(message);
     };
 
@@ -138,3 +140,4 @@ const Botones: React.FC = () => {
 };
 
 export default Botones;
+/* eslint-enable */

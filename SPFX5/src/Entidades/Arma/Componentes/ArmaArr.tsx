@@ -39,3 +39,4 @@ export default function ArmaArr(Props: arrParaTablaProps): JSX.Element {
         </>
     );
 }
+/* eslint-enable */

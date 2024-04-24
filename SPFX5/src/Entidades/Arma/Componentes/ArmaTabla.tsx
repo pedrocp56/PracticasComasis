@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any*/
 import * as React from "react";
 import { Table, TableColumnsType } from "antd";
 import { ArmaItem } from "../ArmaItem";
@@ -11,10 +12,12 @@ import UsarImagen from "./UsoGeneral/UsarImagen";
 import { SearchOutlined } from '@ant-design/icons';
 import FiltroTexto from "./UsoGeneral/FiltroTexto";
 import { CalcularDañoMax } from "./ArmaDaño";
+import ArmasBotonEditar from "./ArmaEditar";
 
 
 export interface IArmaWebpartProps {
   Items: ArmaItem[];
+  callback: () => Promise<void>
 }
 
 export default function ArmaWebpart(
@@ -23,16 +26,25 @@ export default function ArmaWebpart(
 
   const columns: TableColumnsType<ArmaItem> = [
     {
-      key: "Resume",
-      title: "Resume",
-      dataIndex: "Resume",
+      key: "Resumen",
+      title: "Resumen",
+      dataIndex: "Resumen",
       render: (text: string, record: ArmaItem) => (
         <div>
           <ArmaInfo titulo="Info" info={record} />
         </div>
       )
     },
-
+    {
+      key: "Editar",
+      title: "Editar",
+      dataIndex: "Editar",
+      render: (text: any, record: ArmaItem) => (
+        <div>
+          <ArmasBotonEditar item={record} callback={Props.callback} />
+        </div>
+      )
+    },
     {
       key: "ID",
       title: "ID",
@@ -116,16 +128,7 @@ export default function ArmaWebpart(
         </div>
       ),
     },
-    {
-      key: "Editar",
-      title: "Editar",
-      dataIndex: "Editar",
-      render: (text: string, record: ArmaItem) => (
-        <div>
-          <ArmaInfo titulo="Info" info={record} />
-        </div>
-      )
-    },
+
   ];
   return (
     <div>
@@ -140,3 +143,4 @@ export default function ArmaWebpart(
   );
 
 }
+/* eslint-enable */

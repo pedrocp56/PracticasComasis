@@ -71,3 +71,4 @@ export default class GestorPartidasWebPart extends BaseClientSideWebPart<IGestor
     };
   }
 }
+/* eslint-enable */

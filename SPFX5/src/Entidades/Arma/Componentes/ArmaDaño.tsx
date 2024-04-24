@@ -1,23 +1,5 @@
 import { ArmaItem } from "../ArmaItem";
 
-export const CalcularDañoMax = (a: ArmaItem, b: ArmaItem): number => {
-  const dañoA = a.Daño;
-  const dañoB = b.Daño;
-
-  // Realizar el cálculo del daño máximo para ambos elementos
-  const dañoMaxA = calcularDañoMaxIndividual(dañoA);
-  const dañoMaxB = calcularDañoMaxIndividual(dañoB);
-
-  // Comparar los valores de daño máximo y devolver el resultado de la comparación
-  if (dañoMaxA < dañoMaxB) {
-    return -1;
-  }
-  if (dañoMaxA > dañoMaxB) {
-    return 1;
-  }
-  return 0; // En caso de que los valores sean iguales
-};
-
 const calcularDañoMaxIndividual = (daño: string): number => {
   console.log("Daño original:", daño);
 
@@ -58,3 +40,22 @@ const calcularDañoMaxIndividual = (daño: string): number => {
   console.log("Daño total:", dañoTotal);
   return dañoTotal;
 };
+
+export const CalcularDañoMax = (a: ArmaItem, b: ArmaItem): number => {
+  const dañoA = a.Daño;
+  const dañoB = b.Daño;
+
+  // Realizar el cálculo del daño máximo para ambos elementos
+  const dañoMaxA = calcularDañoMaxIndividual(dañoA);
+  const dañoMaxB = calcularDañoMaxIndividual(dañoB);
+
+  // Comparar los valores de daño máximo y devolver el resultado de la comparación
+  if (dañoMaxA < dañoMaxB) {
+    return -1;
+  }
+  if (dañoMaxA > dañoMaxB) {
+    return 1;
+  }
+  return 0; // En caso de que los valores sean iguales
+};
+/* eslint-enable */
