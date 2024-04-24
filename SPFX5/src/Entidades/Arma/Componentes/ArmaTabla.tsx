@@ -1,14 +1,16 @@
 import * as React from "react";
 import { Table, TableColumnsType } from "antd";
 import { ArmaItem } from "../ArmaItem";
-import ArmaCar from "./ArmaCar";
+import ArmaCar, { CarFiltro } from "./ArmaCar";
 import ArmaTipo from "./ArmaTipo";
 import ArmaArr from "./ArmaArr";
-import Botones from "./ArmaBotones";
 import NuevaArma from "./ArmaNuevaBoton";
 import ArmaCaracteristicas from "./ArmaCaracteristicas";
 import ArmaInfo from "./ArmaInfo";
-import UsarImagen from "./UsarImagen";
+import UsarImagen from "./UsoGeneral/UsarImagen";
+import { SearchOutlined } from '@ant-design/icons';
+import FiltroTexto from "./UsoGeneral/FiltroTexto";
+
 
 export interface IArmaWebpartProps {
   Items: ArmaItem[];
@@ -25,7 +27,7 @@ export default function ArmaWebpart(
       dataIndex: "Resume",
       render: (text: string, record: ArmaItem) => (
         <div>
-          <ArmaInfo titulo="Info" text={text} info={record} />
+          <ArmaInfo titulo="Info" info={record} />
         </div>
       )
     },
@@ -41,6 +43,12 @@ export default function ArmaWebpart(
       key: "Nombre",
       title: "Nombre",
       dataIndex: "Nombre",
+      filterDropdown: FiltroTexto,
+      filterIcon: (filtered: boolean) => (
+        <SearchOutlined style={{ color: filtered ? '#1890ff' : undefined }} />
+      ),
+      onFilter: (value: any, record: ArmaItem) =>
+        record.Nombre.toLowerCase().indexOf((value as string).toLowerCase()) !== -1,
     },
     {
       key: "Ataque",
@@ -78,32 +86,7 @@ export default function ArmaWebpart(
       key: "Car",
       title: "Car",
       dataIndex: "Car",
-      filters: [
-        {
-          text: "Fuerza",
-          value: "Fuerza",
-        },
-        {
-          text: "Destreza",
-          value: "Destreza",
-        },
-        {
-          text: "Constitución",
-          value: "Constitución",
-        },
-        {
-          text: "Inteligencia",
-          value: "Inteligencia",
-        },
-        {
-          text: "Sabiduria",
-          value: "Sabiduria",
-        },
-        {
-          text: "Carisma",
-          value: "Carisma",
-        },
-      ],
+      filters: CarFiltro(),
       onFilter: (value: string, record) => record.Car.indexOf(value) === 0,
       render: (car: string) => {
         return (
@@ -131,12 +114,21 @@ export default function ArmaWebpart(
         </div>
       ),
     },
+    {
+      key: "Editar",
+      title: "Editar",
+      dataIndex: "Editar",
+      render: (text: string, record: ArmaItem) => (
+        <div>
+          <ArmaInfo titulo="Info" info={record} />
+        </div>
+      )
+    },
   ];
   return (
     <div>
       <>
         <NuevaArma />
-        <Botones />
         <Table
           columns={columns}
           dataSource={Props.Items}

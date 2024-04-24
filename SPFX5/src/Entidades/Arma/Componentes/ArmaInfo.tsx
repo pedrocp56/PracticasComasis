@@ -3,11 +3,10 @@ import { Button, Modal } from "antd";
 import { ArmaItem } from "../ArmaItem";
 
 export interface infoParaTablaProps {
-    text: string
     info: ArmaItem;
 }
 
-const ArmaInfo: React.FC<{ titulo: string, text: string, info: ArmaItem }> = ({ titulo, text, info }) => {
+const ArmaInfo: React.FC<{ titulo: string, info: ArmaItem }> = ({ titulo, info }) => {
     const [isModalOpen, setIsModalOpen] = React.useState(false);
 
     const showModal = () => {

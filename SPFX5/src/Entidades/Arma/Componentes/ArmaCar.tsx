@@ -4,6 +4,32 @@ import * as React from "react";
 export interface carParaTablaProps {
     car: string;
 }
+export const CarFiltro = () => [
+  {
+    text: "Fuerza",
+    value: "Fuerza",
+  },
+  {
+    text: "Destreza",
+    value: "Destreza",
+  },
+  {
+    text: "Constitución",
+    value: "Constitución",
+  },
+  {
+    text: "Inteligencia",
+    value: "Inteligencia",
+  },
+  {
+    text: "Sabiduria",
+    value: "Sabiduria",
+  },
+  {
+    text: "Carisma",
+    value: "Carisma",
+  },
+];
 
 export default function ArmaCar(Props:carParaTablaProps):JSX.Element{    
     let color = 'black';

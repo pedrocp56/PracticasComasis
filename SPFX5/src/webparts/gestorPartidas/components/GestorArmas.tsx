@@ -7,13 +7,13 @@ import { useEffect, useState } from "react";
 import ArmaTabla from "../../../Entidades/Arma/Componentes/ArmaTabla";
 import { ArmaItem } from "../../../Entidades/Arma/ArmaItem";
 
-export interface IGestorPartidasCompWebpartProps {
+export interface IGestorArmasCompWebpartProps {
   SP: SPFI;
   WebPartContext: WebPartContext;
 }
 
-export default function GestorPartidasCompWebpart(
-  props: IGestorPartidasCompWebpartProps
+export default function GestorArmasCompWebpart(
+  props: IGestorArmasCompWebpartProps
 ): JSX.Element {
   const [cargando, setCargando] = useState(true);
   const [Items, setItems] = React.useState<ArmaItem[]>([]);

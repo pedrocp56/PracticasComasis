@@ -2,7 +2,7 @@ import * as React from "react";
 import { Button, Dropdown, message, Modal } from "antd";
 import { IStackTokens, Stack } from "@fluentui/react";
 import { useState } from "react";
-import { GeneradorDeNumeroHexadecimal } from "./GeneradorDeNumeroHexadecimal";
+import { GeneradorDeNumeroHexadecimal } from "./UsoGeneral/GeneradorDeNumeroHexadecimal";
 
 const Botones: React.FC = () => {
     const [isModalOpen1, setIsModalOpen1] = useState(false);
