@@ -29,6 +29,7 @@ export default function ArmaWebpart(
       key: "Resumen",
       title: "Resumen",
       dataIndex: "Resumen",
+      align: 'center',
       render: (text: string, record: ArmaItem) => (
         <div>
           <ArmaInfo titulo="Info" info={record} />
@@ -39,6 +40,7 @@ export default function ArmaWebpart(
       key: "Editar",
       title: "Editar",
       dataIndex: "Editar",
+      align: 'center',
       render: (text: any, record: ArmaItem) => (
         <div>
           <ArmasBotonEditar item={record} callback={Props.callback} />
@@ -49,6 +51,7 @@ export default function ArmaWebpart(
       key: "ID",
       title: "ID",
       dataIndex: "ID",
+      align: 'center',
       defaultSortOrder: "ascend",
       sorter: (a: any, b: any) => a.ID - b.ID,
     },
@@ -56,6 +59,7 @@ export default function ArmaWebpart(
       key: "Nombre",
       title: "Nombre",
       dataIndex: "Nombre",
+      align: 'center',
       filterDropdown: FiltroTexto,
       filterIcon: (filtered: boolean) => (
         <SearchOutlined style={{ color: filtered ? '#1890ff' : undefined }} />
@@ -67,18 +71,21 @@ export default function ArmaWebpart(
       key: "Ataque",
       title: "Ataque",
       dataIndex: "Ataque",
+      align: 'center',
       sorter: (a: any, b: any) => a.Ataque - b.Ataque,
     },
     {
       key: "Daño",
       title: "Daño",
       dataIndex: "Daño",
+      align: 'center',
       sorter: CalcularDañoMax,
     },
     {
       key: "Tipo",
       title: "Tipo",
       dataIndex: "Tipo",
+      align: 'center',
       onFilter: (value: string, record) => record.Car.indexOf(value) === 0,
       render: (tipo: string[]) => {
         return (
@@ -90,6 +97,7 @@ export default function ArmaWebpart(
       key: "Arrojadiza",
       title: "Arrojadiza",
       dataIndex: "Arrojadiza",
+      align: 'center',
       render: (arr: boolean) => {
         return (
           <ArmaArr arr={arr} />
@@ -100,6 +108,7 @@ export default function ArmaWebpart(
       key: "Car",
       title: "Car",
       dataIndex: "Car",
+      align: 'center',
       filters: CarFiltro(),
       onFilter: (value: string, record) => record.Car.indexOf(value) === 0,
       render: (car: string) => {
@@ -112,6 +121,7 @@ export default function ArmaWebpart(
       key: "Caracteristicas",
       title: "Caracteristicas",
       dataIndex: "Caracteristicas",
+      align: 'center',
       render: (text: string) => (
         <div>
           <ArmaCaracteristicas text={text} />
@@ -122,6 +132,7 @@ export default function ArmaWebpart(
       key: "Foto",
       title: "Foto",
       dataIndex: "Foto",
+      align: 'center',
       render: (imageUrl: any) => (
         <div>
           <UsarImagen imageUrl={imageUrl} />
@@ -130,6 +141,10 @@ export default function ArmaWebpart(
     },
 
   ];
+  const tableStyle = {
+    margin: 'auto',
+    width: 'fit-content'
+  };
   return (
     <div>
       <>
@@ -137,6 +152,7 @@ export default function ArmaWebpart(
         <Table
           columns={columns}
           dataSource={Props.Items}
+          style={tableStyle}
         />
       </>
     </div>

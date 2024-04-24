@@ -65,7 +65,7 @@ export default function TipoCar(Props: tipoParaTablaProps): JSX.Element {
     }
     return (
         <Tag
-          style={{ color: txtcolor, backgroundColor: color, fontWeight:"bold"}}
+          style={{ color: txtcolor, backgroundColor: color, fontWeight:"bold", marginTop:"5px"}}
           key={t}
         >
           {t.toUpperCase()}
