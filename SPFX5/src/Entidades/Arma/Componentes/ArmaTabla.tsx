@@ -10,6 +10,7 @@ import ArmaInfo from "./ArmaInfo";
 import UsarImagen from "./UsoGeneral/UsarImagen";
 import { SearchOutlined } from '@ant-design/icons';
 import FiltroTexto from "./UsoGeneral/FiltroTexto";
+import { CalcularDañoMax } from "./ArmaDaño";
 
 
 export interface IArmaWebpartProps {
@@ -36,7 +37,7 @@ export default function ArmaWebpart(
       key: "ID",
       title: "ID",
       dataIndex: "ID",
-      defaultSortOrder: "descend",
+      defaultSortOrder: "ascend",
       sorter: (a: any, b: any) => a.ID - b.ID,
     },
     {
@@ -60,6 +61,7 @@ export default function ArmaWebpart(
       key: "Daño",
       title: "Daño",
       dataIndex: "Daño",
+      sorter: CalcularDañoMax,
     },
     {
       key: "Tipo",

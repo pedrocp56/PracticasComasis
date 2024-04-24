@@ -66,7 +66,8 @@ const ArmaInfo: React.FC<{ titulo: string, info: ArmaItem }> = ({ titulo, info }
                 <p>Caracteristica de ataque: {info.Car}</p>
                 <p>Caracteristicas:</p>
                 <p style={{ whiteSpace: "pre-line" }}>  {car}</p>
-                <p>URL de la foto: {url}</p>
+                <p>URL de la foto:</p>
+                <img src={url} alt="Foto de Arma" style={{ maxWidth: '250px', maxHeight: 'auto' }} />
             </Modal>
         </>
     );
