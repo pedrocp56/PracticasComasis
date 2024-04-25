@@ -24,6 +24,7 @@ export default function ArmaWebpart(
   Props: IArmaWebpartProps
 ): JSX.Element {
 
+
   const columns: TableColumnsType<ArmaItem> = [
     {
       key: "Resumen",

@@ -1,5 +1,6 @@
-/* eslint-disable @typescript-eslint/no-explicit-any*/
+/* eslint-disable @typescript-eslint/no-explicit-any, no-new*/
 import { ArmaLista } from "./ArmaLista";
+import { isValidUrl } from "./Componentes/UsoGeneral/Validaciones";
 
 export class ArmaItem {
   public ListItem: any;
@@ -16,11 +17,13 @@ export class ArmaItem {
   public Caracteristicas: string;
   public Foto: any;
 
+
   constructor(ListItem: any, Lista: ArmaLista) {
     this.ListItem = ListItem;
     this.Lista = Lista;
     this.MapearCampos();
   }
+
 
   public MapearCampos(): void {
     this.ID = this.ListItem.ID;
@@ -50,12 +53,35 @@ export class ArmaItem {
       item.Arma_Da_x00f1_o = this.ItemEdit.Daño;
       needUpdate = true;
     }
+    if (this.ItemEdit.Tipo !== this.Tipo) {
+      if (this.ItemEdit.Tipo.length !== 0) {
+        console.log(this.ItemEdit.Tipo);
+        item.Arma_Tipo = this.ItemEdit.Tipo;
+        needUpdate = true;
+      }
+    }
+    if (this.ItemEdit.Arrojadiza !== this.Arrojadiza) {
+      item.Arma_Arrojadiza = this.ItemEdit.Arrojadiza;
+      needUpdate = true;
+    }
     if (this.ItemEdit.Car !== this.Car) {
       item.Arma_Car = this.ItemEdit.Car;
       needUpdate = true;
     }
-    
-    
+    if (this.ItemEdit.Caracteristicas !== this.Caracteristicas) {
+      item.Arma_Caracteristicas = this.ItemEdit.Caracteristicas;
+      needUpdate = true;
+    }
+
+    if (this.ItemEdit.Foto !== this.Foto?.Url) {
+      if (isValidUrl(this.ItemEdit.Foto?.Url) || this.ItemEdit.Foto?.Url === '') {
+        item.Arma_Foto = { Url: this.ItemEdit.Foto?.Url };
+        needUpdate = true;
+      } else {
+        console.log("La URL de la imagen no es válida");
+      }
+    }
+
     if (needUpdate) {
       await this.Lista.List.items.getById(this.ListItem.ID).update(item).then((result) => {
         console.log("Actualizando");
@@ -68,4 +94,8 @@ export class ArmaItem {
     else return false;
   }
 }
+
+
+
+
 /* eslint-enable */

@@ -22,10 +22,10 @@ export default function GestorArmasCompWebpart(
 
   const recargaDatos = async ():Promise<void> => {
     await ArmaL.current.CargarTodos().then((i) => {
-      console.log(i);
+      //console.log(i);
       setItems(i);
     });
-    console.log(Items);
+    //console.log(Items);
   }
 
   useEffect(():void => {

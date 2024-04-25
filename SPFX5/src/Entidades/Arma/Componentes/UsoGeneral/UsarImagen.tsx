@@ -6,7 +6,6 @@ const UsarImagen: React.FC<{ imageUrl: any }> = ({ imageUrl }) => {
     if (!imageUrl) {
         return <div>Sin imagen</div>;
     }
-    console.log(imageUrl.Url);
     return (
         <Image src={imageUrl.Url} />
     );
