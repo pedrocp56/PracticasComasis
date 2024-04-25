@@ -27,12 +27,88 @@ export default function ArmaFormProps(props: IArmaFormProps): JSX.Element {
     const [itemEdit, setItemEdit] = useState(props.item);
     const [errorMessage, setErrorMessage] = useState("");
 
+    function Validacion(): boolean {
+        try {
+            setErrorMessage("");
+            if (
+                itemEdit?.Nombre === null ||
+                itemEdit?.Nombre === undefined ||
+                itemEdit?.Nombre === ""
+            ) {
+                setErrorMessage("Nombre no válido");
+                return false;
+            }
+            if (
+                itemEdit?.Daño === null ||
+                itemEdit?.Daño === undefined ||
+                itemEdit?.Daño === ""
+            ) {
+                setErrorMessage("Daño no válido");
+                return false;
+            }
+
+            if (
+                itemEdit?.Tipo.length === 0
+            ) {
+                setErrorMessage("Selecciona un tipo");
+                return false;
+            }
+            if (
+                !isValidUrl(itemEdit?.Foto.Url)
+            ) {
+                setErrorMessage("La URL de la imagen no es válida");
+                return false;
+            }
+            return true;
+        } catch (error) {
+            console.log(error);
+            return false;
+        }
+    }
 
     const [opcionesTipo, setOpcionesTipo] =
         useState<IDropdownOption[]>([]);
     const [opcionesCar, setOpcionesCar] =
         useState<IDropdownOption[]>([]);
 
+    const handleNombreChange = (newValue: string): void => {
+        if (newValue === "" || newValue === null) {
+            setErrorMessage("Nombre no válido");
+        } else {
+            setErrorMessage("");
+        }
+        setItemEdit({ ...itemEdit, Nombre: newValue } as ArmaItem)
+    };
+
+    const handleAtaqueChange = (newValue: string): void => {
+        const parsedValue = parseInt(newValue);
+        if (!isNaN(parsedValue) && parsedValue >= 0) {
+            setItemEdit({ ...itemEdit, Ataque: parsedValue } as ArmaItem);
+        } else {
+            if (newValue === "") {
+                setItemEdit({ ...itemEdit, Ataque: 0 } as ArmaItem);
+            }
+        }
+    };
+
+    const handleDañoChange = (newValue: string): void => {
+        if (newValue === "" || newValue === null) {
+            setErrorMessage("Daño no válido");
+        } else {
+            setErrorMessage("");
+        }
+        setItemEdit({ ...itemEdit, Daño: newValue } as ArmaItem)
+    };
+
+    const handleTipoChange = (item: IDropdownOption<any>): void => {
+        const selectedItems = item.selected ? [...(itemEdit.Tipo || []), item.text] : itemEdit.Tipo.filter(option => option !== item.text);
+        setItemEdit({ ...itemEdit, Tipo: selectedItems } as ArmaItem);
+        if (itemEdit.Tipo.length === 1 && !item.selected) {
+            setErrorMessage("Selecciona un tipo");
+        } else {
+            setErrorMessage("");
+        }
+    };
 
     const handleFotoChange = (newValue: string): void => {
         if (newValue === "" || newValue === null || isValidUrl(newValue)) {
@@ -43,8 +119,11 @@ export default function ArmaFormProps(props: IArmaFormProps): JSX.Element {
         setItemEdit({ ...itemEdit, Foto: { Description: newValue, Url: newValue } } as ArmaItem);
     };
 
-
     const handleOk = async (): Promise<void> => {
+        if (!Validacion()) {
+            setErrorMessage("Resuelve todos los errores");
+            return;
+        }
         setGuardando(true);
         props.item.ItemEdit = itemEdit;
         await props.item.updateItem();
@@ -55,8 +134,7 @@ export default function ArmaFormProps(props: IArmaFormProps): JSX.Element {
 
     useEffect((): void => {
         setItemEdit(props.item);
-    }
-        , [props.item]);
+    }, [props.item]);
 
     useEffect((): void => {
         setOpcionesTipo([
@@ -73,8 +151,7 @@ export default function ArmaFormProps(props: IArmaFormProps): JSX.Element {
             { key: "Trueno", text: "Trueno" },
             { key: "Veneno", text: "Veneno" },
         ]);
-
-    }, [])
+    }, []);
 
     useEffect((): void => {
         setOpcionesCar([
@@ -85,46 +162,47 @@ export default function ArmaFormProps(props: IArmaFormProps): JSX.Element {
             { key: "Sabiduria", text: "Sabiduria" },
             { key: "Carisma", text: "Carisma" },
         ]);
-
-    }, [])
+    }, []);
 
     return (
         <>
             <Stack enableScopedSelectors horizontal disableShrink styles={stackStyles} tokens={horizontalGapStackTokens}>
-                <Modal title="Características" open={props.isVisible}
-                    onOk={handleOk} onCancel={props.onCancel}>
+                <Modal title="Características" open={props.isVisible} onOk={handleOk} onCancel={props.onCancel}>
                     <Stack hidden={!guardando}>
                         <Spinner label="Guardando..." />
                     </Stack>
                     <Stack hidden={guardando}>
                         <p>{errorMessage}</p>
-                        <TextField label="Nombre" value={itemEdit.Nombre} onChange={(e, newValue) => { setItemEdit({ ...itemEdit, Nombre: newValue } as ArmaItem) }} />
-                        <TextField
-                            label="Ataque"
-                            value={itemEdit.Ataque.toString()} // Convertir el número a string
-                            onChange={(e, newValue) => {
-                                const parsedValue = parseInt(newValue);
-                                if (!isNaN(parsedValue)) {
-                                    setItemEdit({ ...itemEdit, Ataque: parsedValue } as ArmaItem);
-                                } else {
-                                    console.error("El valor ingresado no es un número válido");
-                                }
-                            }} />
-                        <TextField label="Daño" value={itemEdit.Daño} onChange={(e, newValue) => { setItemEdit({ ...itemEdit, Daño: newValue } as ArmaItem) }} />
+                        <TextField label="Nombre"
+                            value={itemEdit.Nombre} onChange={(e, newValue) => handleNombreChange(newValue || "")}
+                        />
+                        <TextField label="Ataque"
+                            value={itemEdit.Ataque.toString()} onChange={(e, newValue) => handleAtaqueChange(newValue || "")}
+                        />
+                        <TextField label="Daño"
+                            value={itemEdit.Daño} onChange={(e, newValue) => handleDañoChange(newValue || "")}
+                        />
                         <Dropdown
                             label="Tipo"
                             selectedKeys={itemEdit.Tipo}
                             options={opcionesTipo}
-                            onChange={(e, item) => {
-                                const selectedItems = item.selected ? [...(itemEdit.Tipo || []), item.text] : itemEdit.Tipo.filter(option => option !== item.text);
-                                setItemEdit({ ...itemEdit, Tipo: selectedItems } as ArmaItem);
-                            }}
+                            onChange={(e, selectedItems) => handleTipoChange(selectedItems)}
                             multiSelect
                         />
-                        <Toggle label="Arrojadiza" checked={itemEdit.Arrojadiza} onChange={(ev, checked) => { setItemEdit({ ...itemEdit, Arrojadiza: checked } as ArmaItem); }} />
-                        <Dropdown label="Car" selectedKey={itemEdit.Car} options={opcionesCar} onChange={(e, item) => { setItemEdit({ ...itemEdit, Car: item.text } as ArmaItem) }} />
-                        <TextField label="Caracteristicas" value={itemEdit.Caracteristicas} onChange={(e, newValue) => { setItemEdit({ ...itemEdit, Caracteristicas: newValue } as ArmaItem) }}
-                            multiline rows={4} />
+                        <Toggle label="Arrojadiza"
+                            checked={itemEdit.Arrojadiza}
+                            onChange={(e, checked) => { setItemEdit({ ...itemEdit, Arrojadiza: checked } as ArmaItem); }}
+                        />
+                        <Dropdown label="Car"
+                            selectedKey={itemEdit.Car}
+                            options={opcionesCar}
+                            onChange={(e, item) => { setItemEdit({ ...itemEdit, Car: item.text } as ArmaItem) }}
+                        />
+                        <TextField
+                            label="Caracteristicas"
+                            value={itemEdit.Caracteristicas} onChange={(e, newValue) => { setItemEdit({ ...itemEdit, Caracteristicas: newValue } as ArmaItem) }}
+                            multiline rows={4}
+                        />
                         <TextField
                             label="Foto"
                             value={itemEdit.Foto?.Url || ""}
