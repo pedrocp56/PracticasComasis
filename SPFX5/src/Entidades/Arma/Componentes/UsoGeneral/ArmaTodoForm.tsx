@@ -24,6 +24,7 @@ const horizontalGapStackTokens: IStackTokens = {
 
 export default function ArmaFormProps(props: IArmaFormProps): JSX.Element {
     const [guardando, setGuardando] = useState(false);
+    const [valido, setValido] = useState(true);
     const [itemEdit, setItemEdit] = useState(props.item);
     const [errorMessage, setErrorMessage] = useState("");
 
@@ -36,6 +37,7 @@ export default function ArmaFormProps(props: IArmaFormProps): JSX.Element {
                 itemEdit?.Nombre === ""
             ) {
                 setErrorMessage("Nombre no válido");
+                setValido(false);
                 return false;
             }
             if (
@@ -44,6 +46,7 @@ export default function ArmaFormProps(props: IArmaFormProps): JSX.Element {
                 itemEdit?.Daño === ""
             ) {
                 setErrorMessage("Daño no válido");
+                setValido(false);
                 return false;
             }
 
@@ -51,6 +54,7 @@ export default function ArmaFormProps(props: IArmaFormProps): JSX.Element {
                 itemEdit?.Tipo.length === 0
             ) {
                 setErrorMessage("Selecciona un tipo");
+                setValido(false);
                 return false;
             }
             if (
@@ -59,12 +63,15 @@ export default function ArmaFormProps(props: IArmaFormProps): JSX.Element {
                 itemEdit?.Foto === "" ||
                 isValidUrl(itemEdit?.Foto.Url)
             ) {
+                setValido(true);
                 return true;
             }
             setErrorMessage("La URL de la imagen no es válida");
+            setValido(false);
             return false;
         } catch (error) {
             console.log(error);
+            setValido(false);
             return false;
         }
     }
@@ -137,6 +144,8 @@ export default function ArmaFormProps(props: IArmaFormProps): JSX.Element {
     };
 
     useEffect((): void => {
+        const check = Validacion();
+        setValido(check);
         setItemEdit(props.item);
     }, [props.item]);
 
@@ -171,7 +180,13 @@ export default function ArmaFormProps(props: IArmaFormProps): JSX.Element {
     return (
         <>
             <Stack enableScopedSelectors horizontal disableShrink styles={stackStyles} tokens={horizontalGapStackTokens}>
-                <Modal title="Características" open={props.isVisible} onOk={handleOk} onCancel={props.onCancel}>
+                <Modal title="Características"
+                    open={props.isVisible}
+
+                    onOk={handleOk}
+                    onCancel={props.onCancel}
+                    okButtonProps={{ disabled: !valido }}
+                >
                     <Stack hidden={!guardando}>
                         <Spinner label="Guardando..." />
                     </Stack>

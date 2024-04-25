@@ -2,8 +2,6 @@
 
 //valida si es una URL
 export function isValidUrl(url: string): boolean {
-    console.log("aaaaaaaaaa");
-    console.log(url);
     if (url === null) {
         return true;
     }
