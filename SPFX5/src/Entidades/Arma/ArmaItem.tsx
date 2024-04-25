@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any, no-new*/
+/* eslint-disable @typescript-eslint/no-explicit-any*/
 import { ArmaLista } from "./ArmaLista";
 import { isValidUrl } from "./Componentes/UsoGeneral/Validaciones";
 

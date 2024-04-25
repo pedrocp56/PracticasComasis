@@ -1,3 +1,4 @@
+/* eslint-disable no-new*/
 
 //valida si es una URL
 export function isValidUrl(url: string): boolean {
@@ -8,5 +9,6 @@ export function isValidUrl(url: string): boolean {
         return false;
     }
 }
+/* eslint-enable */
 
 
