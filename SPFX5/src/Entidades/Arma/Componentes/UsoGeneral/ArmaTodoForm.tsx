@@ -54,12 +54,15 @@ export default function ArmaFormProps(props: IArmaFormProps): JSX.Element {
                 return false;
             }
             if (
-                !isValidUrl(itemEdit?.Foto.Url)
+                itemEdit?.Foto === null ||
+                itemEdit?.Foto === undefined ||
+                itemEdit?.Foto === "" ||
+                isValidUrl(itemEdit?.Foto.Url)
             ) {
-                setErrorMessage("La URL de la imagen no es válida");
-                return false;
+                return true;
             }
-            return true;
+            setErrorMessage("La URL de la imagen no es válida");
+            return false;
         } catch (error) {
             console.log(error);
             return false;
@@ -86,7 +89,8 @@ export default function ArmaFormProps(props: IArmaFormProps): JSX.Element {
             setItemEdit({ ...itemEdit, Ataque: parsedValue } as ArmaItem);
         } else {
             if (newValue === "") {
-                setItemEdit({ ...itemEdit, Ataque: 0 } as ArmaItem);
+                newValue = "0";
+                setItemEdit({ ...itemEdit, Ataque: parseInt(newValue) } as ArmaItem);
             }
         }
     };
