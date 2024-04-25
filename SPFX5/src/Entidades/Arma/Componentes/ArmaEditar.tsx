@@ -1,9 +1,8 @@
 import * as React from "react";
-import { Modal } from "antd";
-import { Dropdown, IDropdownOption, IStackStyles, IStackTokens, IconButton, Spinner, Stack, TextField, Toggle } from "@fluentui/react";
+import { IStackStyles, IStackTokens, IconButton, Stack } from "@fluentui/react";
 import { useEffect, useState } from "react";
 import { ArmaItem } from "../ArmaItem";
-import { isValidUrl } from "./UsoGeneral/Validaciones";
+import ArmaFormProps from "./UsoGeneral/ArmaTodoForm";
 
 const stackStyles: IStackStyles = {
     root: {
@@ -21,37 +20,16 @@ export interface IArmasBotonEditarProps {
 }
 export default function ArmasBotonEditar(props: IArmasBotonEditarProps): JSX.Element {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [guardando, setGuardando] = useState(false);
     const [itemEdit, setItemEdit] = useState(props.item);
-    const [errorMessage, setErrorMessage] = useState("");
-
-
-    const [opcionesTipo, setOpcionesTipo] =
-        useState<IDropdownOption[]>([]);
-    const [opcionesCar, setOpcionesCar] =
-        useState<IDropdownOption[]>([]);
-
 
     const showModal = (): void => {
         setIsModalOpen(true);
     };
 
-    const handleFotoChange = (newValue: string): void => {
-        if (newValue === "" || newValue === null || isValidUrl(newValue)) {
-            setErrorMessage("");
-        } else {
-            setErrorMessage("La URL de la imagen no es válida");
-        }
-        setItemEdit({ ...itemEdit, Foto: { Description: newValue, Url: newValue } } as ArmaItem);
-    };
-
-
     const handleOk = async (): Promise<void> => {
-        setGuardando(true);
         props.item.ItemEdit = itemEdit;
         await props.item.updateItem();
         await props.callback();
-        setGuardando(false);
         setIsModalOpen(false);
     };
 
@@ -64,36 +42,6 @@ export default function ArmasBotonEditar(props: IArmasBotonEditarProps): JSX.Ele
     }
         , [props.item]);
 
-    useEffect((): void => {
-        setOpcionesTipo([
-            { key: "Contundente", text: "Contundente" },
-            { key: "Cortante", text: "Cortante" },
-            { key: "Frío", text: "Frío" },
-            { key: "Fuego", text: "Fuego" },
-            { key: "Fuerza", text: "Fuerza" },
-            { key: "Necrótico", text: "Necrótico" },
-            { key: "Perforante", text: "Perforante" },
-            { key: "Psíquico", text: "Psíquico" },
-            { key: "Radiante", text: "Radiante" },
-            { key: "Relámpago", text: "Relámpago" },
-            { key: "Trueno", text: "Trueno" },
-            { key: "Veneno", text: "Veneno" },
-        ]);
-
-    }, [])
-
-    useEffect((): void => {
-        setOpcionesCar([
-            { key: "Fuerza", text: "Fuerza" },
-            { key: "Destreza", text: "Destreza" },
-            { key: "Constitución", text: "Constitución" },
-            { key: "Inteligencia", text: "Inteligencia" },
-            { key: "Sabiduria", text: "Sabiduria" },
-            { key: "Carisma", text: "Carisma" },
-        ]);
-
-    }, [])
-
     return (
         <>
             <Stack enableScopedSelectors horizontal disableShrink styles={stackStyles} tokens={horizontalGapStackTokens}>
@@ -101,47 +49,13 @@ export default function ArmasBotonEditar(props: IArmasBotonEditarProps): JSX.Ele
                     onClick={showModal}
                     iconProps={{ iconName: "Edit" }}
                 />
-                <Modal title="Características" open={isModalOpen}
-                    onOk={handleOk} onCancel={handleCancel}>
-                    <Stack hidden={!guardando}>
-                        <Spinner label="Guardando..." />
-                    </Stack>
-                    <Stack hidden={guardando}>
-                        <p>{errorMessage}</p>
-                        <TextField label="Nombre" value={itemEdit.Nombre} onChange={(e, newValue) => { setItemEdit({ ...itemEdit, Nombre: newValue } as ArmaItem) }} />
-                        <TextField
-                            label="Ataque"
-                            value={itemEdit.Ataque.toString()} // Convertir el número a string
-                            onChange={(e, newValue) => {
-                                const parsedValue = parseInt(newValue);
-                                if (!isNaN(parsedValue)) {
-                                    setItemEdit({ ...itemEdit, Ataque: parsedValue } as ArmaItem);
-                                } else {
-                                    console.error("El valor ingresado no es un número válido");
-                                }
-                            }} />
-                        <TextField label="Daño" value={itemEdit.Daño} onChange={(e, newValue) => { setItemEdit({ ...itemEdit, Daño: newValue } as ArmaItem) }} />
-                        <Dropdown
-                            label="Tipo"
-                            selectedKeys={itemEdit.Tipo}
-                            options={opcionesTipo}
-                            onChange={(e, item) => {
-                                const selectedItems = item.selected ? [...(itemEdit.Tipo || []), item.text] : itemEdit.Tipo.filter(option => option !== item.text);
-                                setItemEdit({ ...itemEdit, Tipo: selectedItems } as ArmaItem);
-                            }}
-                            multiSelect
-                        />
-                        <Toggle label="Arrojadiza" checked={itemEdit.Arrojadiza} onChange={(ev, checked) => { setItemEdit({ ...itemEdit, Arrojadiza: checked } as ArmaItem); }} />
-                        <Dropdown label="Car" selectedKey={itemEdit.Car} options={opcionesCar} onChange={(e, item) => { setItemEdit({ ...itemEdit, Car: item.text } as ArmaItem) }} />
-                        <TextField label="Caracteristicas" value={itemEdit.Caracteristicas} onChange={(e, newValue) => { setItemEdit({ ...itemEdit, Caracteristicas: newValue } as ArmaItem) }}
-                            multiline rows={4} />
-                        <TextField
-                            label="Foto"
-                            value={itemEdit.Foto?.Url || ""}
-                            onChange={(e, newValue) => handleFotoChange(newValue || "")}
-                        />
-                    </Stack>
-                </Modal>
+                <ArmaFormProps
+                    item={props.item}
+                    callback={props.callback}
+                    isVisible={isModalOpen}
+                    onCancel={handleCancel}
+                    onSave={handleOk}
+                />
             </Stack >
         </>
     );
