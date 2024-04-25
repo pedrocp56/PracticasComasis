@@ -48,7 +48,6 @@ const ArmaInfo: React.FC<{ titulo: string, info: ArmaItem }> = ({ titulo, info }
     if (!car) {
         car = "Sin caracteristicas especiales";
     }
-
     return (
         <>
             <ActionButton type="primary"
@@ -63,7 +62,7 @@ const ArmaInfo: React.FC<{ titulo: string, info: ArmaItem }> = ({ titulo, info }
                 <p>Nombre: {info.Nombre}</p>
                 <p>Ataque: {info.Ataque}</p>
                 <p>Daño: {info.Daño}</p>
-                <p>Tipo de daño: {info.Tipo}</p>
+                <p>Tipo de daño: {info.Tipo.join(", ")}</p>
                 <p>Arma arrojadiza: {txt}</p>
                 <p>Caracteristica de ataque: {info.Car}</p>
                 <p>Caracteristicas:</p>
