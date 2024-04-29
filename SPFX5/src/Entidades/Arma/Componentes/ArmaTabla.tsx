@@ -5,7 +5,6 @@ import { ArmaItem } from "../ArmaItem";
 import ArmaCar, { CarFiltro } from "./ArmaCar";
 import ArmaTipo from "./ArmaTipo";
 import ArmaArr from "./ArmaArr";
-import NuevaArma from "./ArmaNuevaBoton";
 import ArmaCaracteristicas from "./ArmaCaracteristicas";
 import ArmaInfo from "./ArmaInfo";
 import UsarImagen from "./UsoGeneral/UsarImagen";
@@ -149,7 +148,6 @@ export default function ArmaWebpart(
   return (
     <div>
       <>
-        <NuevaArma />
         <Table
           columns={columns}
           dataSource={Props.Items}

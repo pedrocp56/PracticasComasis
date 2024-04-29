@@ -8,9 +8,7 @@ import "@pnp/sp/lists";
 
 export class ArmaLista {
   public NombreLista = "Armas";
-  public SelectAllFields: string[] = [
-    "*",
-  ];
+  public SelectAllFields: string[] = ["*"];
   public ExpandAllFields: string[] = [];
   public web: IWeb;
   public Context: WebPartContext;
@@ -22,13 +20,20 @@ export class ArmaLista {
     this.List = this.web.lists.getByTitle(this.NombreLista);
   }
 
+  public getNewArma(): ArmaItem {
+    const nuevo = new ArmaItem(null, this);
+    nuevo.ID = null;
+    //nuevo.GUID = 0;
+    return nuevo;
+  }
+
   public async CargarTodos(BatchedWeb?: IWeb): Promise<ArmaItem[]> {
     const Items = this.List.items
       .expand(this.ExpandAllFields.join())
       .orderBy("Title")
       .select(this.SelectAllFields.join())()
       .then((Data: any) => {
-        return Data.map((I:IItem) => {
+        return Data.map((I: IItem) => {
           return new ArmaItem(I, this);
         });
       })

@@ -17,13 +17,11 @@ export class ArmaItem {
   public Caracteristicas: string;
   public Foto: any;
 
-
   constructor(ListItem: any, Lista: ArmaLista) {
     this.ListItem = ListItem;
     this.Lista = Lista;
     this.MapearCampos();
   }
-
 
   public MapearCampos(): void {
     this.ID = this.ListItem.ID;
@@ -38,9 +36,8 @@ export class ArmaItem {
   }
 
   public async updateItem(): Promise<boolean> {
-
     let needUpdate = false;
-    const item: any = {}
+    const item: any = {};
     if (this.ItemEdit.Nombre !== this.Nombre) {
       item.Title = this.ItemEdit.Nombre;
       needUpdate = true;
@@ -74,7 +71,10 @@ export class ArmaItem {
     }
 
     if (this.ItemEdit.Foto !== this.Foto?.Url) {
-      if (isValidUrl(this.ItemEdit.Foto?.Url) || this.ItemEdit.Foto?.Url === '') {
+      if (
+        isValidUrl(this.ItemEdit.Foto?.Url) ||
+        this.ItemEdit.Foto?.Url === ""
+      ) {
         item.Arma_Foto = { Url: this.ItemEdit.Foto?.Url };
         needUpdate = true;
       } else {
@@ -83,19 +83,19 @@ export class ArmaItem {
     }
 
     if (needUpdate) {
-      await this.Lista.List.items.getById(this.ListItem.ID).update(item).then((result) => {
-        console.log("Actualizando");
-        this.ListItem = result;
-        this.MapearCampos();
-        return true;
-      });
-
-    }
-    else return false;
+      await this.Lista.List.items
+        .getById(this.ListItem.ID)
+        .update(item)
+        .then((result) => {
+          console.log("Actualizando");
+          this.ListItem = result;
+          this.MapearCampos();
+          return true;
+        });
+    } else return false;
   }
+
+  
 }
-
-
-
 
 /* eslint-enable */
