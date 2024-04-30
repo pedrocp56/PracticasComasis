@@ -150,6 +150,7 @@ export default function ArmaFormProps(props: IArmaFormProps): JSX.Element {
   };
 
   const handleOk = async (): Promise<void> => {
+
     if (!Validacion()) {
       setErrorMessage("Resuelve todos los errores");
       return;
@@ -157,6 +158,7 @@ export default function ArmaFormProps(props: IArmaFormProps): JSX.Element {
     console.log(valido);
     setGuardando(true);
     props.item.ItemEdit = itemEdit;
+    await props.item.updateItem();
     setGuardando(false);
     props.onSave(itemEdit);
   };
