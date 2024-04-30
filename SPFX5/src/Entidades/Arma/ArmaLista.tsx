@@ -23,7 +23,6 @@ export class ArmaLista {
   public getNewArma(): ArmaItem {
     const nuevo = new ArmaItem(null, this);
     nuevo.ID = null;
-    //nuevo.GUID = 0;
     return nuevo;
   }
 

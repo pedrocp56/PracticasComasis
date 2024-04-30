@@ -12,6 +12,7 @@ import { SearchOutlined } from '@ant-design/icons';
 import FiltroTexto from "./UsoGeneral/FiltroTexto";
 import { CalcularDañoMax } from "./ArmaDaño";
 import ArmasBotonEditar from "./ArmaEditar";
+import ArmaEliminarBoton from "./ArmaEliminar";
 
 
 export interface IArmaWebpartProps {
@@ -44,6 +45,17 @@ export default function ArmaWebpart(
       render: (text: any, record: ArmaItem) => (
         <div>
           <ArmasBotonEditar item={record} callback={Props.callback} />
+        </div>
+      )
+    },
+    {
+      key: "Eliminar",
+      title: "Eliminar",
+      dataIndex: "Eliminar",
+      align: 'center',
+      render: (text: any, record: ArmaItem) => (
+        <div>
+          <ArmaEliminarBoton item={record} callback={Props.callback} />
         </div>
       )
     },
@@ -156,6 +168,5 @@ export default function ArmaWebpart(
       </>
     </div>
   );
-
 }
 /* eslint-enable */

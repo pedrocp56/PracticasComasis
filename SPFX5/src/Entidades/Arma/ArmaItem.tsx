@@ -3,6 +3,7 @@ import { ArmaLista } from "./ArmaLista";
 import { isValidUrl } from "./Componentes/UsoGeneral/Validaciones";
 
 export class ArmaItem {
+
   public ListItem: any;
   public Lista: ArmaLista;
   public ItemEdit: ArmaItem;
@@ -95,7 +96,41 @@ export class ArmaItem {
     } else return false;
   }
 
-  
+  public async crearArma(): Promise<boolean> {
+    try {
+      const newItemData: any = {
+        ID: this.ID,
+        Nombre: this.Nombre,
+        Ataque: this.Ataque,
+        Daño: this.Daño,
+        Tipo: this.Tipo,
+        Arrojadiza: this.Arrojadiza,
+        Car: this.Car,
+        Caracteristicas: this.Caracteristicas,
+        Foto: this.Foto
+      };
+
+      await this.Lista.List.items.add(newItemData);
+
+      return true;
+    } catch (error) {
+      console.error("Error al crear el nuevo elemento:", error);
+      return false;
+    }
+  }
+
+  public async deleteArma(): Promise<void> {
+    try {
+      await this.Lista.List.items.getById(this.ID).delete();
+      console.log(`Arma con ID ${this.ID} eliminado exitosamente.`);
+
+    } catch (error) {
+      console.error('Error al eliminar el Arma:', error);
+      throw new Error('Error al eliminar el Arma');
+    }
+  }
+
+
 }
 
 /* eslint-enable */

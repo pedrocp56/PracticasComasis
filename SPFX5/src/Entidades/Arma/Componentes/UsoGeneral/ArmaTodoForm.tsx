@@ -16,7 +16,7 @@ import { ArmaItem } from "../../ArmaItem";
 
 interface IArmaFormProps {
   item: ArmaItem;
-  callback: () => Promise<void>;
+  callback: (result: boolean) => Promise<void>;
   isVisible: boolean;
   onCancel: () => void;
   onSave: (item: ArmaItem) => Promise<void>;
@@ -150,14 +150,15 @@ export default function ArmaFormProps(props: IArmaFormProps): JSX.Element {
   };
 
   const handleOk = async (): Promise<void> => {
+
     if (!Validacion()) {
       setErrorMessage("Resuelve todos los errores");
       return;
     }
+    console.log(valido);
     setGuardando(true);
     props.item.ItemEdit = itemEdit;
     await props.item.updateItem();
-    await props.callback();
     setGuardando(false);
     props.onCancel();
   };
@@ -201,6 +202,7 @@ export default function ArmaFormProps(props: IArmaFormProps): JSX.Element {
       <Stack
         enableScopedSelectors
         horizontal
+
         disableShrink
         styles={stackStyles}
         tokens={horizontalGapStackTokens}
@@ -209,6 +211,7 @@ export default function ArmaFormProps(props: IArmaFormProps): JSX.Element {
           title="Características"
           open={props.isVisible}
           okButtonProps={{ disabled: !valido }}
+
           onOk={handleOk}
           onCancel={props.onCancel}
         >

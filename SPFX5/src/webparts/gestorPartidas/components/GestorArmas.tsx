@@ -7,6 +7,7 @@ import { ArmaLista } from "../../../Entidades/Arma/ArmaLista";
 import { useEffect, useState } from "react";
 import ArmaTabla from "../../../Entidades/Arma/Componentes/ArmaTabla";
 import { ArmaItem } from "../../../Entidades/Arma/ArmaItem";
+import ArmaNuevaBoton from '../../../Entidades/Arma/Componentes/ArmaNuevaBoton';
 
 export interface IGestorArmasCompWebpartProps {
   SP: SPFI;
@@ -20,7 +21,7 @@ export default function GestorArmasCompWebpart(
   const [Items, setItems] = React.useState<ArmaItem[]>([]);
   const ArmaL = React.useRef<ArmaLista>(new ArmaLista(props.SP.web, props.WebPartContext));
 
-  const recargaDatos = async ():Promise<void> => {
+  const recargaDatos = async (): Promise<void> => {
     await ArmaL.current.CargarTodos().then((i) => {
       //console.log(i);
       setItems(i);
@@ -28,12 +29,12 @@ export default function GestorArmasCompWebpart(
     //console.log(Items);
   }
 
-  useEffect(():void => {
+  useEffect((): void => {
     ArmaL.current.CargarTodos().then((i) => {
       console.log(i);
       setItems(i);
     });
-    
+
     setTimeout(() => {
       setCargando(false);
       if (!cargando) console.log("Cargado");
@@ -46,7 +47,9 @@ export default function GestorArmasCompWebpart(
         <Spinner hidden={!cargando} />
       </div>
       <div hidden={cargando}>
-        <ArmaTabla Items={Items} callback={recargaDatos}/>
+        
+        <ArmaNuevaBoton lista={ArmaL.current} callback={recargaDatos} />
+        <ArmaTabla Items={Items} callback={recargaDatos} />
       </div>
     </>
   );
