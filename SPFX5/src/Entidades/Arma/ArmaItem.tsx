@@ -86,19 +86,21 @@ export class ArmaItem {
     }
     if (this.ID === null) {
       await this.Lista.List.items.add(item);
-    } else {
-      if (needUpdate) {
-        await this.Lista.List.items
-          .getById(this.ListItem.ID)
-          .update(item)
-          .then((result) => {
-            console.log("Actualizando");
-            this.ListItem = result;
-            this.MapearCampos();
-            return true;
-          });
-      } else return false;
+      console.log("Arma creada")
+      return true
     }
+    if (needUpdate) {
+      await this.Lista.List.items
+        .getById(this.ListItem.ID)
+        .update(item)
+        .then((result) => {
+          console.log("Actualizando");
+          this.ListItem = result;
+          this.MapearCampos();
+          return true;
+        });
+    } else return false;
+
   }
   /*
     public async crearArma(): Promise<boolean> {

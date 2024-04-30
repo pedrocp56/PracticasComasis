@@ -19,6 +19,7 @@ export default function ArmaNuevaBoton(Props: IArmaNuevaBotonProps): JSX.Element
     const [itemEdit, setItemEdit] = useState<ArmaItem>(null);
 
     const handleOk = async ():Promise<void> => {
+        console.log("wwwwww");
         if (nuevaArma && itemEdit) {
             nuevaArma.ItemEdit = itemEdit;
             await nuevaArma.updateItem();
@@ -49,8 +50,7 @@ export default function ArmaNuevaBoton(Props: IArmaNuevaBotonProps): JSX.Element
                 <ArmaFormProps
                     item={itemEdit}
                     callback={Props.callback}
-                    isVisible={isModalOpen}
-                    
+                    isVisible={isModalOpen}                    
                     onCancel={handleCancel}
                     onSave={handleOk}
                 />}

@@ -8,7 +8,7 @@ export interface tipoParaTablaProps {
 export default function TipoCar(Props: tipoParaTablaProps): JSX.Element {
   let color = "black";
   let txtcolor = "white";
-  const tags = Props.tipo.map((t: string) => {
+  const tags = Props.tipo?.map((t: string) => {
     switch (t) {
       case "Contundente":
         color = "#A79277";
