@@ -1,16 +1,11 @@
 import * as React from "react";
-import { IconButton, Stack, Dialog, DialogType, DialogFooter, DefaultButton, PrimaryButton } from "@fluentui/react";
+import { IconButton, Dialog, DialogType, DialogFooter, DefaultButton, PrimaryButton } from "@fluentui/react";
 import { useState } from "react";
 import { ArmaItem } from "../ArmaItem";
 
-const stackStyles = {
-    root: {
-        background: "White",
-    },
-};
-const horizontalGapStackTokens = {
-    childrenGap: 10,
-    padding: 10,
+const buttonStyle = {
+    backgroundColor: "#E4ADF3",
+    color: "red"
 };
 
 export interface IArmaEliminarBotonProps {
@@ -33,12 +28,11 @@ export default function ArmaEliminarBoton(props: IArmaEliminarBotonProps): JSX.E
 
     return (
         <>
-            <Stack enableScopedSelectors horizontal disableShrink styles={stackStyles} tokens={horizontalGapStackTokens}>
-                <IconButton
-                    onClick={handleDelete}
-                    iconProps={{ iconName: "Delete" }}
-                />
-            </Stack>
+            <IconButton
+                onClick={handleDelete}
+                iconProps={{ iconName: "Delete" }}
+                style={buttonStyle}
+            />
             <Dialog
                 hidden={!isDeleteConfirmed}
                 onDismiss={() => setIsDeleteConfirmed(false)}

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Modal } from "antd";
 import { ArmaItem } from "../ArmaItem";
-import { ActionButton } from "@fluentui/react";
+import { IconButton } from "@fluentui/react";
 
 export interface infoParaTablaProps {
     info: ArmaItem;
@@ -23,7 +23,7 @@ const ArmaInfo: React.FC<{ titulo: string, info: ArmaItem }> = ({ titulo, info }
     };
     const buttonStyle = {
         backgroundColor: "#E4ADF3",
-        color: "#161677"
+        color: "#1B4C25"
     };
     let txt;
     switch (info.Arrojadiza) {
@@ -50,12 +50,12 @@ const ArmaInfo: React.FC<{ titulo: string, info: ArmaItem }> = ({ titulo, info }
     }
     return (
         <>
-            <ActionButton type="primary"
+            <IconButton
                 onClick={showModal}
                 style={buttonStyle}
                 iconProps={{ iconName: "ComplianceAudit" }}>
                 {titulo}
-            </ActionButton>
+            </IconButton>
             <Modal title={titulo} open={isModalOpen}
                 onOk={handleOk} onCancel={handleCancel}>
                 <p>ID: {info.ID}</p>

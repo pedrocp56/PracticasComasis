@@ -1,17 +1,13 @@
 import * as React from "react";
-import { IStackStyles, IStackTokens, IconButton, Stack } from "@fluentui/react";
+import { IconButton } from "@fluentui/react";
 import { useEffect, useState } from "react";
 import { ArmaItem } from "../ArmaItem";
 import ArmaFormProps from "./UsoGeneral/ArmaTodoForm";
 
-const stackStyles: IStackStyles = {
-    root: {
-        background: "White",
-    },
-};
-const horizontalGapStackTokens: IStackTokens = {
-    childrenGap: 10,
-    padding: 10,
+
+const buttonStyle = {
+    backgroundColor: "#E4ADF3",
+    color: "#161677",
 };
 
 export interface IArmasBotonEditarProps {
@@ -44,19 +40,18 @@ export default function ArmasBotonEditar(props: IArmasBotonEditarProps): JSX.Ele
 
     return (
         <>
-            <Stack enableScopedSelectors horizontal disableShrink styles={stackStyles} tokens={horizontalGapStackTokens}>
-                <IconButton
-                    onClick={showModal}
-                    iconProps={{ iconName: "Edit" }}
-                />
-                <ArmaFormProps
-                    item={props.item}
-                    callback={props.callback}
-                    isVisible={isModalOpen}
-                    onCancel={handleCancel}
-                    onSave={handleOk}
-                />
-            </Stack >
+            <IconButton
+                onClick={showModal}
+                iconProps={{ iconName: "Edit" }}
+                style={buttonStyle}
+            />
+            <ArmaFormProps
+                item={props.item}
+                callback={props.callback}
+                isVisible={isModalOpen}
+                onCancel={handleCancel}
+                onSave={handleOk}
+            />
         </>
     );
 }

@@ -18,7 +18,7 @@ export default function ArmaNuevaBoton(Props: IArmaNuevaBotonProps): JSX.Element
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [itemEdit, setItemEdit] = useState<ArmaItem>(null);
 
-    const handleOk = async () => {
+    const handleOk = async ():Promise<void> => {
         if (nuevaArma && itemEdit) {
             nuevaArma.ItemEdit = itemEdit;
             await nuevaArma.updateItem();
@@ -27,15 +27,15 @@ export default function ArmaNuevaBoton(Props: IArmaNuevaBotonProps): JSX.Element
         }
     };
 
-    const handleCancel = () => {
+    const handleCancel = ():void => {
         setIsModalOpen(false);
     };
 
     return (
         <StackItem>
             <PrimaryButton
-                text={"Nuevo Evento"}
-                title={"Nuevo Evento"}
+                text={"Nueva Arma"}
+                title={"Nueva Arma"}
                 iconProps={{ iconName: "Add" }}
                 onClick={() => {
                     const nuevoparaForm = Props.lista.getNewArma();
@@ -50,6 +50,7 @@ export default function ArmaNuevaBoton(Props: IArmaNuevaBotonProps): JSX.Element
                     item={itemEdit}
                     callback={Props.callback}
                     isVisible={isModalOpen}
+                    
                     onCancel={handleCancel}
                     onSave={handleOk}
                 />}

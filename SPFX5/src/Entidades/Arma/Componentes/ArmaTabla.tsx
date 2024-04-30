@@ -13,6 +13,7 @@ import FiltroTexto from "./UsoGeneral/FiltroTexto";
 import { CalcularDañoMax } from "./ArmaDaño";
 import ArmasBotonEditar from "./ArmaEditar";
 import ArmaEliminarBoton from "./ArmaEliminar";
+import { Stack } from "@fluentui/react";
 
 
 export interface IArmaWebpartProps {
@@ -25,38 +26,19 @@ export default function ArmaWebpart(
 ): JSX.Element {
 
 
+
   const columns: TableColumnsType<ArmaItem> = [
     {
-      key: "Resumen",
-      title: "Resumen",
-      dataIndex: "Resumen",
+      key: "#",
+      title: "#",
+      dataIndex: "#",
       align: 'center',
       render: (text: string, record: ArmaItem) => (
-        <div>
+        <Stack horizontal tokens={{childrenGap: 5}}>
           <ArmaInfo titulo="Info" info={record} />
-        </div>
-      )
-    },
-    {
-      key: "Editar",
-      title: "Editar",
-      dataIndex: "Editar",
-      align: 'center',
-      render: (text: any, record: ArmaItem) => (
-        <div>
           <ArmasBotonEditar item={record} callback={Props.callback} />
-        </div>
-      )
-    },
-    {
-      key: "Eliminar",
-      title: "Eliminar",
-      dataIndex: "Eliminar",
-      align: 'center',
-      render: (text: any, record: ArmaItem) => (
-        <div>
           <ArmaEliminarBoton item={record} callback={Props.callback} />
-        </div>
+        </Stack>
       )
     },
     {

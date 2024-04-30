@@ -21,7 +21,9 @@ export class ArmaItem {
   constructor(ListItem: any, Lista: ArmaLista) {
     this.ListItem = ListItem;
     this.Lista = Lista;
-    this.MapearCampos();
+    if (ListItem !== null && ListItem !== undefined) {
+      this.MapearCampos();
+    }
   }
 
   public MapearCampos(): void {
@@ -82,42 +84,46 @@ export class ArmaItem {
         console.log("La URL de la imagen no es válida");
       }
     }
-
-    if (needUpdate) {
-      await this.Lista.List.items
-        .getById(this.ListItem.ID)
-        .update(item)
-        .then((result) => {
-          console.log("Actualizando");
-          this.ListItem = result;
-          this.MapearCampos();
-          return true;
-        });
-    } else return false;
-  }
-
-  public async crearArma(): Promise<boolean> {
-    try {
-      const newItemData: any = {
-        ID: this.ID,
-        Nombre: this.Nombre,
-        Ataque: this.Ataque,
-        Daño: this.Daño,
-        Tipo: this.Tipo,
-        Arrojadiza: this.Arrojadiza,
-        Car: this.Car,
-        Caracteristicas: this.Caracteristicas,
-        Foto: this.Foto
-      };
-
-      await this.Lista.List.items.add(newItemData);
-
-      return true;
-    } catch (error) {
-      console.error("Error al crear el nuevo elemento:", error);
-      return false;
+    if (this.ID === null) {
+      await this.Lista.List.items.add(item);
+    } else {
+      if (needUpdate) {
+        await this.Lista.List.items
+          .getById(this.ListItem.ID)
+          .update(item)
+          .then((result) => {
+            console.log("Actualizando");
+            this.ListItem = result;
+            this.MapearCampos();
+            return true;
+          });
+      } else return false;
     }
   }
+  /*
+    public async crearArma(): Promise<boolean> {
+      try {
+        const newItemData: any = {
+          ID: this.ID,
+          Nombre: this.Nombre,
+          Ataque: this.Ataque,
+          Daño: this.Daño,
+          Tipo: this.Tipo,
+          Arrojadiza: this.Arrojadiza,
+          Car: this.Car,
+          Caracteristicas: this.Caracteristicas,
+          Foto: this.Foto
+        };
+  
+        await this.Lista.List.items.add(newItemData);
+  
+        return true;
+      } catch (error) {
+        console.error("Error al crear el nuevo elemento:", error);
+        return false;
+      }
+    }
+    */
 
   public async deleteArma(): Promise<void> {
     try {

@@ -23,7 +23,6 @@ export default function GestorArmasCompWebpart(
 
   const recargaDatos = async (): Promise<void> => {
     await ArmaL.current.CargarTodos().then((i) => {
-      //console.log(i);
       setItems(i);
     });
     //console.log(Items);
@@ -47,7 +46,7 @@ export default function GestorArmasCompWebpart(
         <Spinner hidden={!cargando} />
       </div>
       <div hidden={cargando}>
-        
+
         <ArmaNuevaBoton lista={ArmaL.current} callback={recargaDatos} />
         <ArmaTabla Items={Items} callback={recargaDatos} />
       </div>

@@ -1,10 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any*/
 import * as React from "react";
 import { Modal } from "antd";
 import {
   Dropdown,
   IDropdownOption,
-  IStackStyles,
-  IStackTokens,
   Spinner,
   Stack,
   TextField,
@@ -21,15 +20,6 @@ interface IArmaFormProps {
   onCancel: () => void;
   onSave: (item: ArmaItem) => Promise<void>;
 }
-const stackStyles: IStackStyles = {
-  root: {
-    background: "White",
-  },
-};
-const horizontalGapStackTokens: IStackTokens = {
-  childrenGap: 10,
-  padding: 10,
-};
 
 export default function ArmaFormProps(props: IArmaFormProps): JSX.Element {
   const [guardando, setGuardando] = useState(false);
@@ -59,7 +49,7 @@ export default function ArmaFormProps(props: IArmaFormProps): JSX.Element {
         return false;
       }
 
-      if (itemEdit?.Tipo.length === 0) {
+      if (itemEdit?.Tipo?.length === 0) {
         setErrorMessage("Selecciona un tipo");
         setValido(false);
         return false;
@@ -127,7 +117,7 @@ export default function ArmaFormProps(props: IArmaFormProps): JSX.Element {
       ? [...(itemEdit.Tipo || []), item.text]
       : itemEdit.Tipo.filter((option) => option !== item.text);
     setItemEdit({ ...itemEdit, Tipo: selectedItems } as ArmaItem);
-    if (itemEdit.Tipo.length === 1 && !item.selected) {
+    if (itemEdit.Tipo?.length === 1 && !item.selected) {
       setErrorMessage("Selecciona un tipo");
     } else {
       setErrorMessage("");
@@ -160,9 +150,13 @@ export default function ArmaFormProps(props: IArmaFormProps): JSX.Element {
     props.item.ItemEdit = itemEdit;
     await props.item.updateItem();
     setGuardando(false);
-    props.onCancel();
+    props.onSave(itemEdit);
   };
-
+/*
+  useEffect((): void => {
+    console.log(valido)
+  }, [valido]);
+*/
   useEffect((): void => {
     const check = Validacion();
     setValido(check);
@@ -184,9 +178,6 @@ export default function ArmaFormProps(props: IArmaFormProps): JSX.Element {
       { key: "Trueno", text: "Trueno" },
       { key: "Veneno", text: "Veneno" },
     ]);
-  }, []);
-
-  useEffect((): void => {
     setOpcionesCar([
       { key: "Fuerza", text: "Fuerza" },
       { key: "Destreza", text: "Destreza" },
@@ -197,21 +188,15 @@ export default function ArmaFormProps(props: IArmaFormProps): JSX.Element {
     ]);
   }, []);
 
+
+
   return (
     <>
-      <Stack
-        enableScopedSelectors
-        horizontal
-
-        disableShrink
-        styles={stackStyles}
-        tokens={horizontalGapStackTokens}
-      >
+      
         <Modal
           title="Características"
           open={props.isVisible}
           okButtonProps={{ disabled: !valido }}
-
           onOk={handleOk}
           onCancel={props.onCancel}
         >
@@ -227,7 +212,7 @@ export default function ArmaFormProps(props: IArmaFormProps): JSX.Element {
             />
             <TextField
               label="Ataque"
-              value={itemEdit.Ataque.toString()}
+              value={itemEdit.Ataque?.toString()}
               onChange={(e, newValue) => handleAtaqueChange(newValue || "")}
             />
             <TextField
@@ -276,7 +261,6 @@ export default function ArmaFormProps(props: IArmaFormProps): JSX.Element {
             />
           </Stack>
         </Modal>
-      </Stack>
     </>
   );
 }
