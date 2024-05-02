@@ -3,7 +3,7 @@ $contentTypeName = "Personaje";
 
 #Añadir los internal names de las columnas que compondrán el tipo de contenido
 $columns = "Personaje_Nombre","Personaje_Usuario","Caracteristica_Fuerza","Caracteristica_Destreza","Caracteristica_Constitución",
-        "Caracteristica_Inteligencia","Caracteristica_Sabiduria","Caracteristica_Carisma","Bono_Competencia", "Personaje_Foto";
+        "Caracteristica_Inteligencia","Caracteristica_Sabiduria","Caracteristica_Carisma","Campanha","Bono_Competencia", "Personaje_Foto";
 
 $parentContentTypeID = "0x01"
 

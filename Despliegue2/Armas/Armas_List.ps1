@@ -122,6 +122,16 @@ if ($vista) {
     }
 
     }
+
+$fields = $web.Fields;
+$context.Load($fields);
+$context.ExecuteQuery();
+
+$list.ID
+#aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+
+
+
     
     $list = $web.Lists.GetByTitle("Armas")
     $context.Load($list)
@@ -154,14 +164,14 @@ if ($vista) {
     $context.executeQuery()
 
     cargar datos de una lista
-    $list = $web.Lists.GetByTitle("Armas")
+    $list = $web.Lists.GetByTitle("Lista_Personaje")
     $context.Load($list)
     $context.executeQuery()
     $context.Load($list.Fields)
     $context.executeQuery()
 
     buscar columna por internal name
-    $titleField = $list.Fields| Where-Object {$_.InternalName -eq "Title"}
+    $titleField = $list.Fields| Where-Object {$_.InternalName -eq "Armas"}
 
     mirar informacion de una columna
     $titleField.SchemaXml

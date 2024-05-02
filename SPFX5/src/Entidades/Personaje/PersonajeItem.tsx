@@ -1,12 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any*/
-import { ArmaLista } from "./ArmaLista";
-import { isValidUrl } from "./Componentes/UsoGeneral/Validaciones";
+import { PersonajeLista } from "./PersonajeLista";
 
-export class ArmaItem {
+export class PersonajeItem {
 
   public ListItem: any;
-  public Lista: ArmaLista;
-  public ItemEdit: ArmaItem;
+  public Lista: PersonajeLista;
+  public ItemEdit: PersonajeItem;
 
   public ID: number;
   public Nombre: string;
@@ -18,7 +17,7 @@ export class ArmaItem {
   public Caracteristicas: string;
   public Foto: any;
 
-  constructor(ListItem: any, Lista: ArmaLista) {
+  constructor(ListItem: any, Lista: PersonajeLista) {
     this.ListItem = ListItem;
     this.Lista = Lista;
     if (ListItem !== null && ListItem !== undefined) {
@@ -86,7 +85,7 @@ export class ArmaItem {
     }
     if (this.ID === null) {
       await this.Lista.List.items.add(item);
-      console.log("Arma creada")
+      console.log("Personaje creada")
       return true
     }
     if (needUpdate) {
@@ -102,39 +101,15 @@ export class ArmaItem {
     } else return false;
 
   }
-  /*
-    public async crearArma(): Promise<boolean> {
-      try {
-        const newItemData: any = {
-          ID: this.ID,
-          Nombre: this.Nombre,
-          Ataque: this.Ataque,
-          Daño: this.Daño,
-          Tipo: this.Tipo,
-          Arrojadiza: this.Arrojadiza,
-          Car: this.Car,
-          Caracteristicas: this.Caracteristicas,
-          Foto: this.Foto
-        };
-  
-        await this.Lista.List.items.add(newItemData);
-  
-        return true;
-      } catch (error) {
-        console.error("Error al crear el nuevo elemento:", error);
-        return false;
-      }
-    }
-    */
 
-  public async deleteArma(): Promise<void> {
+  public async deletePersonaje(): Promise<void> {
     try {
       await this.Lista.List.items.getById(this.ID).delete();
-      console.log(`Arma con ID ${this.ID} eliminado exitosamente.`);
+      console.log(`Personaje con ID ${this.ID} eliminado exitosamente.`);
 
     } catch (error) {
-      console.error('Error al eliminar el Arma:', error);
-      throw new Error('Error al eliminar el Arma');
+      console.error('Error al eliminar el Personaje:', error);
+      throw new Error('Error al eliminar el Personaje');
     }
   }
 

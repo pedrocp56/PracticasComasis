@@ -1,6 +1,6 @@
 ﻿#creacion de la region de la lista
 
-$listTitle = "Lista_Personaje"
+$listTitle = "Personajes"
 $listDescription = "Lista Personaje"
 $listTemplate = 100
 
@@ -100,6 +100,7 @@ if ($vista) {
         $view.ViewFields.Add("Caracteristica_Inteligencia");
         $view.ViewFields.Add("Caracteristica_Sabiduria");
         $view.ViewFields.Add("Caracteristica_Carisma");
+        $view.ViewFields.Add("Campanha");
         $view.ViewFields.Add("Bono_Competencia");
         $view.ViewFields.Add("Personaje_Foto");
         
