@@ -10,7 +10,7 @@ import { BaseClientSideWebPart } from "@microsoft/sp-webpart-base";
 import * as strings from 'GestorPartidasWebPartStrings';
 
 import { SPFI, SPFx, spfi } from "@pnp/sp/presets/all";
-import GestorArmasCompWebpart, { IGestorArmasCompWebpartProps } from "./components/GestorArmas";
+import GestorPesonajesCompWebpart, { IGestorPesonajesCompWebpartProps } from "./components/GestorPersonajes";
 
 export interface IGestorPartidasWebPartProps {
   description: string;
@@ -27,8 +27,12 @@ export default class GestorPartidasWebPart extends BaseClientSideWebPart<IGestor
       WebPartContext: this.context,
     };
     //cambiar nombre para cambiar de webpart
+    /*
     const element: React.ReactElement<IGestorArmasCompWebpartProps> =
       React.createElement(GestorArmasCompWebpart, webpartProps);
+      */
+    const element: React.ReactElement<IGestorPesonajesCompWebpartProps> =
+      React.createElement(GestorPesonajesCompWebpart, webpartProps);
     ReactDom.render(element, this.domElement);
   }
 

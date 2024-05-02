@@ -85,15 +85,6 @@ $fieldsArray += '<Field ID="{7f16e1ce-add0-4141-9308-3cd7292869b6}"
                 xmlns="http://schemas.microsoft.com/sharepoint/">
                 </Field>';
 
-$fieldsArray += '<Field ID="{2eeecf0b-1dbb-46cd-b355-1c69b6140b5f}" 
-                Name="Arma_Foto" 
-                DisplayName="Foto del Arma"  
-                Type="URL" 
-                Format="Image"
-                Group="FichaArma" 
-                xmlns="http://schemas.microsoft.com/sharepoint/">
-                </Field>';
-
 
 
 $fieldOption = [Microsoft.SharePoint.Client.AddFieldOptions]::DefaultValue;

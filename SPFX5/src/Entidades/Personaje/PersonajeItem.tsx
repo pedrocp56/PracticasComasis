@@ -1,6 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any*/
 import { PersonajeLista } from "./PersonajeLista";
 
+interface ComasisUser {
+  Title: string;
+  ID: number;
+  EMail: string;
+}
+
 export class PersonajeItem {
 
   public ListItem: any;
@@ -9,12 +15,25 @@ export class PersonajeItem {
 
   public ID: number;
   public Nombre: string;
-  public Ataque: number;
-  public Daño: string;
-  public Tipo: string[];
-  public Arrojadiza: boolean;
-  public Car: string;
-  public Caracteristicas: string;
+  public Usuario: ComasisUser;
+  public UsuarioNombre: string;
+
+  public Fuerza: number;
+  public Destreza: number;
+  public Constitucion: number;
+  public Inteligencia: number;
+  public Sabiduria: number;
+  public Carisma: number;
+  public Bono_Fuerza: number;
+  public Bono_Destreza: number;
+  public Bono_Constitucion: number;
+  public Bono_Inteligencia: number;
+  public Bono_Sabiduria: number;
+  public Bono_Carisma: number;
+
+  public Competencia: number;
+  public Campaña: string;
+  public ListaArmas: any[];
   public Foto: any;
 
   constructor(ListItem: any, Lista: PersonajeLista) {
@@ -28,13 +47,30 @@ export class PersonajeItem {
   public MapearCampos(): void {
     this.ID = this.ListItem.ID;
     this.Nombre = this.ListItem.Title;
-    this.Ataque = this.ListItem.Arma_Ataque;
-    this.Daño = this.ListItem.Arma_Da_x00f1_o;
-    this.Tipo = this.ListItem.Arma_Tipo;
-    this.Arrojadiza = this.ListItem.Arma_Arrojadiza;
-    this.Car = this.ListItem.Arma_Car;
-    this.Caracteristicas = this.ListItem.Arma_Caracteristicas;
+    this.Usuario = this.ListItem.Personaje_Usuario
+    this.UsuarioNombre =
+      this.Usuario !== undefined && this.Usuario !== null
+        ? this.Usuario["Title"]
+        : "(vacío)";
+
+    this.Fuerza = this.ListItem.Caracteristica_Fuerza;
+    this.Bono_Fuerza = calcularBono(this.Fuerza);
+    this.Destreza = this.ListItem.Caracteristica_Destreza;
+    this.Bono_Destreza = calcularBono(this.Destreza);
+    this.Constitucion = this.ListItem.Caracteristica_Constitucion;
+    this.Bono_Constitucion = calcularBono(this.Constitucion);
+    this.Inteligencia = this.ListItem.Caracteristica_Inteligencia;
+    this.Bono_Inteligencia = calcularBono(this.Inteligencia);
+    this.Sabiduria = this.ListItem.Caracteristica_Sabiduria;
+    this.Bono_Sabiduria = calcularBono(this.Sabiduria);
+    this.Carisma = this.ListItem.Caracteristica_Carisma;
+    this.Bono_Carisma = calcularBono(this.Carisma);
+
+    this.Competencia = this.ListItem.Bono_Competencia;
+    console.log(this.ListItem.LookupArma);
+    this.ListaArmas = this.ListItem.LookupArma;
     this.Foto = this.ListItem.Arma_Foto;
+
   }
 
   public async updateItem(): Promise<boolean> {
@@ -44,35 +80,9 @@ export class PersonajeItem {
       item.Title = this.ItemEdit.Nombre;
       needUpdate = true;
     }
-    if (this.ItemEdit.Ataque !== this.Ataque) {
-      item.Arma_Ataque = this.ItemEdit.Ataque;
-      needUpdate = true;
-    }
-    if (this.ItemEdit.Daño !== this.Daño) {
-      item.Arma_Da_x00f1_o = this.ItemEdit.Daño;
-      needUpdate = true;
-    }
-    if (this.ItemEdit.Tipo !== this.Tipo) {
-      if (this.ItemEdit.Tipo.length !== 0) {
-        console.log(this.ItemEdit.Tipo);
-        item.Arma_Tipo = this.ItemEdit.Tipo;
-        needUpdate = true;
-      }
-    }
-    if (this.ItemEdit.Arrojadiza !== this.Arrojadiza) {
-      item.Arma_Arrojadiza = this.ItemEdit.Arrojadiza;
-      needUpdate = true;
-    }
-    if (this.ItemEdit.Car !== this.Car) {
-      item.Arma_Car = this.ItemEdit.Car;
-      needUpdate = true;
-    }
-    if (this.ItemEdit.Caracteristicas !== this.Caracteristicas) {
-      item.Arma_Caracteristicas = this.ItemEdit.Caracteristicas;
-      needUpdate = true;
-    }
 
     if (this.ItemEdit.Foto !== this.Foto?.Url) {
+      /*
       if (
         isValidUrl(this.ItemEdit.Foto?.Url) ||
         this.ItemEdit.Foto?.Url === ""
@@ -82,6 +92,7 @@ export class PersonajeItem {
       } else {
         console.log("La URL de la imagen no es válida");
       }
+      */
     }
     if (this.ID === null) {
       await this.Lista.List.items.add(item);
@@ -115,5 +126,10 @@ export class PersonajeItem {
 
 
 }
+function calcularBono(caracteristica: number) {
+  let bono = (caracteristica - 10) / 2;
+  return bono;
+}
+
 
 /* eslint-enable */

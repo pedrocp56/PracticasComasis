@@ -92,22 +92,22 @@ if ($vista) {
         $viewFields = $view.ViewFields;
         $context.Load($viewFields);
         $context.ExecuteQuery();
-        $view.ViewFields.Add("Personaje_Nombre");
-        $view.ViewFields.Add("Personaje_Usuario");
-        $view.ViewFields.Add("Caracteristica_Fuerza");
-        $view.ViewFields.Add("Caracteristica_Destreza");
-        $view.ViewFields.Add("Caracteristica_Constitución");
-        $view.ViewFields.Add("Caracteristica_Inteligencia");
-        $view.ViewFields.Add("Caracteristica_Sabiduria");
-        $view.ViewFields.Add("Caracteristica_Carisma");
-        $view.ViewFields.Add("Campanha");
-        $view.ViewFields.Add("Bono_Competencia");
-        $view.ViewFields.Add("Personaje_Foto");
+        $vista.ViewFields.Add("Personaje_Usuario");
+        $vista.ViewFields.Add("Caracteristica_Fuerza");
+        $vista.ViewFields.Add("Caracteristica_Destreza");
+        $vista.ViewFields.Add("Caracteristica_Constitución");
+        $vista.ViewFields.Add("Caracteristica_Inteligencia");
+        $vista.ViewFields.Add("Caracteristica_Sabiduria");
+        $vista.ViewFields.Add("Caracteristica_Carisma");
+        $vista.ViewFields.Add("Campanha");
+        $vista.ViewFields.Add("Bono_Competencia");
+        $vista.ViewFields.Add("LookupArma");
+        $vista.ViewFields.Add("Personaje_Foto");
         
-        $view.ViewQuery = "<OrderBy><FieldRef Name='Title' Ascending='FALSE'/></OrderBy>"
+        $vista.ViewQuery = "<OrderBy><FieldRef Name='Title' Ascending='FALSE'/></OrderBy>"
 
 
-        $view.Update();
+        $vista.Update();
 
     try{
             $context.executeQuery()
@@ -123,7 +123,25 @@ if ($vista) {
 
 
     }
+$list = $web.Lists.GetByTitle("Personajes")
+    $context.Load($list)
+    $context.executeQuery()
+    
+    $context.Load($list.Fields)
+    $context.executeQuery()
+        
 
+    $titleField = $list.Fields| Where-Object {$_.InternalName -eq "Title"}
+    $context.Load($titleField)
+    $context.executeQuery()
+       
+
+    $titleField.Title = "Nombre del personaje"
+    $titleField.Update()
+
+    $list = $web.Lists.GetByTitle("Armas")
+    $context.Load($list)
+    $context.executeQuery()
 
 
 

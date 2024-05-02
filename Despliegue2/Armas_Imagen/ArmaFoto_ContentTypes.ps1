@@ -1,11 +1,10 @@
-﻿$contentTypeGroup = "Personaje";
-$contentTypeName = "Personaje";
+﻿$contentTypeGroup = "ArmaFoto";
+$contentTypeName = "ArmaFoto";
 
 #Añadir los internal names de las columnas que compondrán el tipo de contenido
-$columns = "Personaje_Usuario","Caracteristica_Fuerza","Caracteristica_Destreza","Caracteristica_Constitución",
-        "Caracteristica_Inteligencia","Caracteristica_Sabiduria","Caracteristica_Carisma","Bono_Competencia","Campanha", "LookupArma", "Personaje_Foto";
+$columns = @();
 
-$parentContentTypeID = "0x01"
+$parentContentTypeID = "0x0101"
 
     
     $fields = $context.web.fields

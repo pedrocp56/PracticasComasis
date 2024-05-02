@@ -6,17 +6,6 @@ $context.ExecuteQuery();
 #[guid]::NewGuid()
 $fieldsArray = @();
 
-$fieldsArray += '<Field ID="{bfe93e7f-7e6f-4732-b198-36dabd6deb81}" 
-                Name="Personaje_Nombre"
-                DisplayName="Nombre del personaje" 
-                Type="Text"
-                Required="TRUE"
-                EnforceUniqueValues="TRUE"
-                Indexed="True"
-                Group="FichaPersonaje" 
-                xmlns="http://schemas.microsoft.com/sharepoint/">
-                </Field>';
-
 $fieldsArray += '<Field ID="{6af37ec8-3e29-443c-bfc0-809a1f424917}" 
                 Name="Personaje_Usuario"
                 DisplayName="Nombre del jugador" 

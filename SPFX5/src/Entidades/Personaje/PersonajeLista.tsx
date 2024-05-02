@@ -8,8 +8,14 @@ import "@pnp/sp/lists";
 
 export class PersonajeLista {
   public NombreLista = "Personajes";
-  public SelectAllFields: string[] = ["*"];
-  public ExpandAllFields: string[] = [];
+  public SelectAllFields: string[] = [
+    "*",
+    "Personaje_Usuario/Title",
+    "Personaje_Usuario/ID",
+    "Personaje_Usuario/EMail",
+    "LookupArma/Title"
+  ];
+  public ExpandAllFields: string[] = ["Personaje_Usuario","LookupArma"];
   public web: IWeb;
   public Context: WebPartContext;
   public List: IList;
@@ -37,6 +43,7 @@ export class PersonajeLista {
         });
       })
       .catch(async (E: Error) => {
+
         console.error(E);
       });
 

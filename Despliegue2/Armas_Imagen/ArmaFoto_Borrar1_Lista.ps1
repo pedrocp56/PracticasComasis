@@ -1,5 +1,5 @@
 ﻿
-    $listTitles = "Armas"
+    $listTitles = "ArmaFotos"
 
 
     foreach ($listTitle in $listTitles) {
@@ -21,7 +21,7 @@
         } 
     }
 
-     $web = $context.Web;
+    $web = $context.Web;
     
         $fields = $web.Fields;
 
@@ -30,7 +30,7 @@
 
         $context.ExecuteQuery();
 
-        $columns = "LookupArma";
+        $columns = "LookupArmaFoto";
 
         foreach($column in $columns) {
 
