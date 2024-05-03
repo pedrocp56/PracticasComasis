@@ -10,8 +10,8 @@ import {
   Toggle,
 } from "@fluentui/react";
 import { useEffect, useState } from "react";
-import { isValidUrl } from "./Validaciones";
 import { ArmaItem } from "../../ArmaItem";
+import { isValidUrl } from "../../../Generales/Validaciones";
 
 interface IArmaFormProps {
   item: ArmaItem;

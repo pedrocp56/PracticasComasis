@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any*/
+import { isValidUrl } from "../Generales/Validaciones";
 import { PersonajeLista } from "./PersonajeLista";
 
 interface ComasisUser {
@@ -67,9 +68,10 @@ export class PersonajeItem {
     this.Bono_Carisma = calcularBono(this.Carisma);
 
     this.Competencia = this.ListItem.Bono_Competencia;
+    this.Campaña = this.ListItem.Campanha;
     console.log(this.ListItem.LookupArma);
     this.ListaArmas = this.ListItem.LookupArma;
-    this.Foto = this.ListItem.Arma_Foto;
+    this.Foto = this.ListItem.Personaje_Foto;
 
   }
 
@@ -80,9 +82,45 @@ export class PersonajeItem {
       item.Title = this.ItemEdit.Nombre;
       needUpdate = true;
     }
+    if (this.ItemEdit.Usuario !== this.Usuario) {
+      item.Personaje_Usuario = this.ItemEdit.Usuario;
+      needUpdate = true;
+    }
+
+    if (this.ItemEdit.Fuerza !== this.Fuerza) {
+      item.Caracteristica_Fuerza = this.ItemEdit.Fuerza;
+      needUpdate = true;
+    }
+    if (this.ItemEdit.Destreza !== this.Destreza) {
+      item.Caracteristica_Destreza = this.ItemEdit.Destreza;
+      needUpdate = true;
+    }
+    if (this.ItemEdit.Constitucion !== this.Constitucion) {
+      item.Caracteristica_Constitucion = this.ItemEdit.Constitucion;
+      needUpdate = true;
+    }
+    if (this.ItemEdit.Inteligencia !== this.Inteligencia) {
+      item.Caracteristica_Inteligencia = this.ItemEdit.Inteligencia;
+      needUpdate = true;
+    }
+    if (this.ItemEdit.Sabiduria !== this.Sabiduria) {
+      item.Caracteristica_Sabiduria = this.ItemEdit.Sabiduria;
+      needUpdate = true;
+    }
+    if (this.ItemEdit.Carisma !== this.Carisma) {
+      item.Caracteristica_Carisma = this.ItemEdit.Carisma;
+      needUpdate = true;
+    }
+    if (this.ItemEdit.Competencia !== this.Competencia) {
+      item.Bono_Competencia = this.ItemEdit.Competencia;
+      needUpdate = true;
+    }
+    if (this.ItemEdit.Campaña !== this.Campaña) {
+      item.Campanha = this.ItemEdit.Campaña;
+      needUpdate = true;
+    }
 
     if (this.ItemEdit.Foto !== this.Foto?.Url) {
-      /*
       if (
         isValidUrl(this.ItemEdit.Foto?.Url) ||
         this.ItemEdit.Foto?.Url === ""
@@ -92,7 +130,7 @@ export class PersonajeItem {
       } else {
         console.log("La URL de la imagen no es válida");
       }
-      */
+      
     }
     if (this.ID === null) {
       await this.Lista.List.items.add(item);
@@ -127,8 +165,8 @@ export class PersonajeItem {
 
 }
 function calcularBono(caracteristica: number) {
-  let bono = (caracteristica - 10) / 2;
-  return bono;
+  const bono = (caracteristica - 10) / 2;
+  return Math.floor(bono);
 }
 
 

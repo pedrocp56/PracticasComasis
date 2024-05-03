@@ -7,13 +7,13 @@ import ArmaTipo from "./ArmaTipo";
 import ArmaArr from "./ArmaArr";
 import ArmaCaracteristicas from "./ArmaCaracteristicas";
 import ArmaInfo from "./ArmaInfo";
-import UsarImagen from "./UsoGeneral/UsarImagen";
+import UsarImagen from "../../Generales/UsarImagen";
 import { SearchOutlined } from '@ant-design/icons';
-import FiltroTexto from "./UsoGeneral/FiltroTexto";
 import { CalcularDañoMax } from "./ArmaDaño";
 import ArmasBotonEditar from "./ArmaEditar";
 import ArmaEliminarBoton from "./ArmaEliminar";
 import { Stack } from "@fluentui/react";
+import FiltroTexto from "../../Generales/FiltroTexto";
 
 
 export interface IArmaWebpartProps {

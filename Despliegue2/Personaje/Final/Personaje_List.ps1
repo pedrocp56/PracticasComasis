@@ -95,7 +95,7 @@ if ($vista) {
         $vista.ViewFields.Add("Personaje_Usuario");
         $vista.ViewFields.Add("Caracteristica_Fuerza");
         $vista.ViewFields.Add("Caracteristica_Destreza");
-        $vista.ViewFields.Add("Caracteristica_Constitución");
+        $vista.ViewFields.Add("Caracteristica_Constitucion");
         $vista.ViewFields.Add("Caracteristica_Inteligencia");
         $vista.ViewFields.Add("Caracteristica_Sabiduria");
         $vista.ViewFields.Add("Caracteristica_Carisma");

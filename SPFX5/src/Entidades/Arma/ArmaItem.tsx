@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any*/
+import { isValidUrl } from "../Generales/Validaciones";
 import { ArmaLista } from "./ArmaLista";
-import { isValidUrl } from "./Componentes/UsoGeneral/Validaciones";
 
 export class ArmaItem {
 
