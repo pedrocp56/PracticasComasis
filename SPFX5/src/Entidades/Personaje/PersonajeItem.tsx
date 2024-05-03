@@ -2,7 +2,7 @@
 import { isValidUrl } from "../Generales/Validaciones";
 import { PersonajeLista } from "./PersonajeLista";
 
-interface ComasisUser {
+export interface ComasisUser {
   Title: string;
   ID: number;
   EMail: string;
@@ -51,7 +51,7 @@ export class PersonajeItem {
     this.Usuario = this.ListItem.Personaje_Usuario
     this.UsuarioNombre =
       this.Usuario !== undefined && this.Usuario !== null
-        ? this.Usuario["Title"]
+        ? this.Usuario.Title
         : "(vacío)";
 
     this.Fuerza = this.ListItem.Caracteristica_Fuerza;
@@ -119,13 +119,12 @@ export class PersonajeItem {
       item.Campanha = this.ItemEdit.Campaña;
       needUpdate = true;
     }
-
     if (this.ItemEdit.Foto !== this.Foto?.Url) {
       if (
         isValidUrl(this.ItemEdit.Foto?.Url) ||
         this.ItemEdit.Foto?.Url === ""
       ) {
-        item.Arma_Foto = { Url: this.ItemEdit.Foto?.Url };
+        item.Personaje_Foto = { Url: this.ItemEdit.Foto?.Url };
         needUpdate = true;
       } else {
         console.log("La URL de la imagen no es válida");
@@ -164,7 +163,7 @@ export class PersonajeItem {
 
 
 }
-function calcularBono(caracteristica: number) {
+function calcularBono(caracteristica: number):number {
   const bono = (caracteristica - 10) / 2;
   return Math.floor(bono);
 }

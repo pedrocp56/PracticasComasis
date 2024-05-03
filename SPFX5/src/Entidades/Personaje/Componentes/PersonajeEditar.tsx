@@ -2,7 +2,7 @@ import * as React from "react";
 import { IconButton } from "@fluentui/react";
 import { useEffect, useState } from "react";
 import { PersonajeItem } from "../PersonajeItem";
-import PersonajeFormProps from "./UsoGeneral/PersonajeFormProps";
+import PersonajeFormProps from "./UsoGeneral/PersonajeForm";
 
 const buttonStyle = {
   backgroundColor: "#E4ADF3",

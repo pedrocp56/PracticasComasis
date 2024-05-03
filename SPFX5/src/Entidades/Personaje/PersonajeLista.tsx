@@ -13,9 +13,9 @@ export class PersonajeLista {
     "Personaje_Usuario/Title",
     "Personaje_Usuario/ID",
     "Personaje_Usuario/EMail",
-    "LookupArma/Title"
+    "LookupArma/Title",
   ];
-  public ExpandAllFields: string[] = ["Personaje_Usuario","LookupArma"];
+  public ExpandAllFields: string[] = ["Personaje_Usuario", "LookupArma"];
   public web: IWeb;
   public Context: WebPartContext;
   public List: IList;
@@ -29,6 +29,14 @@ export class PersonajeLista {
   public getNewPersonaje(): PersonajeItem {
     const nuevo = new PersonajeItem(null, this);
     nuevo.ID = null;
+    //nuevo.Usuario =;
+    nuevo.Fuerza = 10;
+    nuevo.Destreza = 10;
+    nuevo.Constitucion = 10;
+    nuevo.Inteligencia = 10;
+    nuevo.Sabiduria = 10;
+    nuevo.Carisma = 10;
+    nuevo.Competencia = 2;
     return nuevo;
   }
 
@@ -43,7 +51,6 @@ export class PersonajeLista {
         });
       })
       .catch(async (E: Error) => {
-
         console.error(E);
       });
 

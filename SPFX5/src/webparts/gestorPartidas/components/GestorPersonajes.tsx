@@ -7,27 +7,28 @@ import { useEffect, useState } from "react";
 import { PersonajeItem } from "../../../Entidades/Personaje/PersonajeItem";
 import { PersonajeLista } from "../../../Entidades/Personaje/PersonajeLista";
 import PersonajeTabla from "../../../Entidades/Personaje/Componentes/PersonajeTabla";
+import PersonajeNuevoBoton from "../../../Entidades/Personaje/Componentes/BotonNuevo";
 
-export interface IGestorPesonajesCompWebpartProps {
+export interface IGestorPersonajesCompWebpartProps {
   SP: SPFI;
   WebPartContext: WebPartContext;
 }
 
-export default function GestorPesonajesCompWebpart(
-  props: IGestorPesonajesCompWebpartProps
+export default function GestorPersonajesCompWebpart(
+  props: IGestorPersonajesCompWebpartProps
 ): JSX.Element {
   const [cargando, setCargando] = useState(true);
   const [Items, setItems] = React.useState<PersonajeItem[]>([]);
-  const PesonajeL = React.useRef<PersonajeLista>(null);
+  const PersonajeL = React.useRef<PersonajeLista>(null);
   const recargaDatos = async (): Promise<void> => {
-    await PesonajeL.current.CargarTodos().then((i) => {
+    await PersonajeL.current.CargarTodos().then((i) => {
       setItems(i);
     });
     //console.log(Items);
   };
   useEffect((): void => {
-    PesonajeL.current = new PersonajeLista(props.SP.web, props.WebPartContext);
-    PesonajeL.current.CargarTodos().then((i) => {
+    PersonajeL.current = new PersonajeLista(props.SP.web, props.WebPartContext);
+    PersonajeL.current.CargarTodos().then((i) => {
       console.log(i);
       setItems(i);
     });
@@ -44,6 +45,10 @@ export default function GestorPesonajesCompWebpart(
         <Spinner hidden={!cargando} />
       </div>
       <div hidden={cargando}>
+        <PersonajeNuevoBoton
+          lista={PersonajeL.current}
+          callback={recargaDatos}
+        />
         <PersonajeTabla Items={Items} callback={recargaDatos} />
       </div>
     </>

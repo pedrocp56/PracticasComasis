@@ -5,6 +5,7 @@ import { Spinner, Stack, TextField } from "@fluentui/react";
 import { useEffect, useState } from "react";
 import { isValidUrl } from "../../../Generales/Validaciones";
 import { PersonajeItem } from "../../PersonajeItem";
+//import {  PeoplePicker,  PrincipalType,} from "@pnp/spfx-controls-react/lib/PeoplePicker";
 
 interface IPersonajeFormProps {
   item: PersonajeItem;
@@ -46,7 +47,7 @@ export default function PersonajeFormProps(
         itemEdit?.Fuerza < 1 ||
         itemEdit?.Fuerza > 30
       ) {
-        setErrorMessage("Fuerza no válida");
+        setErrorMessage("Fuerza no válida (1-30)");
         setValido(false);
         return false;
       }
@@ -56,7 +57,7 @@ export default function PersonajeFormProps(
         itemEdit?.Destreza < 1 ||
         itemEdit?.Destreza > 30
       ) {
-        setErrorMessage("Destreza no válida");
+        setErrorMessage("Destreza no válida (1-30)");
         setValido(false);
         return false;
       }
@@ -66,7 +67,7 @@ export default function PersonajeFormProps(
         itemEdit?.Constitucion < 1 ||
         itemEdit?.Constitucion > 30
       ) {
-        setErrorMessage("Constitucion no válida");
+        setErrorMessage("Constitucion no válida (1-30)");
         setValido(false);
         return false;
       }
@@ -76,7 +77,7 @@ export default function PersonajeFormProps(
         itemEdit?.Inteligencia < 1 ||
         itemEdit?.Inteligencia > 30
       ) {
-        setErrorMessage("Inteligencia no válida");
+        setErrorMessage("Inteligencia no válida (1-30)");
         setValido(false);
         return false;
       }
@@ -86,7 +87,7 @@ export default function PersonajeFormProps(
         itemEdit?.Sabiduria < 1 ||
         itemEdit?.Sabiduria > 30
       ) {
-        setErrorMessage("Sabiduria no válida");
+        setErrorMessage("Sabiduria no válida (1-30)");
         setValido(false);
         return false;
       }
@@ -96,7 +97,7 @@ export default function PersonajeFormProps(
         itemEdit?.Carisma < 1 ||
         itemEdit?.Carisma > 30
       ) {
-        setErrorMessage("Carisma no válida");
+        setErrorMessage("Carisma no válida (1-30)");
         setValido(false);
         return false;
       }
@@ -106,16 +107,11 @@ export default function PersonajeFormProps(
         itemEdit?.Competencia < 2 ||
         itemEdit?.Competencia > 6
       ) {
-        setErrorMessage("Bono de competencia no válida");
+        setErrorMessage("Bono de competencia no válida (2-6)");
         setValido(false);
         return false;
       }
-      if (
-        itemEdit?.Foto === null ||
-        itemEdit?.Foto === undefined ||
-        itemEdit?.Foto === "" ||
-        isValidUrl(itemEdit?.Foto.Url)
-      ) {
+      if (isValidUrl(itemEdit?.Foto.Url)) {
         setValido(true);
         return true;
       }
@@ -139,7 +135,7 @@ export default function PersonajeFormProps(
     props.item.ItemEdit = itemEdit;
     await props.item.updateItem();
     setGuardando(false);
-    props.onSave(itemEdit);
+    await props.onSave(itemEdit);
   };
 
   useEffect((): void => {
@@ -149,8 +145,7 @@ export default function PersonajeFormProps(
   useEffect((): void => {
     const check = Validacion();
     setValido(check);
-    setItemEdit(props.item);
-  }, [props.item.ItemEdit]);
+  }, [itemEdit]);
 
   return (
     <>
@@ -173,75 +168,130 @@ export default function PersonajeFormProps(
             }}
             value={itemEdit.Nombre}
           />
+          {/* No funciona
+          <PeoplePicker
+            context={props.item.Lista.Context as any}
+            //label="Usuario"
+            titleText="prueba 1"
+            personSelectionLimit={1}
+            showtooltip={true}
+            required={true}
+            searchTextLimit={8}
+            ensureUser
+            /*
+            onChange={(Items) => {
+              if (Items.length === 0) {
+                setItemEdit({
+                  ...itemEdit,
+                  Usuario: null,
+                } as PersonajeItem);
+              } else {
+                const UserIds: ComasisUser[] = Items.map((I) => {
+                  return {
+                    Data: null,
+                    Email: I.secondaryText,
+                    LoginName: "",
+                    Title: I.text,
+                    ID: parseInt(I.id),
+                  };
+                });
+                setItemEdit({
+                  ...itemEdit,
+                  Usuario: UserIds[0],
+                } as PersonajeItem);
+              }
+            }}
+            defaultSelectedUsers={[itemEdit?.Usuario?.EMail]}
+            principalTypes={[PrincipalType.User]}
+            resolveDelay={200}
+          />
+          */}
+
           <TextField
             label="Fuerza"
             onChange={(e, newValue) =>
               setItemEdit({
                 ...itemEdit,
-                Fuerza: parseInt(newValue),
+                Fuerza: newValue ? parseInt(newValue) : undefined,
               } as PersonajeItem)
             }
-            value={itemEdit.Fuerza?.toString()}
+            value={itemEdit.Fuerza !== null ? itemEdit.Fuerza.toString() : ""}
           />
           <TextField
             label="Destreza"
             onChange={(e, newValue) =>
               setItemEdit({
                 ...itemEdit,
-                Destreza: parseInt(newValue),
+                Destreza: newValue ? parseInt(newValue) : undefined,
               } as PersonajeItem)
             }
-            value={itemEdit.Destreza?.toString()}
+            value={
+              itemEdit.Destreza !== null ? itemEdit.Destreza.toString() : ""
+            }
           />
           <TextField
             label="Constitucion"
             onChange={(e, newValue) =>
               setItemEdit({
                 ...itemEdit,
-                Constitucion: parseInt(newValue),
+                Constitucion: newValue ? parseInt(newValue) : undefined,
               } as PersonajeItem)
             }
-            value={itemEdit.Constitucion?.toString()}
+            value={
+              itemEdit.Constitucion !== null
+                ? itemEdit.Constitucion.toString()
+                : ""
+            }
           />
           <TextField
             label="Inteligencia"
             onChange={(e, newValue) =>
               setItemEdit({
                 ...itemEdit,
-                Inteligencia: parseInt(newValue),
+                Inteligencia: newValue ? parseInt(newValue) : undefined,
               } as PersonajeItem)
             }
-            value={itemEdit.Inteligencia?.toString()}
+            value={
+              itemEdit.Inteligencia !== null
+                ? itemEdit.Inteligencia.toString()
+                : ""
+            }
           />
           <TextField
             label="Sabiduria"
             onChange={(e, newValue) =>
               setItemEdit({
                 ...itemEdit,
-                Sabiduria: parseInt(newValue),
+                Sabiduria: newValue ? parseInt(newValue) : undefined,
               } as PersonajeItem)
             }
-            value={itemEdit.Sabiduria?.toString()}
+            value={
+              itemEdit.Sabiduria !== null ? itemEdit.Sabiduria.toString() : ""
+            }
           />
           <TextField
             label="Carisma"
             onChange={(e, newValue) =>
               setItemEdit({
                 ...itemEdit,
-                Carisma: parseInt(newValue),
+                Carisma: newValue ? parseInt(newValue) : undefined,
               } as PersonajeItem)
             }
-            value={itemEdit.Carisma?.toString()}
+            value={itemEdit.Carisma !== null ? itemEdit.Carisma.toString() : ""}
           />
           <TextField
             label="Bono de competencia"
             onChange={(e, newValue) =>
               setItemEdit({
                 ...itemEdit,
-                Competencia: parseInt(newValue),
+                Competencia: newValue ? parseInt(newValue) : undefined,
               } as PersonajeItem)
             }
-            value={itemEdit.Competencia?.toString()}
+            value={
+              itemEdit.Competencia !== null
+                ? itemEdit.Competencia.toString()
+                : ""
+            }
           />
           <TextField
             label="Campaña"
@@ -253,9 +303,12 @@ export default function PersonajeFormProps(
           <TextField
             label="Foto"
             onChange={(e, newValue) =>
-              setItemEdit({ ...itemEdit, Foto: newValue } as PersonajeItem)
+              setItemEdit({
+                ...itemEdit,
+                Foto: { Description: newValue, Url: newValue },
+              } as PersonajeItem)
             }
-            value={itemEdit.Foto?.Url || ""}
+            value={itemEdit.Foto?.Url}
           />
         </Stack>
       </Modal>

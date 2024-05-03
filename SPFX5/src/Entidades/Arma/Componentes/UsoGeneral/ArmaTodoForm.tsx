@@ -160,7 +160,7 @@ export default function ArmaFormProps(props: IArmaFormProps): JSX.Element {
     props.item.ItemEdit = itemEdit;
     await props.item.updateItem();
     setGuardando(false);
-    props.onSave(itemEdit);
+    await props.onSave(itemEdit);
   };
   /*
     useEffect((): void => {

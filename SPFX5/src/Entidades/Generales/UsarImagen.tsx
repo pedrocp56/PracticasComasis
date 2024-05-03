@@ -7,7 +7,7 @@ const UsarImagen: React.FC<{ imageUrl: any }> = ({ imageUrl }) => {
         return <div>Sin imagen</div>;
     }
     return (
-        <Image src={imageUrl.Url} />
+        <Image src={imageUrl.Url} style={{ width: 'auto', height: '75px' }} />
     );
 };
 

@@ -9,6 +9,7 @@ import FiltroTexto from "../../Generales/FiltroTexto";
 import UsarImagen from "../../Generales/UsarImagen";
 import PersonajeBotonCar from "./BotonCar";
 import PersonajeBotonEditar from "./PersonajeEditar";
+import PersonajeBotonEliminar from "./BotonEliminar";
 
 export interface IPersonajeWebpartProps {
   Items: PersonajeItem[];
@@ -26,7 +27,8 @@ export default function PersonajeWebpart(
       align: "center",
       render: (text: string, record: PersonajeItem) => (
         <Stack horizontal tokens={{ childrenGap: 5 }}>
-            <PersonajeBotonEditar item={record} callback={Props.callback} />
+          <PersonajeBotonEliminar item={record} callback={Props.callback} />
+          <PersonajeBotonEditar item={record} callback={Props.callback} />
         </Stack>
       ),
     },

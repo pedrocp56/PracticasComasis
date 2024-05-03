@@ -20,11 +20,11 @@ const PersonajeBotonCar: React.FC<{ titulo: string; info: PersonajeItem }> = ({
   const handleOk = (): void => {
     setIsModalOpen(false);
   };
-  /*
-    const handleCancel = (): void => {
-        setIsModalOpen(false);
-    };
-    */
+
+  const handleCancel = (): void => {
+    setIsModalOpen(false);
+  };
+
   const buttonStyle = {
     backgroundColor: "#E4ADF3",
     color: "#1B4C25",
@@ -38,7 +38,12 @@ const PersonajeBotonCar: React.FC<{ titulo: string; info: PersonajeItem }> = ({
       >
         {titulo}
       </IconButton>
-      <Modal title={titulo} open={isModalOpen} onOk={handleOk}>
+      <Modal
+        title={titulo}
+        open={isModalOpen}
+        onOk={handleOk}
+        onCancel={handleCancel}
+      >
         <div style={{ display: "flex", flexDirection: "row" }}>
           <div style={{ flex: 1 }}>
             <p>Base</p>
