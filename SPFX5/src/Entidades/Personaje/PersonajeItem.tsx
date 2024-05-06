@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any*/
+//import { sortedUniq } from "lodash";
 import { isValidUrl } from "../Generales/Validaciones";
 import { PersonajeLista } from "./PersonajeLista";
 
@@ -9,7 +10,6 @@ export interface ComasisUser {
 }
 
 export class PersonajeItem {
-
   public ListItem: any;
   public Lista: PersonajeLista;
   public ItemEdit: PersonajeItem;
@@ -48,7 +48,7 @@ export class PersonajeItem {
   public MapearCampos(): void {
     this.ID = this.ListItem.ID;
     this.Nombre = this.ListItem.Title;
-    this.Usuario = this.ListItem.Personaje_Usuario
+    this.Usuario = this.ListItem.Personaje_Usuario;
     this.UsuarioNombre =
       this.Usuario !== undefined && this.Usuario !== null
         ? this.Usuario.Title
@@ -70,18 +70,25 @@ export class PersonajeItem {
     this.Competencia = this.ListItem.Bono_Competencia;
     this.Campaña = this.ListItem.Campanha;
     console.log(this.ListItem.LookupArma);
-    this.ListaArmas = this.ListItem.LookupArma;
-    this.Foto = this.ListItem.Personaje_Foto;
+    //console.log(this.ListItem.LookupArma[0]?.Title);  Me odio mucho a mi mismo
 
+    if (this.ListItem.LookupArma) {
+      this.ListaArmas = this.ListItem.LookupArma;
+    } else {
+      this.ListaArmas = [];
+    }
+    this.Foto = this.ListItem.Personaje_Foto;
   }
 
   public async updateItem(): Promise<boolean> {
+    console.log("Entrando Update");
     let needUpdate = false;
     const item: any = {};
     if (this.ItemEdit.Nombre !== this.Nombre) {
       item.Title = this.ItemEdit.Nombre;
       needUpdate = true;
     }
+
     if (this.ItemEdit.Usuario !== this.Usuario) {
       item.Personaje_Usuario = this.ItemEdit.Usuario;
       needUpdate = true;
@@ -89,36 +96,51 @@ export class PersonajeItem {
 
     if (this.ItemEdit.Fuerza !== this.Fuerza) {
       item.Caracteristica_Fuerza = this.ItemEdit.Fuerza;
+
+      //item.Bono_Fuerza = calcularBono(this.ItemEdit.Fuerza);
       needUpdate = true;
     }
+
     if (this.ItemEdit.Destreza !== this.Destreza) {
       item.Caracteristica_Destreza = this.ItemEdit.Destreza;
+      //item.Bono_Destreza = calcularBono(this.ItemEdit.Destreza);
       needUpdate = true;
     }
+
     if (this.ItemEdit.Constitucion !== this.Constitucion) {
       item.Caracteristica_Constitucion = this.ItemEdit.Constitucion;
+      //item.Bono_Constitucion = calcularBono(this.ItemEdit.Constitucion);
       needUpdate = true;
     }
+
     if (this.ItemEdit.Inteligencia !== this.Inteligencia) {
       item.Caracteristica_Inteligencia = this.ItemEdit.Inteligencia;
+      //item.Bono_Inteligencia = calcularBono(this.ItemEdit.Inteligencia);
       needUpdate = true;
     }
+
     if (this.ItemEdit.Sabiduria !== this.Sabiduria) {
       item.Caracteristica_Sabiduria = this.ItemEdit.Sabiduria;
+      //item.Bono_Sabiduria = calcularBono(this.ItemEdit.Sabiduria);
       needUpdate = true;
     }
+
     if (this.ItemEdit.Carisma !== this.Carisma) {
       item.Caracteristica_Carisma = this.ItemEdit.Carisma;
+      //item.Bono_Carisma = calcularBono(this.ItemEdit.Carisma);
       needUpdate = true;
     }
+
     if (this.ItemEdit.Competencia !== this.Competencia) {
       item.Bono_Competencia = this.ItemEdit.Competencia;
       needUpdate = true;
     }
+
     if (this.ItemEdit.Campaña !== this.Campaña) {
       item.Campanha = this.ItemEdit.Campaña;
       needUpdate = true;
     }
+
     if (this.ItemEdit.Foto !== this.Foto?.Url) {
       if (
         isValidUrl(this.ItemEdit.Foto?.Url) ||
@@ -129,14 +151,18 @@ export class PersonajeItem {
       } else {
         console.log("La URL de la imagen no es válida");
       }
-      
     }
+
     if (this.ID === null) {
+      console.log("Creando personaje");
+      console.log(item);
       await this.Lista.List.items.add(item);
-      console.log("Personaje creada")
-      return true
+      console.log("Personaje creada");
+      return true;
     }
+
     if (needUpdate) {
+      console.log("NeedUpdate");
       await this.Lista.List.items
         .getById(this.ListItem.ID)
         .update(item)
@@ -147,26 +173,21 @@ export class PersonajeItem {
           return true;
         });
     } else return false;
-
   }
 
   public async deletePersonaje(): Promise<void> {
     try {
       await this.Lista.List.items.getById(this.ID).delete();
       console.log(`Personaje con ID ${this.ID} eliminado exitosamente.`);
-
     } catch (error) {
-      console.error('Error al eliminar el Personaje:', error);
-      throw new Error('Error al eliminar el Personaje');
+      console.error("Error al eliminar el Personaje:", error);
+      throw new Error("Error al eliminar el Personaje");
     }
   }
-
-
 }
-function calcularBono(caracteristica: number):number {
+function calcularBono(caracteristica: number): number {
   const bono = (caracteristica - 10) / 2;
   return Math.floor(bono);
 }
-
 
 /* eslint-enable */

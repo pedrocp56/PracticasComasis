@@ -44,6 +44,7 @@ export default function PersonajeBotonEditar(
         onClick={showModal}
         iconProps={{ iconName: "Edit" }}
         style={buttonStyle}
+        title="Editar"
       />
       <PersonajeFormProps
         item={props.item}

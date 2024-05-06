@@ -4,8 +4,11 @@ import { Modal } from "antd";
 import { Spinner, Stack, TextField } from "@fluentui/react";
 import { useEffect, useState } from "react";
 import { isValidUrl } from "../../../Generales/Validaciones";
-import { PersonajeItem } from "../../PersonajeItem";
-//import {  PeoplePicker,  PrincipalType,} from "@pnp/spfx-controls-react/lib/PeoplePicker";
+import { ComasisUser, PersonajeItem } from "../../PersonajeItem";
+import {
+  PeoplePicker,
+  PrincipalType,
+} from "@pnp/spfx-controls-react/lib/PeoplePicker";
 
 interface IPersonajeFormProps {
   item: PersonajeItem;
@@ -132,7 +135,11 @@ export default function PersonajeFormProps(
     }
     console.log(valido);
     setGuardando(true);
+    itemEdit.ListaArmas = null;
+    itemEdit.Foto = null;
     props.item.ItemEdit = itemEdit;
+    console.log(itemEdit);
+    console.log("aaaaaaaaaaaaaaaaaaaaaaaaaa");
     await props.item.updateItem();
     setGuardando(false);
     await props.onSave(itemEdit);
@@ -168,17 +175,15 @@ export default function PersonajeFormProps(
             }}
             value={itemEdit.Nombre}
           />
-          {/* No funciona
+
           <PeoplePicker
             context={props.item.Lista.Context as any}
             //label="Usuario"
-            titleText="prueba 1"
+            titleText="Usuario"
             personSelectionLimit={1}
             showtooltip={true}
             required={true}
-            searchTextLimit={8}
             ensureUser
-            /*
             onChange={(Items) => {
               if (Items.length === 0) {
                 setItemEdit({
@@ -189,7 +194,7 @@ export default function PersonajeFormProps(
                 const UserIds: ComasisUser[] = Items.map((I) => {
                   return {
                     Data: null,
-                    Email: I.secondaryText,
+                    EMail: I.secondaryText,
                     LoginName: "",
                     Title: I.text,
                     ID: parseInt(I.id),
@@ -205,7 +210,6 @@ export default function PersonajeFormProps(
             principalTypes={[PrincipalType.User]}
             resolveDelay={200}
           />
-          */}
 
           <TextField
             label="Fuerza"
@@ -288,7 +292,7 @@ export default function PersonajeFormProps(
               } as PersonajeItem)
             }
             value={
-              itemEdit.Competencia !== null
+              itemEdit && itemEdit.Competencia !== undefined
                 ? itemEdit.Competencia.toString()
                 : ""
             }

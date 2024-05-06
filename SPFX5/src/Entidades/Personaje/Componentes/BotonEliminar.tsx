@@ -32,6 +32,7 @@ export default function PersonajeBotonEliminar(props: IPersonajeBotonEliminarPro
                 onClick={handleDelete}
                 iconProps={{ iconName: "Delete" }}
                 style={buttonStyle}
+                title="Eliminar"
             />
             <Dialog
                 hidden={!isDeleteConfirmed}

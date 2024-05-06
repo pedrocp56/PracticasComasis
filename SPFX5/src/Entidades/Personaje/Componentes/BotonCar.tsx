@@ -35,6 +35,7 @@ const PersonajeBotonCar: React.FC<{ titulo: string; info: PersonajeItem }> = ({
         onClick={showModal}
         style={buttonStyle}
         iconProps={{ iconName: "Script" }}
+        title="Más información"
       >
         {titulo}
       </IconButton>

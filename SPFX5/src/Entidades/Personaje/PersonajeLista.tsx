@@ -14,6 +14,7 @@ export class PersonajeLista {
     "Personaje_Usuario/ID",
     "Personaje_Usuario/EMail",
     "LookupArma/Title",
+    //"LookupArma/Foto",   no vaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa llama a otra biblioteca
   ];
   public ExpandAllFields: string[] = ["Personaje_Usuario", "LookupArma"];
   public web: IWeb;
@@ -37,6 +38,7 @@ export class PersonajeLista {
     nuevo.Sabiduria = 10;
     nuevo.Carisma = 10;
     nuevo.Competencia = 2;
+    nuevo.Foto = null;
     return nuevo;
   }
 

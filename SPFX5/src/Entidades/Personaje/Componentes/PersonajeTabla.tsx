@@ -10,6 +10,7 @@ import UsarImagen from "../../Generales/UsarImagen";
 import PersonajeBotonCar from "./BotonCar";
 import PersonajeBotonEditar from "./PersonajeEditar";
 import PersonajeBotonEliminar from "./BotonEliminar";
+import PersonajeBotonArmas from "./BotonArmas";
 
 export interface IPersonajeWebpartProps {
   Items: PersonajeItem[];
@@ -95,7 +96,7 @@ export default function PersonajeWebpart(
       dataIndex: "Armas",
       align: "center",
       render: (text: string, record: PersonajeItem) => (
-        <Stack horizontal tokens={{ childrenGap: 5 }}></Stack>
+        <PersonajeBotonArmas titulo="Armas" info={record} />
       ),
     },
     {
