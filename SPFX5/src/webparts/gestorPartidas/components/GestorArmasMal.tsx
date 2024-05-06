@@ -3,11 +3,11 @@ import * as React from 'react';
 import { Spinner } from "@fluentui/react";
 import { WebPartContext } from "@microsoft/sp-webpart-base";
 import { SPFI } from "@pnp/sp";
-import { ArmaLista } from "../../../Entidades/Arma/ArmaLista";
+import { ArmaLista } from "../../../Entidades/ArmaMal/ArmaLista";
 import { useEffect, useState } from "react";
-import ArmaTabla from "../../../Entidades/Arma/Componentes/ArmaTabla";
-import { ArmaItem } from "../../../Entidades/Arma/ArmaItem";
-import ArmaNuevaBoton from '../../../Entidades/Arma/Componentes/ArmaNuevaBoton';
+import ArmaTabla from "../../../Entidades/ArmaMal/Componentes/ArmaTabla";
+import { ArmaItem } from "../../../Entidades/ArmaMal/ArmaItem";
+import ArmaNuevaBoton from '../../../Entidades/ArmaMal/Componentes/ArmaNuevaBoton';
 
 export interface IGestorArmasCompWebpartProps {
   SP: SPFI;

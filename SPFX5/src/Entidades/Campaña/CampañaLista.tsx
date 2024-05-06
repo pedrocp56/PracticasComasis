@@ -5,9 +5,7 @@ import { CampañaItem } from "./CampañaItem";
 
 export class CampañaLista {
   public NombreLista = "Campañas";
-  public SelectAllFields: string[] = [
-    "*",
-  ];
+  public SelectAllFields: string[] = ["*"];
   public ExpandAllFields: string[] = [];
   public web: IWeb;
   public Context: WebPartContext;
@@ -19,13 +17,20 @@ export class CampañaLista {
     this.List = this.web.lists.getByTitle(this.NombreLista);
   }
 
-  public async CargarTodos(BatchedWeb?: IWeb): Promise<CampañaItem[] | void> {
+  public getNewCampaña(): CampañaItem {
+    const nuevo = new CampañaItem(null, this);
+    nuevo.ID = null;
+    //nuevo.Usuario =;
+    return nuevo;
+  }
+
+  public async CargarTodos(BatchedWeb?: IWeb): Promise<CampañaItem[]> {
     const Items = this.List.items
       .expand(this.ExpandAllFields.join())
       .orderBy("Title")
       .select(this.SelectAllFields.join())()
-      .then((Data: IItem[]) => {
-        return Data.map((I) => {
+      .then((Data: any) => {
+        return Data.map((I: IItem) => {
           return new CampañaItem(I, this);
         });
       })
