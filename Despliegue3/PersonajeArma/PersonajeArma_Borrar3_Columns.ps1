@@ -9,7 +9,7 @@
 
         $context.ExecuteQuery();
 
-        $columns = "Campanha_Descripcion","Campanha_Fecha","Campanha_Foto";
+        $columns = "Competencia","Bonificacion_Adiccional";
 
         foreach($column in $columns) {
 

@@ -20,7 +20,7 @@ $fieldsArray += '<Field ID="{895e4672-e15b-4c40-bc6f-d752e02dbbd9}"
 
 
 $fieldsArray += '<Field ID="{61808313-fe99-4abe-90a0-2c080db1bdea}" 
-                Name="Arma_Daño"
+                Name="Arma_Danho"
                 DisplayName="Daño del arma" 
                 Type="Text" 
                 Required="TRUE"

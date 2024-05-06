@@ -101,15 +101,6 @@ $fieldsArray += '<Field ID="{042288df-7c62-45a3-9fca-4c2e2cccbbb4}"
                 xmlns="http://schemas.microsoft.com/sharepoint/">
                 </Field>';
 
-$fieldsArray += '<Field ID="{feb0ecd8-6a15-423d-a205-610964d80f4b}" 
-                Name="Campanha" 
-                DisplayName="Campanha"  
-                Type="Text"
-                Group="FichaPersonaje" 
-                xmlns="http://schemas.microsoft.com/sharepoint/">
-                </Field>';
-
-
 $fieldsArray += '<Field ID="{fd08eed1-b8ed-4265-9fb1-15fa3dc08d7a}" 
                 Name="Personaje_Foto" 
                 DisplayName="Foto del personaje"  

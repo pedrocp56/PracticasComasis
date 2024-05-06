@@ -1,28 +1,4 @@
-﻿
-$listTitles = "Personajes"
-
-
-foreach ($listTitle in $listTitles) {
-    
-    $list = $web.Lists.GetByTitle($listTitle)
-
-    $context.Load($list);
-    $context.ExecuteQuery();
-
-    $list.DeleteObject();
-    
-    try {
-        $context.ExecuteQuery();
-        #$list.Update();
-        Write-Host "La lista $listTitle se ha eliminado correctamente" -foregroundcolor green
-    }
-    catch{
-        write-host "info: $($_.Exception.Message)" -foregroundcolor red
-    } 
-}
-
-
-$web = $context.Web;
+﻿$web = $context.Web;
     
 $fields = $web.Fields;
 
@@ -31,7 +7,14 @@ $context.Load($fields);
 
 $context.ExecuteQuery();
 
-$columns = "LookupPersonaje";
+$columns = "Campanha_Descripcion","Campanha_Fecha","Campanha_Foto",
+
+"Personaje_Usuario","Caracteristica_Fuerza","Caracteristica_Destreza","Caracteristica_Constitucion",
+"Caracteristica_Inteligencia","Caracteristica_Sabiduria","Caracteristica_Carisma","Bono_Competencia", "Personaje_Foto",
+
+"Arma_Ataque","Arma_Danho","Arma_Tipo", "Arma_Arrojadiza", "Arma_Car", "Arma_Caracteristicas",
+        
+"Competencia","Bonificacion_Adiccional";
 
 foreach($column in $columns) {
 
@@ -51,4 +34,6 @@ foreach($column in $columns) {
             write-host "ERROR: $($_.Exception.Message)" -foregroundcolor red
         }
     }
-}    
+}
+        
+           

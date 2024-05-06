@@ -10,7 +10,7 @@
         $context.ExecuteQuery();
 
         $columns = "Personaje_Usuario","Caracteristica_Fuerza","Caracteristica_Destreza","Caracteristica_Constitucion",
-        "Caracteristica_Inteligencia","Caracteristica_Sabiduria","Caracteristica_Carisma","Campanha","Bono_Competencia", "Personaje_Foto";
+        "Caracteristica_Inteligencia","Caracteristica_Sabiduria","Caracteristica_Carisma","Bono_Competencia", "Personaje_Foto";
 
         foreach($column in $columns) {
 

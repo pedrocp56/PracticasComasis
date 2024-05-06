@@ -1,8 +1,8 @@
-﻿$contentTypeGroup = "ArmaInformacion";
-$contentTypeName = "ArmaInfo";
+﻿$contentTypeGroup = "PersonajeArmaInformacion";
+$contentTypeName = "PersonajeArmaInfo";
 
 #Añadir los internal names de las columnas que compondrán el tipo de contenido
-$columns = "Arma_Ataque","Arma_Danho","Arma_Tipo", "Arma_Arrojadiza", "Arma_Car", "Arma_Caracteristicas", "LookupArmaFoto";
+$columns = "LookupPersonaje","LookupArma","Competencia", "Bonificacion_Adiccional";
 
 $parentContentTypeID = "0x01"
 

@@ -1,24 +1,53 @@
 ﻿
-    $listTitles = "Campañas"
+$listTitles = "Campanhas"
 
 
-    foreach ($listTitle in $listTitles) {
+foreach ($listTitle in $listTitles) {
     
-        $list = $web.Lists.GetByTitle($listTitle)
+    $list = $web.Lists.GetByTitle($listTitle)
 
-        $context.Load($list);
+    $context.Load($list);
+    $context.ExecuteQuery();
+
+    $list.DeleteObject();
+    
+    try {
         $context.ExecuteQuery();
+        #$list.Update();
+        Write-Host "La lista $listTitle se ha eliminado correctamente" -foregroundcolor green
+    }
+    catch{
+        write-host "info: $($_.Exception.Message)" -foregroundcolor red
+    } 
+}
 
-        $list.DeleteObject();
+$web = $context.Web;
     
-        try {
-            $context.ExecuteQuery();
-            #$list.Update();
-            Write-Host "La lista $listTitle se ha eliminado correctamente" -foregroundcolor green
+$fields = $web.Fields;
+
+$context.Load($web);
+$context.Load($fields);
+
+$context.ExecuteQuery();
+
+$columns = "LookupCampanha";
+
+foreach($column in $columns) {
+
+    $field = $fields.GetByInternalNameOrTitle($column);
+
+    if ($field) {
+        $context.Load($field);
+        $context.ExecuteQuery();
+        
+        $field.DeleteObject();
+
+        try{
+            $context.executeQuery()
+            write-host "Columna $column eliminada correctamente" -foregroundcolor green
         }
         catch{
-            write-host "info: $($_.Exception.Message)" -foregroundcolor red
-        } 
+            write-host "ERROR: $($_.Exception.Message)" -foregroundcolor red
+        }
     }
-
-    
+    }    

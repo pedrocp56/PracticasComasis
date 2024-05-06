@@ -7,7 +7,7 @@ $columns = @();
 $parentContentTypeID = "0x0101"
 
     
-    $fields = $context.web.fields
+$fields = $context.web.fields
 $contentTypes = $context.web.contenttypes
 $context.load($fields)
 $context.load($contentTypes)

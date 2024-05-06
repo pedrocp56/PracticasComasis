@@ -1,11 +1,11 @@
 ﻿#creacion de la region de la lista
 
-$listTitle = "Campanhas"
-$listDescription = "Lista Campanhas"
+$listTitle = "PersonajeArmas"
+$listDescription = "Lista Personaje Arma Informacion"
 $listTemplate = 100
 
 #añadir tipos de contenido
-$tipodecontenido = "CampanhaInfo"
+$tipodecontenido = "PersonajeArmaInfo"
 
 $lci = New-Object Microsoft.SharePoint.Client.ListCreationInformation
 $lci.title = $listTitle
@@ -94,15 +94,16 @@ if ($vista) {
         $viewFields = $view.ViewFields;
         $context.Load($viewFields);
         $context.ExecuteQuery();
-        $view.ViewFields.Add("ID");
-        $view.ViewFields.Add("Campanha_Descripcion");
-        $view.ViewFields.Add("Campanha_Fecha");
-        $view.ViewFields.Add("Campanha_Foto");
 
-        $view.ViewQuery = "<OrderBy><FieldRef Name='ID' Ascending='FALSE'/></OrderBy>"
+        $vista.ViewFields.Add("LookupPersonaje");
+        $vista.ViewFields.Add("LookupArma");
+        $vista.ViewFields.Add("Competencia");
+        $vista.ViewFields.Add("Bonificacion_Adiccional");
+
+        $vista.ViewQuery = "<OrderBy><FieldRef Name='ID' Ascending='FALSE'/></OrderBy>"
         
         
-        $view.Update();
+        $vista.Update();
 
     try{
             $context.executeQuery()
@@ -118,49 +119,10 @@ if ($vista) {
 
     }
 
-    $fields = $web.Fields;
-    $context.Load($fields);
-    $context.ExecuteQuery();
 
-    $list.ID
-    write-host "|--- Lookup Campaña";
-    $fieldxml= '<Field ID="{242657a6-ae36-455e-b182-460599da1e0e}" 
-                    Name="LookupCampanha"
-                    DisplayName="Campaña" 
-                    Type="Lookup"
-                    Indexed="TRUE"
-                    List="'+$list.ID+'"
-                    ShowField="Title"
-                    Group="Lookups" 
-                    xmlns="http://schemas.microsoft.com/sharepoint/">
-                    </Field>';
-
-    $field = $fields.AddFieldAsXml($fieldxml, $true, [Microsoft.SharePoint.Client.AddFieldOptions]::DefaultValue); 
-    $context.Load($field);
-    $context.ExecuteQuery();
-
-
-    
-    $list = $web.Lists.GetByTitle("Campanhas")
-    $context.Load($list)
-    $context.executeQuery()
-    
-    $context.Load($list.Fields)
-    $context.executeQuery()
-        
-
-    $titleField = $list.Fields| Where-Object {$_.InternalName -eq "Title"}
-    $context.Load($titleField)
-    $context.executeQuery()
-       
-
-    $titleField.Title = "Nombre de la campaña"
-    $titleField.Update()
-
-    $list = $web.Lists.GetByTitle("Campanhas")
-    $context.Load($list)
-    $context.executeQuery()
-
+$fields = $web.Fields;
+$context.Load($fields);
+$context.ExecuteQuery();
         
         
 
@@ -172,14 +134,14 @@ if ($vista) {
     $context.executeQuery()
 
     cargar datos de una lista
-    $list = $web.Lists.GetByTitle("Armas")
+    $list = $web.Lists.GetByTitle("Lista_Personaje")
     $context.Load($list)
     $context.executeQuery()
     $context.Load($list.Fields)
     $context.executeQuery()
 
     buscar columna por internal name
-    $titleField = $list.Fields| Where-Object {$_.InternalName -eq "Title"}
+    $titleField = $list.Fields| Where-Object {$_.InternalName -eq "Armas"}
 
     mirar informacion de una columna
     $titleField.SchemaXml
@@ -230,7 +192,7 @@ nal="0" />'
         $context.executeQuery()
         $list.Fields
 
-        $titleField = $list.Fields| Where-Object {$_.InternalName -eq "Title"}
+        $titleField = $list.Fields| Where-Object {$_.InternalName -eq "Arma_ID"}
         $context.Load($titleField)
         $context.executeQuery()
         $titleField
