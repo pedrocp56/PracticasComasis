@@ -13,7 +13,9 @@ export class PersonajeLista {
     "Personaje_Usuario/Title",
     "Personaje_Usuario/ID",
     "Personaje_Usuario/EMail",
+    "LookupArma/ID",
     "LookupArma/Title",
+    "LookupCampanha/ID",
     "LookupCampanha/Title",
     //"LookupArma/Foto",   no vaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa llama a otra biblioteca
   ];

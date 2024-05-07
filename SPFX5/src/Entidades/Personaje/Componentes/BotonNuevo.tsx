@@ -43,11 +43,7 @@ export default function PersonajeNuevoBoton(
         iconProps={{ iconName: "Add" }}
         onClick={() => {
           const nuevoparaForm = Props.lista.getNewPersonaje();
-          console.log(nuevoparaForm);
           setItemEdit(nuevoparaForm);
-          console.log("aaaaaaaaaaaaaaaaaaaaaa");
-
-          console.log(itemEdit);
         }}
         style={{ backgroundColor: "#1b4586", color: "#FFFFFF" }}
       />

@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any*/
-//import { sortedUniq } from "lodash";
 import { isValidUrl } from "../Generales/Validaciones";
 import { PersonajeLista } from "./PersonajeLista";
 
@@ -7,6 +6,16 @@ export interface ComasisUser {
   Title: string;
   ID: number;
   EMail: string;
+}
+
+export interface CampañaLookup {
+  ID: number;
+  Title: string;
+}
+
+export interface ArmaLookup {
+  ID: number;
+  Title: string;
 }
 
 export class PersonajeItem {
@@ -33,8 +42,8 @@ export class PersonajeItem {
   public Bono_Carisma: number;
 
   public Competencia: number;
-  public Campaña: any;
-  public ListaArmas: any[];
+  public Campaña: CampañaLookup;
+  public ListaArmas: ArmaLookup[];
   public Foto: any;
 
   constructor(ListItem: any, Lista: PersonajeLista) {
@@ -70,6 +79,8 @@ export class PersonajeItem {
     this.Competencia = this.ListItem.Bono_Competencia;
 
     this.Campaña = this.ListItem.LookupCampanha;
+    console.log(this.Campaña);
+
     //console.log(this.Campaña?.Title);
 
     //console.log(this.ListItem.LookupArma);
@@ -86,64 +97,66 @@ export class PersonajeItem {
     console.log("Entrando Update");
     let needUpdate = false;
     const item: any = {};
+
     if (this.ItemEdit.Nombre !== this.Nombre) {
       item.Title = this.ItemEdit.Nombre;
       needUpdate = true;
     }
 
-    if (this.ItemEdit.Usuario !== this.Usuario) {
-      item.Personaje_Usuario = this.ItemEdit.Usuario;
+    if (this.ItemEdit.Usuario?.ID !== this.Usuario?.ID||this.ID===null) {
+      item.Personaje_UsuarioId = this.ItemEdit.Usuario?.ID;
       needUpdate = true;
     }
 
-    if (this.ItemEdit.Fuerza !== this.Fuerza) {
+    if (this.ItemEdit.Fuerza !== this.Fuerza||this.ID===null) {
       item.Caracteristica_Fuerza = this.ItemEdit.Fuerza;
 
       //item.Bono_Fuerza = calcularBono(this.ItemEdit.Fuerza);
       needUpdate = true;
     }
 
-    if (this.ItemEdit.Destreza !== this.Destreza) {
+    if (this.ItemEdit.Destreza !== this.Destreza||this.ID===null) {
       item.Caracteristica_Destreza = this.ItemEdit.Destreza;
       //item.Bono_Destreza = calcularBono(this.ItemEdit.Destreza);
       needUpdate = true;
     }
 
-    if (this.ItemEdit.Constitucion !== this.Constitucion) {
+    if (this.ItemEdit.Constitucion !== this.Constitucion||this.ID===null) {
       item.Caracteristica_Constitucion = this.ItemEdit.Constitucion;
       //item.Bono_Constitucion = calcularBono(this.ItemEdit.Constitucion);
       needUpdate = true;
     }
 
-    if (this.ItemEdit.Inteligencia !== this.Inteligencia) {
+    if (this.ItemEdit.Inteligencia !== this.Inteligencia||this.ID===null) {
       item.Caracteristica_Inteligencia = this.ItemEdit.Inteligencia;
       //item.Bono_Inteligencia = calcularBono(this.ItemEdit.Inteligencia);
       needUpdate = true;
     }
 
-    if (this.ItemEdit.Sabiduria !== this.Sabiduria) {
+    if (this.ItemEdit.Sabiduria !== this.Sabiduria||this.ID===null) {
       item.Caracteristica_Sabiduria = this.ItemEdit.Sabiduria;
       //item.Bono_Sabiduria = calcularBono(this.ItemEdit.Sabiduria);
       needUpdate = true;
     }
 
-    if (this.ItemEdit.Carisma !== this.Carisma) {
+    if (this.ItemEdit.Carisma !== this.Carisma||this.ID===null) {
       item.Caracteristica_Carisma = this.ItemEdit.Carisma;
       //item.Bono_Carisma = calcularBono(this.ItemEdit.Carisma);
       needUpdate = true;
     }
 
-    if (this.ItemEdit.Competencia !== this.Competencia) {
+    if (this.ItemEdit.Competencia !== this.Competencia||this.ID===null) {
       item.Bono_Competencia = this.ItemEdit.Competencia;
       needUpdate = true;
     }
 
-    if (this.ItemEdit.Campaña !== this.Campaña) {
-      item.LookupCampanha = this.ItemEdit.Campaña;
-      needUpdate = true;
+    if (this.ItemEdit.Campaña?.ID !== this.Campaña?.ID) {
+        item.LookupCampanhaId = this.ItemEdit.Campaña.ID;
+        needUpdate = true;
+      
     }
 
-    if (this.ItemEdit.Foto !== this.Foto?.Url) {
+    if (this.ItemEdit.Foto?.Url !== this.Foto?.Url) {
       if (
         isValidUrl(this.ItemEdit.Foto?.Url) ||
         this.ItemEdit.Foto?.Url === ""

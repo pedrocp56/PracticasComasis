@@ -1,14 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any*/
-import * as React from "react";
-import { Modal } from "antd";
-import { Spinner, Stack, TextField } from "@fluentui/react";
-import { useEffect, useState } from "react";
-import { isValidUrl } from "../../../Generales/Validaciones";
-import { ComasisUser, PersonajeItem } from "../../PersonajeItem";
+import { Dropdown, Spinner, Stack, TextField } from "@fluentui/react";
 import {
   PeoplePicker,
   PrincipalType,
 } from "@pnp/spfx-controls-react/lib/PeoplePicker";
+import { Modal } from "antd";
+import * as React from "react";
+import { useEffect, useRef, useState } from "react";
+import { CampañaItem } from "../../../Campaña/CampañaItem";
+import { CampañaLista } from "../../../Campaña/CampañaLista";
+import { isValidUrl } from "../../../Generales/Validaciones";
+import { ComasisUser, PersonajeItem } from "../../PersonajeItem";
 
 interface IPersonajeFormProps {
   item: PersonajeItem;
@@ -25,6 +27,8 @@ export default function PersonajeFormProps(
   const [valido, setValido] = useState(false);
   const [itemEdit, setItemEdit] = useState(props.item);
   const [errorMessage, setErrorMessage] = useState("");
+  const [campañas, setCampañas] = useState<CampañaItem[]>([]);
+  const CampañaL = useRef<CampañaLista>(null);
 
   function Validacion(): boolean {
     console.log("Validando....");
@@ -143,7 +147,7 @@ export default function PersonajeFormProps(
   };
 
   useEffect((): void => {
-    console.log(valido);
+    //console.log(valido);
   }, [valido]);
 
   useEffect((): void => {
@@ -151,7 +155,21 @@ export default function PersonajeFormProps(
     setValido(check);
   }, [itemEdit]);
 
+  const consultaInicial = async (): Promise<void> => {
+    CampañaL.current = new CampañaLista(props.item.Lista.web, props.item.Lista.Context);
+    const consultaCampañas = await CampañaL.current.CargarTodos();
+    setCampañas(consultaCampañas);
+  }
+
+  useEffect((): void => {
+    void consultaInicial();
+
+  }, []);
+
+
   return (
+
+    //spinner
     <>
       <Modal
         title="Características"
@@ -216,8 +234,9 @@ export default function PersonajeFormProps(
                 Fuerza: newValue ? parseInt(newValue) : undefined,
               } as PersonajeItem)
             }
-            value={itemEdit.Fuerza !== null ? itemEdit.Fuerza.toString() : ""}
+            value={itemEdit.Fuerza !== undefined ? itemEdit.Fuerza.toString() : ""}
           />
+
           <TextField
             label="Destreza"
             onChange={(e, newValue) =>
@@ -227,7 +246,7 @@ export default function PersonajeFormProps(
               } as PersonajeItem)
             }
             value={
-              itemEdit.Destreza !== null ? itemEdit.Destreza.toString() : ""
+              itemEdit.Destreza !== undefined ? itemEdit.Destreza.toString() : ""
             }
           />
           <TextField
@@ -239,7 +258,7 @@ export default function PersonajeFormProps(
               } as PersonajeItem)
             }
             value={
-              itemEdit.Constitucion !== null
+              itemEdit.Constitucion !== undefined
                 ? itemEdit.Constitucion.toString()
                 : ""
             }
@@ -253,7 +272,7 @@ export default function PersonajeFormProps(
               } as PersonajeItem)
             }
             value={
-              itemEdit.Inteligencia !== null
+              itemEdit.Inteligencia !== undefined
                 ? itemEdit.Inteligencia.toString()
                 : ""
             }
@@ -267,7 +286,7 @@ export default function PersonajeFormProps(
               } as PersonajeItem)
             }
             value={
-              itemEdit.Sabiduria !== null ? itemEdit.Sabiduria.toString() : ""
+              itemEdit.Sabiduria !== undefined ? itemEdit.Sabiduria.toString() : ""
             }
           />
           <TextField
@@ -278,7 +297,7 @@ export default function PersonajeFormProps(
                 Carisma: newValue ? parseInt(newValue) : undefined,
               } as PersonajeItem)
             }
-            value={itemEdit.Carisma !== null ? itemEdit.Carisma.toString() : ""}
+            value={itemEdit.Carisma !== undefined ? itemEdit.Carisma.toString() : ""}
           />
           <TextField
             label="Bono de competencia"
@@ -294,16 +313,26 @@ export default function PersonajeFormProps(
                 : ""
             }
           />
-          
-          <TextField
-          /// cambiarrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
+          <Dropdown
             label="Campaña"
-            onChange={(e, newValue) =>
-              setItemEdit({ ...itemEdit, Campaña: newValue } as PersonajeItem)
-            }
-            value={itemEdit.Campaña}
+            placeholder="Seleccione una campaña"
+            defaultSelectedKey={itemEdit?.Campaña?.ID || null}
+            options={campañas.map(C => {
+              return {
+                key: C.ID,
+                text: C.Nombre,
+                data: C
+              }
+            })}
+
+            onChange={(e, newvalue) => {
+              let Campaña = {ID: newvalue.key, Title:newvalue.text}
+              setItemEdit({ ...itemEdit, Campaña: Campaña } as PersonajeItem);
+            }}
+
           />
-          
+
+
           <TextField
             label="Foto"
             onChange={(e, newValue) =>

@@ -2,7 +2,6 @@
 import * as React from "react";
 
 const UsarCampaña: React.FC<{ campaña: any }> = ({ campaña }) => {
-    console.log(campaña);
     
     if (!campaña) {
         return <div>Sin campaña asociada</div>;

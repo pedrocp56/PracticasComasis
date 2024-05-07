@@ -42,5 +42,22 @@ export class CampañaLista {
 
     return await Items;
   }
+
+  public async buscarCampañaPorId(id: number): Promise<CampañaItem | null> {
+    try {
+      const itemData = await this.List.items.getById(id).select(...this.SelectAllFields);
+      if (itemData) {
+        return new CampañaItem(itemData, this);
+      } else {
+        return null;
+      }
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  }
+
+
+
 }
 /* eslint-enable */

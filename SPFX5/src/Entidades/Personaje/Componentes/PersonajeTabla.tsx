@@ -65,7 +65,7 @@ export default function PersonajeWebpart(
         <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />
       ),
       onFilter: (value: any, record: PersonajeItem) =>
-        record.Nombre.toLowerCase().indexOf((value as string).toLowerCase()) !==
+        record.UsuarioNombre.toLowerCase().indexOf((value as string).toLowerCase()) !==
         -1,
     },
     {
@@ -88,11 +88,11 @@ export default function PersonajeWebpart(
       ),
       filterIcon: (filtered: boolean) => (
         <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />
-      ),
-      onFilter: (value: any, record: PersonajeItem) =>
-        record.Campaña.toLowerCase().indexOf(
-          (value as string).toLowerCase()
-        ) !== -1,
+      ),      
+      onFilter: (value: any, record: PersonajeItem) => {
+        const campañaTitle = record.Campaña?.Title || "";
+        return campañaTitle.toLowerCase().indexOf((value as string).toLowerCase()) !== -1;
+      }      
     },
     {
       key: "Armas",
