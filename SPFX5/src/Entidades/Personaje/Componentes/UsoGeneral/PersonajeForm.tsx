@@ -114,7 +114,7 @@ export default function PersonajeFormProps(
         setValido(false);
         return false;
       }
-      if (isValidUrl(itemEdit?.Foto.Url)) {
+      if (isValidUrl(itemEdit?.Foto?.Url || null)) {
         setValido(true);
         return true;
       }
@@ -136,10 +136,7 @@ export default function PersonajeFormProps(
     console.log(valido);
     setGuardando(true);
     itemEdit.ListaArmas = null;
-    itemEdit.Foto = null;
     props.item.ItemEdit = itemEdit;
-    console.log(itemEdit);
-    console.log("aaaaaaaaaaaaaaaaaaaaaaaaaa");
     await props.item.updateItem();
     setGuardando(false);
     await props.onSave(itemEdit);
@@ -297,13 +294,16 @@ export default function PersonajeFormProps(
                 : ""
             }
           />
+          
           <TextField
+          /// cambiarrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
             label="Campaña"
             onChange={(e, newValue) =>
               setItemEdit({ ...itemEdit, Campaña: newValue } as PersonajeItem)
             }
             value={itemEdit.Campaña}
           />
+          
           <TextField
             label="Foto"
             onChange={(e, newValue) =>

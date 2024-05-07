@@ -14,9 +14,10 @@ export class PersonajeLista {
     "Personaje_Usuario/ID",
     "Personaje_Usuario/EMail",
     "LookupArma/Title",
+    "LookupCampanha/Title",
     //"LookupArma/Foto",   no vaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa llama a otra biblioteca
   ];
-  public ExpandAllFields: string[] = ["Personaje_Usuario", "LookupArma"];
+  public ExpandAllFields: string[] = ["Personaje_Usuario", "LookupArma","LookupCampanha"];
   public web: IWeb;
   public Context: WebPartContext;
   public List: IList;

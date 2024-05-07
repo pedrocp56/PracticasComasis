@@ -11,6 +11,7 @@ import PersonajeBotonCar from "./BotonCar";
 import PersonajeBotonEditar from "./PersonajeEditar";
 import PersonajeBotonEliminar from "./BotonEliminar";
 import PersonajeBotonArmas from "./BotonArmas";
+import UsarCampaña from "../../Generales/MostrarCampaña";
 
 export interface IPersonajeWebpartProps {
   Items: PersonajeItem[];
@@ -82,6 +83,9 @@ export default function PersonajeWebpart(
       dataIndex: "Campaña",
       align: "center",
       filterDropdown: FiltroTexto,
+      render: (text: string, record: PersonajeItem) => (
+        <UsarCampaña campaña={record.Campaña} />
+      ),
       filterIcon: (filtered: boolean) => (
         <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />
       ),

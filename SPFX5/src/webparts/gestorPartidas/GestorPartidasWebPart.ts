@@ -10,7 +10,7 @@ import * as ReactDom from "react-dom";
 import * as strings from "GestorPartidasWebPartStrings";
 
 import { SPFI, SPFx, spfi } from "@pnp/sp/presets/all";
-import GestorCampañasCompWebpart, { IGestorCampañasCompWebpartProps } from "./components/GestorCampañas";
+import GestorPersonajesCompWebpart, { IGestorPersonajesCompWebpartProps } from "./components/GestorPersonajes";
 
 export interface IGestorPartidasWebPartProps {
   description: string;
@@ -26,17 +26,21 @@ export default class GestorPartidasWebPart extends BaseClientSideWebPart<IGestor
     };
     //cambiar nombre para cambiar de webpart
     /*
-    const element: React.ReactElement<IGestorArmasCompWebpartProps> =
+    const elementArmas: React.ReactElement<IGestorArmasCompWebpartProps> =
       React.createElement(GestorArmasCompWebpart, webpartProps);
-      */
+       ReactDom.render(elementArmas, this.domElement);
+    */
+
+    const elementPersonajes: React.ReactElement<IGestorPersonajesCompWebpartProps> =
+      React.createElement(GestorPersonajesCompWebpart, webpartProps);
+    ReactDom.render(elementPersonajes, this.domElement);
+    
     /*
-   const element: React.ReactElement<IGestorPersonajesCompWebpartProps> =
-     React.createElement(GestorPersonajesCompWebpart, webpartProps);
-   ReactDom.render(element, this.domElement);
-   */
-    const element: React.ReactElement<IGestorCampañasCompWebpartProps> =
-      React.createElement(GestorCampañasCompWebpart, webpartProps);
-    ReactDom.render(element, this.domElement);
+        const elementCampañas: React.ReactElement<IGestorCampañasCompWebpartProps> =
+          React.createElement(GestorCampañasCompWebpart, webpartProps);
+        ReactDom.render(elementCampañas, this.domElement);
+    */
+
   }
 
   protected async onInit(): Promise<void> {

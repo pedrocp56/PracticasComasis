@@ -33,7 +33,7 @@ export class PersonajeItem {
   public Bono_Carisma: number;
 
   public Competencia: number;
-  public Campaña: string;
+  public Campaña: any;
   public ListaArmas: any[];
   public Foto: any;
 
@@ -68,10 +68,12 @@ export class PersonajeItem {
     this.Bono_Carisma = calcularBono(this.Carisma);
 
     this.Competencia = this.ListItem.Bono_Competencia;
-    this.Campaña = this.ListItem.Campanha;
-    console.log(this.ListItem.LookupArma);
-    //console.log(this.ListItem.LookupArma[0]?.Title);  Me odio mucho a mi mismo
 
+    this.Campaña = this.ListItem.LookupCampanha;
+    //console.log(this.Campaña?.Title);
+
+    //console.log(this.ListItem.LookupArma);
+    //console.log(this.ListItem.LookupArma[0]?.Title);  Me odio mucho a mi mismo
     if (this.ListItem.LookupArma) {
       this.ListaArmas = this.ListItem.LookupArma;
     } else {
@@ -137,7 +139,7 @@ export class PersonajeItem {
     }
 
     if (this.ItemEdit.Campaña !== this.Campaña) {
-      item.Campanha = this.ItemEdit.Campaña;
+      item.LookupCampanha = this.ItemEdit.Campaña;
       needUpdate = true;
     }
 
