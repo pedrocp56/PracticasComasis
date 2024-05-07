@@ -10,19 +10,24 @@ export class CampañaItem {
 
   public ID: number;
   public Nombre: string;
-  public Descipcion: string;
+  public Descripcion: string;
+  public Fecha: Date;
   public Foto: any;
 
   constructor(ListItem: IItem, Lista: CampañaLista) {
     this.ListItem = ListItem;
     this.Lista = Lista;
+    if (ListItem !== null && ListItem !== undefined) {
+      this.MapearCampos();
+    }
   }
 
-  public MapearCampos():void{
+  public MapearCampos(): void {
     this.ID = this.ListItem.ID;
     this.Nombre = this.ListItem.Title;
-    this.Descipcion = this.ListItem.Campanha_Descripcion;
-    this.Foto = this.ListItem.Campaña_Foto;
+    this.Descripcion = this.ListItem.Campanha_Descripcion;
+    this.Fecha = this.ListItem.Campanha_Fecha ? new Date(this.ListItem.Campanha_Fecha) : null;
+    this.Foto = this.ListItem.Campanha_Foto;
   }
 
   public async updateItem(): Promise<boolean> {
@@ -33,8 +38,14 @@ export class CampañaItem {
       item.Title = this.ItemEdit.Nombre;
       needUpdate = true;
     }
-    if (this.ItemEdit.Descipcion !== this.Descipcion) {
-      item.Campanha_Descripcion = this.ItemEdit.Descipcion;
+    if (this.ItemEdit.Descripcion !== this.Descripcion) {
+      item.Campanha_Descripcion = this.ItemEdit.Descripcion;
+      needUpdate = true;
+    }
+    if (this.ItemEdit.Fecha !== this.Fecha) {
+      console.log(this.ItemEdit.Fecha);
+
+      item.Campanha_Fecha = this.ItemEdit.Fecha;
       needUpdate = true;
     }
     if (this.ItemEdit.Foto !== this.Foto?.Url) {
@@ -42,7 +53,7 @@ export class CampañaItem {
         isValidUrl(this.ItemEdit.Foto?.Url) ||
         this.ItemEdit.Foto?.Url === ""
       ) {
-        item.Personaje_Foto = { Url: this.ItemEdit.Foto?.Url };
+        item.Campanha_Foto = { Url: this.ItemEdit.Foto?.Url };
         needUpdate = true;
       } else {
         console.log("La URL de la imagen no es válida");

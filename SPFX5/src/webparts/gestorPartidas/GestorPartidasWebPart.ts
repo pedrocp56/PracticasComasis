@@ -1,18 +1,16 @@
-import * as React from "react";
-import * as ReactDom from "react-dom";
 import { Version } from "@microsoft/sp-core-library";
 import {
   IPropertyPaneConfiguration,
   PropertyPaneTextField,
 } from "@microsoft/sp-property-pane";
 import { BaseClientSideWebPart } from "@microsoft/sp-webpart-base";
+import * as React from "react";
+import * as ReactDom from "react-dom";
 
 import * as strings from "GestorPartidasWebPartStrings";
 
 import { SPFI, SPFx, spfi } from "@pnp/sp/presets/all";
-import GestorPersonajesCompWebpart, {
-  IGestorPersonajesCompWebpartProps,
-} from "./components/GestorPersonajes";
+import GestorCampañasCompWebpart, { IGestorCampañasCompWebpartProps } from "./components/GestorCampañas";
 
 export interface IGestorPartidasWebPartProps {
   description: string;
@@ -31,8 +29,13 @@ export default class GestorPartidasWebPart extends BaseClientSideWebPart<IGestor
     const element: React.ReactElement<IGestorArmasCompWebpartProps> =
       React.createElement(GestorArmasCompWebpart, webpartProps);
       */
-    const element: React.ReactElement<IGestorPersonajesCompWebpartProps> =
-      React.createElement(GestorPersonajesCompWebpart, webpartProps);
+    /*
+   const element: React.ReactElement<IGestorPersonajesCompWebpartProps> =
+     React.createElement(GestorPersonajesCompWebpart, webpartProps);
+   ReactDom.render(element, this.domElement);
+   */
+    const element: React.ReactElement<IGestorCampañasCompWebpartProps> =
+      React.createElement(GestorCampañasCompWebpart, webpartProps);
     ReactDom.render(element, this.domElement);
   }
 

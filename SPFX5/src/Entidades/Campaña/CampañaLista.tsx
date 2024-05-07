@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any*/
 import { WebPartContext } from "@microsoft/sp-webpart-base";
 import { IList } from "@pnp/sp/lists";
 import { IItem, IWeb } from "@pnp/sp/presets/all";
 import { CampañaItem } from "./CampañaItem";
 
 export class CampañaLista {
-  public NombreLista = "Campañas";
+  public NombreLista = "Campanhas";
   public SelectAllFields: string[] = ["*"];
   public ExpandAllFields: string[] = [];
   public web: IWeb;
@@ -20,6 +21,7 @@ export class CampañaLista {
   public getNewCampaña(): CampañaItem {
     const nuevo = new CampañaItem(null, this);
     nuevo.ID = null;
+    nuevo.Fecha = null;
     //nuevo.Usuario =;
     return nuevo;
   }
@@ -41,3 +43,4 @@ export class CampañaLista {
     return await Items;
   }
 }
+/* eslint-enable */
