@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any*/
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-floating-promises*/
 import { Dropdown, Spinner, Stack, TextField } from "@fluentui/react";
 import {
   PeoplePicker,
@@ -161,8 +161,8 @@ export default function PersonajeFormProps(
     setCampañas(consultaCampañas);
   }
 
-  useEffect((): void => {
-    void consultaInicial();
+  useEffect(() => {
+    consultaInicial();
 
   }, []);
 
@@ -326,7 +326,7 @@ export default function PersonajeFormProps(
             })}
 
             onChange={(e, newvalue) => {
-              let Campaña = {ID: newvalue.key, Title:newvalue.text}
+              const Campaña = { ID: newvalue.key, Title: newvalue.text }
               setItemEdit({ ...itemEdit, Campaña: Campaña } as PersonajeItem);
             }}
 
