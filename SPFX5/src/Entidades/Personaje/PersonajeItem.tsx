@@ -79,10 +79,8 @@ export class PersonajeItem {
     this.Competencia = this.ListItem.Bono_Competencia;
 
     this.Campaña = this.ListItem.LookupCampanha;
-    console.log(this.Campaña);
-
+    //console.log(this.Campaña);
     //console.log(this.Campaña?.Title);
-
     //console.log(this.ListItem.LookupArma);
     //console.log(this.ListItem.LookupArma[0]?.Title);  Me odio mucho a mi mismo
     if (this.ListItem.LookupArma) {
@@ -90,6 +88,7 @@ export class PersonajeItem {
     } else {
       this.ListaArmas = [];
     }
+
     this.Foto = this.ListItem.Personaje_Foto;
   }
 
@@ -103,57 +102,63 @@ export class PersonajeItem {
       needUpdate = true;
     }
 
-    if (this.ItemEdit.Usuario?.ID !== this.Usuario?.ID||this.ID===null) {
+    if (this.ItemEdit.Usuario?.ID !== this.Usuario?.ID || this.ID === null) {
       item.Personaje_UsuarioId = this.ItemEdit.Usuario?.ID;
       needUpdate = true;
     }
 
-    if (this.ItemEdit.Fuerza !== this.Fuerza||this.ID===null) {
+    if (this.ItemEdit.Fuerza !== this.Fuerza || this.ID === null) {
       item.Caracteristica_Fuerza = this.ItemEdit.Fuerza;
 
       //item.Bono_Fuerza = calcularBono(this.ItemEdit.Fuerza);
       needUpdate = true;
     }
 
-    if (this.ItemEdit.Destreza !== this.Destreza||this.ID===null) {
+    if (this.ItemEdit.Destreza !== this.Destreza || this.ID === null) {
       item.Caracteristica_Destreza = this.ItemEdit.Destreza;
       //item.Bono_Destreza = calcularBono(this.ItemEdit.Destreza);
       needUpdate = true;
     }
 
-    if (this.ItemEdit.Constitucion !== this.Constitucion||this.ID===null) {
+    if (this.ItemEdit.Constitucion !== this.Constitucion || this.ID === null) {
       item.Caracteristica_Constitucion = this.ItemEdit.Constitucion;
       //item.Bono_Constitucion = calcularBono(this.ItemEdit.Constitucion);
       needUpdate = true;
     }
 
-    if (this.ItemEdit.Inteligencia !== this.Inteligencia||this.ID===null) {
+    if (this.ItemEdit.Inteligencia !== this.Inteligencia || this.ID === null) {
       item.Caracteristica_Inteligencia = this.ItemEdit.Inteligencia;
       //item.Bono_Inteligencia = calcularBono(this.ItemEdit.Inteligencia);
       needUpdate = true;
     }
 
-    if (this.ItemEdit.Sabiduria !== this.Sabiduria||this.ID===null) {
+    if (this.ItemEdit.Sabiduria !== this.Sabiduria || this.ID === null) {
       item.Caracteristica_Sabiduria = this.ItemEdit.Sabiduria;
       //item.Bono_Sabiduria = calcularBono(this.ItemEdit.Sabiduria);
       needUpdate = true;
     }
 
-    if (this.ItemEdit.Carisma !== this.Carisma||this.ID===null) {
+    if (this.ItemEdit.Carisma !== this.Carisma || this.ID === null) {
       item.Caracteristica_Carisma = this.ItemEdit.Carisma;
       //item.Bono_Carisma = calcularBono(this.ItemEdit.Carisma);
       needUpdate = true;
     }
 
-    if (this.ItemEdit.Competencia !== this.Competencia||this.ID===null) {
+    if (this.ItemEdit.Competencia !== this.Competencia || this.ID === null) {
       item.Bono_Competencia = this.ItemEdit.Competencia;
       needUpdate = true;
     }
 
     if (this.ItemEdit.Campaña?.ID !== this.Campaña?.ID) {
-        item.LookupCampanhaId = this.ItemEdit.Campaña.ID;
-        needUpdate = true;
-      
+      item.LookupCampanhaId = this.ItemEdit.Campaña.ID;
+      needUpdate = true;
+    }
+
+    const array1 = this.ItemEdit.ListaArmas;
+    const array2 = this.ListaArmas;
+    if (array1?.length !== array2?.length || array1.some((arm1, index) => arm1.ID !== array2[index].ID)) {
+      item.LookupArmaId = array1.map(arm => arm.ID.toString());
+      needUpdate = true;
     }
 
     if (this.ItemEdit.Foto?.Url !== this.Foto?.Url) {

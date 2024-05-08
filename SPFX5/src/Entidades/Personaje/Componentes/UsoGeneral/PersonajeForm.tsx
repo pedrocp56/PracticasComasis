@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-floating-promises*/
-import { Dropdown, Spinner, Stack, TextField } from "@fluentui/react";
+import { Dropdown, IDropdownOption, Spinner, Stack, TextField } from "@fluentui/react";
 import {
   PeoplePicker,
   PrincipalType,
@@ -11,6 +11,7 @@ import { CampañaItem } from "../../../Campaña/CampañaItem";
 import { CampañaLista } from "../../../Campaña/CampañaLista";
 import { isValidUrl } from "../../../Generales/Validaciones";
 import { ComasisUser, PersonajeItem } from "../../PersonajeItem";
+import { ArmaLista } from "../../../ArmaMal/ArmaLista";
 
 interface IPersonajeFormProps {
   item: PersonajeItem;
@@ -29,6 +30,9 @@ export default function PersonajeFormProps(
   const [errorMessage, setErrorMessage] = useState("");
   const [campañas, setCampañas] = useState<CampañaItem[]>([]);
   const CampañaL = useRef<CampañaLista>(null);
+  const ArmasL = useRef<ArmaLista>(null);
+  const [opcionesArmas, setOpcionesArmas] =
+    useState<IDropdownOption[]>(null);
 
   function Validacion(): boolean {
     console.log("Validando....");
@@ -139,7 +143,7 @@ export default function PersonajeFormProps(
     }
     console.log(valido);
     setGuardando(true);
-    itemEdit.ListaArmas = null;
+    //itemEdit.ListaArmas = null;
     props.item.ItemEdit = itemEdit;
     await props.item.updateItem();
     setGuardando(false);
@@ -159,6 +163,34 @@ export default function PersonajeFormProps(
     CampañaL.current = new CampañaLista(props.item.Lista.web, props.item.Lista.Context);
     const consultaCampañas = await CampañaL.current.CargarTodos();
     setCampañas(consultaCampañas);
+
+    console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+
+    ArmasL.current = new ArmaLista(props.item.Lista.web, props.item.Lista.Context);
+    console.log({ ArmasL });
+
+    const consultaArmas = await ArmasL.current.CargarTodos();
+    console.log({ consultaArmas });
+
+
+    setOpcionesArmas(
+      Object.keys(consultaArmas)
+        .sort((a: any, b: any) =>
+          consultaArmas[a].Nombre >
+            consultaArmas[b].Nombre
+            ? 1
+            : -1
+        )
+        .map((key: any) => {
+          const item = consultaArmas[key];
+          return {
+            key: item.ID,
+            text: item.Nombre,
+            data: item,
+          };
+        }))
+    console.log({ opcionesArmas });
+
   }
 
   useEffect(() => {
@@ -329,9 +361,37 @@ export default function PersonajeFormProps(
               const Campaña = { ID: newvalue.key, Title: newvalue.text }
               setItemEdit({ ...itemEdit, Campaña: Campaña } as PersonajeItem);
             }}
+          />
+          <Dropdown
+            label="Armas"
+            placeholder="Seleccione las armas que usa"
+            multiSelect
+            options={opcionesArmas ? opcionesArmas : []}
+            selectedKeys={itemEdit?.ListaArmas?.map((arma) => {
+              return arma.ID
+            })}
+            onChange={(a, option) => {
+              if (option.selected) {
+                const arm = itemEdit?.ListaArmas
+                  ? [...itemEdit.ListaArmas]
+                  : [];
+                arm.push(option.data);
+                setItemEdit({
+                  ...itemEdit,
+                  ListaArmas: arm,
+                } as PersonajeItem);
+              } else {
+                const arm = itemEdit?.ListaArmas.filter(
+                  (arm) => arm.ID !== option.key
+                );
+                setItemEdit({
+                  ...itemEdit,
+                  ListaArmas: arm,
+                } as PersonajeItem);
+              }
+            }}
 
           />
-
 
           <TextField
             label="Foto"

@@ -55,9 +55,6 @@ const PersonajeBotonArmas: React.FC<{
           info.ListaArmas.map((arma, index) => (
             <>
               <p key={index}>{arma.Title}</p>
-              {/* No me vaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-          <UsarImagen imageUrl={arma?.Foto} />
-          */}
             </>
           ))
         ) : (
