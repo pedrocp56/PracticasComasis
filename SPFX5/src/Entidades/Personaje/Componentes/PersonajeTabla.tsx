@@ -27,6 +27,7 @@ export default function PersonajeWebpart(
 
   useEffect((): void => {
     setCargando(false);
+    console.log("AAAAAAAAAAAAAAAAAAAA");
   }, []);
 
 
@@ -130,7 +131,7 @@ export default function PersonajeWebpart(
   };
   return (
     <>
-      {cargando
+      {!cargando
         &&
         <div>
           <Table columns={columns} dataSource={Props.Items} style={tableStyle} />

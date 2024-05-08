@@ -150,14 +150,22 @@ export class PersonajeItem {
     }
 
     if (this.ItemEdit.Campaña?.ID !== this.Campaña?.ID) {
-      item.LookupCampanhaId = this.ItemEdit.Campaña.ID;
+      
+      item.LookupCampanhaId = this.ItemEdit.Campaña?.ID;
       needUpdate = true;
     }
 
-    const array1 = this.ItemEdit.ListaArmas;
-    const array2 = this.ListaArmas;
-    if (array1?.length !== array2?.length || array1.some((arm1, index) => arm1.ID !== array2[index].ID)) {
-      item.LookupArmaId = array1.map(arm => arm.ID.toString());
+
+    console.log("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB");
+
+    if (this.ID === null ||
+      this.ItemEdit.ListaArmas?.length !== this.ListaArmas?.length ||
+      this.ItemEdit.ListaArmas.some((arm1, index) => arm1.ID !== this.ListaArmas[index].ID)) {
+      if (this.ItemEdit.ListaArmas === undefined) {
+        this.ItemEdit.ListaArmas = [];
+        console.log("CCCCCCCCCCCCCCCCCCCCC");
+      }
+      item.LookupArmaId = this.ItemEdit.ListaArmas.map(arm => arm.ID.toString());
       needUpdate = true;
     }
 

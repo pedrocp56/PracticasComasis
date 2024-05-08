@@ -18,7 +18,7 @@ export default function PersonajeBotonEditar(
 ): JSX.Element {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [itemEdit, setItemEdit] = useState(props.item);
-
+  
   const showModal = (): void => {
     setIsModalOpen(true);
   };

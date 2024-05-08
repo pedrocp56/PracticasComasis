@@ -17,9 +17,8 @@ export class PersonajeLista {
     "LookupArma/Title",
     "LookupCampanha/ID",
     "LookupCampanha/Title",
-    //"LookupArma/Foto",   no vaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa llama a otra biblioteca
   ];
-  public ExpandAllFields: string[] = ["Personaje_Usuario", "LookupArma","LookupCampanha"];
+  public ExpandAllFields: string[] = ["Personaje_Usuario", "LookupArma", "LookupCampanha"];
   public web: IWeb;
   public Context: WebPartContext;
   public List: IList;
@@ -33,7 +32,13 @@ export class PersonajeLista {
   public getNewPersonaje(): PersonajeItem {
     const nuevo = new PersonajeItem(null, this);
     nuevo.ID = null;
-    //nuevo.Usuario =;
+
+    nuevo.Usuario = {
+      Title: this.Context.pageContext.legacyPageContext.userDisplayName,
+      ID: this.Context.pageContext.legacyPageContext.userId,
+      EMail: this.Context.pageContext.legacyPageContext.userEmail
+    };
+
     nuevo.Fuerza = 10;
     nuevo.Destreza = 10;
     nuevo.Constitucion = 10;

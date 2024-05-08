@@ -29,11 +29,11 @@ export default function PersonajeFormProps(
   const [itemEdit, setItemEdit] = useState(props.item);
   const [errorMessage, setErrorMessage] = useState("");
   const [campañas, setCampañas] = useState<CampañaItem[]>([]);
-  const CampañaL = useRef<CampañaLista>(null);  
+  const CampañaL = useRef<CampañaLista>(null);
   const ArmasL = useRef<ArmaLista>(null);
   const [opcionesArmas, setOpcionesArmas] =
-    useState<IDropdownOption[]>(null);
-
+    useState<IDropdownOption[]>([]);
+    
   function Validacion(): boolean {
     console.log("Validando....");
     try {
@@ -166,7 +166,7 @@ export default function PersonajeFormProps(
 
     ArmasL.current = new ArmaLista(props.item.Lista.web, props.item.Lista.Context);
     const consultaArmas = await ArmasL.current.CargarTodos();
-    
+
     setOpcionesArmas(
       Object.keys(consultaArmas)
         .sort((a: any, b: any) =>
@@ -182,7 +182,8 @@ export default function PersonajeFormProps(
             text: item.Nombre,
             data: item,
           };
-        }))
+        }));
+
 
   }
 
@@ -193,8 +194,6 @@ export default function PersonajeFormProps(
 
 
   return (
-
-    
     <>
       <Modal
         title="Características"
@@ -341,7 +340,7 @@ export default function PersonajeFormProps(
           <Dropdown
             label="Campaña"
             placeholder="Seleccione una campaña"
-            defaultSelectedKey={itemEdit?.Campaña?.ID || null}
+            defaultSelectedKey={itemEdit?.Campaña?.ID || 1}
             options={campañas.map(C => {
               return {
                 key: C.ID,
