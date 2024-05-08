@@ -12,6 +12,7 @@ import PersonajeBotonEditar from "./PersonajeEditar";
 import PersonajeBotonEliminar from "./BotonEliminar";
 import PersonajeBotonArmas from "./BotonArmas";
 import UsarCampaña from "../../Generales/MostrarCampaña";
+import { useEffect } from "react";
 
 export interface IPersonajeWebpartProps {
   Items: PersonajeItem[];
@@ -21,6 +22,14 @@ export interface IPersonajeWebpartProps {
 export default function PersonajeWebpart(
   Props: IPersonajeWebpartProps
 ): JSX.Element {
+  //para que solo muestre cuando es false no es necesario aqui
+  const [cargando, setCargando] = React.useState(true);
+
+  useEffect((): void => {
+    setCargando(false);
+  }, []);
+
+
   const columns: TableColumnsType<PersonajeItem> = [
     {
       key: "#",
@@ -88,11 +97,11 @@ export default function PersonajeWebpart(
       ),
       filterIcon: (filtered: boolean) => (
         <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />
-      ),      
+      ),
       onFilter: (value: any, record: PersonajeItem) => {
         const campañaTitle = record.Campaña?.Title || "";
         return campañaTitle.toLowerCase().indexOf((value as string).toLowerCase()) !== -1;
-      }      
+      }
     },
     {
       key: "Armas",
@@ -120,11 +129,14 @@ export default function PersonajeWebpart(
     width: "fit-content",
   };
   return (
-    <div>
-      <>
-        <Table columns={columns} dataSource={Props.Items} style={tableStyle} />
-      </>
-    </div>
+    <>
+      {cargando
+        &&
+        <div>
+          <Table columns={columns} dataSource={Props.Items} style={tableStyle} />
+        </div>
+        }
+    </>
   );
 }
 /* eslint-enable */

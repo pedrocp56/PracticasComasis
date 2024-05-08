@@ -7,11 +7,11 @@ import {
 import { Modal } from "antd";
 import * as React from "react";
 import { useEffect, useRef, useState } from "react";
+import { ArmaLista } from "../../../ArmaMal/ArmaLista";
 import { CampañaItem } from "../../../Campaña/CampañaItem";
 import { CampañaLista } from "../../../Campaña/CampañaLista";
 import { isValidUrl } from "../../../Generales/Validaciones";
 import { ComasisUser, PersonajeItem } from "../../PersonajeItem";
-import { ArmaLista } from "../../../ArmaMal/ArmaLista";
 
 interface IPersonajeFormProps {
   item: PersonajeItem;
@@ -29,7 +29,7 @@ export default function PersonajeFormProps(
   const [itemEdit, setItemEdit] = useState(props.item);
   const [errorMessage, setErrorMessage] = useState("");
   const [campañas, setCampañas] = useState<CampañaItem[]>([]);
-  const CampañaL = useRef<CampañaLista>(null);
+  const CampañaL = useRef<CampañaLista>(null);  
   const ArmasL = useRef<ArmaLista>(null);
   const [opcionesArmas, setOpcionesArmas] =
     useState<IDropdownOption[]>(null);
@@ -164,15 +164,9 @@ export default function PersonajeFormProps(
     const consultaCampañas = await CampañaL.current.CargarTodos();
     setCampañas(consultaCampañas);
 
-    console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-
     ArmasL.current = new ArmaLista(props.item.Lista.web, props.item.Lista.Context);
-    console.log({ ArmasL });
-
     const consultaArmas = await ArmasL.current.CargarTodos();
-    console.log({ consultaArmas });
-
-
+    
     setOpcionesArmas(
       Object.keys(consultaArmas)
         .sort((a: any, b: any) =>
@@ -189,7 +183,6 @@ export default function PersonajeFormProps(
             data: item,
           };
         }))
-    console.log({ opcionesArmas });
 
   }
 
@@ -201,7 +194,7 @@ export default function PersonajeFormProps(
 
   return (
 
-    //spinner
+    
     <>
       <Modal
         title="Características"
@@ -266,7 +259,7 @@ export default function PersonajeFormProps(
                 Fuerza: newValue ? parseInt(newValue) : undefined,
               } as PersonajeItem)
             }
-            value={itemEdit.Fuerza !== undefined ? itemEdit.Fuerza.toString() : ""}
+            value={itemEdit.Fuerza !== null ? itemEdit.Fuerza.toString() : ""}
           />
 
           <TextField
@@ -278,7 +271,7 @@ export default function PersonajeFormProps(
               } as PersonajeItem)
             }
             value={
-              itemEdit.Destreza !== undefined ? itemEdit.Destreza.toString() : ""
+              itemEdit.Destreza !== null ? itemEdit.Destreza.toString() : ""
             }
           />
           <TextField
@@ -290,7 +283,7 @@ export default function PersonajeFormProps(
               } as PersonajeItem)
             }
             value={
-              itemEdit.Constitucion !== undefined
+              itemEdit.Constitucion !== null
                 ? itemEdit.Constitucion.toString()
                 : ""
             }
@@ -304,7 +297,7 @@ export default function PersonajeFormProps(
               } as PersonajeItem)
             }
             value={
-              itemEdit.Inteligencia !== undefined
+              itemEdit.Inteligencia !== null
                 ? itemEdit.Inteligencia.toString()
                 : ""
             }
@@ -318,7 +311,7 @@ export default function PersonajeFormProps(
               } as PersonajeItem)
             }
             value={
-              itemEdit.Sabiduria !== undefined ? itemEdit.Sabiduria.toString() : ""
+              itemEdit.Sabiduria !== null ? itemEdit.Sabiduria.toString() : ""
             }
           />
           <TextField
@@ -329,7 +322,7 @@ export default function PersonajeFormProps(
                 Carisma: newValue ? parseInt(newValue) : undefined,
               } as PersonajeItem)
             }
-            value={itemEdit.Carisma !== undefined ? itemEdit.Carisma.toString() : ""}
+            value={itemEdit.Carisma !== null ? itemEdit.Carisma.toString() : ""}
           />
           <TextField
             label="Bono de competencia"
@@ -340,7 +333,7 @@ export default function PersonajeFormProps(
               } as PersonajeItem)
             }
             value={
-              itemEdit && itemEdit.Competencia !== undefined
+              itemEdit && itemEdit.Competencia !== null
                 ? itemEdit.Competencia.toString()
                 : ""
             }
