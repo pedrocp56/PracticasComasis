@@ -62,18 +62,10 @@ $fieldsArray += '<Field ID="{1bd9ae3f-5b95-4c2a-b38d-0f58acdca398}"
 $fieldsArray += '<Field ID="{34152d4b-1ed6-40b8-b575-dcc43f482c51}" 
                 Name="Arma_Car"
                 DisplayName="Caracteristica de ataque" 
-                Type="Choice" 
-                Required= "True"
+                Type="Text" 
+                Required="TRUE"
                 Group="FichaArma" 
                 xmlns="http://schemas.microsoft.com/sharepoint/">
-                    <CHOICES>
-                        <CHOICE>Fuerza</CHOICE>
-                        <CHOICE>Destreza</CHOICE>
-                        <CHOICE>Constitución</CHOICE>
-                        <CHOICE>Inteligencia</CHOICE>
-                        <CHOICE>Sabiduria</CHOICE>
-                        <CHOICE>Carisma</CHOICE>
-                    </CHOICES>
                 </Field>';
 
 $fieldsArray += '<Field ID="{7f16e1ce-add0-4141-9308-3cd7292869b6}" 

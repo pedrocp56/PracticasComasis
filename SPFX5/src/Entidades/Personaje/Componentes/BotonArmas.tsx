@@ -31,16 +31,13 @@ const PersonajeBotonArmas: React.FC<{
     color: "#1B4C25",
   };
 
-  if (info.ListaArmas.length === 0) {
-    return <>Sin armas</>;
-  }
   return (
     <>
       <IconButton
         onClick={showModal}
         style={buttonStyle}
         iconProps={{ iconName: "Script" }}
-        title={`${info.ListaArmas.length} armas`}
+        title="armas"
       >
         {titulo}
       </IconButton>
@@ -51,15 +48,7 @@ const PersonajeBotonArmas: React.FC<{
         onCancel={handleCancel}
       >
         <p>Armas</p>
-        {info.ListaArmas.length > 0 ? (
-          info.ListaArmas.map((arma, index) => (
-            <>
-              <p key={index}>{arma.Title}</p>
-            </>
-          ))
-        ) : (
-          <p>Sin armas</p>
-        )}
+        
       </Modal>
     </>
   );

@@ -101,7 +101,6 @@ if ($vista) {
         $vista.ViewFields.Add("Caracteristica_Carisma");
         $vista.ViewFields.Add("LookupCampanha");
         $vista.ViewFields.Add("Bono_Competencia");
-        $vista.ViewFields.Add("LookupArma");
         $vista.ViewFields.Add("Personaje_Foto");
         
         $vista.ViewQuery = "<OrderBy><FieldRef Name='Title' Ascending='FALSE'/></OrderBy>"
@@ -133,8 +132,8 @@ write-host "|--- Lookup Personaje";
 $fieldxml= '<Field ID="{26c99dbd-072c-49f0-bb7f-a7335af49d58}" 
                 Name="LookupPersonaje"
                 DisplayName="Personaje" 
-                Type="LookupMulti"
-                Mult="TRUE"
+                Type="Lookup"
+                Indexed="TRUE"
                 List="'+$list.ID+'"
                 ShowField="Title"
                 Group="Lookups" 

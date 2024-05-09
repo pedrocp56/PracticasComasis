@@ -150,17 +150,17 @@ export class PersonajeItem {
     }
 
     if (this.ItemEdit.Campaña?.ID !== this.Campaña?.ID) {
-      
+
       item.LookupCampanhaId = this.ItemEdit.Campaña?.ID;
       needUpdate = true;
     }
-
 
     if (this.ID === null ||
       this.ItemEdit.ListaArmas?.length !== this.ListaArmas?.length ||
       this.ItemEdit.ListaArmas.some((arm1, index) => arm1.ID !== this.ListaArmas[index].ID)) {
       if (this.ItemEdit.ListaArmas === undefined) {
         this.ItemEdit.ListaArmas = [];
+        console.log("CCCCCCCCCCCCCCCCCCCCC");
       }
       item.LookupArmaId = this.ItemEdit.ListaArmas.map(arm => arm.ID.toString());
       needUpdate = true;
@@ -174,6 +174,7 @@ export class PersonajeItem {
         item.Personaje_Foto = { Url: this.ItemEdit.Foto?.Url };
         needUpdate = true;
       } else {
+        console.log("La URL de la imagen no es válida");
       }
     }
 

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-floating-promises*/
-import { Dropdown, IDropdownOption, Spinner, Stack, TextField } from "@fluentui/react";
+import { Dropdown, Spinner, Stack, TextField } from "@fluentui/react";
 import {
   PeoplePicker,
   PrincipalType,
@@ -7,7 +7,6 @@ import {
 import { Modal } from "antd";
 import * as React from "react";
 import { useEffect, useRef, useState } from "react";
-import { ArmaLista } from "../../../ArmaMal/ArmaLista";
 import { CampañaItem } from "../../../Campaña/CampañaItem";
 import { CampañaLista } from "../../../Campaña/CampañaLista";
 import { isValidUrl } from "../../../Generales/Validaciones";
@@ -30,9 +29,6 @@ export default function PersonajeFormProps(
   const [errorMessage, setErrorMessage] = useState("");
   const [campañas, setCampañas] = useState<CampañaItem[]>([]);
   const CampañaL = useRef<CampañaLista>(null);
-  const ArmasL = useRef<ArmaLista>(null);
-  const [opcionesArmas, setOpcionesArmas] =
-    useState<IDropdownOption[]>([]);
     
   function Validacion(): boolean {
     console.log("Validando....");
@@ -163,27 +159,6 @@ export default function PersonajeFormProps(
     CampañaL.current = new CampañaLista(props.item.Lista.web, props.item.Lista.Context);
     const consultaCampañas = await CampañaL.current.CargarTodos();
     setCampañas(consultaCampañas);
-
-    ArmasL.current = new ArmaLista(props.item.Lista.web, props.item.Lista.Context);
-    const consultaArmas = await ArmasL.current.CargarTodos();
-
-    setOpcionesArmas(
-      Object.keys(consultaArmas)
-        .sort((a: any, b: any) =>
-          consultaArmas[a].Nombre >
-            consultaArmas[b].Nombre
-            ? 1
-            : -1
-        )
-        .map((key: any) => {
-          const item = consultaArmas[key];
-          return {
-            key: item.ID,
-            text: item.Nombre,
-            data: item,
-          };
-        }));
-
 
   }
 
@@ -353,36 +328,6 @@ export default function PersonajeFormProps(
               const Campaña = { ID: newvalue.key, Title: newvalue.text }
               setItemEdit({ ...itemEdit, Campaña: Campaña } as PersonajeItem);
             }}
-          />
-          <Dropdown
-            label="Armas"
-            placeholder="Seleccione las armas que usa"
-            multiSelect
-            options={opcionesArmas ? opcionesArmas : []}
-            selectedKeys={itemEdit?.ListaArmas?.map((arma) => {
-              return arma.ID
-            })}
-            onChange={(a, option) => {
-              if (option.selected) {
-                const arm = itemEdit?.ListaArmas
-                  ? [...itemEdit.ListaArmas]
-                  : [];
-                arm.push(option.data);
-                setItemEdit({
-                  ...itemEdit,
-                  ListaArmas: arm,
-                } as PersonajeItem);
-              } else {
-                const arm = itemEdit?.ListaArmas.filter(
-                  (arm) => arm.ID !== option.key
-                );
-                setItemEdit({
-                  ...itemEdit,
-                  ListaArmas: arm,
-                } as PersonajeItem);
-              }
-            }}
-
           />
 
           <TextField

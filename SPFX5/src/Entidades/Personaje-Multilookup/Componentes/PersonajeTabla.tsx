@@ -1,18 +1,18 @@
 /* eslint-disable @typescript-eslint/no-explicit-any*/
-import * as React from "react";
-import { Table, TableColumnsType } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
+import { Table, TableColumnsType } from "antd";
+import * as React from "react";
 
 import { Stack } from "@fluentui/react";
-import { PersonajeItem } from "../PersonajeItem";
-import FiltroTexto from "../../Generales/FiltroTexto";
-import UsarImagen from "../../Generales/UsarImagen";
-import PersonajeBotonCar from "./BotonCar";
-import PersonajeBotonEditar from "./PersonajeEditar";
-import PersonajeBotonEliminar from "./BotonEliminar";
-import PersonajeBotonArmas from "./BotonArmas";
-import UsarCampaña from "../../Generales/MostrarCampaña";
 import { useEffect } from "react";
+import FiltroTexto from "../../Generales/FiltroTexto";
+import MostrarTitulo from "../../Generales/Mostrar";
+import UsarImagen from "../../Generales/UsarImagen";
+import { PersonajeItem } from "../PersonajeItem";
+import PersonajeBotonArmas from "./BotonArmas";
+import PersonajeBotonCar from "./BotonCar";
+import PersonajeBotonEliminar from "./BotonEliminar";
+import PersonajeBotonEditar from "./PersonajeEditar";
 
 export interface IPersonajeWebpartProps {
   Items: PersonajeItem[];
@@ -94,7 +94,7 @@ export default function PersonajeWebpart(
       align: "center",
       filterDropdown: FiltroTexto,
       render: (text: string, record: PersonajeItem) => (
-        <UsarCampaña campaña={record.Campaña} />
+        <MostrarTitulo item={record.Campaña} texto={"campaña"}/>
       ),
       filterIcon: (filtered: boolean) => (
         <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />

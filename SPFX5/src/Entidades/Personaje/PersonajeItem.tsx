@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any*/
+import { calcularBono } from "../Generales/Calculos";
 import { isValidUrl } from "../Generales/Validaciones";
 import { PersonajeLista } from "./PersonajeLista";
 
@@ -9,11 +10,6 @@ export interface ComasisUser {
 }
 
 export interface CampañaLookup {
-  ID: number;
-  Title: string;
-}
-
-export interface ArmaLookup {
   ID: number;
   Title: string;
 }
@@ -43,7 +39,6 @@ export class PersonajeItem {
 
   public Competencia: number;
   public Campaña: CampañaLookup;
-  public ListaArmas: ArmaLookup[];
   public Foto: any;
 
   constructor(ListItem: any, Lista: PersonajeLista) {
@@ -81,13 +76,6 @@ export class PersonajeItem {
     this.Campaña = this.ListItem.LookupCampanha;
     //console.log(this.Campaña);
     //console.log(this.Campaña?.Title);
-    //console.log(this.ListItem.LookupArma);
-    //console.log(this.ListItem.LookupArma[0]?.Title);  Me odio mucho a mi mismo
-    if (this.ListItem.LookupArma) {
-      this.ListaArmas = this.ListItem.LookupArma;
-    } else {
-      this.ListaArmas = [];
-    }
 
     this.Foto = this.ListItem.Personaje_Foto;
   }
@@ -150,19 +138,8 @@ export class PersonajeItem {
     }
 
     if (this.ItemEdit.Campaña?.ID !== this.Campaña?.ID) {
-
+      
       item.LookupCampanhaId = this.ItemEdit.Campaña?.ID;
-      needUpdate = true;
-    }
-
-    if (this.ID === null ||
-      this.ItemEdit.ListaArmas?.length !== this.ListaArmas?.length ||
-      this.ItemEdit.ListaArmas.some((arm1, index) => arm1.ID !== this.ListaArmas[index].ID)) {
-      if (this.ItemEdit.ListaArmas === undefined) {
-        this.ItemEdit.ListaArmas = [];
-        console.log("CCCCCCCCCCCCCCCCCCCCC");
-      }
-      item.LookupArmaId = this.ItemEdit.ListaArmas.map(arm => arm.ID.toString());
       needUpdate = true;
     }
 
@@ -173,9 +150,7 @@ export class PersonajeItem {
       ) {
         item.Personaje_Foto = { Url: this.ItemEdit.Foto?.Url };
         needUpdate = true;
-      } else {
-        console.log("La URL de la imagen no es válida");
-      }
+      } 
     }
 
     if (this.ID === null) {
@@ -209,10 +184,6 @@ export class PersonajeItem {
       throw new Error("Error al eliminar el Personaje");
     }
   }
-}
-function calcularBono(caracteristica: number): number {
-  const bono = (caracteristica - 10) / 2;
-  return Math.floor(bono);
 }
 
 /* eslint-enable */

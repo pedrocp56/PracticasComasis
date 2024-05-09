@@ -13,12 +13,10 @@ export class PersonajeLista {
     "Personaje_Usuario/Title",
     "Personaje_Usuario/ID",
     "Personaje_Usuario/EMail",
-    "LookupArma/ID",
-    "LookupArma/Title",
     "LookupCampanha/ID",
     "LookupCampanha/Title",
   ];
-  public ExpandAllFields: string[] = ["Personaje_Usuario", "LookupArma", "LookupCampanha"];
+  public ExpandAllFields: string[] = ["Personaje_Usuario", "LookupCampanha"];
   public web: IWeb;
   public Context: WebPartContext;
   public List: IList;
