@@ -1,0 +1,1 @@
+{"version":3,"file":"ArmaTabla.d.ts","sourceRoot":"","sources":["../../../../src/Entidades/Arma/Componentes/ArmaTabla.tsx"],"names":[],"mappings":";AAEA,OAAO,EAAE,QAAQ,EAAE,MAAM,aAAa,CAAC;AAKvC,MAAM,WAAW,iBAAiB;IAChC,KAAK,EAAE,QAAQ,EAAE,CAAC;CACnB;AAED,MAAM,CAAC,OAAO,UAAU,WAAW,CACjC,KAAK,EAAE,iBAAiB,GACvB,GAAG,CAAC,OAAO,CA0Gb"}
