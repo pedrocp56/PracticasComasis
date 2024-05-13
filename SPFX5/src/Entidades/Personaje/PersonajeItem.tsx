@@ -138,7 +138,6 @@ export class PersonajeItem {
     }
 
     if (this.ItemEdit.Campaña?.ID !== this.Campaña?.ID) {
-      
       item.LookupCampanhaId = this.ItemEdit.Campaña?.ID;
       needUpdate = true;
     }
