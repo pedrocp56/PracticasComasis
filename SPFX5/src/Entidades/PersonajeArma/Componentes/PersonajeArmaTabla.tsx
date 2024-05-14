@@ -5,7 +5,7 @@ import { Table, TableColumnsType } from "antd";
 import * as React from "react";
 import { useEffect } from "react";
 import FiltroTexto from "../../Generales/FiltroTexto";
-import MostrarTitulo, { MostrarBoolean } from "../../Generales/Mostrar";
+import { MostrarBoolean, MostrarTitulo } from "../../Generales/Mostrar";
 import { PersonajeArmaItem } from "../PersonajeArmaItem";
 import PersonajeArmaBotonEditar from "./BotonEditar";
 import PersonajeArmaBotonEliminar from "./BotonEliminar";

@@ -1,18 +1,20 @@
+
 import * as React from "react";
+
 import { IconButton, Dialog, DialogType, DialogFooter, DefaultButton, PrimaryButton } from "@fluentui/react";
 import { useState } from "react";
-import { PersonajeItem } from "../PersonajeItem";
+import { ArmaItem } from "../ArmaItem";
 
 const buttonStyle = {
     backgroundColor: "#E4ADF3",
     color: "red"
 };
 
-export interface IPersonajeBotonEliminarProps {
-    item: PersonajeItem;
+export interface IArmaBotonEliminarProps {
+    item: ArmaItem;
     callback: () => Promise<void>
 }
-export default function PersonajeBotonEliminar(props: IPersonajeBotonEliminarProps): JSX.Element {
+export default function ArmaBotonEliminar(props: IArmaBotonEliminarProps): JSX.Element {
     const [isDeleteConfirmed, setIsDeleteConfirmed] = useState(false); // Nuevo estado para confirmación
 
     const handleDelete = (): void => {
@@ -21,7 +23,7 @@ export default function PersonajeBotonEliminar(props: IPersonajeBotonEliminarPro
     };
 
     const handleDeleteConfirmed = async (): Promise<void> => {
-        await props.item.deletePersonaje();
+        await props.item.deleteArma();
         await props.callback();
         setIsDeleteConfirmed(false); // Reiniciar el estado de confirmación
     };
@@ -39,7 +41,7 @@ export default function PersonajeBotonEliminar(props: IPersonajeBotonEliminarPro
                 onDismiss={() => setIsDeleteConfirmed(false)}
                 dialogContentProps={{
                     type: DialogType.normal,
-                    title: 'Eliminar Personaje',
+                    title: 'Eliminar Arma',
                     subText: '¿Estás seguro de que quieres eliminar este personaje?',
                 }}
                 modalProps={{

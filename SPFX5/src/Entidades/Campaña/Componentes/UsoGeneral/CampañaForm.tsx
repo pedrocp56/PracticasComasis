@@ -14,8 +14,7 @@ interface ICampañaFormProps {
   item: CampañaItem;
   callback: (result: boolean) => Promise<void>;
   isVisible: boolean;
-  onCancel: () => void;
-  onSave: (item: CampañaItem) => Promise<void>;
+  cerrar: () => void;
 }
 
 export default function CampañaFormProps(
@@ -50,7 +49,6 @@ export default function CampañaFormProps(
         setValido(false);
         return false;
       }
-      console.log(itemEdit);
       if (isValidUrl(itemEdit?.Foto?.Url || null)) {
         setValido(true);
         return true;
@@ -73,8 +71,9 @@ export default function CampañaFormProps(
     setGuardando(true);
     props.item.ItemEdit = itemEdit;
     await props.item.updateItem();
+    await props.callback(true);
     setGuardando(false);
-    await props.onSave(itemEdit);
+    await props.cerrar();
   };
 
   useEffect((): void => {
@@ -93,7 +92,7 @@ export default function CampañaFormProps(
         open={props.isVisible}
         okButtonProps={{ disabled: !valido }}
         onOk={handleOk}
-        onCancel={props.onCancel}
+        onCancel={props.cerrar}
       >
         <Stack hidden={!guardando}>
           <Spinner label="Guardando..." />

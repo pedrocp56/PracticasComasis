@@ -6,13 +6,13 @@ import * as React from "react";
 import { Stack } from "@fluentui/react";
 import { useEffect } from "react";
 import FiltroTexto from "../../Generales/FiltroTexto";
-import MostrarTitulo from "../../Generales/Mostrar";
-import UsarImagen from "../../Generales/UsarImagen";
 import { PersonajeItem } from "../PersonajeItem";
 import PersonajeBotonArmas from "./BotonArmas";
 import PersonajeBotonCar from "./BotonCar";
 import PersonajeBotonEliminar from "./BotonEliminar";
 import PersonajeBotonEditar from "./PersonajeEditar";
+import { MostrarTitulo } from "../../Generales/Mostrar";
+import { UsarImagen } from "../../Generales/UsarImagen";
 
 export interface IPersonajeWebpartProps {
   Items: PersonajeItem[];

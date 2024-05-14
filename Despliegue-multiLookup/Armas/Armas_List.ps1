@@ -102,7 +102,7 @@ if ($vista) {
         $vista.ViewFields.Add("Arma_Arrojadiza");
         $vista.ViewFields.Add("Arma_Car");
         $vista.ViewFields.Add("Arma_Caracteristicas");
-        $vista.ViewFields.Add("LookupArmaFoto");
+        $vista.ViewFields.Add("Arma_Foto");
 
         $vista.ViewQuery = "<OrderBy><FieldRef Name='ID' Ascending='FALSE'/></OrderBy>"
         

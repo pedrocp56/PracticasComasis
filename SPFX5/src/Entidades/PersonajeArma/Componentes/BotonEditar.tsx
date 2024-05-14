@@ -1,6 +1,6 @@
 import * as React from "react";
 import { IconButton } from "@fluentui/react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { PersonajeArmaItem } from "../PersonajeArmaItem";
 import PersonajeArmaFormProps from "./UsoGeneral/PersonajeArmaForm";
 
@@ -17,26 +17,14 @@ export default function PersonajeArmaBotonEditar(
   props: IPersonajeArmaBotonEditarProps
 ): JSX.Element {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [itemEdit, setItemEdit] = useState(props.item);
   
   const showModal = (): void => {
     setIsModalOpen(true);
   };
 
-  const handleOk = async (): Promise<void> => {
-    props.item.ItemEdit = itemEdit;
-    await props.item.updateItem();
-    await props.callback();
+  const cerrar = (): void => {
     setIsModalOpen(false);
   };
-
-  const handleCancel = (): void => {
-    setIsModalOpen(false);
-  };
-
-  useEffect((): void => {
-    setItemEdit(props.item);
-  }, [props.item]);
 
   return (
     <>
@@ -50,8 +38,7 @@ export default function PersonajeArmaBotonEditar(
         item={props.item}
         callback={props.callback}
         isVisible={isModalOpen}
-        onCancel={handleCancel}
-        onSave={handleOk}
+        cerrar={cerrar}
       />
     </>
   );

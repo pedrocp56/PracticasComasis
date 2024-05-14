@@ -12,7 +12,7 @@ $columns = "Campanha_Descripcion","Campanha_Fecha","Campanha_Foto",
 "Personaje_Usuario","Caracteristica_Fuerza","Caracteristica_Destreza","Caracteristica_Constitucion",
 "Caracteristica_Inteligencia","Caracteristica_Sabiduria","Caracteristica_Carisma","Bono_Competencia", "Personaje_Foto",
 
-"Arma_Ataque","Arma_Danho","Arma_Tipo", "Arma_Arrojadiza", "Arma_Car", "Arma_Caracteristicas",
+"Arma_Ataque","Arma_Danho","Arma_Tipo", "Arma_Arrojadiza", "Arma_Car", "Arma_Caracteristicas", "Arma_Foto",
         
 "Competencia","Bonificacion_Adiccional";
 

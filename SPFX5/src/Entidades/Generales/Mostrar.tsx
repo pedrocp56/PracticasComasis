@@ -3,7 +3,7 @@ import * as React from "react";
 import { Modal } from "antd";
 import { ActionButton } from "@fluentui/react";
 
-const MostrarTitulo: React.FC<{ item: any, texto: string }> = ({ item, texto }) => {    
+export const MostrarTitulo: React.FC<{ item: any, texto: string }> = ({ item, texto }) => {    
     if (!item) {
         return <div>Sin {texto} asociad@</div>;
     }
@@ -11,8 +11,6 @@ const MostrarTitulo: React.FC<{ item: any, texto: string }> = ({ item, texto }) 
         <div>{item.Title}</div>
     );
 };
-
-export default MostrarTitulo;
 
 export const MostrarBoolean: React.FC<{ bool: boolean }> = ({ bool }) => {
     let txt = "No se";

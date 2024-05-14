@@ -1,11 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any*/
 import { ArmaLista } from "./ArmaLista";
 
-export interface ArmaFotoLookup {
-  ID: number;
-  Url: string;
-}
-
 export class ArmaItem {
   public ListItem: any;
   public Lista: ArmaLista;
@@ -16,11 +11,11 @@ export class ArmaItem {
 
   public Ataque: number;
   public Danho: string;
-  public Tipo: string;
+  public Tipo: string[];
   public Arrojadiza: boolean;
   public Car: string;
   public Caracteristicas: string;
-  public Foto: ArmaFotoLookup;
+  public Foto: any;
 
   constructor(ListItem: any, Lista: ArmaLista) {
     this.ListItem = ListItem;
@@ -33,7 +28,12 @@ export class ArmaItem {
   public MapearCampos(): void {
     this.ID = this.ListItem.ID;
     this.Nombre = this.ListItem.Title;
-
+    this.Ataque = this.ListItem.Arma_Ataque;
+    this.Danho = this.ListItem.Arma_Danho;
+    this.Tipo = this.ListItem.Arma_Tipo;
+    this.Arrojadiza = this.ListItem.Arma_Arrojadiza;
+    this.Car = this.ListItem.Arma_Car;
+    this.Caracteristicas = this.ListItem.Arma_Caracteristicas;
     this.Foto = this.ListItem.Arma_Foto;
   }
 
@@ -46,11 +46,11 @@ export class ArmaItem {
       item.Title = this.ItemEdit.Nombre;
       needUpdate = true;
     }
-    if (this.ItemEdit.Ataque !== this.Ataque) {
+    if (this.ID === null || this.ItemEdit.Ataque !== this.Ataque) {
       item.Arma_Ataque = this.ItemEdit.Ataque;
       needUpdate = true;
     }
-    if (this.ItemEdit.Danho !== this.Danho) {
+    if (this.ID === null || this.ItemEdit.Danho !== this.Danho) {
       item.Arma_Danho = this.ItemEdit.Danho;
       needUpdate = true;
     }
@@ -58,11 +58,11 @@ export class ArmaItem {
       item.Arma_Tipo = this.ItemEdit.Tipo;
       needUpdate = true;
     }
-    if (this.ItemEdit.Arrojadiza !== this.Arrojadiza) {
+    if (this.ID === null || this.ItemEdit.Arrojadiza !== this.Arrojadiza) {
       item.Arma_Arrojadiza = this.ItemEdit.Arrojadiza;
       needUpdate = true;
     }
-    if (this.ItemEdit.Car !== this.Car) {
+    if (this.ID === null || this.ItemEdit.Car !== this.Car) {
       item.Arma_Car = this.ItemEdit.Car;
       needUpdate = true;
     }
@@ -71,8 +71,8 @@ export class ArmaItem {
       needUpdate = true;
     }
 
-    if (this.ItemEdit.Foto?.ID !== this.Foto?.ID) {
-      item.LookupArmaFotoID = this.ItemEdit.Foto?.ID;
+    if (this.ItemEdit.Foto !== this.Foto?.Url) {
+      item.Arma_Foto = { Url: this.ItemEdit.Foto?.Url };
       needUpdate = true;
     }
 

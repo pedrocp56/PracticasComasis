@@ -16,8 +16,7 @@ interface IPersonajeFormProps {
   item: PersonajeItem;
   callback: (result: boolean) => Promise<void>;
   isVisible: boolean;
-  onCancel: () => void;
-  onSave: (item: PersonajeItem) => Promise<void>;
+  cerrar: () => void;
 }
 
 export default function PersonajeFormProps(
@@ -139,11 +138,11 @@ export default function PersonajeFormProps(
     }
     console.log(valido);
     setGuardando(true);
-    //itemEdit.ListaArmas = null;
     props.item.ItemEdit = itemEdit;
     await props.item.updateItem();
+    await props.callback(true);
     setGuardando(false);
-    await props.onSave(itemEdit);
+    await props.cerrar();
   };
 
   useEffect((): void => {
@@ -175,7 +174,7 @@ export default function PersonajeFormProps(
         open={props.isVisible}
         okButtonProps={{ disabled: !valido }}
         onOk={handleOk}
-        onCancel={props.onCancel}
+        onCancel={props.cerrar}
       >
         <Stack hidden={!guardando}>
           <Spinner label="Guardando..." />

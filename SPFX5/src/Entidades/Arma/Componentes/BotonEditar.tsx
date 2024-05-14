@@ -1,42 +1,31 @@
+
 import * as React from "react";
 import { IconButton } from "@fluentui/react";
-import { useEffect, useState } from "react";
-import { PersonajeItem } from "../PersonajeItem";
-import PersonajeFormProps from "./UsoGeneral/PersonajeForm";
+import { useState } from "react";
+import { ArmaItem } from "../ArmaItem";
+import ArmaFormProps from "./UsoGeneral/ArmaForm";
 
 const buttonStyle = {
   backgroundColor: "#E4ADF3",
   color: "#161677",
 };
 
-export interface IPersonajeBotonEditarProps {
-  item: PersonajeItem;
-  callback: () => Promise<void>;
+export interface IArmaBotonEditarProps {
+  item: ArmaItem;
+  callback: (result: boolean) => Promise<void>;
 }
-export default function PersonajeBotonEditar(
-  props: IPersonajeBotonEditarProps
+export default function ArmaBotonEditar(
+  props: IArmaBotonEditarProps
 ): JSX.Element {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [itemEdit, setItemEdit] = useState(props.item);
   
   const showModal = (): void => {
     setIsModalOpen(true);
   };
 
-  const handleOk = async (): Promise<void> => {
-    props.item.ItemEdit = itemEdit;
-    await props.item.updateItem();
-    await props.callback();
+  const cerrar = (): void => {
     setIsModalOpen(false);
   };
-
-  const handleCancel = (): void => {
-    setIsModalOpen(false);
-  };
-
-  useEffect((): void => {
-    setItemEdit(props.item);
-  }, [props.item]);
 
   return (
     <>
@@ -46,12 +35,11 @@ export default function PersonajeBotonEditar(
         style={buttonStyle}
         title="Editar"
       />
-      <PersonajeFormProps
+      <ArmaFormProps
         item={props.item}
         callback={props.callback}
         isVisible={isModalOpen}
-        onCancel={handleCancel}
-        onSave={handleOk}
+        cerrar={cerrar}
       />
     </>
   );

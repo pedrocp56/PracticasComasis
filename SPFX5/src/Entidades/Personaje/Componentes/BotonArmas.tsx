@@ -30,6 +30,7 @@ const PersonajeBotonArmas: React.FC<{
     backgroundColor: "#E4ADF3",
     color: "#1B4C25",
   };
+  //Añadir armas del personaje
 
   return (
     <>

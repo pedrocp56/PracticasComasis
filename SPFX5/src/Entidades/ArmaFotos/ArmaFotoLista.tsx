@@ -2,15 +2,19 @@
 import { WebPartContext } from "@microsoft/sp-webpart-base";
 import { IList } from "@pnp/sp/lists";
 import { IItem, IWeb } from "@pnp/sp/presets/all";
-import { ArmaItem } from "./ArmaItem";
+import { ArmaFotoItem } from "./ArmaFotoItem";
 import "@pnp/sp/presets/all";
 import "@pnp/sp/lists";
 
 
-export class ArmaLista {
-  public NombreLista = "Armas";
+export class ArmaFotoLista {
+  public NombreBiblioteca = "ArmaFotos";
   public SelectAllFields: string[] = [
     "*",
+    "FileLeafRef",
+    "FileRef",
+    "FileDirRef",
+    "File_x0020_Type",
   ];
   public ExpandAllFields: string[] = [];
   public web: IWeb;
@@ -20,28 +24,23 @@ export class ArmaLista {
   constructor(web: IWeb, context: WebPartContext) {
     this.web = web;
     this.Context = context;
-    this.List = this.web.lists.getByTitle(this.NombreLista);
+    this.List = this.web.lists.getByTitle(this.NombreBiblioteca);
   }
 
-  public getNewArma(): ArmaItem {
-    const nuevo = new ArmaItem(null, this);
+  public getNewArma(): ArmaFotoItem {
+    const nuevo = new ArmaFotoItem(null, this);
     nuevo.ID = null;
-    nuevo.Ataque = 1;
-    nuevo.Danho = "1d8";
-    nuevo.Arrojadiza = false;
-    nuevo.Car = "Fuerza";
-    nuevo.Foto = null;
     return nuevo;
   }
 
-  public async CargarTodos(BatchedWeb?: IWeb): Promise<ArmaItem[]> {
+  public async CargarTodos(BatchedWeb?: IWeb): Promise<ArmaFotoItem[]> {
     const Items = this.List.items
       .expand(this.ExpandAllFields.join())
       .orderBy("Title")
       .select(this.SelectAllFields.join())()
       .then((Data: any) => {
         return Data.map((I: IItem) => {
-          return new ArmaItem(I, this);
+          return new ArmaFotoItem(I, this);
         });
       })
       .catch(async (E: Error) => {

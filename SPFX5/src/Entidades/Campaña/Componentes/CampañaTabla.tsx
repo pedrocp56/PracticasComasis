@@ -5,11 +5,11 @@ import * as React from "react";
 
 import { Stack } from "@fluentui/react";
 import FiltroTexto from "../../Generales/FiltroTexto";
-import UsarImagen from "../../Generales/UsarImagen";
 import { CampañaItem } from "../CampañaItem";
 import UsarFecha from "../../Generales/OperacionesFecha";
 import CampañaBotonEditar from "./BotonEditar";
 import CampañaBotonEliminar from "./BotonEliminar";
+import { UsarImagen } from "../../Generales/UsarImagen";
 
 export interface ICampañaWebpartProps {
     Items: CampañaItem[];

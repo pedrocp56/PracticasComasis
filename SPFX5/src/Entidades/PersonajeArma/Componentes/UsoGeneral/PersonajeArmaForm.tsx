@@ -13,8 +13,7 @@ interface IPersonajeArmaFormProps {
   item: PersonajeArmaItem;
   callback: (result: boolean) => Promise<void>;
   isVisible: boolean;
-  onCancel: () => void;
-  onSave: (item: PersonajeArmaItem) => Promise<void>;
+  cerrar: () => void;
 }
 
 export default function PersonajeArmaFormProps(
@@ -79,7 +78,8 @@ export default function PersonajeArmaFormProps(
     props.item.ItemEdit = itemEdit;
     await props.item.updateItem();
     setGuardando(false);
-    await props.onSave(itemEdit);
+    await props.callback(true);
+    await props.cerrar();
   };
 
   useEffect((): void => {
@@ -115,7 +115,7 @@ export default function PersonajeArmaFormProps(
         open={props.isVisible}
         okButtonProps={{ disabled: !valido }}
         onOk={handleOk}
-        onCancel={props.onCancel}
+        onCancel={props.cerrar}
       >
         <Stack hidden={!guardando}>
           <Spinner label="Guardando..." />

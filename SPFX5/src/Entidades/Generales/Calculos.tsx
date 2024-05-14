@@ -93,7 +93,7 @@ export const calcularDañoMaxIndividual = (daño: string): number => {
     return dañoTotal;
   };
   
-  export const CalcularDañoMax = (a: ArmaItem, b: ArmaItem): number => {
+  export const SortDañoMax = (a: ArmaItem, b: ArmaItem): number => {
     const dañoA = a.Danho;
     const dañoB = b.Danho;
   

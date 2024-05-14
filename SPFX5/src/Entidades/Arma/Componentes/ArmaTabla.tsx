@@ -1,19 +1,20 @@
 /* eslint-disable @typescript-eslint/no-explicit-any*/
+
 import { SearchOutlined } from "@ant-design/icons";
+import { Stack } from "@fluentui/react";
 import { Table, TableColumnsType } from "antd";
 import * as React from "react";
-
-import { Stack } from "@fluentui/react";
 import { useEffect } from "react";
-import { CalcularDañoMax } from "../../Generales/Calculos";
+import { SortDañoMax } from "../../Generales/Calculos";
 import FiltroTexto from "../../Generales/FiltroTexto";
 import { MostrarBoolean, MostrarMultiline } from "../../Generales/Mostrar";
-import UsarImagen from "../../Generales/UsarImagen";
 import { ArmaItem } from "../ArmaItem";
 import ArmaCar, { CarFiltro } from "./ArmaCar";
 import ArmaTipo from "./ArmaTipo";
 import ArmaBotonEditar from "./BotonEditar";
 import ArmaBotonEliminar from "./BotonEliminar";
+import ArmaBotonInfo from "./BotonInfo";
+import { UsarImagen } from "../../Generales/UsarImagen";
 
 export interface IArmaWebpartProps {
   Items: ArmaItem[];
@@ -25,6 +26,7 @@ export default function ArmaWebpart(Props: IArmaWebpartProps): JSX.Element {
   const [cargando, setCargando] = React.useState(true);
 
   useEffect((): void => {
+    console.log(Props.Items);
     setCargando(false);
   }, []);
 
@@ -36,6 +38,7 @@ export default function ArmaWebpart(Props: IArmaWebpartProps): JSX.Element {
       align: "center",
       render: (text: string, record: ArmaItem) => (
         <Stack horizontal tokens={{ childrenGap: 5 }}>
+          <ArmaBotonInfo titulo="Info" info={record} />
           <ArmaBotonEliminar item={record} callback={Props.callback} />
           <ArmaBotonEditar item={record} callback={Props.callback} />
         </Stack>
@@ -72,9 +75,9 @@ export default function ArmaWebpart(Props: IArmaWebpartProps): JSX.Element {
     {
       key: "Daño",
       title: "Daño",
-      dataIndex: "Daño",
+      dataIndex: "Danho",
       align: "center",
-      sorter: CalcularDañoMax,
+      sorter: SortDañoMax,
     },
     {
       key: "Tipo",

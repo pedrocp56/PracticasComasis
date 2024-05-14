@@ -26,12 +26,7 @@ export default function PersonajeNuevoBoton(
       setIsModalOpen(true);
     }
   }, [itemEdit]);
-
-  const handleOk = async (): Promise<void> => {
-    await Props.callback(true);
-    setIsModalOpen(false);
-  };
-  const handleCancel = (): void => {
+  const cerrar = (): void => {
     setIsModalOpen(false);
   };
 
@@ -52,8 +47,7 @@ export default function PersonajeNuevoBoton(
           item={itemEdit}
           callback={Props.callback}
           isVisible={isModalOpen}
-          onCancel={handleCancel}
-          onSave={handleOk}
+          cerrar={cerrar}
         />
       )}
     </StackItem>

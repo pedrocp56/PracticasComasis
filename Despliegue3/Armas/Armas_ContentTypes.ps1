@@ -2,7 +2,7 @@
 $contentTypeName = "ArmaInfo";
 
 #Añadir los internal names de las columnas que compondrán el tipo de contenido
-$columns = "Arma_Ataque","Arma_Danho","Arma_Tipo", "Arma_Arrojadiza", "Arma_Car", "Arma_Caracteristicas", "LookupArmaFoto";
+$columns = "Arma_Ataque","Arma_Danho","Arma_Tipo", "Arma_Arrojadiza", "Arma_Car", "Arma_Caracteristicas", "Arma_Foto";
 
 $parentContentTypeID = "0x01"
 

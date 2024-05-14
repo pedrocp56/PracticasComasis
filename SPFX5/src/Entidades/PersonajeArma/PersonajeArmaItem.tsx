@@ -74,13 +74,8 @@ export class PersonajeArmaItem {
     console.log("Entrando Update");
     let needUpdate = false;
     const item: any = {};
-    console.log("AAAAAAAAAAAAAAAAAAAAAAAAAA");
     console.log(this.ItemEdit.Personaje);
-    console.log(this.ItemEdit.Arma);
-    
-    
-    console.log("BBBBBBBBBBBBBBBBBBBBBBBBBB");
-    
+    console.log(this.ItemEdit.Arma);    
     
     if (this.ItemEdit.Nombre !== this.Nombre) {
       item.Title = this.ItemEdit.Nombre;

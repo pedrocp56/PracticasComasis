@@ -2,7 +2,7 @@
 import * as React from "react";
 import { Image } from 'antd';
 
-const UsarImagen: React.FC<{ imageUrl: any }> = ({ imageUrl }) => {
+export const UsarImagen: React.FC<{ imageUrl: any }> = ({ imageUrl }) => {
     if (!imageUrl) {
         return <div>Sin imagen</div>;
     }
@@ -11,7 +11,6 @@ const UsarImagen: React.FC<{ imageUrl: any }> = ({ imageUrl }) => {
     );
 };
 
-export default UsarImagen;
 /* eslint-enable */
 
 

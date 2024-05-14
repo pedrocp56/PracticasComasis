@@ -7,13 +7,13 @@ import ArmaTipo from "./ArmaTipo";
 import ArmaArr from "./ArmaArr";
 import ArmaCaracteristicas from "./ArmaCaracteristicas";
 import ArmaInfo from "./ArmaInfo";
-import UsarImagen from "../../Generales/UsarImagen";
 import { SearchOutlined } from '@ant-design/icons';
 import { CalcularDañoMax } from "./ArmaDaño";
 import ArmasBotonEditar from "./ArmaEditar";
 import ArmaEliminarBoton from "./ArmaEliminar";
 import { Stack } from "@fluentui/react";
 import FiltroTexto from "../../Generales/FiltroTexto";
+import { UsarImagen } from "../../Generales/UsarImagen";
 
 
 export interface IArmaWebpartProps {
@@ -71,7 +71,7 @@ export default function ArmaWebpart(
     {
       key: "Daño",
       title: "Daño",
-      dataIndex: "Daño",
+      dataIndex: "Danho",
       align: 'center',
       sorter: CalcularDañoMax,
     },

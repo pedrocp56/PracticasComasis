@@ -6,13 +6,13 @@ import * as React from "react";
 import { Stack } from "@fluentui/react";
 import { useEffect } from "react";
 import FiltroTexto from "../../Generales/FiltroTexto";
-import MostrarTitulo from "../../Generales/Mostrar";
-import UsarImagen from "../../Generales/UsarImagen";
 import { PersonajeItem } from "../PersonajeItem";
 import PersonajeBotonArmas from "./BotonArmas";
 import PersonajeBotonCar from "./BotonCar";
 import PersonajeBotonEliminar from "./BotonEliminar";
-import PersonajeBotonEditar from "./PersonajeEditar";
+import PersonajeBotonEditar from "./BotonEditar";
+import { MostrarTitulo } from "../../Generales/Mostrar";
+import { UsarImagen } from "../../Generales/UsarImagen";
 
 export interface IPersonajeWebpartProps {
   Items: PersonajeItem[];
@@ -23,11 +23,14 @@ export default function PersonajeWebpart(
   Props: IPersonajeWebpartProps
 ): JSX.Element {
   //para que solo muestre cuando es false no es necesario aqui
-  const [cargando, setCargando] = React.useState(true);
+  const [cargando, setCargando] = React.useState(false);
 
+  console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+  
   useEffect((): void => {
     setCargando(false);
-    console.log("AAAAAAAAAAAAAAAAAAAA");
+    console.log("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB");
+
   }, []);
 
 

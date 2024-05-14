@@ -3,57 +3,51 @@
 import * as React from "react";
 import { useEffect, useState } from "react";
 import { PrimaryButton, StackItem } from "@fluentui/react";
-import { PersonajeLista } from "../PersonajeLista";
-import { PersonajeItem } from "../PersonajeItem";
-import PersonajeFormProps from "./UsoGeneral/PersonajeForm";
+import { ArmaLista } from "../ArmaLista";
+import { ArmaItem } from "../ArmaItem";
+import ArmaFormProps from "./UsoGeneral/ArmaForm";
 
-export interface IPersonajeNuevoBotonProps {
-  lista: PersonajeLista;
+export interface IArmaNuevoBotonProps {
+  lista: ArmaLista;
   callback: (result: boolean) => Promise<void>;
 }
 
-export default function PersonajeNuevoBoton(
-  Props: IPersonajeNuevoBotonProps
+export default function ArmaNuevoBoton(
+  Props: IArmaNuevoBotonProps
 ): JSX.Element {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [itemEdit, setItemEdit] = useState<PersonajeItem>(null);
+  const [itemEdit, setItemEdit] = useState<ArmaItem>(null);
 
   useEffect(() => {
     // Este efecto se ejecutará cada vez que itemEdit cambie
-    console.log("itemEdit actualizado:", itemEdit);
     if (itemEdit) {
       console.log(itemEdit);
       setIsModalOpen(true);
     }
   }, [itemEdit]);
 
-  const handleOk = async (): Promise<void> => {
-    await Props.callback(true);
-    setIsModalOpen(false);
-  };
-  const handleCancel = (): void => {
+  const cerrar = (): void => {
     setIsModalOpen(false);
   };
 
   return (
     <StackItem>
       <PrimaryButton
-        text={"Nuevo Personaje"}
-        title={"Nuevo Personaje"}
+        text={"Nuevo Arma"}
+        title={"Nuevo Arma"}
         iconProps={{ iconName: "Add" }}
         onClick={() => {
-          const nuevoparaForm = Props.lista.getNewPersonaje();
+          const nuevoparaForm = Props.lista.getNewArma();
           setItemEdit(nuevoparaForm);
         }}
         style={{ backgroundColor: "#1b4586", color: "#FFFFFF" }}
       />
       {itemEdit && (
-        <PersonajeFormProps
+        <ArmaFormProps
           item={itemEdit}
           callback={Props.callback}
           isVisible={isModalOpen}
-          onCancel={handleCancel}
-          onSave={handleOk}
+          cerrar={cerrar}
         />
       )}
     </StackItem>
