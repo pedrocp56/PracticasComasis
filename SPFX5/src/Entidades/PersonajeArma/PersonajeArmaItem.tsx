@@ -10,17 +10,14 @@ export interface PersonajeLookup {
   BInteligencia: number;
   BSabiduria: number;
   BCarisma: number;
-  BCompetencia:number;
+  BCompetencia: number;
 }
 export interface ArmaLookup {
   ID: number;
   Title: string;
   Arma_Ataque: number;
   Arma_Danho: number;
-  //Arma_Tipo: string[];
-  //Arma_Arrojadiza: boolean;
   Arma_Car: string;
-  //Arma_Caracteristicas: string;
 }
 
 export class PersonajeArmaItem {
@@ -29,14 +26,13 @@ export class PersonajeArmaItem {
   public ItemEdit: PersonajeArmaItem;
 
   public ID: number;
-  public Nombre: string;
+  //public Nombre: string;
 
   public Personaje: PersonajeLookup;
   public Arma: ArmaLookup;
 
   public Competencia: boolean;
   public Bonificacion: number;
-  nuevo: {};
 
   constructor(ListItem: any, Lista: PersonajeArmaLista) {
     this.ListItem = ListItem;
@@ -48,21 +44,31 @@ export class PersonajeArmaItem {
 
   public MapearCampos(): void {
     this.ID = this.ListItem.ID;
-    this.Nombre = this.ListItem.Title;  
+    //this.Nombre = this.ListItem.Title;  
+
+    this.Personaje = this.ListItem.LookupPersonaje !== null && this.ListItem.LookupPersonaje !== undefined ? {
+      ID: this.ListItem.LookupPersonaje.ID,
+      Title: this.ListItem.LookupPersonaje.Title,
+      BFuerza: calcularBono(this.ListItem.LookupPersonaje.Caracteristica_Fuerza),
+      BDestreza: calcularBono(this.ListItem.LookupPersonaje.Caracteristica_Destreza),
+      BConstitucion: calcularBono(this.ListItem.LookupPersonaje.Caracteristica_Constitucion),
+      BInteligencia: calcularBono(this.ListItem.LookupPersonaje.Caracteristica_Inteligencia),
+      BSabiduria: calcularBono(this.ListItem.LookupPersonaje.Caracteristica_Sabiduria),
+      BCarisma: calcularBono(this.ListItem.LookupPersonaje.Caracteristica_Carisma),
+      BCompetencia: this.ListItem.LookupPersonaje.Bono_Competencia,
+    } : null;
+    console.log("BBBBBBBBBBBBBBBBBBBBB");
+    console.log(this.ListItem.LookupArma);
+    console.log(this.Arma);  
     
-    this.Personaje = this.ListItem.LookupPersonaje !== null&&this.ListItem.LookupPersonaje !== undefined ? {
-      ID:this.ListItem.LookupPersonaje.ID,
-      Title:this.ListItem.LookupPersonaje.Title,
-      BFuerza:calcularBono(this.ListItem.LookupPersonaje.Caracteristica_Fuerza),
-      BDestreza:calcularBono(this.ListItem.LookupPersonaje.Caracteristica_Destreza),
-      BConstitucion:calcularBono(this.ListItem.LookupPersonaje.Caracteristica_Constitucion),
-      BInteligencia:calcularBono(this.ListItem.LookupPersonaje.Caracteristica_Inteligencia),
-      BSabiduria:calcularBono(this.ListItem.LookupPersonaje.Caracteristica_Sabiduria),
-      BCarisma:calcularBono(this.ListItem.LookupPersonaje.Caracteristica_Carisma),
-      BCompetencia:this.ListItem.LookupPersonaje.Bono_Competencia,
-    }:null;
-    this.Arma = this.ListItem.LookupArma;
-  
+    this.Arma = this.ListItem.LookupArma !== null && this.ListItem.LookupArma !== undefined ? {
+      ID: this.ListItem.LookupArma.ID,
+      Title: this.ListItem.LookupArma.Title,
+      Arma_Ataque: this.ListItem.LookupArma.Arma_Ataque,
+      Arma_Danho: this.ListItem.LookupArma.Arma_Danho,
+      Arma_Car: this.ListItem.LookupArma.Arma_Car,
+    } : null;
+
     this.Competencia = this.ListItem.Competencia;
     this.Bonificacion = this.ListItem.Bonificacion_Adiccional;
 
@@ -73,17 +79,18 @@ export class PersonajeArmaItem {
     let needUpdate = false;
     const item: any = {};
     console.log(this.ItemEdit.Personaje);
-    console.log(this.ItemEdit.Arma);    
-    
+    console.log(this.ItemEdit.Arma);
+    /*
     if (this.ItemEdit.Nombre !== this.Nombre) {
       item.Title = this.ItemEdit.Nombre;
       needUpdate = true;
     }
-    if (this.ID === null ||this.ItemEdit.Personaje?.ID !== this.Personaje?.ID) {
+    */
+    if (this.ID === null || this.ItemEdit.Personaje?.ID !== this.Personaje?.ID) {
       item.LookupPersonajeId = this.ItemEdit.Personaje?.ID;
       needUpdate = true;
     }
-    if (this.ID === null ||this.ItemEdit.Arma?.ID !== this.Arma?.ID) {
+    if (this.ID === null || this.ItemEdit.Arma?.ID !== this.Arma?.ID) {
       item.LookupArmaId = this.ItemEdit.Arma?.ID;
       needUpdate = true;
     }

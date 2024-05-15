@@ -10,10 +10,18 @@ export const UsarImagen: React.FC<{ imageUrl: any }> = ({ imageUrl }) => {
         <Image src={imageUrl.Url} style={{ width: 'auto', height: '75px' }} />
     );
 };
+export const UsarUrl: React.FC<{ imageUrl: any }> = ({ imageUrl }) => {
+    if (!imageUrl) {
+        return <div>Sin imagen</div>;
+    }
+    return (
+        <Image src={imageUrl} style={{ width: 'auto', height: '75px' }} />
+    );
+};
 
 export const UsarImagenArma: React.FC<{ imageUrl: any }> = ({ imageUrl }) => {
     console.log(imageUrl);
-    
+
     if (!imageUrl) {
         return (
             <Image

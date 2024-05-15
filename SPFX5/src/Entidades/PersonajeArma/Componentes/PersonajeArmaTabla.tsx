@@ -51,7 +51,7 @@ export default function PersonajeArmaWebpart(
     {
       key: "Personaje",
       title: "Personaje",
-      dataIndex: "Personaje",
+      dataIndex: "Personaje.NombreP",
       align: "center",
       filterDropdown: FiltroTexto,
       render: (text: string, record: PersonajeArmaItem) => (

@@ -4,10 +4,10 @@ import { IconButton, Spinner, Stack } from "@fluentui/react";
 import { Modal, Table, TableColumnsType } from "antd";
 import * as React from "react";
 import { useEffect, useRef, useState } from "react";
-import FiltroTexto from "../../Generales/FiltroTexto";
-import { UsarImagen } from "../../Generales/UsarImagen";
-import { ArmaFotoItem } from "../ArmaFotoItem";
 import { ArmaItem } from "../../Arma/ArmaItem";
+import FiltroTexto from "../../Generales/FiltroTexto";
+import { UsarUrl } from "../../Generales/UsarImagen";
+import { ArmaFotoItem } from "../ArmaFotoItem";
 import { ArmaFotoLista } from "../ArmaFotoLista";
 
 interface IArmaFotoFormProps {
@@ -92,7 +92,7 @@ export default function ArmaFotoFormProps(
       align: "center",
       render: (imageUrl: any) => (
         <div>
-          <UsarImagen imageUrl={imageUrl} />
+          <UsarUrl imageUrl={imageUrl} />
         </div>
       ),
     },
