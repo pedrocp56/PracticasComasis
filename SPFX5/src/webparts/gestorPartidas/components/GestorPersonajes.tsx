@@ -24,7 +24,6 @@ export default function GestorPersonajesCompWebpart(
     await PersonajeL.current.CargarTodos().then((i) => {
       setItems(i);
     });
-    //console.log(Items);
   };
   useEffect((): void => {
     PersonajeL.current = new PersonajeLista(props.SP.web, props.WebPartContext);
@@ -35,7 +34,9 @@ export default function GestorPersonajesCompWebpart(
 
     setTimeout(() => {
       setCargando(false);
-      if (!cargando) console.log("Cargado");
+      if (!cargando) {
+        console.log("Cargado");
+      }
     }, 2000);
   }, []);
 

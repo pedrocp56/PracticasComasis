@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-floating-promises*/
-import { Dropdown, IDropdownOption, Spinner, Stack, TextField, Toggle } from "@fluentui/react";
+import { Dropdown, IDropdownOption, Label, Spinner, Stack, TextField, Toggle } from "@fluentui/react";
 import { Modal } from "antd";
 import * as React from "react";
-import { useEffect, useRef, useState } from "react";
-import { ArmaFotoItem } from "../../../ArmaFotos/ArmaFotoItem";
-import { ArmaFotoLista } from "../../../ArmaFotos/ArmaFotoLista";
+import { useEffect, useState } from "react";
 import { ArmaItem } from "../../ArmaItem";
+import ArmaBotonFoto from "../BotonFoto";
+import { UsarImagenArma } from "../../../Generales/UsarImagen";
 
 interface IArmaFormProps {
     item: ArmaItem;
@@ -79,9 +79,9 @@ export default function ArmaFormProps(
         setGuardando(true);
         props.item.ItemEdit = itemEdit;
         await props.item.updateItem();
-        setGuardando(false);
         await props.callback(true);
         await props.cerrar();
+        setGuardando(false);
     };
 
     useEffect((): void => {
@@ -93,22 +93,20 @@ export default function ArmaFormProps(
         setValido(check);
     }, [itemEdit]);
 
-
-    const [fotos, setFotos] = useState<ArmaFotoItem[]>([]);
-    const FotosL = useRef<ArmaFotoLista>(null);
-
-    const consultaInicial = async (): Promise<void> => {
-        FotosL.current = new ArmaFotoLista(props.item.Lista.web, props.item.Lista.Context);
-        const consultaFotos = await FotosL.current.CargarTodos();
-        console.log(consultaFotos);
-        await setFotos(consultaFotos);
-    }
-
-    useEffect(() => {
-        consultaInicial();
-        console.log(fotos);
-    }, []);
-
+    /*
+        const [fotos, setFotos] = useState<ArmaFotoItem[]>([]);
+        const FotosL = useRef<ArmaFotoLista>(null);
+    
+        const consultaInicial = async (): Promise<void> => {
+            FotosL.current = new ArmaFotoLista(props.item.Lista.web, props.item.Lista.Context);
+            const consultaFotos = await FotosL.current.CargarTodos();
+            await setFotos(consultaFotos);
+        }
+    
+        useEffect(() => {
+            consultaInicial();
+        }, []);
+    */
 
     useEffect((): void => {
         setOpcionesTipo([
@@ -142,6 +140,9 @@ export default function ArmaFormProps(
         setItemEdit({ ...itemEdit, Tipo: selectedItems } as ArmaItem);
     };
 
+    const guardarFoto = async (newArma: ArmaItem): Promise<void> => {
+        setItemEdit({ ...itemEdit, Foto: newArma?.Foto } as ArmaItem);
+    };
     return (
         <>
 
@@ -151,6 +152,7 @@ export default function ArmaFormProps(
                 okButtonProps={{ disabled: !valido }}
                 onOk={handleOk}
                 onCancel={props.cerrar}
+                closable={false}
             >
                 <Stack hidden={!guardando}>
                     <Spinner label="Guardando..." />
@@ -216,10 +218,21 @@ export default function ArmaFormProps(
                         multiline
                         rows={4}
                     />
+                    <Label>Foto</Label>
+                    <Stack horizontal verticalAlign="center" tokens={{ childrenGap: 5 }}>
+                        <UsarImagenArma imageUrl={itemEdit?.Foto} />
+                        <ArmaBotonFoto
+                            item={itemEdit}
+                            callback={guardarFoto}
+                        />
+                    </Stack>
+                    {/*
                     <Dropdown
                         label="Foto"
+                        
                         placeholder="Seleccione una foto"
-                        //defaultSelectedKey={itemEdit?.Foto?.ID || 1}
+                        defaultSelectedKey={Number(itemEdit?.Foto?.Description)}
+                        //defaultSelectedKey={Number(itemEdit?.Foto?.Description)||null}
                         options={fotos.map(F => {
                             return {
                                 key: F.ID,
@@ -227,17 +240,15 @@ export default function ArmaFormProps(
                                 data: F
                             }
                         })}
-
+                        openOnKeyboardFocus
+                        
                         onChange={(e, newvalue) => {
-                            console.log(newvalue.data.Url.replaceAll(" ", "%20"));
-
-                            const foto = newvalue.data.Url.replaceAll(" ", "%20");
-                            setItemEdit({ ...itemEdit, Foto: { Description: newvalue.text, Url: foto } } as ArmaItem);
+                            setItemEdit({ ...itemEdit, Foto: { Description: newvalue.key, Url: newvalue.data.Url } } as ArmaItem);
                         }}
-
                     />
+                    */}
                 </Stack>
-            </Modal>
+            </Modal >
         </>
     );
 }

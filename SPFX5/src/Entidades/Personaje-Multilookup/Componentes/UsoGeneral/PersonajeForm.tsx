@@ -141,7 +141,6 @@ export default function PersonajeFormProps(
       setErrorMessage("Resuelve todos los errores");
       return;
     }
-    console.log(valido);
     setGuardando(true);
     //itemEdit.ListaArmas = null;
     props.item.ItemEdit = itemEdit;

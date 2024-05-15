@@ -73,7 +73,6 @@ export default function PersonajeArmaFormProps(
       setErrorMessage("Resuelve todos los errores");
       return;
     }
-    console.log(valido);
     setGuardando(true);
     props.item.ItemEdit = itemEdit;
     await props.item.updateItem();

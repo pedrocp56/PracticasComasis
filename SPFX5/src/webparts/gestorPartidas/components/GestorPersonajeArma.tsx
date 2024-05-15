@@ -24,7 +24,6 @@ export default function GestorPersonajeArmaCompWebpart(
     await PersonajeArmaL.current.CargarTodos().then((i) => {
       setItems(i);
     });
-    //console.log(Items);
   };
   useEffect((): void => {
     PersonajeArmaL.current = new PersonajeArmaLista(props.SP.web, props.WebPartContext);

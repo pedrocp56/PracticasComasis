@@ -74,9 +74,6 @@ export class PersonajeItem {
     this.Competencia = this.ListItem.Bono_Competencia;
 
     this.Campaña = this.ListItem.LookupCampanha;
-    //console.log(this.Campaña);
-    //console.log(this.Campaña?.Title);
-
     this.Foto = this.ListItem.Personaje_Foto;
   }
 
@@ -154,7 +151,6 @@ export class PersonajeItem {
 
     if (this.ID === null) {
       console.log("Creando personaje");
-      console.log(item);
       await this.Lista.List.items.add(item);
       console.log("Personaje creada");
       return true;

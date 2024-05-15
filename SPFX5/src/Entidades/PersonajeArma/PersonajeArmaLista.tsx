@@ -49,6 +49,7 @@ export class PersonajeArmaLista {
     nuevo.ID = null;
     nuevo.Competencia = false;
     nuevo.Bonificacion = 0;
+    console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
     return nuevo;
   }
 

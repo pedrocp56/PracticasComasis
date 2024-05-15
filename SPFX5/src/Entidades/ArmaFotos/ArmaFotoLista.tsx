@@ -27,9 +27,14 @@ export class ArmaFotoLista {
     this.List = this.web.lists.getByTitle(this.NombreBiblioteca);
   }
 
-  public getNewArma(): ArmaFotoItem {
+  public getNewArmaFoto(): ArmaFotoItem {
     const nuevo = new ArmaFotoItem(null, this);
     nuevo.ID = null;
+    return nuevo;
+  }
+  public getNewArmaFotoId(id:number): ArmaFotoItem {
+    const nuevo = new ArmaFotoItem(null, this);
+    nuevo.ID = id;
     return nuevo;
   }
 

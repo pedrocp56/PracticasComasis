@@ -17,7 +17,7 @@ export default function PersonajeArmaBotonEditar(
   props: IPersonajeArmaBotonEditarProps
 ): JSX.Element {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  
+
   const showModal = (): void => {
     setIsModalOpen(true);
   };
@@ -34,12 +34,14 @@ export default function PersonajeArmaBotonEditar(
         style={buttonStyle}
         title="Editar"
       />
-      <PersonajeArmaFormProps
-        item={props.item}
-        callback={props.callback}
-        isVisible={isModalOpen}
-        cerrar={cerrar}
-      />
+      {isModalOpen &&
+        <PersonajeArmaFormProps
+          item={props.item}
+          callback={props.callback}
+          isVisible={isModalOpen}
+          cerrar={cerrar}
+        />
+      }
     </>
   );
 }

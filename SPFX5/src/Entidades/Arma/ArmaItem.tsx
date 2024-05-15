@@ -71,19 +71,19 @@ export class ArmaItem {
       needUpdate = true;
     }
 
-    if (this.ItemEdit.Foto !== this.Foto?.Url) {
-      item.Arma_Foto = { Url: this.ItemEdit.Foto?.Url };
+    if (this.ItemEdit?.Foto?.Url !== this.Foto?.Url) {
+      //item.Arma_Foto = {Url: this.ItemEdit.Foto?.Url };.
+      item.Arma_Foto = { Description: this.ItemEdit.Foto?.Description.toString(), Url: this.ItemEdit.Foto?.Url };
       needUpdate = true;
     }
 
     if (this.ID === null) {
       console.log("Creando Arma");
-      console.log(item);
       await this.Lista.List.items.add(item);
       console.log("Arma creada");
       return true;
     }
-
+    //MIRAR ARON PARA CAMBIAR
     if (needUpdate) {
       console.log("NeedUpdate");
       await this.Lista.List.items

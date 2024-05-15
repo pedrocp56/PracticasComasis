@@ -25,7 +25,6 @@ export default function GestorArmasCompWebpart(
     await ArmaL.current.CargarTodos().then((i) => {
       setItems(i);
     });
-    //console.log(Items);
   }
 
   useEffect((): void => {

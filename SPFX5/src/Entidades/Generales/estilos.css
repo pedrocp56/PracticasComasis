@@ -1,3 +1,15 @@
 .attack-info {
     column-count: 2;
 }
+
+#botonguapisimoeditar{
+    background-color: rgb(114, 170, 151);
+    color:black;
+    border-radius: 4px;
+    border: 2px;
+}
+
+#botonguapisimoeditar:hover{
+    background-color: rgb(37, 71, 60);
+    color:rgb(243, 243, 243);
+}

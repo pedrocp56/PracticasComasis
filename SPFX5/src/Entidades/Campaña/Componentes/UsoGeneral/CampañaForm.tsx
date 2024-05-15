@@ -42,9 +42,7 @@ export default function CampañaFormProps(
         itemEdit &&
         itemEdit.Fecha &&
         itemEdit.Fecha < new Date(Date.now())
-      ) {
-        console.log(itemEdit?.Fecha||"aaaaaaaaaaaaaaaaaaaaa");
-        
+      ) {      
         setErrorMessage("Fecha no válida");
         setValido(false);
         return false;

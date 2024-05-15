@@ -24,7 +24,6 @@ export default function GestorCampañasCompWebpart(
     await CampañaL.current.CargarTodos().then((i) => {
       setItems(i);
     });
-    //console.log(Items);
   };
   useEffect((): void => {
     CampañaL.current = new CampañaLista(props.SP.web, props.WebPartContext);

@@ -22,7 +22,6 @@ export default function PersonajeNuevoBoton(
     // Este efecto se ejecutará cada vez que itemEdit cambie
     console.log("itemEdit actualizado:", itemEdit);
     if (itemEdit) {
-      console.log(itemEdit);
       setIsModalOpen(true);
     }
   }, [itemEdit]);

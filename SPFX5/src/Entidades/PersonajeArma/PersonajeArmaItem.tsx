@@ -49,8 +49,6 @@ export class PersonajeArmaItem {
   public MapearCampos(): void {
     this.ID = this.ListItem.ID;
     this.Nombre = this.ListItem.Title;  
-    console.log(this.ListItem);
-    console.log(this.ListItem.LookupPersonaje);
     
     this.Personaje = this.ListItem.LookupPersonaje !== null&&this.ListItem.LookupPersonaje !== undefined ? {
       ID:this.ListItem.LookupPersonaje.ID,
@@ -100,7 +98,6 @@ export class PersonajeArmaItem {
 
     if (this.ID === null) {
       console.log("Creando personaje-arma");
-      console.log(item);
       await this.Lista.List.items.add(item);
       console.log("Personaje-arma creada");
       return true;

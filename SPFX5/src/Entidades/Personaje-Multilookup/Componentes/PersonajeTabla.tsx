@@ -27,7 +27,6 @@ export default function PersonajeWebpart(
 
   useEffect((): void => {
     setCargando(false);
-    console.log("AAAAAAAAAAAAAAAAAAAA");
   }, []);
 
 

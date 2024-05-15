@@ -43,8 +43,6 @@ export class CampañaItem {
       needUpdate = true;
     }
     if (this.ItemEdit.Fecha !== this.Fecha) {
-      console.log(this.ItemEdit.Fecha);
-
       item.Campanha_Fecha = this.ItemEdit.Fecha;
       needUpdate = true;
     }
@@ -61,7 +59,6 @@ export class CampañaItem {
     }
     if (this.ID === null) {
       console.log("Creando Campaña");
-      console.log(item);
       await this.Lista.List.items.add(item);
       console.log("Campaña creada");
       return true;

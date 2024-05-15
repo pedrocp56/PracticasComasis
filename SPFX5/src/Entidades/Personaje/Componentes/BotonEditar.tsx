@@ -18,7 +18,7 @@ export default function PersonajeBotonEditar(
 ): JSX.Element {
   const [isModalOpen, setIsModalOpen] = useState(false);
   //const [itemEdit, setItemEdit] = useState(props.item);
-  
+
   const showModal = (): void => {
     setIsModalOpen(true);
   };
@@ -26,11 +26,11 @@ export default function PersonajeBotonEditar(
   const cerrar = (): void => {
     setIsModalOpen(false);
   };
-/*
-  useEffect((): void => {
-    setItemEdit(props.item);
-  }, [props.item]);
-*/
+  /*
+    useEffect((): void => {
+      setItemEdit(props.item);
+    }, [props.item]);
+  */
   return (
     <>
       <IconButton
@@ -39,12 +39,14 @@ export default function PersonajeBotonEditar(
         style={buttonStyle}
         title="Editar"
       />
-      <PersonajeFormProps
-        item={props.item}
-        callback={props.callback}
-        isVisible={isModalOpen}
-        cerrar={cerrar}
-      />
+      {isModalOpen &&
+        <PersonajeFormProps
+          item={props.item}
+          callback={props.callback}
+          isVisible={isModalOpen}
+          cerrar={cerrar}
+        />
+      }
     </>
   );
 }

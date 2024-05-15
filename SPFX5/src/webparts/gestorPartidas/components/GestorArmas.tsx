@@ -26,7 +26,6 @@ export default function GestorArmasCompWebpart(
       console.log("Recargando datos");
       setItems(i);
     });
-    console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
   }
 
   useEffect((): void => {

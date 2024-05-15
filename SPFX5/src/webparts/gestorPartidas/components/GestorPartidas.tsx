@@ -25,7 +25,6 @@ export default function GestorPartidasCompWebpart(
       console.log(i);
       setItems(i);
     });
-    console.log(Items);
   }
 
   useEffect((): void => {

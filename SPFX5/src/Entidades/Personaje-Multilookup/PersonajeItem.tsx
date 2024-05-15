@@ -79,10 +79,6 @@ export class PersonajeItem {
     this.Competencia = this.ListItem.Bono_Competencia;
 
     this.Campaña = this.ListItem.LookupCampanha;
-    //console.log(this.Campaña);
-    //console.log(this.Campaña?.Title);
-    //console.log(this.ListItem.LookupArma);
-    //console.log(this.ListItem.LookupArma[0]?.Title);  Me odio mucho a mi mismo
     if (this.ListItem.LookupArma) {
       this.ListaArmas = this.ListItem.LookupArma;
     } else {
@@ -160,7 +156,6 @@ export class PersonajeItem {
       this.ItemEdit.ListaArmas.some((arm1, index) => arm1.ID !== this.ListaArmas[index].ID)) {
       if (this.ItemEdit.ListaArmas === undefined) {
         this.ItemEdit.ListaArmas = [];
-        console.log("CCCCCCCCCCCCCCCCCCCCC");
       }
       item.LookupArmaId = this.ItemEdit.ListaArmas.map(arm => arm.ID.toString());
       needUpdate = true;
@@ -180,7 +175,6 @@ export class PersonajeItem {
 
     if (this.ID === null) {
       console.log("Creando personaje");
-      console.log(item);
       await this.Lista.List.items.add(item);
       console.log("Personaje creada");
       return true;

@@ -1,7 +1,7 @@
 import { IconButton } from "@fluentui/react";
 import { Modal } from "antd";
 import * as React from "react";
-import { UsarImagen } from "../../Generales/UsarImagen";
+import { UsarImagenArma } from "../../Generales/UsarImagen";
 import { ArmaItem } from "../ArmaItem";
 
 export interface infoParaTablaProps {
@@ -50,20 +50,22 @@ const ArmaBotonInfo: React.FC<{ titulo: string, info: ArmaItem }> = ({ titulo, i
                 iconProps={{ iconName: "ComplianceAudit" }}>
                 {titulo}
             </IconButton>
-            <Modal title={titulo} open={isModalOpen}
-                onOk={handleOk} onCancel={handleCancel}>
-                <p>ID: {info.ID}</p>
-                <p>Nombre: {info.Nombre}</p>
-                <p>Ataque: {info.Ataque}</p>
-                <p>Daño: {info.Danho}</p>
-                <p>Tipo de daño: {info.Tipo?.join(", ")}</p>
-                <p>Arma arrojadiza: {txt}</p>
-                <p>Caracteristica de ataque: {info.Car}</p>
-                <p>Caracteristicas:</p>
-                <p style={{ whiteSpace: "pre-line" }}>  {car}</p>
-                <p>URL de la foto:</p>
-                <UsarImagen imageUrl={info.Foto}/>
-            </Modal>
+            {isModalOpen &&
+                <Modal title={titulo} open={isModalOpen}
+                    onOk={handleOk} onCancel={handleCancel}>
+                    <p>ID: {info.ID}</p>
+                    <p>Nombre: {info.Nombre}</p>
+                    <p>Ataque: {info.Ataque}</p>
+                    <p>Daño: {info.Danho}</p>
+                    <p>Tipo de daño: {info.Tipo?.join(", ")}</p>
+                    <p>Arma arrojadiza: {txt}</p>
+                    <p>Caracteristica de ataque: {info.Car}</p>
+                    <p>Caracteristicas:</p>
+                    <p style={{ whiteSpace: "pre-line" }}>  {car}</p>
+                    <p>URL de la foto:</p>
+                    <UsarImagenArma imageUrl={info.Foto} />
+                </Modal>
+            }
         </>
     );
 };

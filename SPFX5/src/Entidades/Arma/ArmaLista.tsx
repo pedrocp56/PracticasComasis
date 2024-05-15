@@ -26,7 +26,7 @@ export class ArmaLista {
   public getNewArma(): ArmaItem {
     const nuevo = new ArmaItem(null, this);
     nuevo.ID = null;
-    nuevo.Ataque = 1;
+    nuevo.Ataque = 0;
     nuevo.Danho = "1d8";
     nuevo.Arrojadiza = false;
     nuevo.Car = "Fuerza";

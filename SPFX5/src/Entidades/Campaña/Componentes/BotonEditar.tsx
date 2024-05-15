@@ -34,12 +34,14 @@ export default function CampañaBotonEditar(
         style={buttonStyle}
         title="Editar"
       />
-      <CampañaFormProps
-        item={props.item}
-        callback={props.callback}
-        isVisible={isModalOpen}
-        cerrar={cerrar}
-      />
+      {isModalOpen &&
+        <CampañaFormProps
+          item={props.item}
+          callback={props.callback}
+          isVisible={isModalOpen}
+          cerrar={cerrar}
+        />
+      }
     </>
   );
 }

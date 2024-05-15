@@ -14,7 +14,7 @@ import ArmaTipo from "./ArmaTipo";
 import ArmaBotonEditar from "./BotonEditar";
 import ArmaBotonEliminar from "./BotonEliminar";
 import ArmaBotonInfo from "./BotonInfo";
-import { UsarImagen } from "../../Generales/UsarImagen";
+import { UsarImagenArma } from "../../Generales/UsarImagen";
 
 export interface IArmaWebpartProps {
   Items: ArmaItem[];
@@ -26,7 +26,6 @@ export default function ArmaWebpart(Props: IArmaWebpartProps): JSX.Element {
   const [cargando, setCargando] = React.useState(true);
 
   useEffect((): void => {
-    console.log(Props.Items);
     setCargando(false);
   }, []);
 
@@ -127,7 +126,7 @@ export default function ArmaWebpart(Props: IArmaWebpartProps): JSX.Element {
       align: "center",
       render: (imageUrl: any) => (
         <div>
-          <UsarImagen imageUrl={imageUrl} />
+          <UsarImagenArma imageUrl={imageUrl} />
         </div>
       ),
     },

@@ -27,6 +27,7 @@ export default function ArmaNuevoBoton(
   }, [itemEdit]);
 
   const cerrar = (): void => {
+    setItemEdit(null);
     setIsModalOpen(false);
   };
 

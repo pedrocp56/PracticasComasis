@@ -39,7 +39,6 @@ export class ArmaFotoItem {
 
     if (this.ID === null) {
       console.log("Creando ArmaFoto");
-      console.log(item);
       await this.Lista.List.items.add(item);
       console.log("Foto creada");
       return true;

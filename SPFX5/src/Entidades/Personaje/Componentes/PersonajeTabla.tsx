@@ -25,12 +25,11 @@ export default function PersonajeWebpart(
   //para que solo muestre cuando es false no es necesario aqui
   const [cargando, setCargando] = React.useState(false);
 
-  console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
   
   useEffect((): void => {
     setCargando(false);
-    console.log("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB");
-
+    console.log(Props.Items);
+    
   }, []);
 
 

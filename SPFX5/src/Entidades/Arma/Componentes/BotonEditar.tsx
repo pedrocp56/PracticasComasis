@@ -35,12 +35,13 @@ export default function ArmaBotonEditar(
         style={buttonStyle}
         title="Editar"
       />
+      {isModalOpen &&
       <ArmaFormProps
         item={props.item}
         callback={props.callback}
         isVisible={isModalOpen}
         cerrar={cerrar}
-      />
+      />}
     </>
   );
 }
