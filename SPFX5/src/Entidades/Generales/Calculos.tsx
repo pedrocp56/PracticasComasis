@@ -8,17 +8,15 @@ export function calcularBono(caracteristica: number): number {
 }
 
 export const CalcularAtaque: React.FC<{ item: PersonajeArmaItem }> = ({ item }) => {
-console.log(item);
-
     if(item.Arma === null ||item.Personaje===null){
         return <></>
     }
     let ataque = item.Arma?.Arma_Ataque;
-    let text = "Ataque del arma:\t\t" + item.Arma?.Arma_Ataque;
+    let text = "Ataque del arma:\t  \t" + item.Arma?.Arma_Ataque;
     if (item.Competencia) {
         const Bcomp = item.Personaje?.BCompetencia;
         ataque += Bcomp;
-        text = text + "\nBono de competencia:\t" + Bcomp;
+        text = text + "\nBono de competencia:  \t" + Bcomp;
     }
     let car = 0;
     const txtcar = item.Arma.Arma_Car
@@ -47,6 +45,8 @@ console.log(item);
     }
     ataque += car;
     text = text + "\nBono de " + txtcar + ":\t\t" + car;
+    ataque += item.Bonificacion;
+    text = text + "\nBonificación:\t\t\t" + item.Bonificacion;
     text = text + "\nTotal:    \t\t\t\t" + ataque;
     return (
         <div title={text}>{ataque}</div>

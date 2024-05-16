@@ -57,9 +57,6 @@ export class PersonajeArmaItem {
       BCarisma: calcularBono(this.ListItem.LookupPersonaje.Caracteristica_Carisma),
       BCompetencia: this.ListItem.LookupPersonaje.Bono_Competencia,
     } : null;
-    console.log("BBBBBBBBBBBBBBBBBBBBB");
-    console.log(this.ListItem.LookupArma);
-    console.log(this.Arma);  
     
     this.Arma = this.ListItem.LookupArma !== null && this.ListItem.LookupArma !== undefined ? {
       ID: this.ListItem.LookupArma.ID,

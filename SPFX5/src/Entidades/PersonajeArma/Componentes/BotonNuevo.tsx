@@ -6,10 +6,12 @@ import { PrimaryButton, StackItem } from "@fluentui/react";
 import { PersonajeArmaItem } from "../PersonajeArmaItem";
 import { PersonajeArmaLista } from "../PersonajeArmaLista";
 import PersonajeArmaFormProps from "./UsoGeneral/PersonajeArmaForm";
+import { PersonajeItem } from "../../Personaje/PersonajeItem";
 
 export interface IPersonajeArmaNuevoBotonProps {
   lista: PersonajeArmaLista;
   callback: (result: boolean) => Promise<void>;
+  personaje?: PersonajeItem
 }
 
 export default function PersonajeArmaNuevoBoton(
@@ -38,7 +40,12 @@ export default function PersonajeArmaNuevoBoton(
         title={"Nuevo arma"}
         iconProps={{ iconName: "Add" }}
         onClick={() => {
-          const nuevoparaForm = Props.lista.getNewPersonajeArma();
+          let nuevoparaForm;
+          if (Props.personaje) {
+            nuevoparaForm = Props.lista.getNewPersonajeArma(Props.personaje);
+          } else {
+            nuevoparaForm = Props.lista.getNewPersonajeArma();
+          }
           setItemEdit(nuevoparaForm);
         }}
         style={{ backgroundColor: "#1b4586", color: "#FFFFFF" }}
@@ -49,6 +56,7 @@ export default function PersonajeArmaNuevoBoton(
           callback={Props.callback}
           isVisible={isModalOpen}
           cerrar={cerrar}
+          personaje={Props.personaje}
         />
       )}
     </StackItem>

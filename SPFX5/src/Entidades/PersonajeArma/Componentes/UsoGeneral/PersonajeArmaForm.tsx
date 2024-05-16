@@ -14,6 +14,7 @@ interface IPersonajeArmaFormProps {
   callback: (result: boolean) => Promise<void>;
   isVisible: boolean;
   cerrar: () => void;
+  personaje?: PersonajeItem;
 }
 
 export default function PersonajeArmaFormProps(
@@ -35,7 +36,7 @@ export default function PersonajeArmaFormProps(
       //Competencia no hace falta es un boolean
       if (
         itemEdit?.Personaje === null ||
-        itemEdit?.Personaje === undefined 
+        itemEdit?.Personaje === undefined
       ) {
         setErrorMessage("Personaje no válido");
         setValido(false);
@@ -43,7 +44,7 @@ export default function PersonajeArmaFormProps(
       }
       if (
         itemEdit?.Arma === null ||
-        itemEdit?.Arma === undefined 
+        itemEdit?.Arma === undefined
       ) {
         setErrorMessage("Arma no válido");
         setValido(false);
@@ -123,9 +124,10 @@ export default function PersonajeArmaFormProps(
           <p>{errorMessage}</p>
 
           <Dropdown
+            disabled={props.personaje ? true : false}
             label="Personaje"
             placeholder="Seleccione un Personaje"
-            defaultSelectedKey={itemEdit?.Personaje?.ID || null}
+            defaultSelectedKey={props.personaje?.ID || itemEdit?.Personaje?.ID || null}
             options={personajes.map(P => {
               return {
                 key: P.ID,
@@ -169,7 +171,7 @@ export default function PersonajeArmaFormProps(
                 Bonificacion: newValue ? parseInt(newValue) : undefined,
               } as PersonajeArmaItem)
             }
-            value={itemEdit.Bonificacion !== null&&itemEdit.Bonificacion !== undefined ? itemEdit.Bonificacion.toString() : ""}
+            value={itemEdit.Bonificacion !== null && itemEdit.Bonificacion !== undefined ? itemEdit.Bonificacion.toString() : ""}
           />
         </Stack>
       </Modal>

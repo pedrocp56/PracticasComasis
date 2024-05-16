@@ -1,17 +1,17 @@
-import * as React from "react";
-import { Modal } from "antd";
+/* eslint-disable  @typescript-eslint/no-extra-semi, @typescript-eslint/no-floating-promises*/
 import { IconButton } from "@fluentui/react";
+import { Modal } from "antd";
+import * as React from "react";
 import { PersonajeItem } from "../PersonajeItem";
-//import UsarImagen from "../../Generales/UsarImagen";
+import PersonajeArmasTabla from "./TablaPersonajeArmas";
 
 export interface infoParaTablaProps {
-  info: PersonajeItem;
+  personaje: PersonajeItem;
+  callback: () => Promise<void>;
 }
 
-const PersonajeBotonArmas: React.FC<{
-  titulo: string;
-  info: PersonajeItem;
-}> = ({ titulo, info }) => {
+export default function PersonajeBotonArmas(Props: infoParaTablaProps): JSX.Element {
+
   const [isModalOpen, setIsModalOpen] = React.useState(false);
 
   const showModal = (): void => {
@@ -30,29 +30,28 @@ const PersonajeBotonArmas: React.FC<{
     backgroundColor: "#E4ADF3",
     color: "#1B4C25",
   };
-  //Añadir armas del personaje
-
   return (
     <>
       <IconButton
         onClick={showModal}
         style={buttonStyle}
         iconProps={{ iconName: "Script" }}
-        title="armas"
-      >
-        {titulo}
-      </IconButton>
-      <Modal
-        title={titulo}
-        open={isModalOpen}
-        onOk={handleOk}
-        onCancel={handleCancel}
-      >
-        <p>Armas</p>
-        
-      </Modal>
+        title="Armas"
+      />
+      {isModalOpen &&
+        < Modal
+          title={"Armas"}
+          open={isModalOpen}
+          onOk={handleOk}
+          onCancel={handleCancel}
+          cancelButtonProps={{ hidden: true }}
+          width={550}
+          closable={false}
+        >
+          <PersonajeArmasTabla personaje={Props.personaje} callback={Props.callback} />
+        </Modal >
+      }
     </>
   );
 };
-
-export default PersonajeBotonArmas;
+/* eslint-enable */

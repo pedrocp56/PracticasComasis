@@ -3,6 +3,11 @@ import { isValidUrl } from "../Generales/Validaciones";
 import { CampañaLista } from "./CampañaLista";
 import { IItem } from "@pnp/sp/items";
 
+export interface ComasisUser {
+  Title: string;
+  ID: number;
+  EMail: string;
+}
 export class CampañaItem {
   public ListItem: any;
   public Lista: CampañaLista;
@@ -13,6 +18,7 @@ export class CampañaItem {
   public Descripcion: string;
   public Fecha: Date;
   public Foto: any;
+  public Master: ComasisUser;
 
   constructor(ListItem: IItem, Lista: CampañaLista) {
     this.ListItem = ListItem;
@@ -28,6 +34,8 @@ export class CampañaItem {
     this.Descripcion = this.ListItem.Campanha_Descripcion;
     this.Fecha = this.ListItem.Campanha_Fecha ? new Date(this.ListItem.Campanha_Fecha) : null;
     this.Foto = this.ListItem.Campanha_Foto;
+    this.Master = this.ListItem.Author;
+
   }
 
   public async updateItem(): Promise<boolean> {
@@ -57,6 +65,11 @@ export class CampañaItem {
         console.log("La URL de la imagen no es válida");
       }
     }
+    if (this.ItemEdit.Master?.ID !== this.Master?.ID || this.ID === null) {
+      item.AuthorId = this.ItemEdit.Master?.ID;
+      needUpdate = true;
+    }
+
     if (this.ID === null) {
       console.log("Creando Campaña");
       await this.Lista.List.items.add(item);

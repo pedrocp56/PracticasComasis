@@ -64,5 +64,23 @@ export class PersonajeLista {
 
     return await Items;
   }
+
+  public async CargarTodosUsuario(usuarioID:number,BatchedWeb?: IWeb): Promise<PersonajeItem[]> {
+    const Items = this.List.items
+      .expand(this.ExpandAllFields.join())
+      .orderBy("Title")
+      .filter(`Personaje_Usuario/ID eq ${usuarioID}`)
+      .select(this.SelectAllFields.join())()
+      .then((Data: any) => {
+        return Data.map((I: IItem) => {
+          return new PersonajeItem(I, this);
+        });
+      })
+      .catch(async (E: Error) => {
+        console.error(E);
+      });
+
+    return await Items;
+  }
 }
 /* eslint-enable */

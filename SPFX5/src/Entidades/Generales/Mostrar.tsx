@@ -3,8 +3,8 @@ import * as React from "react";
 import { Modal } from "antd";
 import { ActionButton } from "@fluentui/react";
 
-export const MostrarTitulo: React.FC<{ item: any, texto: string }> = ({ item, texto }) => {    
-    if (!item) {
+export const MostrarTitulo: React.FC<{ item: any, texto: string }> = ({ item, texto }) => {
+    if (!item || !item.Title) {
         return <div>Sin {texto} asociad@</div>;
     }
     return (
@@ -47,10 +47,38 @@ export const MostrarBoolean: React.FC<{ bool: boolean }> = ({ bool }) => {
     );
 }
 
-export const MostrarMultiline: React.FC<{titulo:string, text: string }> = ({ titulo,text }) => {
+export const MostrarMultiline: React.FC<{ titulo: string, text: string }> = ({ titulo, text }) => {
     const info = (): void => {
         Modal.info({
             title: titulo,
+            content: (
+                <div>
+                    <div style={{ whiteSpace: "pre-line", margin: "20px" }}>{text}</div>
+                </div>
+            ),
+        });
+    };
+
+    if (text === null) {
+        return (
+            <>
+                <p>Sin información</p>
+            </>
+        );
+    }
+    return (
+        <>
+            <ActionButton type="primary"
+                onClick={info}
+                iconProps={{ iconName: "ComplianceAudit" }} />
+        </>
+    );
+}
+
+export const MostraPerfil: React.FC<{ text: string }> = ({ text }) => {
+    const info = (): void => {
+        Modal.info({
+            title: "Usuario",
             content: (
                 <div>
                     <div style={{ whiteSpace: "pre-line", margin: "20px" }}>{text}</div>

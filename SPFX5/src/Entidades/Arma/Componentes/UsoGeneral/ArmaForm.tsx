@@ -93,21 +93,6 @@ export default function ArmaFormProps(
         setValido(check);
     }, [itemEdit]);
 
-    /*
-        const [fotos, setFotos] = useState<ArmaFotoItem[]>([]);
-        const FotosL = useRef<ArmaFotoLista>(null);
-    
-        const consultaInicial = async (): Promise<void> => {
-            FotosL.current = new ArmaFotoLista(props.item.Lista.web, props.item.Lista.Context);
-            const consultaFotos = await FotosL.current.CargarTodos();
-            await setFotos(consultaFotos);
-        }
-    
-        useEffect(() => {
-            consultaInicial();
-        }, []);
-    */
-
     useEffect((): void => {
         setOpcionesTipo([
             { key: "Contundente", text: "Contundente" },

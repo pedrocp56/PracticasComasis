@@ -112,7 +112,7 @@ export default function PersonajeWebpart(
       dataIndex: "Armas",
       align: "center",
       render: (text: string, record: PersonajeItem) => (
-        <PersonajeBotonArmas titulo="Armas" info={record} />
+        <PersonajeBotonArmas personaje={record} callback={Props.callback} />
       ),
     },
     {

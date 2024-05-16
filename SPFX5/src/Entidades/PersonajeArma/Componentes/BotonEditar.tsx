@@ -1,6 +1,7 @@
-import * as React from "react";
 import { IconButton } from "@fluentui/react";
+import * as React from "react";
 import { useState } from "react";
+import { PersonajeItem } from "../../Personaje/PersonajeItem";
 import { PersonajeArmaItem } from "../PersonajeArmaItem";
 import PersonajeArmaFormProps from "./UsoGeneral/PersonajeArmaForm";
 
@@ -12,9 +13,10 @@ const buttonStyle = {
 export interface IPersonajeArmaBotonEditarProps {
   item: PersonajeArmaItem;
   callback: () => Promise<void>;
+  personaje?: PersonajeItem;
 }
 export default function PersonajeArmaBotonEditar(
-  props: IPersonajeArmaBotonEditarProps
+  Props: IPersonajeArmaBotonEditarProps
 ): JSX.Element {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -36,10 +38,11 @@ export default function PersonajeArmaBotonEditar(
       />
       {isModalOpen &&
         <PersonajeArmaFormProps
-          item={props.item}
-          callback={props.callback}
+          item={Props.item}
+          callback={Props.callback}
           isVisible={isModalOpen}
           cerrar={cerrar}
+          personaje={Props.personaje}
         />
       }
     </>

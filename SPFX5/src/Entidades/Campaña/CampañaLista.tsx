@@ -6,7 +6,12 @@ import { CampañaItem } from "./CampañaItem";
 
 export class CampañaLista {
   public NombreLista = "Campanhas";
-  public SelectAllFields: string[] = ["*"];
+  public SelectAllFields: string[] = [
+    "*",
+    "Author/Title", 
+    "Author/ID", 
+    "Author/EMail",
+  ];
   public ExpandAllFields: string[] = [];
   public web: IWeb;
   public Context: WebPartContext;
@@ -22,7 +27,6 @@ export class CampañaLista {
     const nuevo = new CampañaItem(null, this);
     nuevo.ID = null;
     nuevo.Fecha = null;
-    //nuevo.Usuario =;
     return nuevo;
   }
 
@@ -30,6 +34,24 @@ export class CampañaLista {
     const Items = this.List.items
       .expand(this.ExpandAllFields.join())
       .orderBy("Title")
+      .select(this.SelectAllFields.join())()
+      .then((Data: any) => {
+        return Data.map((I: IItem) => {
+          return new CampañaItem(I, this);
+        });
+      })
+      .catch(async (E: Error) => {
+        console.error(E);
+      });
+
+    return await Items;
+  }
+
+  public async CargarTodosMaster(masterID: number, BatchedWeb?: IWeb): Promise<CampañaItem[]> {
+    const Items = this.List.items
+      .expand(this.ExpandAllFields.join())
+      .orderBy("Title")
+      .filter(`Author/ID eq ${masterID}`)
       .select(this.SelectAllFields.join())()
       .then((Data: any) => {
         return Data.map((I: IItem) => {

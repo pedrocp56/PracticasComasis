@@ -5,6 +5,7 @@ import { IItem, IWeb } from "@pnp/sp/presets/all";
 import { PersonajeArmaItem } from "./PersonajeArmaItem";
 import "@pnp/sp/presets/all";
 import "@pnp/sp/lists";
+import { PersonajeItem } from "../Personaje/PersonajeItem";
 
 export class PersonajeArmaLista {
   public NombreLista = "PersonajeArmas";
@@ -24,7 +25,7 @@ export class PersonajeArmaLista {
     "LookupArma/Arma_Ataque",
     "LookupArma/Arma_Danho",
     "LookupArma/Arma_Car",
-    
+
   ];
   /*
   Se puede leer toda la lista de armas y con el id cagar todo el ArmaItem
@@ -44,12 +45,22 @@ export class PersonajeArmaLista {
     this.List = this.web.lists.getByTitle(this.NombreLista);
   }
 
-  public getNewPersonajeArma(): PersonajeArmaItem {
+  public getNewPersonajeArma(personaje?: PersonajeItem): PersonajeArmaItem {
     const nuevo = new PersonajeArmaItem(null, this);
     nuevo.ID = null;
+    nuevo.Personaje = personaje !== null && personaje !== undefined ? {
+      ID: personaje.ID,
+      Title: personaje.Nombre,
+      BFuerza: personaje.Bono_Fuerza,
+      BDestreza: personaje.Bono_Destreza,
+      BConstitucion: personaje.Bono_Constitucion,
+      BInteligencia: personaje.Bono_Inteligencia,
+      BSabiduria: personaje.Bono_Sabiduria,
+      BCarisma: personaje.Bono_Carisma,
+      BCompetencia: personaje.Competencia,
+    } : null;
     nuevo.Competencia = false;
     nuevo.Bonificacion = 0;
-    console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
     return nuevo;
   }
 

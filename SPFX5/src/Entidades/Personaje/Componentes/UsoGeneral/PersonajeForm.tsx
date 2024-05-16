@@ -191,7 +191,6 @@ export default function PersonajeFormProps(
 
           <PeoplePicker
             context={props.item.Lista.Context as any}
-            //label="Usuario"
             titleText="Usuario"
             personSelectionLimit={1}
             showtooltip={true}

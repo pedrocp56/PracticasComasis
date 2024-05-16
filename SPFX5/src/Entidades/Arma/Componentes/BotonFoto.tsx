@@ -17,8 +17,6 @@ export default function ArmaBotonFoto(
 
   const showModal = (): void => {
     setIsModalOpen(true);
-    console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-    console.log(props.item.ItemEdit);
   };
 
   const cerrar = async (): Promise<void> => {

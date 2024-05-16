@@ -14,6 +14,8 @@ import GestorCampañasCompWebpart from "./components/GestorCampañas";
 import GestorPersonajeArmaCompWebpart from "./components/GestorPersonajeArma";
 import GestorPersonajesCompWebpart from "./components/GestorPersonajes";
 import GestorArmasCompWebpart from "./components/GestorArmas";
+import GestorUsuarioCompWebpart from "./components/GestorUsuario";
+
 
 export interface IGestorPartidasWebPartProps {
   description: string;
@@ -27,6 +29,7 @@ export default class GestorPartidasWebPart extends BaseClientSideWebPart<IGestor
   readonly ARMAS_PAGE: string = "Armas.aspx";
   readonly PERSONAJES_PAGE: string = "Personajes.aspx";
   readonly PERSONAJES_ARMAS_PAGE: string = "Personajes_Armas.aspx";
+  readonly USUARIO_PAGE: string = "Usuario.aspx";
 
 
 
@@ -44,7 +47,7 @@ export default class GestorPartidasWebPart extends BaseClientSideWebPart<IGestor
         WebPartContext: this.context,
       };
       console.log(pageName);
-      
+
       switch (pageName) {
         case this.ARMAS_PAGE.toLowerCase():
           element = React.createElement(GestorArmasCompWebpart, webpartProps);
@@ -62,8 +65,12 @@ export default class GestorPartidasWebPart extends BaseClientSideWebPart<IGestor
           element = React.createElement(GestorPersonajeArmaCompWebpart, webpartProps);
           console.log("Cargando Personajes-Arma");
           break;
+        case this.USUARIO_PAGE.toLowerCase():
+          element = React.createElement(GestorUsuarioCompWebpart, webpartProps);
+          console.log("Cargando Usuario");
+          break;
         default:
-          element = React.createElement(GestorCampañasCompWebpart, webpartProps);
+          element = React.createElement(GestorUsuarioCompWebpart, webpartProps);
           break;
       }
       ReactDom.render(element, this.domElement);

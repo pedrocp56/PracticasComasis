@@ -1,32 +1,52 @@
-/* eslint-disable @typescript-eslint/no-explicit-any*/
+/* eslint-disable @typescript-eslint/no-explicit-any,  @typescript-eslint/no-extra-semi, @typescript-eslint/no-floating-promises*/
 import { SearchOutlined } from "@ant-design/icons";
 import { Stack } from "@fluentui/react";
 import { Table, TableColumnsType } from "antd";
 import * as React from "react";
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
+import { CalcularAtaque } from "../../Generales/Calculos";
 import FiltroTexto from "../../Generales/FiltroTexto";
 import { MostrarBoolean, MostrarTitulo } from "../../Generales/Mostrar";
-import { PersonajeArmaItem } from "../PersonajeArmaItem";
-import PersonajeArmaBotonEditar from "./BotonEditar";
-import PersonajeArmaBotonEliminar from "./BotonEliminar";
-import { CalcularAtaque } from "../../Generales/Calculos";
+import PersonajeArmaBotonEditar from "../../PersonajeArma/Componentes/BotonEditar";
+import PersonajeArmaBotonEliminar from "../../PersonajeArma/Componentes/BotonEliminar";
+import { PersonajeArmaItem } from "../../PersonajeArma/PersonajeArmaItem";
+import { PersonajeArmaLista } from "../../PersonajeArma/PersonajeArmaLista";
+import { PersonajeItem } from "../PersonajeItem";
+import PersonajeArmaNuevoBoton from "../../PersonajeArma/Componentes/BotonNuevo";
 
-export interface IPersonajeArmaWebpartProps {
-  Items: PersonajeArmaItem[];
+export interface IPersonajeArmasTablaProps {
+  personaje: PersonajeItem;
   callback: () => Promise<void>;
 }
 
-export default function PersonajeArmaWebpart(
-  Props: IPersonajeArmaWebpartProps
+export default function PersonajeArmasTabla(
+  Props: IPersonajeArmasTablaProps
 ): JSX.Element {
-  //para que solo muestre cuando es false no es necesario aqui
   const [cargando, setCargando] = React.useState(true);
 
+
   useEffect((): void => {
-    setCargando(false);    
+    setCargando(false);
   }, []);
 
-  
+  const [Armas, setArmas] = useState<PersonajeArmaItem[]>([]);
+  const ArmasL = useRef<PersonajeArmaLista>(null);
+
+  const consultaInicial = async (): Promise<void> => {
+    ArmasL.current = new PersonajeArmaLista(Props.personaje.Lista.web, Props.personaje.Lista.Context);
+    const consultaArmas = await ArmasL.current.CargarArmasDePersonaje(Props.personaje.ID);
+    await setArmas(consultaArmas);
+  }
+  const recargaDatos = async (): Promise<void> => {
+    const consultaArmas = await ArmasL.current.CargarArmasDePersonaje(Props.personaje.ID);
+    await setArmas(consultaArmas);
+    await Props.callback;
+  };
+  //no recarga si se añade una arma
+
+  useEffect(() => {
+    consultaInicial();
+  }, []);
 
 
   const columns: TableColumnsType<PersonajeArmaItem> = [
@@ -37,35 +57,10 @@ export default function PersonajeArmaWebpart(
       align: "center",
       render: (text: string, record: PersonajeArmaItem) => (
         <Stack horizontal tokens={{ childrenGap: 5 }}>
-          <PersonajeArmaBotonEliminar item={record} callback={Props.callback} />
-          <PersonajeArmaBotonEditar item={record} callback={Props.callback} />
+          <PersonajeArmaBotonEliminar item={record} callback={recargaDatos} />
+          <PersonajeArmaBotonEditar item={record} callback={recargaDatos} personaje={Props.personaje} />
         </Stack>
       ),
-    },
-    {
-      key: "ID",
-      title: "ID",
-      dataIndex: "ID",
-      align: "center",
-      defaultSortOrder: "ascend",
-      sorter: (a: any, b: any) => a.ID - b.ID,
-    },
-    {
-      key: "Personaje",
-      title: "Personaje",
-      dataIndex: "Personaje.NombreP",
-      align: "center",
-      filterDropdown: FiltroTexto,
-      render: (text: string, record: PersonajeArmaItem) => (
-        <MostrarTitulo item={record.Personaje} texto={"personaje"} />
-      ),
-      filterIcon: (filtered: boolean) => (
-        <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />
-      ),
-      onFilter: (value: any, record: PersonajeArmaItem) => {
-        const personajeTitle = record.Personaje?.Title || "Sin personaje asociad@";
-        return personajeTitle.toLowerCase().indexOf((value as string).toLowerCase()) !== -1;
-      }
     },
     {
       key: "Arma",
@@ -117,10 +112,10 @@ export default function PersonajeArmaWebpart(
   };
   return (
     <>
-      {!cargando
-        &&
+      {!cargando &&
         <div>
-          <Table columns={columns} dataSource={Props.Items} style={tableStyle} />
+          <PersonajeArmaNuevoBoton lista={ArmasL.current} callback={recargaDatos} personaje={Props.personaje} />
+          <Table columns={columns} dataSource={Armas} style={tableStyle} />
         </div>
       }
     </>
