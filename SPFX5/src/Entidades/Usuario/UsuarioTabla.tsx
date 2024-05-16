@@ -30,7 +30,7 @@ export default function UsuarioWebpart(
                     <BotonPersonajes />
                 </div>
                 */
-                <Stack verticalFill tokens={{ childrenGap: 25 }}>
+                <Stack horizontalAlign="center" tokens={{ childrenGap: 25 }}>
                     <Persona
                         imageShouldFadeIn={false}
                         imageUrl={`/_layouts/15/userphoto.aspx?size=L&username=${Props.context.pageContext.legacyPageContext.userEmail}`}
