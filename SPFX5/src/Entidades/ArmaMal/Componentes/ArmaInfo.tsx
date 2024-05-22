@@ -18,13 +18,6 @@ const ArmaInfo: React.FC<{ titulo: string, info: ArmaItem }> = ({ titulo, info }
         setIsModalOpen(false);
     };
 
-    const handleCancel = (): void => {
-        setIsModalOpen(false);
-    };
-    const buttonStyle = {
-        backgroundColor: "#E4ADF3",
-        color: "#1B4C25"
-    };
     let txt;
     switch (info.Arrojadiza) {
         case true:
@@ -51,13 +44,14 @@ const ArmaInfo: React.FC<{ titulo: string, info: ArmaItem }> = ({ titulo, info }
     return (
         <>
             <IconButton
+                id="botonMostrar"
                 onClick={showModal}
-                style={buttonStyle}
                 iconProps={{ iconName: "ComplianceAudit" }}>
                 {titulo}
             </IconButton>
             <Modal title={titulo} open={isModalOpen}
-                onOk={handleOk} onCancel={handleCancel}>
+                onOk={handleOk}
+                cancelButtonProps={{ hidden: true }} closable={false}>
                 <p>ID: {info.ID}</p>
                 <p>Nombre: {info.Nombre}</p>
                 <p>Ataque: {info.Ataque}</p>
@@ -67,8 +61,8 @@ const ArmaInfo: React.FC<{ titulo: string, info: ArmaItem }> = ({ titulo, info }
                 <p>Caracteristica de ataque: {info.Car}</p>
                 <p>Caracteristicas:</p>
                 <p style={{ whiteSpace: "pre-line" }}>  {car}</p>
-                <p>URL de la foto:</p>
-                <img src={url} alt="Foto de Arma" style={{ maxWidth: '250px', maxHeight: 'auto' }} />
+                <p>Foto: {<img src={url} alt="Foto de Arma"
+                    style={{ maxWidth: '250px', maxHeight: 'auto' }} />}</p>
             </Modal>
         </>
     );

@@ -35,6 +35,7 @@ export default function CampañaNuevoBoton(
   return (
     <StackItem>
       <PrimaryButton
+      id="botonNuevo"
         text={"Nuevo Campaña"}
         title={"Nuevo Campaña"}
         iconProps={{ iconName: "Add" }}
@@ -42,7 +43,6 @@ export default function CampañaNuevoBoton(
           const nuevoparaForm = Props.lista.getNewCampaña();
           setItemEdit(nuevoparaForm);
         }}
-        style={{ backgroundColor: "#1b4586", color: "#FFFFFF" }}
       />
       {itemEdit && (
         <CampañaFormProps

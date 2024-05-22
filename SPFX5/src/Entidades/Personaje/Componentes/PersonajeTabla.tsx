@@ -14,38 +14,28 @@ import PersonajeBotonEditar from "./BotonEditar";
 import { MostrarTitulo } from "../../Generales/Mostrar";
 import { UsarImagen } from "../../Generales/UsarImagen";
 
-export interface IPersonajeWebpartProps {
+export interface IPersonajeTablaProps {
   Items: PersonajeItem[];
-  callback: () => Promise<void>;
+  callback?: () => Promise<void>;
 }
 
-export default function PersonajeWebpart(
-  Props: IPersonajeWebpartProps
+export default function PersonajeTabla(
+  Props: IPersonajeTablaProps
 ): JSX.Element {
-  //para que solo muestre cuando es false no es necesario aqui
   const [cargando, setCargando] = React.useState(false);
 
-  
-  useEffect((): void => {
-    setCargando(false);
-    console.log(Props.Items);
-    
-  }, []);
-
-
   const columns: TableColumnsType<PersonajeItem> = [
-    {
+    ...(Props.callback ? [{
       key: "#",
       title: "#",
       dataIndex: "#",
-      align: "center",
-      render: (text: string, record: PersonajeItem) => (
+      render: (_text: string, record: PersonajeItem) => (
         <Stack horizontal tokens={{ childrenGap: 5 }}>
           <PersonajeBotonEliminar item={record} callback={Props.callback} />
           <PersonajeBotonEditar item={record} callback={Props.callback} />
         </Stack>
       ),
-    },
+    }] : []),
     {
       key: "ID",
       title: "ID",
@@ -85,7 +75,7 @@ export default function PersonajeWebpart(
       title: "Características",
       dataIndex: "Características",
       align: "center",
-      render: (text: string, record: PersonajeItem) => (
+      render: (_text: string, record: PersonajeItem) => (
         <PersonajeBotonCar titulo="Características" info={record} />
       ),
     },
@@ -95,7 +85,7 @@ export default function PersonajeWebpart(
       dataIndex: "Campaña",
       align: "center",
       filterDropdown: FiltroTexto,
-      render: (text: string, record: PersonajeItem) => (
+      render: (_text: string, record: PersonajeItem) => (
         <MostrarTitulo item={record.Campaña} texto="campaña" />
       ),
       filterIcon: (filtered: boolean) => (
@@ -111,8 +101,8 @@ export default function PersonajeWebpart(
       title: "Armas",
       dataIndex: "Armas",
       align: "center",
-      render: (text: string, record: PersonajeItem) => (
-        <PersonajeBotonArmas personaje={record} callback={Props.callback} />
+      render: (_text: string, record: PersonajeItem) => (
+        <PersonajeBotonArmas personaje={record} callback={Props?.callback} />
       ),
     },
     {
@@ -127,10 +117,17 @@ export default function PersonajeWebpart(
       ),
     },
   ];
+
+
   const tableStyle = {
     margin: "auto",
     width: "fit-content",
   };
+
+  useEffect((): void => {
+    setCargando(false);
+  }, []);
+
   return (
     <>
       {!cargando
@@ -138,7 +135,7 @@ export default function PersonajeWebpart(
         <div>
           <Table columns={columns} dataSource={Props.Items} style={tableStyle} />
         </div>
-        }
+      }
     </>
   );
 }

@@ -24,15 +24,11 @@ export default function PersonajeBotonCar(props: infoParaTablaProps): JSX.Elemen
     setIsModalOpen(false);
   };
 
-  const buttonStyle = {
-    backgroundColor: "#E4ADF3",
-    color: "#1B4C25",
-  };
   return (
     <>
       <IconButton
+        id="botonMostrar"
         onClick={showModal}
-        style={buttonStyle}
         iconProps={{ iconName: "Script" }}
         title="Más información"
       >

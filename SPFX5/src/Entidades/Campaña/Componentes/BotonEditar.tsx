@@ -4,10 +4,6 @@ import { useState } from "react";
 import { CampañaItem } from "../CampañaItem";
 import CampañaFormProps from "./UsoGeneral/CampañaForm";
 
-const buttonStyle = {
-  backgroundColor: "#E4ADF3",
-  color: "#161677",
-};
 
 export interface IPCampañaBotonEditarProps {
   item: CampañaItem;
@@ -29,9 +25,9 @@ export default function CampañaBotonEditar(
   return (
     <>
       <IconButton
+        id="botonEditar"
         onClick={showModal}
         iconProps={{ iconName: "Edit" }}
-        style={buttonStyle}
         title="Editar"
       />
       {isModalOpen &&

@@ -26,19 +26,14 @@ const PersonajeBotonArmas: React.FC<{
     setIsModalOpen(false);
   };
 
-  const buttonStyle = {
-    backgroundColor: "#E4ADF3",
-    color: "#1B4C25",
-  };
-
   if (info.ListaArmas.length === 0) {
     return <>Sin armas</>;
   }
   return (
     <>
       <IconButton
+      id="botonMostrar"
         onClick={showModal}
-        style={buttonStyle}
         iconProps={{ iconName: "Script" }}
         title={`${info.ListaArmas.length} armas`}
       >

@@ -36,6 +36,7 @@ export default function PersonajeArmaNuevoIDBoton(
     return (
         <StackItem>
             <PrimaryButton
+                id="botonNuevo"
                 text={"Nueva arma para el personaje"}
                 title={"Nuevo arma"}
                 iconProps={{ iconName: "Add" }}
@@ -43,7 +44,6 @@ export default function PersonajeArmaNuevoIDBoton(
                     const nuevoparaForm = Props.lista.getNewPersonajeArma(Props.item);
                     setItemEdit(nuevoparaForm);
                 }}
-                style={{ backgroundColor: "#1b4586", color: "#FFFFFF" }}
             />
             {itemEdit && (
                 <PersonajeArmaFormProps

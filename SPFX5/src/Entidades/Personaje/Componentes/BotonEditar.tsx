@@ -4,11 +4,6 @@ import { useState } from "react";
 import { PersonajeItem } from "../PersonajeItem";
 import PersonajeFormProps from "./UsoGeneral/PersonajeForm";
 
-const buttonStyle = {
-  backgroundColor: "#E4ADF3",
-  color: "#161677",
-};
-
 export interface IPersonajeBotonEditarProps {
   item: PersonajeItem;
   callback: () => Promise<void>;
@@ -34,9 +29,9 @@ export default function PersonajeBotonEditar(
   return (
     <>
       <IconButton
+      id="botonEditar"
         onClick={showModal}
         iconProps={{ iconName: "Edit" }}
-        style={buttonStyle}
         title="Editar"
       />
       {isModalOpen &&

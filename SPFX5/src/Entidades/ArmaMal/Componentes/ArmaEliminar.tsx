@@ -3,10 +3,6 @@ import { IconButton, Dialog, DialogType, DialogFooter, DefaultButton, PrimaryBut
 import { useState } from "react";
 import { ArmaItem } from "../ArmaItem";
 
-const buttonStyle = {
-    backgroundColor: "#E4ADF3",
-    color: "red"
-};
 
 export interface IArmaEliminarBotonProps {
     item: ArmaItem;
@@ -29,9 +25,9 @@ export default function ArmaEliminarBoton(props: IArmaEliminarBotonProps): JSX.E
     return (
         <>
             <IconButton
+            id="botonEliminar"
                 onClick={handleDelete}
                 iconProps={{ iconName: "Delete" }}
-                style={buttonStyle}
             />
             <Dialog
                 hidden={!isDeleteConfirmed}

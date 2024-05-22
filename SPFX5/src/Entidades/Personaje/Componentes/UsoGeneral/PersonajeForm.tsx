@@ -28,7 +28,7 @@ export default function PersonajeFormProps(
   const [errorMessage, setErrorMessage] = useState("");
   const [campañas, setCampañas] = useState<CampañaItem[]>([]);
   const CampañaL = useRef<CampañaLista>(null);
-    
+
   function Validacion(): boolean {
     console.log("Validando....");
     try {
@@ -231,7 +231,7 @@ export default function PersonajeFormProps(
                 Fuerza: newValue ? parseInt(newValue) : undefined,
               } as PersonajeItem)
             }
-            value={itemEdit.Fuerza !== null ? itemEdit.Fuerza.toString() : ""}
+            value={itemEdit.Fuerza !== null ? itemEdit.Fuerza?.toString() : ""}
           />
 
           <TextField
@@ -243,7 +243,7 @@ export default function PersonajeFormProps(
               } as PersonajeItem)
             }
             value={
-              itemEdit.Destreza !== null ? itemEdit.Destreza.toString() : ""
+              itemEdit.Destreza !== null ? itemEdit.Destreza?.toString() : ""
             }
           />
           <TextField
@@ -255,9 +255,7 @@ export default function PersonajeFormProps(
               } as PersonajeItem)
             }
             value={
-              itemEdit.Constitucion !== null
-                ? itemEdit.Constitucion.toString()
-                : ""
+              itemEdit.Constitucion !== null ? itemEdit.Constitucion?.toString() : ""
             }
           />
           <TextField
@@ -269,9 +267,7 @@ export default function PersonajeFormProps(
               } as PersonajeItem)
             }
             value={
-              itemEdit.Inteligencia !== null
-                ? itemEdit.Inteligencia.toString()
-                : ""
+              itemEdit.Inteligencia !== null ? itemEdit.Inteligencia?.toString() : ""
             }
           />
           <TextField
@@ -283,7 +279,7 @@ export default function PersonajeFormProps(
               } as PersonajeItem)
             }
             value={
-              itemEdit.Sabiduria !== null ? itemEdit.Sabiduria.toString() : ""
+              itemEdit.Sabiduria !== null ? itemEdit.Sabiduria?.toString() : ""
             }
           />
           <TextField
@@ -294,7 +290,7 @@ export default function PersonajeFormProps(
                 Carisma: newValue ? parseInt(newValue) : undefined,
               } as PersonajeItem)
             }
-            value={itemEdit.Carisma !== null ? itemEdit.Carisma.toString() : ""}
+            value={itemEdit.Carisma !== null ? itemEdit.Carisma?.toString() : ""}
           />
           <TextField
             label="Bono de competencia"
@@ -305,9 +301,7 @@ export default function PersonajeFormProps(
               } as PersonajeItem)
             }
             value={
-              itemEdit && itemEdit.Competencia !== null
-                ? itemEdit.Competencia.toString()
-                : ""
+              itemEdit && itemEdit.Competencia !== null ? itemEdit.Competencia?.toString() : ""
             }
           />
           <Dropdown

@@ -1,48 +1,57 @@
-/* eslint-disable @typescript-eslint/no-explicit-any*/
+/* eslint-disable @typescript-eslint/no-floating-promises,@typescript-eslint/no-explicit-any, @typescript-eslint/explicit-function-return-type*/
 
-import * as React from "react";
-import { useEffect } from "react";
-import { Persona, Stack } from "office-ui-fabric-react";
 import { WebPartContext } from "@microsoft/sp-webpart-base";
+import { DefaultButton, Persona, Stack } from "office-ui-fabric-react";
+import * as React from "react";
+import { useState } from "react";
 
-export interface IUsuarioWebpartProps {
+export interface IUsuarioTablaProps {
     context: WebPartContext;
+    MCampaña: () => void;
+    MCPersonaje: () => void;
 }
 
-export default function UsuarioWebpart(
-    Props: IUsuarioWebpartProps
+export default function UsuarioTabla(
+    Props: IUsuarioTablaProps
 ): JSX.Element {
-    //para que solo muestre cuando es false no es necesario aqui
-    const [cargando, setCargando] = React.useState(true);
-    useEffect((): void => {
-        setCargando(false);
-        console.log("AAAAAAAAAAAAAAA");
-        
-    }, []);
+    const [MostrarPersonajes, setMostrarPersonajes] = useState(false);
+    const [MostrarCampañas, setMostrarCampañas] = useState(false);
+
+    const mostrarCampaña = (): void => {
+        setMostrarCampañas(true);
+        setMostrarPersonajes(false);
+        Props.MCampaña();
+    };
+
+    const mostrarPersonaje = (): void => {
+        setMostrarCampañas(false);
+        setMostrarPersonajes(true);
+        Props.MCPersonaje();
+    };
+
     return (
         <>
-            {!cargando
-                &&
-                /*
-                <div>
-                    <MostrarPerfil />
-                    <BotonCampañas />
-                    <BotonPersonajes />
-                </div>
-                */
-                <Stack horizontalAlign="center" tokens={{ childrenGap: 25 }}>
-                    <Persona
-                        imageShouldFadeIn={false}
-                        imageUrl={`/_layouts/15/userphoto.aspx?size=L&username=${Props.context.pageContext.legacyPageContext.userEmail}`}
-                        text={Props.context.pageContext.legacyPageContext.userDisplayName}
+            <Stack horizontalAlign="center" verticalAlign="center" tokens={{ childrenGap: 25 }} styles={{ root: { flexGrow: 1 , } }}>
+                <Persona
+                    imageShouldFadeIn={false}
+                    imageUrl={`/_layouts/15/userphoto.aspx?size=L&username=${Props.context.pageContext.legacyPageContext.userEmail}`}
+                    text={Props.context.pageContext.legacyPageContext.userDisplayName}
+                />
+                <Stack horizontal tokens={{ childrenGap: 5 }}>
+                    <DefaultButton
+                        id={MostrarCampañas ? "botonUserPulsado" : "botonUserSinPulsar"}
+                        onClick={mostrarCampaña}
+                        text="Campaña"
                     />
-                    <Stack horizontal tokens={{ childrenGap: 5 }}>
-                    <div>CAMPAÑAS</div>
-                    <div>PERSONAJES</div>
-                    </Stack>
+                    <DefaultButton
+                        id={MostrarPersonajes ? "botonUserPulsado" : "botonUserSinPulsar"}
+                        onClick={mostrarPersonaje}
+                        text="Personajes"
+                    />
                 </Stack>
-            }
+            </Stack>
         </>
     );
 }
+
 /* eslint-enable */

@@ -35,7 +35,6 @@ export class CampañaItem {
     this.Fecha = this.ListItem.Campanha_Fecha ? new Date(this.ListItem.Campanha_Fecha) : null;
     this.Foto = this.ListItem.Campanha_Foto;
     this.Master = this.ListItem.Author;
-
   }
 
   public async updateItem(): Promise<boolean> {

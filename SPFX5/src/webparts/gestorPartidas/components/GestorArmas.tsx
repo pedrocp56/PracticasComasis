@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-floating-promises*/
 import * as React from 'react';
-import { Spinner } from "@fluentui/react";
 import { WebPartContext } from "@microsoft/sp-webpart-base";
 import { SPFI } from "@pnp/sp";
 import { useEffect, useState } from "react";
@@ -39,9 +38,6 @@ export default function GestorArmasCompWebpart(
 
   return (
     <>
-      <div>
-        <Spinner hidden={!cargando} />
-      </div>
       <div hidden={cargando}>
         <ArmaNuevoBoton lista={ArmaL.current} callback={recargaDatos} />
         <ArmaTabla Items={Items} callback={recargaDatos} />

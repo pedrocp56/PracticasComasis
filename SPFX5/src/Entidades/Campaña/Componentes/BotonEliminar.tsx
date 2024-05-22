@@ -2,11 +2,7 @@ import * as React from "react";
 import { IconButton, Dialog, DialogType, DialogFooter, DefaultButton, PrimaryButton } from "@fluentui/react";
 import { useState } from "react";
 import { CampañaItem } from "../CampañaItem";
-
-const buttonStyle = {
-    backgroundColor: "#E4ADF3",
-    color: "red"
-};
+import '../../Generales/estilos.css';
 
 export interface ICampañaBotonEliminarProps {
     item: CampañaItem;
@@ -29,9 +25,9 @@ export default function CampañaBotonEliminar(props: ICampañaBotonEliminarProps
     return (
         <>
             <IconButton
+                id="botonEliminar"
                 onClick={handleDelete}
                 iconProps={{ iconName: "Delete" }}
-                style={buttonStyle}
                 title="Eliminar"
             />
             <Dialog

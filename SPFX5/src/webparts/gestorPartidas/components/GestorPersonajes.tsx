@@ -1,13 +1,12 @@
 /* eslint-disable @typescript-eslint/no-floating-promises*/
-import * as React from "react";
-import { Spinner } from "@fluentui/react";
 import { WebPartContext } from "@microsoft/sp-webpart-base";
 import { SPFI } from "@pnp/sp";
+import * as React from "react";
 import { useEffect, useState } from "react";
+import PersonajeNuevoBoton from "../../../Entidades/Personaje/Componentes/BotonNuevo";
+import PersonajeTabla from "../../../Entidades/Personaje/Componentes/PersonajeTabla";
 import { PersonajeItem } from "../../../Entidades/Personaje/PersonajeItem";
 import { PersonajeLista } from "../../../Entidades/Personaje/PersonajeLista";
-import PersonajeTabla from "../../../Entidades/Personaje/Componentes/PersonajeTabla";
-import PersonajeNuevoBoton from "../../../Entidades/Personaje/Componentes/BotonNuevo";
 
 export interface IGestorPersonajesCompWebpartProps {
   SP: SPFI;
@@ -32,19 +31,12 @@ export default function GestorPersonajesCompWebpart(
       setItems(i);
     });
 
-    setTimeout(() => {
-      setCargando(false);
-      if (!cargando) {
-        console.log("Cargado");
-      }
-    }, 2000);
+    setCargando(false);
+
   }, []);
 
   return (
     <>
-      <div>
-        <Spinner hidden={!cargando} />
-      </div>
       <div hidden={cargando}>
         <PersonajeNuevoBoton
           lista={PersonajeL.current}

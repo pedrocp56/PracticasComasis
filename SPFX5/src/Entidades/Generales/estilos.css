@@ -1,15 +1,58 @@
-.attack-info {
-    column-count: 2;
-}
 
-#botonguapisimoeditar{
+#botonguapisimoeditar {
     background-color: rgb(114, 170, 151);
-    color:black;
+    color: black;
     border-radius: 4px;
     border: 2px;
 }
 
-#botonguapisimoeditar:hover{
+#botonguapisimoeditar:hover {
     background-color: rgb(37, 71, 60);
-    color:rgb(243, 243, 243);
+    color: rgb(243, 243, 243);
+}
+
+#botonEliminar {
+    background-color: #a32e00;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+#botonEditar {
+    background-color: #3f753a;
+    color: #b9f0b9;
+    font-weight: bold;
+}
+
+#botonNuevo {
+    display: flex;
+    justify-content: left;
+    background-color: #1b4585;
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+#botonMostrar {
+    background-color: #5a85ad;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+#botonUserSinPulsar {
+    background-color: #5a85ad;
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    border-radius: 5px;
+}
+
+#botonUserPulsado {
+    background-color: #1f5180;
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    border-radius: 5px;
 }

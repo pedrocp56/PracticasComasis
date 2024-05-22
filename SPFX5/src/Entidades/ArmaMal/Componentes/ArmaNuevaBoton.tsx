@@ -37,6 +37,7 @@ export default function ArmaNuevaBoton(Props: IArmaNuevaBotonProps): JSX.Element
     return (
         <StackItem>
             <PrimaryButton
+            id="botonMostrar"
                 text={"Nueva Arma"}
                 title={"Nueva Arma"}
                 iconProps={{ iconName: "Add" }}
@@ -45,9 +46,7 @@ export default function ArmaNuevaBoton(Props: IArmaNuevaBotonProps): JSX.Element
                     setNuevaArma(nuevoparaForm);
                     setItemEdit(nuevoparaForm);
                     setIsModalOpen(true);
-                }}
-                style={{ backgroundColor: "#1b4586", color: "#FFFFFF" }}
-            />
+                }}            />
             {nuevaArma &&
                 <ArmaFormProps
                     item={itemEdit}

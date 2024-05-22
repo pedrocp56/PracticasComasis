@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-floating-promises*/
-import { Spinner } from "@fluentui/react";
 import { WebPartContext } from "@microsoft/sp-webpart-base";
 import { SPFI } from "@pnp/sp";
 import * as React from "react";
@@ -32,17 +31,12 @@ export default function GestorPersonajeArmaCompWebpart(
       setItems(i);
     });
 
-    setTimeout(() => {
       setCargando(false);
-      if (!cargando) console.log("Cargado");
-    }, 2000);
+
   }, []);
 
   return (
     <>
-      <div>
-        <Spinner hidden={!cargando} />
-      </div>
       <div hidden={cargando}>
         <PersonajeArmaNuevoBoton
           lista={PersonajeArmaL.current}

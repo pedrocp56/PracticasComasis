@@ -7,7 +7,7 @@ import PersonajeArmasTabla from "./TablaPersonajeArmas";
 
 export interface infoParaTablaProps {
   personaje: PersonajeItem;
-  callback: () => Promise<void>;
+  callback?: () => Promise<void>;
 }
 
 export default function PersonajeBotonArmas(Props: infoParaTablaProps): JSX.Element {
@@ -26,15 +26,11 @@ export default function PersonajeBotonArmas(Props: infoParaTablaProps): JSX.Elem
     setIsModalOpen(false);
   };
 
-  const buttonStyle = {
-    backgroundColor: "#E4ADF3",
-    color: "#1B4C25",
-  };
   return (
     <>
       <IconButton
+        id="botonMostrar"
         onClick={showModal}
-        style={buttonStyle}
         iconProps={{ iconName: "Script" }}
         title="Armas"
       />
@@ -48,7 +44,7 @@ export default function PersonajeBotonArmas(Props: infoParaTablaProps): JSX.Elem
           width={550}
           closable={false}
         >
-          <PersonajeArmasTabla personaje={Props.personaje} callback={Props.callback} />
+          <PersonajeArmasTabla personaje={Props.personaje} callback={Props?.callback} />
         </Modal >
       }
     </>

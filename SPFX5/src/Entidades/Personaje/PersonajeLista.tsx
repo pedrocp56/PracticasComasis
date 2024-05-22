@@ -82,5 +82,23 @@ export class PersonajeLista {
 
     return await Items;
   }
+  
+  public async CargarTodosCampaña(campañaID:number,BatchedWeb?: IWeb): Promise<PersonajeItem[]> {
+    const Items = this.List.items
+      .expand(this.ExpandAllFields.join())
+      .orderBy("Title")
+      .filter(`LookupCampanha/ID eq ${campañaID}`)
+      .select(this.SelectAllFields.join())()
+      .then((Data: any) => {
+        return Data.map((I: IItem) => {
+          return new PersonajeItem(I, this);
+        });
+      })
+      .catch(async (E: Error) => {
+        console.error(E);
+      });
+
+    return await Items;
+  }
 }
 /* eslint-enable */

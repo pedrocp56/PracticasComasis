@@ -1,12 +1,11 @@
 /* eslint-disable @typescript-eslint/no-floating-promises*/
-import * as React from 'react';
-import { Spinner } from "@fluentui/react";
 import { WebPartContext } from "@microsoft/sp-webpart-base";
 import { SPFI } from "@pnp/sp";
-import { ArmaLista } from "../../../Entidades/ArmaMal/ArmaLista";
+import * as React from 'react';
 import { useEffect, useState } from "react";
-import ArmaTabla from "../../../Entidades/ArmaMal/Componentes/ArmaTabla";
 import { ArmaItem } from "../../../Entidades/ArmaMal/ArmaItem";
+import { ArmaLista } from "../../../Entidades/ArmaMal/ArmaLista";
+import ArmaTabla from "../../../Entidades/ArmaMal/Componentes/ArmaTabla";
 
 export interface IGestorPartidasCompWebpartProps {
   SP: SPFI;
@@ -33,17 +32,12 @@ export default function GestorPartidasCompWebpart(
       setItems(i);
     });
 
-    setTimeout(() => {
       setCargando(false);
-      if (!cargando) console.log("Cargado");
-    }, 2000);
+
   }, []);
 
   return (
     <>
-      <div>
-        <Spinner hidden={!cargando} />
-      </div>
       <div hidden={cargando}>
         <ArmaTabla Items={Items} callback={recargaDatos} />
       </div>

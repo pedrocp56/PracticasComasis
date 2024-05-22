@@ -19,7 +19,7 @@ export const CalcularAtaque: React.FC<{ item: PersonajeArmaItem }> = ({ item }) 
         text = text + "\nBono de competencia:  \t" + Bcomp;
     }
     let car = 0;
-    const txtcar = item.Arma.Arma_Car
+    const txtcar = item.Arma.Arma_Car    
     switch (txtcar) {
         case "Fuerza":
             car = item.Personaje?.BFuerza;
@@ -27,13 +27,13 @@ export const CalcularAtaque: React.FC<{ item: PersonajeArmaItem }> = ({ item }) 
         case "Destreza":
             car = item.Personaje?.BDestreza;
             break;
-        case "Constitucion":
+        case "Constitución":
             car = item.Personaje?.BConstitucion;
             break;
         case "Inteligencia":
             car = item.Personaje?.BInteligencia;
             break;
-        case "Sabiduria":
+        case "Sabiduría":
             car = item.Personaje?.BSabiduria;
             break;
         case "Carisma":
@@ -43,8 +43,10 @@ export const CalcularAtaque: React.FC<{ item: PersonajeArmaItem }> = ({ item }) 
             console.log("Error en la caracteristica");
             break;
     }
+    console.log(car);
+    
     ataque += car;
-    text = text + "\nBono de " + txtcar + ":\t\t" + car;
+    text = text + "\nBono de " + txtcar + ":   \t" + car;
     ataque += item.Bonificacion;
     text = text + "\nBonificación:\t\t\t" + item.Bonificacion;
     text = text + "\nTotal:    \t\t\t\t" + ataque;

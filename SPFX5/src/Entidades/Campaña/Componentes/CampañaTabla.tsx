@@ -10,16 +10,22 @@ import UsarFecha from "../../Generales/OperacionesFecha";
 import CampañaBotonEditar from "./BotonEditar";
 import CampañaBotonEliminar from "./BotonEliminar";
 import { UsarImagen } from "../../Generales/UsarImagen";
+import { MostrarTitulo } from "../../Generales/Mostrar";
+import CampañaBotonInfo from "./BotonInfo";
+import { PersonajeLista } from "../../Personaje/PersonajeLista";
+import { useEffect } from "react";
+import { MostrarPersonajes } from "../../Personaje/Componentes/MostrarPersonajes";
 
 export interface ICampañaWebpartProps {
     Items: CampañaItem[];
+    listaPer?: PersonajeLista;
     callback: () => Promise<void>;
 }
 
 export default function CampañaWebpart(
     Props: ICampañaWebpartProps
 ): JSX.Element {
-    const columns: TableColumnsType<CampañaItem> = [
+    let columns: TableColumnsType<CampañaItem> = [
         {
             key: "#",
             title: "#",
@@ -27,6 +33,7 @@ export default function CampañaWebpart(
             align: "center",
             render: (text: string, record: CampañaItem) => (
                 <Stack horizontal tokens={{ childrenGap: 5 }}>
+                    <CampañaBotonInfo info={record} titulo={"Campaña"} />
                     <CampañaBotonEliminar item={record} callback={Props.callback} />
                     <CampañaBotonEditar item={record} callback={Props.callback} />
                 </Stack>
@@ -82,7 +89,38 @@ export default function CampañaWebpart(
                 </div>
             ),
         },
+        {
+            key: "Master",
+            title: "Master",
+            dataIndex: "Master",
+            align: "center",
+            render: (Master: any) => (
+                <div>
+                    <MostrarTitulo item={Master} texto={"Master"} />
+                </div>
+            ),
+        },
+        {
+            key: "Personajes",
+            title: "Personajes",
+            dataIndex: "Personajes",
+            align: "center",
+            render: (text: string, record: CampañaItem) => (
+                <div>
+                    <MostrarPersonajes campañaID={record.ID} listaPer={Props?.listaPer} />
+                </div>
+            ),
+        }
+
+
     ];
+
+    useEffect((): void => {
+        if (!Props.listaPer) {
+            columns = columns.filter(column => column.key !== "Personajes");
+        }
+    }, []);
+
     const tableStyle = {
         margin: "auto",
         width: "fit-content",

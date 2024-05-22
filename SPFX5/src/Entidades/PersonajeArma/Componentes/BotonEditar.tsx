@@ -5,11 +5,6 @@ import { PersonajeItem } from "../../Personaje/PersonajeItem";
 import { PersonajeArmaItem } from "../PersonajeArmaItem";
 import PersonajeArmaFormProps from "./UsoGeneral/PersonajeArmaForm";
 
-const buttonStyle = {
-  backgroundColor: "#E4ADF3",
-  color: "#161677",
-};
-
 export interface IPersonajeArmaBotonEditarProps {
   item: PersonajeArmaItem;
   callback: () => Promise<void>;
@@ -31,9 +26,9 @@ export default function PersonajeArmaBotonEditar(
   return (
     <>
       <IconButton
+        id="botonEditar"
         onClick={showModal}
         iconProps={{ iconName: "Edit" }}
-        style={buttonStyle}
         title="Editar"
       />
       {isModalOpen &&

@@ -34,6 +34,7 @@ export default function ArmaNuevoBoton(
   return (
     <StackItem>
       <PrimaryButton
+        id="botonNuevo"
         text={"Nuevo Arma"}
         title={"Nuevo Arma"}
         iconProps={{ iconName: "Add" }}
@@ -41,7 +42,6 @@ export default function ArmaNuevoBoton(
           const nuevoparaForm = Props.lista.getNewArma();
           setItemEdit(nuevoparaForm);
         }}
-        style={{ backgroundColor: "#1b4586", color: "#FFFFFF" }}
       />
       {itemEdit && (
         <ArmaFormProps

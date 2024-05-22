@@ -5,11 +5,6 @@ import { ArmaItem } from "../ArmaItem";
 import ArmaFormProps from "./UsoGeneral/ArmaTodoForm";
 
 
-const buttonStyle = {
-    backgroundColor: "#E4ADF3",
-    color: "#161677",
-};
-
 export interface IArmasBotonEditarProps {
     item: ArmaItem;
     callback: () => Promise<void>
@@ -41,9 +36,9 @@ export default function ArmasBotonEditar(props: IArmasBotonEditarProps): JSX.Ele
     return (
         <>
             <IconButton
+                id="botonEditar"
                 onClick={showModal}
                 iconProps={{ iconName: "Edit" }}
-                style={buttonStyle}
             />
             <ArmaFormProps
                 item={props.item}

@@ -3,11 +3,6 @@ import { IconButton, Dialog, DialogType, DialogFooter, DefaultButton, PrimaryBut
 import { useState } from "react";
 import { PersonajeArmaItem } from "../PersonajeArmaItem";
 
-const buttonStyle = {
-    backgroundColor: "#E4ADF3",
-    color: "red"
-};
-
 export interface IPersonajeArmaBotonEliminarProps {
     item: PersonajeArmaItem;
     callback: () => Promise<void>
@@ -29,9 +24,9 @@ export default function PersonajeArmaBotonEliminar(props: IPersonajeArmaBotonEli
     return (
         <>
             <IconButton
+                id="botonEliminar"
                 onClick={handleDelete}
                 iconProps={{ iconName: "Delete" }}
-                style={buttonStyle}
                 title="Eliminar"
             />
             <Dialog

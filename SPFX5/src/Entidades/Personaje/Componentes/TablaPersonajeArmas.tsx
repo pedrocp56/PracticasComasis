@@ -16,7 +16,7 @@ import PersonajeArmaNuevoBoton from "../../PersonajeArma/Componentes/BotonNuevo"
 
 export interface IPersonajeArmasTablaProps {
   personaje: PersonajeItem;
-  callback: () => Promise<void>;
+  callback?: () => Promise<void>;
 }
 
 export default function PersonajeArmasTabla(
@@ -44,24 +44,21 @@ export default function PersonajeArmasTabla(
   };
   //no recarga si se añade una arma
 
-  useEffect(() => {
-    consultaInicial();
-  }, []);
 
 
-  const columns: TableColumnsType<PersonajeArmaItem> = [
-    {
+
+  let columns: TableColumnsType<PersonajeArmaItem> = [
+    ...(Props.callback ? [{
       key: "#",
       title: "#",
       dataIndex: "#",
-      align: "center",
       render: (text: string, record: PersonajeArmaItem) => (
         <Stack horizontal tokens={{ childrenGap: 5 }}>
           <PersonajeArmaBotonEliminar item={record} callback={recargaDatos} />
           <PersonajeArmaBotonEditar item={record} callback={recargaDatos} personaje={Props.personaje} />
         </Stack>
       ),
-    },
+    }] : []),
     {
       key: "Arma",
       title: "Arma",
@@ -110,11 +107,20 @@ export default function PersonajeArmasTabla(
     margin: "auto",
     width: "fit-content",
   };
+
+  useEffect(() => {
+    consultaInicial();
+    if (Props.callback === undefined) {
+      columns = columns.filter(column => column.key !== "#");
+    }
+  }, []);
   return (
     <>
       {!cargando &&
         <div>
-          <PersonajeArmaNuevoBoton lista={ArmasL.current} callback={recargaDatos} personaje={Props.personaje} />
+          {Props.callback &&
+            <PersonajeArmaNuevoBoton lista={ArmasL.current} callback={recargaDatos} personaje={Props.personaje} />
+          }
           <Table columns={columns} dataSource={Armas} style={tableStyle} />
         </div>
       }

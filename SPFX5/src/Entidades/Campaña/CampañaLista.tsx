@@ -8,11 +8,12 @@ export class CampañaLista {
   public NombreLista = "Campanhas";
   public SelectAllFields: string[] = [
     "*",
-    "Author/Title", 
-    "Author/ID", 
+    "Author/Title",
+    "Author/ID",
     "Author/EMail",
   ];
-  public ExpandAllFields: string[] = [];
+
+  public ExpandAllFields: string[] = ["Author"];
   public web: IWeb;
   public Context: WebPartContext;
   public List: IList;
@@ -57,6 +58,28 @@ export class CampañaLista {
         return Data.map((I: IItem) => {
           return new CampañaItem(I, this);
         });
+      })
+      .catch(async (E: Error) => {
+        console.error(E);
+      });
+
+    return await Items;
+  }
+
+  public async CargarID(ID: number, BatchedWeb?: IWeb): Promise<CampañaItem> {
+    const Items = this.List.items
+      .expand(this.ExpandAllFields.join())
+      .orderBy("Title")
+      .filter(`ID eq ${ID}`)
+      .select(this.SelectAllFields.join())()
+      .then((Data: any) => {
+        const campañaItems = Data.map((I: IItem) => new CampañaItem(I, this));
+        if (campañaItems.length > 0) {
+          return campañaItems[0];
+        } else {
+          console.warn(`No se encontró ningún ítem con ID ${ID}`);
+          return null;
+        }
       })
       .catch(async (E: Error) => {
         console.error(E);
