@@ -1,11 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any*/
 
 import * as React from "react";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { IconButton } from "office-ui-fabric-react";
- 
+
 const CustomToolbar = (props: any): JSX.Element => {
   const viewState = "month";
- 
+
   function addMonths(date: Date, months: number): Date {
     const d = date.getDate();
     date.setMonth(date.getMonth() + months);
@@ -15,15 +16,15 @@ const CustomToolbar = (props: any): JSX.Element => {
     console.log(date);
     return date;
   }
- 
+
   function addWeeks(date: Date, weeks: number): Date {
     date.setDate(date.getDate() + 7 * weeks);
     return date;
   }
- 
+
   function addDays(date: Date, days: number): Date {
     date.setDate(date.getDate() + days);
- 
+
     return date;
   }
   /*
@@ -49,7 +50,7 @@ const CustomToolbar = (props: any): JSX.Element => {
       props.onNavigate("prev", addDays(props.date, -1));
     }
   };
- 
+
   const goToNext = (): void => {
     if (viewState === "month") {
       props.onNavigate("next", addMonths(props.date, +1));
@@ -89,7 +90,7 @@ const CustomToolbar = (props: any): JSX.Element => {
       ));
     } else return <></>;
   }*/
- 
+
   return (
     <div className="rbc-toolbar">
       <div
@@ -117,7 +118,7 @@ const CustomToolbar = (props: any): JSX.Element => {
         >
           {props.label}
         </span>
- 
+
         <IconButton
           iconProps={{ iconName: "ChevronRight" }}
           title={"Siguiente"}
@@ -128,5 +129,6 @@ const CustomToolbar = (props: any): JSX.Element => {
     </div>
   );
 };
- 
+
 export default CustomToolbar;
+/* eslint-enable*/

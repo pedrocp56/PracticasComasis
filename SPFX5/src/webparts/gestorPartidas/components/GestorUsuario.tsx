@@ -122,7 +122,7 @@ export default function GestorUsuarioCompWebpart(
 
   return (
     <>
-      <Stack horizontal tokens={{ childrenGap: 25 }} >
+      <Stack horizontal tokens={{ childrenGap: 25 }}>
         <UsuarioTabla context={props.WebPartContext} MCampaña={mostrarCampaña} MCPersonaje={mostrarPersonaje} />
         <Stack horizontalAlign="end" >
           <MiCalendarioWP Context={props.WebPartContext} eventos={eventos} />

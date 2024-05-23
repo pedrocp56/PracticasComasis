@@ -30,14 +30,14 @@ export default function UsuarioTabla(
     };
 
     return (
-        <>
-            <Stack horizontalAlign="center" verticalAlign="center" tokens={{ childrenGap: 25 }} styles={{ root: { flexGrow: 1 , } }}>
+        <Stack horizontalAlign="center" verticalAlign="center" tokens={{ childrenGap: 35 }} styles={{ root: { width: '500px' } }}>
+            <div className="borde-user">
                 <Persona
                     imageShouldFadeIn={false}
                     imageUrl={`/_layouts/15/userphoto.aspx?size=L&username=${Props.context.pageContext.legacyPageContext.userEmail}`}
                     text={Props.context.pageContext.legacyPageContext.userDisplayName}
                 />
-                <Stack horizontal tokens={{ childrenGap: 5 }}>
+                <Stack horizontal tokens={{ childrenGap: 5 }} styles={{ root: { marginTop: 15 } }}>
                     <DefaultButton
                         id={MostrarCampañas ? "botonUserPulsado" : "botonUserSinPulsar"}
                         onClick={mostrarCampaña}
@@ -49,8 +49,8 @@ export default function UsuarioTabla(
                         text="Personajes"
                     />
                 </Stack>
-            </Stack>
-        </>
+            </div>
+        </Stack>
     );
 }
 
