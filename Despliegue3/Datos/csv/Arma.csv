@@ -1,12 +1,11 @@
 Nombre;Arma_Ataque;Arma_Danho;Arma_Tipo;Arma_Arrojadiza;Arma_Car;Arma_Caracteristicas;LookupArmaFoto
-Espada Larga;+5;1d8;Cuerpo a cuerpo;No;Fuerza;Versátil, Filo agudo;1
-Arco Largo;+4;1d8;A distancia;Sí;Destreza;Precisión, Largo alcance;2
-Hacha de Batalla;+6;1d10;Cuerpo a cuerpo;No;Fuerza;Pesada, Versátil;3
-Daga;+3;1d4;Cuerpo a cuerpo;Sí;Destreza;Ligera, Oculta fácilmente;4
-Martillo de Guerra;+5;1d8;Cuerpo a cuerpo;No;Fuerza;Impacto contundente, Versátil;5
-Ballesta Ligera;+4;1d6;A distancia;No;Destreza;Precisión, Recarga rápida;6
-Lanza;+3;1d6;Cuerpo a cuerpo;Sí;Fuerza;Largo alcance, Ligera;7
-Maza;+5;1d6;Cuerpo a cuerpo;No;Fuerza;Contundente, Robusta;8
-Espada Corta;+4;1d6;Cuerpo a cuerpo;No;Destreza;Rápida, Ligera;9
-Bastón;+2;1d4;Cuerpo a cuerpo;No;Fuerza;Versátil, Impacto contundente;10
-
+Espada Larga;+5;1d8;Cortante;False;Fuerza;Versátil, Filo agudo;espada larga.png
+Arco Largo;+4;1d8;Perforante;True;Destreza;Precisión, Largo alcance;arco largo.jpg
+Daga;+3;1d4;Perforante;True;Destreza;Ligera, Oculta fácilmente;daga.jpg
+Martillo de Guerra;+5;1d8;Contundente;False;Fuerza;Impacto contundente, Versátil;martillo de guerra 2 manos.jpg
+Ballesta Ligera;+4;1d6;Perforante;False;Destreza;Precisión, Recarga rápida;ballesta de mano.jpg
+Lanza;+3;1d6;Perforante, Contundente;True;Fuerza;Largo alcance, Ligera;lanza.jpg
+Maza;+5;1d6;Contundente;False;Fuerza;Contundente, Robusta;maza.jpg
+Espada Corta;+4;1d6;Cortante;False;Destreza;Rápida, Ligera;espada corta.jpg
+Mangual;+2;1d6;Contundente;False;Fuerza;Versátil, Impacto contundente;mangual.jpg
+Hacha de Batalla;+6;1d10;Cortante;False;Fuerza;Pesada, Versátil;hacha dos manos.jpg

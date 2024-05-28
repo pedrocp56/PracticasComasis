@@ -1,0 +1,20 @@
+NombrePersonaje;NombreArma;Competencia;Bonificacion_Adiccional
+Aragorn;Espada Larga;True;8
+Aragorn;Arco Largo;False;5
+Legolas;Arco Largo;True;10
+Legolas;Daga;False;6
+Gimli;Martillo de Guerra;True;7
+Gimli;Hacha de Batalla;False;5
+Gandalf;Báculo;False;4
+Boromir;Espada Larga;True;6
+Boromir;Lanza;False;5
+Frodo;Daga;False;5
+Frodo;Espada Corta;False;4
+Sam;Maza;True;7
+Sam;Lanza;False;4
+Merry;Espada Corta;False;4
+Merry;Arco Largo;False;3
+Pippin;Arco Corto;False;3
+Pippin;Daga;False;3
+Arwen;Espada Corta;True;9
+Arwen;Arco Largo;False;6

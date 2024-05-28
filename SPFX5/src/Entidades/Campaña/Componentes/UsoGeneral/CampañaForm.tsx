@@ -38,6 +38,7 @@ export default function CampañaFormProps(
         setValido(false);
         return false;
       }
+      //Se podria comprobar que no se pueda poner el mismo nombre a 2 campañas
       if (
         itemEdit &&
         itemEdit.Fecha &&

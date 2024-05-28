@@ -21,7 +21,7 @@ $context.Load($itemsCampanhas);
 $context.ExecuteQuery();
 
 $PersonajeSP = $itemsPersonaje | Group-Object {$_.FieldValues["Title"]} -AsHashTable -AsString;
-$campanhasSP = $itemsCampanhas | Group-Object {$_.FieldValues["ID"]} -AsHashTable -AsString;
+$campanhasSP = $itemsCampanhas | Group-Object {$_.FieldValues["Title"]} -AsHashTable -AsString;
 
 
 $csvPersonaje = Import-Csv $csvPath"\Personaje.csv" ";" -Encoding UTF8;
