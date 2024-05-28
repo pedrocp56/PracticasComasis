@@ -18,7 +18,7 @@ import { UsarImagenArma } from "../../Generales/UsarImagen";
 
 export interface IArmaWebpartProps {
   Items: ArmaItem[];
-  callback: () => Promise<void>;
+  callback?: () => Promise<void>;
 }
 
 export default function ArmaWebpart(Props: IArmaWebpartProps): JSX.Element {
@@ -30,19 +30,18 @@ export default function ArmaWebpart(Props: IArmaWebpartProps): JSX.Element {
   }, []);
 
   const columns: TableColumnsType<ArmaItem> = [
-    {
+    ...(Props.callback ? [{
       key: "#",
       title: "#",
       dataIndex: "#",
-      align: "center",
-      render: (text: string, record: ArmaItem) => (
+      render: (_text: string, record: ArmaItem) => (
         <Stack horizontal tokens={{ childrenGap: 5 }}>
           <ArmaBotonInfo titulo="Info" info={record} />
           <ArmaBotonEliminar item={record} callback={Props.callback} />
           <ArmaBotonEditar item={record} callback={Props.callback} />
         </Stack>
       ),
-    },
+    }] : []),
     {
       key: "ID",
       title: "ID",

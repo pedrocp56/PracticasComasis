@@ -8,7 +8,8 @@ import { useState } from "react";
 export interface IUsuarioTablaProps {
     context: WebPartContext;
     MCampaña: () => void;
-    MCPersonaje: () => void;
+    MPersonaje: () => void;
+    MArma: () => void;
 }
 
 export default function UsuarioTabla(
@@ -16,17 +17,27 @@ export default function UsuarioTabla(
 ): JSX.Element {
     const [MostrarPersonajes, setMostrarPersonajes] = useState(false);
     const [MostrarCampañas, setMostrarCampañas] = useState(false);
+    const [MostrarArmas, setMostrarArmas] = useState(false);
+
 
     const mostrarCampaña = (): void => {
         setMostrarCampañas(true);
         setMostrarPersonajes(false);
+        setMostrarArmas(false);
         Props.MCampaña();
     };
 
     const mostrarPersonaje = (): void => {
         setMostrarCampañas(false);
         setMostrarPersonajes(true);
-        Props.MCPersonaje();
+        setMostrarArmas(false);
+        Props.MPersonaje();
+    };
+    const mostrarArma = (): void => {
+        setMostrarCampañas(false);
+        setMostrarPersonajes(false);
+        setMostrarArmas(true);
+        Props.MArma();
     };
 
     return (
@@ -49,6 +60,11 @@ export default function UsuarioTabla(
                         text="Personajes"
                     />
                 </Stack>
+                <DefaultButton
+                        id={MostrarArmas ? "botonUserPulsado" : "botonUserSinPulsar"}
+                        onClick={mostrarArma}
+                        text="Ver armas"
+                    />
             </div>
         </Stack>
     );

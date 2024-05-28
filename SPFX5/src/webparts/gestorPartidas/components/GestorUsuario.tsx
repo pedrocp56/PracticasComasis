@@ -15,6 +15,7 @@ import PersonajeTabla from '../../../Entidades/Personaje/Componentes/PersonajeTa
 import { PersonajeItem } from '../../../Entidades/Personaje/PersonajeItem';
 import { PersonajeLista } from '../../../Entidades/Personaje/PersonajeLista';
 import UsuarioTabla from '../../../Entidades/Usuario/UsuarioTabla';
+import ArmaTabla from '../../../Entidades/Arma/Componentes/ArmaTabla';
 
 
 export interface IUsuarioCompWebpartProps {
@@ -31,7 +32,11 @@ export default function GestorUsuarioCompWebpart(
   const PersonajeL = React.useRef<PersonajeLista>(null);
   const [MostrarPersonajes, setMostrarPersonajes] = useState(false);
   const [MostrarCampañas, setMostrarCampañas] = useState(false);
+  const [MostrarArmas, setMostrarArmas] = useState(false);
   const [eventos, setEventos] = useState<EventoBigCalendar[]>([]);
+//Implementar ver arma
+  const [Armas, setArmas] = React.useState<ArmaItem[]>([]);
+  const ArmaL = React.useRef<ArmaLista>(null);
 
 
   const recargaDatos = async (): Promise<void> => {
@@ -113,17 +118,24 @@ export default function GestorUsuarioCompWebpart(
   const mostrarCampaña = (): void => {
     setMostrarCampañas(true);
     setMostrarPersonajes(false);
+    setMostrarArmas(false);
   };
 
   const mostrarPersonaje = (): void => {
     setMostrarCampañas(false);
     setMostrarPersonajes(true);
+    setMostrarArmas(false);
+  };
+  const mostrarArma = (): void => {
+    setMostrarCampañas(false);
+    setMostrarPersonajes(false);
+    setMostrarArmas(true);
   };
 
   return (
     <>
       <Stack horizontal tokens={{ childrenGap: 25 }}>
-        <UsuarioTabla context={props.WebPartContext} MCampaña={mostrarCampaña} MCPersonaje={mostrarPersonaje} />
+        <UsuarioTabla context={props.WebPartContext} MCampaña={mostrarCampaña} MPersonaje={mostrarPersonaje} MArma={mostrarArma}/>
         <Stack horizontalAlign="end" >
           <MiCalendarioWP Context={props.WebPartContext} eventos={eventos} />
         </Stack>
@@ -143,6 +155,13 @@ export default function GestorUsuarioCompWebpart(
           <Stack horizontalAlign="start" tokens={{ childrenGap: 25 }}>
             <CampañaNuevoBoton lista={CampañaL.current} callback={recargaDatos} />
             <CampañaTabla Items={Campañas} listaPer={PersonajeL.current} callback={recargaDatos} />
+          </Stack>
+        </div>
+      )}
+      {MostrarArmas && (
+        <div>
+          <Stack horizontalAlign="start" tokens={{ childrenGap: 25 }}>
+            <ArmaTabla Items={Armas} />
           </Stack>
         </div>
       )}
