@@ -84,13 +84,6 @@ $csvCampanhas | ForEach-Object {
         $item["Campanha_Descripcion"] =  $_."Descripcion";
         $needUpdate = $true;
     }
-    <#
-    if ($item["Campanha_Foto"] -cne $_."Foto") {
-    
-        $item["Campanha_Foto"] = $_."Foto";
-        $needUpdate = $true;
-    }
-    #>
 
     $fechacsv = Get-Date $_."Fecha";
     $fechasp = $nul;
@@ -101,6 +94,13 @@ $csvCampanhas | ForEach-Object {
     if ($fechasp -eq $null -or $fechacsv.toString("u") -ne  $fechasp.toString("u")) {
         write-host "|---- Nueva fecha";
         $item["Campanha_Fecha"] = $fechacsv.toString("u");
+        $needUpdate = $true;
+    }
+
+    $url = $_."UrlFoto"
+    if($item.FieldValues["Campanha_Foto"].Url -ne $url ){
+        write-host "|---- Foto:[Viejo ($($item.FieldValues["Campanha_Foto"].Url)) Nuevo ($($url))]";
+        $item["Campanha_Foto"] = $url
         $needUpdate = $true;
     }
 

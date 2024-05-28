@@ -142,13 +142,14 @@ $csvPersonaje | ForEach-Object {
         $needUpdate = $true;
     }
 
-    <#
-    if ($item["Foto"] -cne $_."Foto") {
     
-        $item["Foto"] = $_."Foto";
+    $url = $_."UrlFoto"
+    if($item.FieldValues["Personaje_Foto"].Url -ne $url ){
+        write-host "|---- Foto:[Viejo ($($item.FieldValues["Personaje_Foto"].Url)) Nuevo ($($url))]";
+        $item["Personaje_Foto"] = $url
         $needUpdate = $true;
     }
-    #>
+    
 
 
     if ($needUpdate) {

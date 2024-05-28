@@ -1,11 +1,11 @@
-Cuenta;Titulo;Descripcion;Fecha
-aaronsaavedra@comasis.com;Campaña de Dragones;Una épica aventura con dragones;24/05/2024
-eliasqueijeiro@comasis.com;El Bosque Encantado;Descubre los secretos del bosque;25/05/2024
-manuelcovelo@comasis.com;La Torre del Mago;Explora la torre mágica;26/05/2024
-monicarodriguez@comasis.com;Los Piratas del Mar;Aventura en alta mar;27/05/2024
-natasharey@comasis.com;El Reino Perdido;Encuentra el reino olvidado;28/05/2024
-pedrocerredelo@comasis.com;La Cueva del Dragón;Enfréntate al dragón feroz;29/05/2024
-rubencabo@comasis.com;La Isla Misteriosa;Resuelve el misterio de la isla;30/05/2024
-aaronsaavedra@comasis.com;Los Guardianes del Bosque;Protege el bosque sagrado;31/05/2024
-eliasqueijeiro@comasis.com;La Ciudad Subterránea;Explora las profundidades;01/06/2024
-eliasqueijeiro@comasis.com;El Asedio del Castillo;Defiende el castillo asediado;02/06/2024
+Cuenta;Titulo;Descripcion;Fecha;UrlFoto
+aaronsaavedra@comasis.com;Campaña de Dragones;Una épica aventura con dragones;24/05/2024;https://1.bp.blogspot.com/-GxNXpQe46ts/Xh5XIeDxsOI/AAAAAAAAEIs/xRs38mog1d8KYoWTM0AL1_n9bKRCGCdpACLcBGAsYHQ/s1600/Los%2BDragones%2Ben%2BDungeons%2B%2526%2BDragons%2B-%2BTiamat.jpg
+eliasqueijeiro@comasis.com;El Bosque Encantado;Descubre los secretos del bosque;25/05/2024;https://img.freepik.com/fotos-premium/bosque-encantado-paisaje-natural-magico-fondo-flujo-rio-bosque-cuento-hadas_336343-52.jpg?w=2000
+manuelcovelo@comasis.com;La Torre del Mago;Explora la torre mágica;26/05/2024;https://www.creativefabrica.com/wp-content/uploads/2023/07/05/The-Inside-Of-Wizard-Tower-Glowing-3D-Wizzard-Flying-Around-73759607-1.png
+monicarodriguez@comasis.com;Los Piratas del Mar;Aventura en alta mar;27/05/2024;
+natasharey@comasis.com;El Reino Perdido;Encuentra el reino olvidado;28/05/2024;https://1.bp.blogspot.com/-_oD5vrTPLPw/WC07PG5FLeI/AAAAAAAACNo/eqW7qll2zWEF0SDAgwAwxVSpBtbamz6pACLcB/s1600/La-Isla-Misteriosa-002-min.png
+pedrocerredelo@comasis.com;La Cueva del Dragón;Enfréntate al dragón feroz;29/05/2024;https://static.vecteezy.com/system/resources/previews/000/434/280/large_2x/vector-dragon-in-the-cave-blowing-fire.jpg
+rubencabo@comasis.com;La Isla Misteriosa;Resuelve el misterio de la isla;30/05/2024;
+aaronsaavedra@comasis.com;Los Guardianes del Bosque;Protege el bosque sagrado;31/05/2024;https://i.pinimg.com/736x/10/88/f1/1088f17fe72a86f0ebe68481aa0f816b.jpg
+eliasqueijeiro@comasis.com;La Ciudad Subterránea;Explora las profundidades;01/06/2024;https://i.pinimg.com/originals/63/a3/12/63a312aeb5a5d0d36a11379858cf8510.jpg
+eliasqueijeiro@comasis.com;El Asedio del Castillo;Defiende el castillo asediado;02/06/2024;https://i.promecal.es/IMG/2016/350357DA-ECC5-DBC3-80F28C58CF896BE2.JPG
