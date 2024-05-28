@@ -30,24 +30,30 @@ $csvPersonaje | ForEach-Object {
 
     write-host "Revisando $($_.Nombre)"
     #Comprobamos si existe una personaje con el titulo
-    if($PersonajeSP[$_."Nombre"].Count -eq 0){
+    if($PersonajeSP.Count -eq 0){
         write-host "|-- No tiene registro en SP";
-        $itemInfo  = New-Object Microsoft.SharePoint.Client.ListItemCreationInformation
-        $item = $listaPersonaje.AddItem($itemInfo)
-        $item["Title"] =  $_."Nombre"
-    }
-
-    else {
-        if ($PersonajeSP[$_."Nombre"].Count -eq 1) {
-            write-host "|-- Ya tiene registro en SP";
-            $item = $PersonajeSP[$_."Nombre"][0]
+            $itemInfo  = New-Object Microsoft.SharePoint.Client.ListItemCreationInformation
+            $item = $listaPersonaje.AddItem($itemInfo)
+            $item["Title"] =  $_."Nombre"
+    }else{
+        if($PersonajeSP[$_."Nombre"].Count -eq 0){
+            write-host "|-- No tiene registro en SP";
+            $itemInfo  = New-Object Microsoft.SharePoint.Client.ListItemCreationInformation
+            $item = $listaPersonaje.AddItem($itemInfo)
+            $item["Title"] =  $_."Nombre"
         }
-           else {
-            if($item.FieldValues["Title"] -eq $_."Nombre" ){
-                write-host "|-- Hay más de un registro" -ForegroundColor Red
-                return;
+        else {
+            if ($PersonajeSP[$_."Nombre"].Count -eq 1) {
+                write-host "|-- Ya tiene registro en SP";
+                $item = $PersonajeSP[$_."Nombre"][0]
             }
-           }
+            else {
+                if($item.FieldValues["Title"] -eq $_."Nombre" ){
+                    write-host "|-- Hay más de un registro" -ForegroundColor Red
+                    return;
+                }
+            }
+        }
     }
 
     #Cargar Lookup (mas bien la lista y comprobamos si existe)

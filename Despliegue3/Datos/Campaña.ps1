@@ -24,25 +24,31 @@ $csvCampanhas | ForEach-Object {
 
     write-host "Revisando $($_.Titulo)"
     #Comprobamos si existe una campaña con el titulo
-    if($campanhasSP[$_."Titulo"].Count -eq 0){
+    if($campanhasSP.Count -eq 0){
         write-host "|-- No tiene registro en SP";
         $itemInfo  = New-Object Microsoft.SharePoint.Client.ListItemCreationInformation
         $item = $listaCampanhas.AddItem($itemInfo)
         $item["Title"] =  $_."Titulo"
-    }
-
-    else {
-        if ($campanhasSP[$_."Titulo"].Count -eq 1) {
-            write-host "|-- Ya tiene registro en SP";
-            $item = $campanhasSP[$_."Titulo"][0]
+    }else{ 
+        if($campanhasSP[$_."Titulo"].Count -eq 0){
+            write-host "|-- No tiene registro en SP";
+            $itemInfo  = New-Object Microsoft.SharePoint.Client.ListItemCreationInformation
+            $item = $listaCampanhas.AddItem($itemInfo)
+            $item["Title"] =  $_."Titulo"
         }
-           else {
-            if($item.FieldValues["Title"] -eq $_."Titulo" ){
-                write-host "|-- Hay más de un registro" -ForegroundColor Red
-                return;
+
+        else {
+            if ($campanhasSP[$_."Titulo"].Count -eq 1) {
+                write-host "|-- Ya tiene registro en SP";
+                $item = $campanhasSP[$_."Titulo"][0]
             }
-           }
-    
+                else {
+                    if($item.FieldValues["Title"] -eq $_."Titulo" ){
+                        write-host "|-- Hay más de un registro" -ForegroundColor Red
+                        return;
+                    }
+                }
+        }
     }
     
     $cuenta = $_.Cuenta;

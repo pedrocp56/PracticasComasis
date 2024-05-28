@@ -52,25 +52,31 @@ $csvPersonajeArma | ForEach-Object {
 
     write-host "Revisando $($csvPersonaje.FieldValues["Title"])- $($csvPersonaje.Id)"
     #Comprobamos si existe un personajeArma con el Personaje >=5
-    
-    if($PersonajeArmaSP[$_."NombrePersonaje"].Count -ge 5){
-        write-host "|-- Tiene 5 o mas armas";
-        if ($usuariosProcesados -contains $_."NombrePersonaje") {
-            Write-Host "El usuario $nombrePersonaje ya ha sido procesado. Omite la lógica de eliminación." -ForegroundColor Yellow
-            return
-        }
-        for($i=5;$i -lt $PersonajeArmaSP[$_."NombrePersonaje"].Count;$i++){
-            $PersonajeArmaSP[$_."NombrePersonaje"][$i].DeleteObject();
-            
-            write-host "|---- Arma eliminada" -ForegroundColor DarkMagenta
-        }
-        $usuariosProcesados += $_."NombrePersonaje"
-        return;
-    }
-    else {
+    if($PersonajeArmaSP.Count -eq 0){
+        write-host "|-- No tiene registro en SP";
         $itemInfo  = New-Object Microsoft.SharePoint.Client.ListItemCreationInformation
         $item = $listaPersonajeArma.AddItem($itemInfo)
         $item["LookupPersonaje"] =  $csvPersonaje.Id
+    }else{
+        if($PersonajeArmaSP[$_."NombrePersonaje"].Count -ge 5){
+            write-host "|-- Tiene 5 o mas armas";
+            if ($usuariosProcesados -contains $_."NombrePersonaje") {
+                Write-Host "El usuario $nombrePersonaje ya ha sido procesado. Omite la lógica de eliminación." -ForegroundColor Yellow
+                return
+            }
+            for($i=5;$i -lt $PersonajeArmaSP[$_."NombrePersonaje"].Count;$i++){
+                $listaPersonajeArma.GetItemById($PersonajeArmaSP[$_."NombrePersonaje"][$i].Id).DeleteObject();
+                #$PersonajeArmaSP[$_."NombrePersonaje"][$i].DeleteObject();
+                write-host "|---- Personaje-Arma eliminada" -ForegroundColor DarkMagenta
+            }
+            $usuariosProcesados += $_."NombrePersonaje"
+            return;
+        }
+        else {
+            $itemInfo  = New-Object Microsoft.SharePoint.Client.ListItemCreationInformation
+            $item = $listaPersonajeArma.AddItem($itemInfo)
+            $item["LookupPersonaje"] =  $csvPersonaje.Id
+        }
     }
 
     #Cargar Lookup (mas bien la lista y comprobamos si existe)
