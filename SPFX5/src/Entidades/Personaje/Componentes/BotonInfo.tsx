@@ -34,10 +34,10 @@ const PersonajeBotonInfo: React.FC<infoParaTablaProps> = (Props: infoParaTablaPr
                 <Modal title={Props.titulo} open={isModalOpen}
                     onOk={handleOk}
                     cancelButtonProps={{ hidden: true }} closable={false}>
-                    <p>ID: {Props.personaje.ID}</p>
-                    <p>Nombre: {Props.personaje.Nombre}</p>
-                    <p>Usuario: {Props.personaje.UsuarioNombre}</p>
-                    <p>Caracteristicas: </p>
+                    <p><strong>ID: </strong>{Props.personaje.ID}</p>
+                    <p><strong>Nombre: </strong>{Props.personaje.Nombre}</p>
+                    <p><strong>Usuario: </strong>{Props.personaje.UsuarioNombre}</p>
+                    <p><strong>Caracteristicas: </strong></p>
                     <div style={{ display: "flex", flexDirection: "row" }}>
                         <div style={{ flex: 1 }}>
                             <p>Base</p>
@@ -58,9 +58,9 @@ const PersonajeBotonInfo: React.FC<infoParaTablaProps> = (Props: infoParaTablaPr
                             <p>{Props.personaje.Bono_Carisma}</p>
                         </div>
                     </div>
-                    <p>Bono de Competencia: {Props.personaje.Competencia}</p>
-                    <p>Armas: {<PersonajeBotonArmas personaje={Props.personaje} />}</p>
-                    <p>Foto: {<UsarImagen imageUrl={Props.personaje.Foto} />}</p>
+                    <p><strong>Bono de Competencia: </strong>{Props.personaje.Competencia}</p>
+                    <p><strong>Armas: </strong>{<PersonajeBotonArmas personaje={Props.personaje} />}</p>
+                    <p><strong>Foto: </strong>{<UsarImagen imageUrl={Props.personaje.Foto} />}</p>
                 </Modal>
             }
         </>

@@ -33,13 +33,13 @@ const CampañaBotonInfo: React.FC<infoParaTablaProps> = (Props: infoParaTablaPro
                 <Modal title={Props.titulo} open={isModalOpen}
                     onOk={handleOk} 
                     cancelButtonProps={{ hidden: true }} closable={false}>
-                    <p>ID: {Props.info.ID}</p>
-                    <p>Nombre: {Props.info.Nombre}</p>
-                    <p>Descripción:</p>
+                    <p><strong>ID: </strong>{Props.info.ID}</p>
+                    <p><strong>Nombre: </strong>{Props.info.Nombre}</p>
+                    <p><strong>Descripción:</strong></p>
                     <p style={{ whiteSpace: "pre-line" }}>  {Props.info.Descripcion}</p>
-                    <p>Próxima sesion: {<UsarFecha fecha={Props.info.Fecha} />}</p>
-                    <p>Foto: {<UsarImagen imageUrl={Props.info.Foto} />}</p>
-                    <p>Master: {Props.info.Master.Title}</p>
+                    <p><strong>Próxima sesion: </strong>{<UsarFecha fecha={Props.info.Fecha} />}</p>
+                    <p><strong>Foto: </strong>{<UsarImagen imageUrl={Props.info.Foto} />}</p>
+                    <p><strong>Master: </strong>{Props.info.Master.Title}</p>
                 </Modal>
             }
         </>

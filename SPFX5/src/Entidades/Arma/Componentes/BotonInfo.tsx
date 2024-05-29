@@ -48,16 +48,16 @@ const ArmaBotonInfo: React.FC<{ titulo: string, info: ArmaItem }> = ({ titulo, i
                 <Modal title={titulo} open={isModalOpen}
                     onOk={handleOk} 
                     cancelButtonProps={{ hidden: true }} closable={false}>
-                    <p>ID: {info.ID}</p>
-                    <p>Nombre: {info.Nombre}</p>
-                    <p>Ataque: {info.Ataque}</p>
-                    <p>Daño: {info.Danho}</p>
-                    <p>Tipo de daño: {info.Tipo?.join(", ")}</p>
-                    <p>Arma arrojadiza: {txt}</p>
-                    <p>Caracteristica de ataque: {info.Car}</p>
-                    <p>Caracteristicas:</p>
+                    <p><strong>ID: </strong>{info.ID}</p>
+                    <p><strong>Nombre: </strong>{info.Nombre}</p>
+                    <p><strong>Ataque: </strong>{info.Ataque}</p>
+                    <p><strong>Daño: </strong>{info.Danho}</p>
+                    <p><strong>Tipo de daño: </strong>{info.Tipo?.join(", ")}</p>
+                    <p><strong>Arma arrojadiza: </strong>{txt}</p>
+                    <p><strong>Caracteristica de ataque: </strong>{info.Car}</p>
+                    <p><strong>Caracteristicas:</strong></p>
                     <p style={{ whiteSpace: "pre-line" }}>  {car}</p>
-                    <p>Foto: {<UsarImagenArma imageUrl={info.Foto} />}</p>
+                    <p><strong>Foto: </strong>{<UsarImagenArma imageUrl={info.Foto} />}</p>
                 </Modal>
             }
         </>
