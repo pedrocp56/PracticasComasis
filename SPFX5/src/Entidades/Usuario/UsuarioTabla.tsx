@@ -59,12 +59,13 @@ export default function UsuarioTabla(
                         onClick={mostrarPersonaje}
                         text="Personajes"
                     />
-                </Stack>
-                <DefaultButton
+                    <DefaultButton
                         id={MostrarArmas ? "botonUserPulsado" : "botonUserSinPulsar"}
                         onClick={mostrarArma}
                         text="Ver armas"
+
                     />
+                </Stack>
             </div>
         </Stack>
     );

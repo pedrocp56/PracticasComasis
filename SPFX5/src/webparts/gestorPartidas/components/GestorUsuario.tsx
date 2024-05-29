@@ -16,6 +16,8 @@ import { PersonajeItem } from '../../../Entidades/Personaje/PersonajeItem';
 import { PersonajeLista } from '../../../Entidades/Personaje/PersonajeLista';
 import UsuarioTabla from '../../../Entidades/Usuario/UsuarioTabla';
 import ArmaTabla from '../../../Entidades/Arma/Componentes/ArmaTabla';
+import { ArmaItem } from '../../../Entidades/Arma/ArmaItem';
+import { ArmaLista } from '../../../Entidades/Arma/ArmaLista';
 
 
 export interface IUsuarioCompWebpartProps {
@@ -45,6 +47,9 @@ export default function GestorUsuarioCompWebpart(
     });
     await PersonajeL.current.CargarTodosUsuario(props.WebPartContext.pageContext.legacyPageContext.userId).then((i) => {
       setPersonajes(i);
+    });
+    await ArmaL.current.CargarTodos(props.WebPartContext.pageContext.legacyPageContext.userId).then((i) => {
+      setArmas(i);
     });
   };
   const recargaDatosCampañaPer = async (p: PersonajeItem): Promise<CampañaItem> => {
@@ -112,6 +117,7 @@ export default function GestorUsuarioCompWebpart(
   useEffect((): void => {
     CampañaL.current = new CampañaLista(props.SP.web, props.WebPartContext);
     PersonajeL.current = new PersonajeLista(props.SP.web, props.WebPartContext);
+    ArmaL.current = new ArmaLista(props.SP.web, props.WebPartContext);
     recargaDatos();
   }, []);
 
@@ -151,7 +157,6 @@ export default function GestorUsuarioCompWebpart(
       )}
       {MostrarCampañas && (
         <div>
-
           <Stack horizontalAlign="start" tokens={{ childrenGap: 25 }}>
             <CampañaNuevoBoton lista={CampañaL.current} callback={recargaDatos} />
             <CampañaTabla Items={Campañas} listaPer={PersonajeL.current} callback={recargaDatos} />
