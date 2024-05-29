@@ -51,7 +51,7 @@ export const MostrarPersonajes: React.FC<{ campañaID: number, listaPer: Persona
                 <Modal title={"Personajes"} open={MostrarPer}
                     onOk={cerrar} onCancel={cerrar}
                     cancelButtonProps={{ hidden: true }} closable={false}
-                    width={750}>
+                    width={850}>
                     <PersonajeTabla Items={Personajes} />
                 </Modal>
 

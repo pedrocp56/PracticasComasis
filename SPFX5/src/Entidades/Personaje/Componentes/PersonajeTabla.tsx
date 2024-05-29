@@ -13,6 +13,7 @@ import PersonajeBotonEliminar from "./BotonEliminar";
 import PersonajeBotonEditar from "./BotonEditar";
 import { MostrarTitulo } from "../../Generales/Mostrar";
 import { UsarImagen } from "../../Generales/UsarImagen";
+import PersonajeBotonInfo from "./BotonInfo";
 
 export interface IPersonajeTablaProps {
   Items: PersonajeItem[];
@@ -25,17 +26,22 @@ export default function PersonajeTabla(
   const [cargando, setCargando] = React.useState(false);
 
   const columns: TableColumnsType<PersonajeItem> = [
-    ...(Props.callback ? [{
+    {
       key: "#",
       title: "#",
       dataIndex: "#",
       render: (_text: string, record: PersonajeItem) => (
         <Stack horizontal tokens={{ childrenGap: 5 }}>
-          <PersonajeBotonEliminar item={record} callback={Props.callback} />
-          <PersonajeBotonEditar item={record} callback={Props.callback} />
+          <PersonajeBotonInfo personaje={record} titulo={"Personaje"} />
+          {Props.callback &&
+            <PersonajeBotonEliminar item={record} callback={Props.callback} />
+          }
+          {Props.callback &&
+            <PersonajeBotonEditar item={record} callback={Props.callback} />
+          }
         </Stack>
       ),
-    }] : []),
+    },
     {
       key: "ID",
       title: "ID",
@@ -121,7 +127,7 @@ export default function PersonajeTabla(
 
   const tableStyle = {
     margin: "auto",
-    width: "fit-content",
+    width: "1100px",
   };
 
   useEffect((): void => {

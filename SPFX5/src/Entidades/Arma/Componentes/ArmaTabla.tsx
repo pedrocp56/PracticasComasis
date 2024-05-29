@@ -30,18 +30,22 @@ export default function ArmaWebpart(Props: IArmaWebpartProps): JSX.Element {
   }, []);
 
   const columns: TableColumnsType<ArmaItem> = [
-    ...(Props.callback ? [{
+    {
       key: "#",
       title: "#",
       dataIndex: "#",
       render: (_text: string, record: ArmaItem) => (
         <Stack horizontal tokens={{ childrenGap: 5 }}>
-          <ArmaBotonInfo titulo="Info" info={record} />
-          <ArmaBotonEliminar item={record} callback={Props.callback} />
-          <ArmaBotonEditar item={record} callback={Props.callback} />
+            <ArmaBotonInfo titulo="Arma" info={record} />
+          {Props.callback &&
+            <ArmaBotonEliminar item={record} callback={Props.callback} />
+          }
+          {Props.callback &&
+            <ArmaBotonEditar item={record} callback={Props.callback} />
+          }
         </Stack>
       ),
-    }] : []),
+    },
     {
       key: "ID",
       title: "ID",

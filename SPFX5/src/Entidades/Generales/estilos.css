@@ -63,3 +63,20 @@
     outline: none;
     border-radius: 5px;
 }
+
+#caja-2x2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 5px;
+    padding: 5px;
+    margin: auto;
+  }
+  
+.celda {
+    width: 100%;
+    padding: 5px;
+    border-radius: 5%;
+    background: gold;
+  }
+
+

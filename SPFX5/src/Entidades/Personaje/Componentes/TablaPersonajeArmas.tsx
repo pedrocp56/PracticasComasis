@@ -44,9 +44,6 @@ export default function PersonajeArmasTabla(
   };
   //no recarga si se añade una arma
 
-
-
-
   let columns: TableColumnsType<PersonajeArmaItem> = [
     ...(Props.callback ? [{
       key: "#",

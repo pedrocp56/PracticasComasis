@@ -48,22 +48,24 @@ export default function UsuarioTabla(
                     imageUrl={`/_layouts/15/userphoto.aspx?size=L&username=${Props.context.pageContext.legacyPageContext.userEmail}`}
                     text={Props.context.pageContext.legacyPageContext.userDisplayName}
                 />
-                <Stack horizontal tokens={{ childrenGap: 5 }} styles={{ root: { marginTop: 15 } }}>
+                <Stack id="caja-2x2">
                     <DefaultButton
                         id={MostrarCampañas ? "botonUserPulsado" : "botonUserSinPulsar"}
+                        className="celda"
                         onClick={mostrarCampaña}
                         text="Campaña"
                     />
                     <DefaultButton
                         id={MostrarPersonajes ? "botonUserPulsado" : "botonUserSinPulsar"}
+                        className="celda"
                         onClick={mostrarPersonaje}
                         text="Personajes"
                     />
                     <DefaultButton
                         id={MostrarArmas ? "botonUserPulsado" : "botonUserSinPulsar"}
+                        className="celda"
                         onClick={mostrarArma}
                         text="Ver armas"
-
                     />
                 </Stack>
             </div>
