@@ -1,3 +1,4 @@
+/* eslint-disable */
 @import '~@fluentui/react/dist/sass/References.scss';
 
 .gestorPartidas {
@@ -34,7 +35,7 @@
   }
 }
 
-.borde-user {
+.bordeUsuario {
   border: 2px solid #a10500;
   /* Borde sólido verde */
   border-radius: 10px;
@@ -60,28 +61,29 @@
 }
 
 .botonEliminar {
-  background-color: #a32e00;
-  color: #ffffff;
+  background-color: #a32e00 !important;
+  color: #ffffff !important;
   font-weight: bold;
 }
 
 .botonEditar {
-  background-color: #3f753a;
-  color: #b9f0b9;
+  background-color: #3f753a !important;
+  color: #b9f0b9 !important;
   font-weight: bold;
 }
 
 .botonNuevo {
   display: flex;
   justify-content: left;
-  background-color: #57120d;
-  color: #ffffff;
+  background-color: #57120d !important;
+  color: #ffffff !important;
   margin-bottom: 10px;
+  border: none !important;
 }
 
 .botonMostrar {
-  background-color: #8d6a4d;
-  color: #ffffff;
+  background-color: #8d6a4d !important;
+  color: #ffffff !important;
   font-weight: bold;
 }
 
@@ -146,7 +148,7 @@
   border-radius: 5px;
 }
 
-.caja-2x2 {
+.caja2x2 {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 5px;
@@ -183,9 +185,15 @@
     :global .ant-table-column-sorter {
       color: #ffffff !important;
     }
+    /*
+    :global .root-395:hover{
+      color: ;
+      background-color: transparent;
+    }
+    */
 
     :global .ant-table-column-sorters:hover .ant-table-column-sorter {
-      color: #af4c4c !important;
+      color: #ffffff !important;
     }
 
     :global .ant-table-column-sorter-up.active,

@@ -1,7 +1,6 @@
 
 import * as React from "react";
 import { useState } from "react";
-import '../..//Generales/estilos.css';
 import ArmaFotoFormProps from "../../ArmaFotos/Componentes/ArmaFotoTabla";
 import { ArmaItem } from "../ArmaItem";
 import commonStyles from "../../../webparts/gestorPartidas/components/GestorPartidas.module.scss";

@@ -2,7 +2,6 @@ import * as React from "react";
 import { IconButton, Dialog, DialogType, DialogFooter, DefaultButton, PrimaryButton } from "@fluentui/react";
 import { useState } from "react";
 import { PersonajeItem } from "../PersonajeItem";
-import '../../Generales/estilos.css';
 import commonStyles from "../../../webparts/gestorPartidas/components/GestorPartidas.module.scss";
 
 

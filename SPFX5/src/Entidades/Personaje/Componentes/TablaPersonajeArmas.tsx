@@ -13,6 +13,8 @@ import { PersonajeArmaItem } from "../../PersonajeArma/PersonajeArmaItem";
 import { PersonajeArmaLista } from "../../PersonajeArma/PersonajeArmaLista";
 import { PersonajeItem } from "../PersonajeItem";
 import PersonajeArmaNuevoBoton from "../../PersonajeArma/Componentes/BotonNuevo";
+import commonStyles from "../../../webparts/gestorPartidas/components/GestorPartidas.module.scss";
+
 
 export interface IPersonajeArmasTablaProps {
   personaje: PersonajeItem;
@@ -118,7 +120,9 @@ export default function PersonajeArmasTabla(
           {Props.callback &&
             <PersonajeArmaNuevoBoton lista={ArmasL.current} callback={recargaDatos} personaje={Props.personaje} />
           }
-          <Table columns={columns} dataSource={Armas} style={tableStyle} />
+          <Table
+            className={commonStyles.tabla}
+            columns={columns} dataSource={Armas} style={tableStyle} />
         </div>
       }
     </>

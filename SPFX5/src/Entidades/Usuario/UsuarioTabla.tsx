@@ -43,13 +43,13 @@ export default function UsuarioTabla(
 
     return (
         <Stack horizontalAlign="center" verticalAlign="center" tokens={{ childrenGap: 35 }} styles={{ root: { width: '500px' } }}>
-            <div className={commonStyles["borde-user"]}>
+            <div className={commonStyles.bordeUsuario}>
                 <Persona
                     imageShouldFadeIn={false}
                     imageUrl={`/_layouts/15/userphoto.aspx?size=L&username=${Props.context.pageContext.legacyPageContext.userEmail}`}
                     text={Props.context.pageContext.legacyPageContext.userDisplayName}
                 />
-                <Stack className={commonStyles["caja-2x2"]}>
+                <Stack className={commonStyles.caja2x2}>
                     <DefaultButton
                         id={MostrarCampañas ? commonStyles.botonCampañaPulsado : commonStyles.botonCampañaSinPulsar}
                         className={commonStyles.celda}
