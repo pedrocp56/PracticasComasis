@@ -5,6 +5,7 @@
   padding: 1em;
   color: "[theme:bodyText, default: #323130]";
   color: var(--bodyText);
+
   &.teams {
     font-family: $ms-font-family-fallbacks;
   }
@@ -32,4 +33,245 @@
     }
   }
 }
+
+.borde-user {
+  border: 2px solid #a10500;
+  /* Borde sólido verde */
+  border-radius: 10px;
+  /* Bordes redondeados */
+  padding: 20px;
+  /* Espaciado interno para que el contenido no se pegue al borde */
+  background-color: #f2f2f273;
+  /* Color de fondo */
+  box-shadow: 0 5px 10px 0 #a105007c;
+  /* Sombra */
+}
+
+.botonguapisimoeditar {
+  background-color: rgb(114, 170, 151);
+  color: black;
+  border-radius: 4px;
+  border: 2px;
+}
+
+.botonguapisimoeditar:hover {
+  background-color: rgb(37, 71, 60);
+  color: rgb(243, 243, 243);
+}
+
+.botonEliminar {
+  background-color: #a32e00;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.botonEditar {
+  background-color: #3f753a;
+  color: #b9f0b9;
+  font-weight: bold;
+}
+
+.botonNuevo {
+  display: flex;
+  justify-content: left;
+  background-color: #57120d;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+.botonMostrar {
+  background-color: #8d6a4d;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+#botonPersonajeSinPulsar {
+  background-color: #8d4d48;
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  border-radius: 5px;
+}
+
+#botonPersonajePulsado {
+  background-color: #57120d;
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  border-radius: 5px;
+}
+
+#botonCampañaSinPulsar {
+  background-color: #8d6a4d;
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  border-radius: 5px;
+}
+
+#botonCampañaPulsado {
+  background-color: #382210;
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  border-radius: 5px;
+}
+
+
+#botonArmasSinPulsar {
+  background-color: #5a85ad;
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  border-radius: 5px;
+}
+
+#botonArmasPulsado {
+  background-color: #1f5180;
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  border-radius: 5px;
+}
+
+.caja-2x2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 5px;
+  padding: 5px;
+  margin: auto;
+}
+
+.celda {
+  width: 100%;
+  padding: 5px;
+  border-radius: 5%;
+}
+
+.tabla {
+  table {
+    thead tr th {
+      width: "1100px";
+      padding: 8px;
+      background-color: #a10500;
+      color: #ffffff;
+    }
+
+    thead tr {
+      :global th.ant-table-column-sort {
+        background-color: #770400 !important;
+      }
+
+      :global th.ant-table-column-has-sorters:hover {
+        background-color: #770400 !important;
+      }
+    }
+
+    :global .ant-table-filter-trigger,
+    :global .ant-table-column-sorter {
+      color: #ffffff !important;
+    }
+
+    :global .ant-table-column-sorters:hover .ant-table-column-sorter {
+      color: #af4c4c !important;
+    }
+
+    :global .ant-table-column-sorter-up.active,
+    :global .ant-table-column-sorter-down.active,
+    :global .ant-table-filter-trigger.active {
+      color: #e48ba6 !important;
+    }
+
+    tbody td {
+      padding: 8px;
+    }
+
+    tbody tr.ant-table-measure-row td {
+      padding: 0px !important;
+    }
+
+    .ant-table-body {
+      min-height: 500px;
+    }
+  }
+
+  padding: 0px;
+}
+
+
+.calendarioFondo {
+  background-image: url(https://photoshop-kopona.com/uploads/posts/2018-02/1518524055_old-map-background.jpg) !important;
+  background-size: cover;
+  background-position: center;
+  background-color: #a5864d;
+  border: 1px solid #433415;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.calendario {
+  color: #ffffff;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+
+  :global .rbc-off-range-bg {
+    background-color: #3d3c3c4d !important;
+  }
+
+  :global .rbc-date-cell {
+    color: #000000;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+  }
+
+  :global .rbc-today {
+    background-color: #8b8b8b62 !important;
+    background-image: url(https://th.bing.com/th/id/R.3164060aebb976feff354be1337b0575?rik=6kJveudSFptXbw&riu=http%3a%2f%2fpluspng.com%2fimg-png%2fcastle-png-haunted-castle-png-700.png&ehk=gIBKKSCx6ZSojHioMSfSTuCByoYDUXWzaNBMrXwTBSE%3d&risl=&pid=ImgRaw&r=0) !important;
+    //background-image: url(https://th.bing.com/th/id/R.dd6544e7e926ece11efb1a7fbc95e1d9?rik=F%2fYfSRrwIIiV8g&riu=http%3a%2f%2fassets.stickpng.com%2fimages%2f580b585b2edbce24c47b2665.png&ehk=kpEirK6IE1jbdW%2bInh7l9XPf%2fbj1s7%2fX3h4Q5%2bTJBj4%3d&risl=&pid=ImgRaw&r=0) !important;
+    background-size: contain;
+    background-position: center;
+  }
+
+  :global .rbc-month-view {
+    border: black 1px solid;
+  }
+
+  :global .rbc-header {
+    border-bottom: black 1px solid;
+  }
+
+  :global .rbc-header+.rbc-header {
+    border-left: black 1px solid;
+  }
+
+  :global .rbc-month-row+.rbc-month-row {
+    border-top: black 1px solid;
+  }
+
+  :global .rbc-day-bg+.rbc-day-bg {
+    border-left: black 1px solid;
+  }
+
+}
+
+.botonToolbar {
+  background-color: transparent !important;
+  color: whitesmoke !important;
+
+}
+
+
 /* eslint-enable */

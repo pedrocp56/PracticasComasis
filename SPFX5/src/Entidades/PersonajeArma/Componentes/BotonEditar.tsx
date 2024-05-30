@@ -4,6 +4,7 @@ import { useState } from "react";
 import { PersonajeItem } from "../../Personaje/PersonajeItem";
 import { PersonajeArmaItem } from "../PersonajeArmaItem";
 import PersonajeArmaFormProps from "./UsoGeneral/PersonajeArmaForm";
+import commonStyles from "../../../webparts/gestorPartidas/components/GestorPartidas.module.scss";
 
 export interface IPersonajeArmaBotonEditarProps {
   item: PersonajeArmaItem;
@@ -26,7 +27,7 @@ export default function PersonajeArmaBotonEditar(
   return (
     <>
       <IconButton
-        id="botonEditar"
+        className={commonStyles.botonEditar}
         onClick={showModal}
         iconProps={{ iconName: "Edit" }}
         title="Editar"

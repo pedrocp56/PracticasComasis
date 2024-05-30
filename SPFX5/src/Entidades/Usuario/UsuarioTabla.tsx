@@ -4,6 +4,7 @@ import { WebPartContext } from "@microsoft/sp-webpart-base";
 import { DefaultButton, Persona, Stack } from "office-ui-fabric-react";
 import * as React from "react";
 import { useState } from "react";
+import commonStyles from "../../webparts/gestorPartidas/components/GestorPartidas.module.scss";
 
 export interface IUsuarioTablaProps {
     context: WebPartContext;
@@ -42,28 +43,28 @@ export default function UsuarioTabla(
 
     return (
         <Stack horizontalAlign="center" verticalAlign="center" tokens={{ childrenGap: 35 }} styles={{ root: { width: '500px' } }}>
-            <div className="borde-user">
+            <div className={commonStyles["borde-user"]}>
                 <Persona
                     imageShouldFadeIn={false}
                     imageUrl={`/_layouts/15/userphoto.aspx?size=L&username=${Props.context.pageContext.legacyPageContext.userEmail}`}
                     text={Props.context.pageContext.legacyPageContext.userDisplayName}
                 />
-                <Stack id="caja-2x2">
+                <Stack className={commonStyles["caja-2x2"]}>
                     <DefaultButton
-                        id={MostrarCampañas ? "botonUserPulsado" : "botonUserSinPulsar"}
-                        className="celda"
+                        id={MostrarCampañas ? commonStyles.botonCampañaPulsado : commonStyles.botonCampañaSinPulsar}
+                        className={commonStyles.celda}
                         onClick={mostrarCampaña}
                         text="Campaña"
                     />
                     <DefaultButton
-                        id={MostrarPersonajes ? "botonUserPulsado" : "botonUserSinPulsar"}
-                        className="celda"
+                        id={MostrarPersonajes ? commonStyles.botonPersonajePulsado: commonStyles.botonPersonajeSinPulsar}
+                        className={commonStyles.celda}
                         onClick={mostrarPersonaje}
                         text="Personajes"
                     />
                     <DefaultButton
-                        id={MostrarArmas ? "botonUserPulsado" : "botonUserSinPulsar"}
-                        className="celda"
+                        id={MostrarArmas ? commonStyles.botonArmasPulsado : commonStyles.botonArmasSinPulsar}
+                        className={commonStyles.celda}
                         onClick={mostrarArma}
                         text="Ver armas"
                     />

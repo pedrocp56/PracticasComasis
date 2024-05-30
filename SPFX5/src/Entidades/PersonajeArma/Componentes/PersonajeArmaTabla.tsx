@@ -10,6 +10,7 @@ import { PersonajeArmaItem } from "../PersonajeArmaItem";
 import PersonajeArmaBotonEditar from "./BotonEditar";
 import PersonajeArmaBotonEliminar from "./BotonEliminar";
 import { CalcularAtaque } from "../../Generales/Calculos";
+import commonStyles from "../../../webparts/gestorPartidas/components/GestorPartidas.module.scss";
 
 export interface IPersonajeArmaWebpartProps {
   Items: PersonajeArmaItem[];
@@ -23,10 +24,10 @@ export default function PersonajeArmaWebpart(
   const [cargando, setCargando] = React.useState(true);
 
   useEffect((): void => {
-    setCargando(false);    
+    setCargando(false);
   }, []);
 
-  
+
 
 
   const columns: TableColumnsType<PersonajeArmaItem> = [
@@ -111,16 +112,22 @@ export default function PersonajeArmaWebpart(
       align: 'center',
     },
   ];
+
   const tableStyle = {
     margin: "auto",
-    width: "fit-content",
+    width: "1100px",
   };
+  
   return (
     <>
       {!cargando
         &&
         <div>
-          <Table columns={columns} dataSource={Props.Items} style={tableStyle} />
+          <Table
+            className={commonStyles.tabla}
+            columns={columns}
+            dataSource={Props.Items}
+            style={tableStyle} />
         </div>
       }
     </>

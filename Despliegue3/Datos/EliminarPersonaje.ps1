@@ -31,4 +31,4 @@ for ($i = 0; $i -lt $itemsPersonaje.Count; $i++) {
     }
 }
 
-#$context.ExecuteQuery();
+$context.ExecuteQuery();

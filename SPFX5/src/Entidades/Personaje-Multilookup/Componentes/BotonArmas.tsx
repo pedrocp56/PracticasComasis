@@ -3,6 +3,7 @@ import { Modal } from "antd";
 import { IconButton } from "@fluentui/react";
 import { PersonajeItem } from "../PersonajeItem";
 //import UsarImagen from "../../Generales/UsarImagen";
+import commonStyles from "../../../webparts/gestorPartidas/components/GestorPartidas.module.scss";
 
 export interface infoParaTablaProps {
   info: PersonajeItem;
@@ -32,7 +33,7 @@ const PersonajeBotonArmas: React.FC<{
   return (
     <>
       <IconButton
-      id="botonMostrar"
+        className={commonStyles.botonMostrar}
         onClick={showModal}
         iconProps={{ iconName: "Script" }}
         title={`${info.ListaArmas.length} armas`}

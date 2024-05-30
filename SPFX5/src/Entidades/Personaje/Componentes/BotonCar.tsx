@@ -3,6 +3,7 @@ import * as React from "react";
 import { Modal } from "antd";
 import { IconButton } from "@fluentui/react";
 import { PersonajeItem } from "../PersonajeItem";
+import commonStyles from "../../../webparts/gestorPartidas/components/GestorPartidas.module.scss";
 
 export interface infoParaTablaProps {
   titulo: string;
@@ -27,7 +28,7 @@ export default function PersonajeBotonCar(props: infoParaTablaProps): JSX.Elemen
   return (
     <>
       <IconButton
-        id="botonMostrar"
+        className={commonStyles.botonMostrar}
         onClick={showModal}
         iconProps={{ iconName: "Script" }}
         title="Más información"

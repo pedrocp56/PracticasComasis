@@ -3,6 +3,7 @@
 import * as React from "react";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { IconButton } from "office-ui-fabric-react";
+import commonStyles from "../../webparts/gestorPartidas/components/GestorPartidas.module.scss";
 
 const CustomToolbar = (props: any): JSX.Element => {
   const viewState = "month";
@@ -92,9 +93,8 @@ const CustomToolbar = (props: any): JSX.Element => {
   }*/
 
   return (
-    <div className="rbc-toolbar">
+    <div >
       <div
-        className="rbc-btn-group"
         style={{
           display: "flex",
           justifyContent: "space-between",
@@ -103,12 +103,12 @@ const CustomToolbar = (props: any): JSX.Element => {
       >
         <IconButton
           iconProps={{ iconName: "ChevronLeft" }}
+          className={commonStyles.botonToolbar}
           title={"Anterior"}
           ariaLabel={"Anterior"}
           onClick={goToBack}
         />
         <span
-          className="rbc-toolbar-label"
           style={{
             textTransform: "capitalize",
             fontSize: "14px",
@@ -121,10 +121,12 @@ const CustomToolbar = (props: any): JSX.Element => {
 
         <IconButton
           iconProps={{ iconName: "ChevronRight" }}
+          className={commonStyles.botonToolbar}
           title={"Siguiente"}
           ariaLabel={"Siguiente"}
           onClick={goToNext}
         />
+
       </div>
     </div>
   );

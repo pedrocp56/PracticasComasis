@@ -7,6 +7,7 @@ import { PrimaryButton, StackItem } from "@fluentui/react";
 import { CampañaLista } from "../CampañaLista";
 import { CampañaItem } from "../CampañaItem";
 import CampañaFormProps from "./UsoGeneral/CampañaForm";
+import commonStyles from "../../../webparts/gestorPartidas/components/GestorPartidas.module.scss";
 
 export interface ICampañaNuevoBotonProps {
   lista: CampañaLista;
@@ -35,7 +36,7 @@ export default function CampañaNuevoBoton(
   return (
     <StackItem>
       <PrimaryButton
-      id="botonNuevo"
+        className={commonStyles.botonNuevo}
         text={"Nuevo Campaña"}
         title={"Nuevo Campaña"}
         iconProps={{ iconName: "Add" }}

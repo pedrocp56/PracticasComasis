@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-floating-promises*/
-import * as React from 'react';
 import { WebPartContext } from "@microsoft/sp-webpart-base";
 import { SPFI } from "@pnp/sp";
+import * as React from 'react';
 import { useEffect, useState } from "react";
-import { ArmaLista } from '../../../Entidades/Arma/ArmaLista';
 import { ArmaItem } from '../../../Entidades/Arma/ArmaItem';
+import { ArmaLista } from '../../../Entidades/Arma/ArmaLista';
 import ArmaTabla from '../../../Entidades/Arma/Componentes/ArmaTabla';
 import ArmaNuevoBoton from '../../../Entidades/Arma/Componentes/BotonNuevo';
 
@@ -38,7 +38,7 @@ export default function GestorArmasCompWebpart(
 
   return (
     <>
-      <div hidden={cargando}>
+      <div hidden={cargando} >
         <ArmaNuevoBoton lista={ArmaL.current} callback={recargaDatos} />
         <ArmaTabla Items={Items} callback={recargaDatos} />
       </div>

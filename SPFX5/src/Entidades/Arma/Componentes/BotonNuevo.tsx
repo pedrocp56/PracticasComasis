@@ -6,6 +6,8 @@ import { PrimaryButton, StackItem } from "@fluentui/react";
 import { ArmaLista } from "../ArmaLista";
 import { ArmaItem } from "../ArmaItem";
 import ArmaFormProps from "./UsoGeneral/ArmaForm";
+import commonStyles from "../../../webparts/gestorPartidas/components/GestorPartidas.module.scss";
+
 
 export interface IArmaNuevoBotonProps {
   lista: ArmaLista;
@@ -34,7 +36,7 @@ export default function ArmaNuevoBoton(
   return (
     <StackItem>
       <PrimaryButton
-        id="botonNuevo"
+        className={commonStyles.botonNuevo}
         text={"Nuevo Arma"}
         title={"Nuevo Arma"}
         iconProps={{ iconName: "Add" }}

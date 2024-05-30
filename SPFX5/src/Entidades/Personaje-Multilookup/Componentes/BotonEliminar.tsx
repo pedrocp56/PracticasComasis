@@ -2,8 +2,7 @@ import * as React from "react";
 import { IconButton, Dialog, DialogType, DialogFooter, DefaultButton, PrimaryButton } from "@fluentui/react";
 import { useState } from "react";
 import { PersonajeItem } from "../PersonajeItem";
-
-
+import commonStyles from "../../../webparts/gestorPartidas/components/GestorPartidas.module.scss";
 
 export interface IPersonajeBotonEliminarProps {
     item: PersonajeItem;
@@ -26,7 +25,7 @@ export default function PersonajeBotonEliminar(props: IPersonajeBotonEliminarPro
     return (
         <>
             <IconButton
-            id="botonEliminar"
+                className={commonStyles.botonEliminar}
                 onClick={handleDelete}
                 iconProps={{ iconName: "Delete" }}
                 title="Eliminar"

@@ -4,6 +4,7 @@ import * as React from "react";
 import { UsarImagen } from "../../Generales/UsarImagen";
 import { PersonajeItem } from "../PersonajeItem";
 import PersonajeBotonArmas from "./BotonArmas";
+import commonStyles from "../../../webparts/gestorPartidas/components/GestorPartidas.module.scss";
 
 export interface infoParaTablaProps {
     personaje: PersonajeItem;
@@ -25,7 +26,7 @@ const PersonajeBotonInfo: React.FC<infoParaTablaProps> = (Props: infoParaTablaPr
     return (
         <>
             <IconButton
-                id="botonMostrar"
+                className={commonStyles.botonMostrar}
                 onClick={showModal}
                 iconProps={{ iconName: "ComplianceAudit" }}>
                 {Props.titulo}

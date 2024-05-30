@@ -3,6 +3,7 @@ import { IconButton } from "@fluentui/react";
 import { useState } from "react";
 import { PersonajeItem } from "../PersonajeItem";
 import PersonajeFormProps from "./UsoGeneral/PersonajeForm";
+import commonStyles from "../../../webparts/gestorPartidas/components/GestorPartidas.module.scss";
 
 export interface IPersonajeBotonEditarProps {
   item: PersonajeItem;
@@ -29,7 +30,7 @@ export default function PersonajeBotonEditar(
   return (
     <>
       <IconButton
-      id="botonEditar"
+        className={commonStyles.botonEditar}
         onClick={showModal}
         iconProps={{ iconName: "Edit" }}
         title="Editar"

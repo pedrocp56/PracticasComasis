@@ -67,7 +67,7 @@ export default function GestorUsuarioCompWebpart(
         start: c.Fecha,
         end: c.Fecha,
         allDay: true,
-        fondo: "#9a5833",
+        fondo: "#8d6a4d",
         item: c,
       }));
       eventosCamp = events;
@@ -84,7 +84,7 @@ export default function GestorUsuarioCompWebpart(
               start: c.Fecha,
               end: c.Fecha,
               allDay: true,
-              fondo: "#8c8c8c",
+              fondo: "#8d4d48",
               item: c,
             };
           }

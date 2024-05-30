@@ -4,6 +4,7 @@ import { Modal } from "antd";
 import * as React from "react";
 import { PersonajeItem } from "../PersonajeItem";
 import PersonajeArmasTabla from "./TablaPersonajeArmas";
+import commonStyles from "../../../webparts/gestorPartidas/components/GestorPartidas.module.scss";
 
 export interface infoParaTablaProps {
   personaje: PersonajeItem;
@@ -29,7 +30,7 @@ export default function PersonajeBotonArmas(Props: infoParaTablaProps): JSX.Elem
   return (
     <>
       <IconButton
-        id="botonMostrar"
+        className={commonStyles.botonMostrar}
         onClick={showModal}
         iconProps={{ iconName: "Script" }}
         title="Armas"

@@ -15,6 +15,7 @@ import CampañaBotonInfo from "./BotonInfo";
 import { PersonajeLista } from "../../Personaje/PersonajeLista";
 import { useEffect } from "react";
 import { MostrarPersonajes } from "../../Personaje/Componentes/MostrarPersonajes";
+import commonStyles from "../../../webparts/gestorPartidas/components/GestorPartidas.module.scss";
 
 export interface ICampañaWebpartProps {
     Items: CampañaItem[];
@@ -120,15 +121,18 @@ export default function CampañaWebpart(
             columns = columns.filter(column => column.key !== "Personajes");
         }
     }, []);
-
+    
     const tableStyle = {
         margin: "auto",
-        width: "fit-content",
-    };
+        width: "1100px",
+      };
+
     return (
         <div>
             <>
-                <Table columns={columns} dataSource={Props.Items} style={tableStyle} />
+                <Table className={commonStyles.tabla}
+                    columns={columns} dataSource={Props.Items}
+                    style={tableStyle} />
             </>
         </div>
     );

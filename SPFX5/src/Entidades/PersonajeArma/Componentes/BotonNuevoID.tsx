@@ -7,6 +7,7 @@ import { PersonajeArmaItem } from "../PersonajeArmaItem";
 import { PersonajeArmaLista } from "../PersonajeArmaLista";
 import PersonajeArmaFormProps from "./UsoGeneral/PersonajeArmaForm";
 import { PersonajeItem } from "../../Personaje/PersonajeItem";
+import commonStyles from "../../../webparts/gestorPartidas/components/GestorPartidas.module.scss";
 
 export interface IPersonajeArmaNuevoIDBotonProps {
     lista: PersonajeArmaLista;
@@ -36,7 +37,7 @@ export default function PersonajeArmaNuevoIDBoton(
     return (
         <StackItem>
             <PrimaryButton
-                id="botonNuevo"
+                className={commonStyles.botonNuevo}
                 text={"Nueva arma para el personaje"}
                 title={"Nuevo arma"}
                 iconProps={{ iconName: "Add" }}

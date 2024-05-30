@@ -15,6 +15,7 @@ import ArmaBotonEditar from "./BotonEditar";
 import ArmaBotonEliminar from "./BotonEliminar";
 import ArmaBotonInfo from "./BotonInfo";
 import { UsarImagenArma } from "../../Generales/UsarImagen";
+import commonStyles from "../../../webparts/gestorPartidas/components/GestorPartidas.module.scss";
 
 export interface IArmaWebpartProps {
   Items: ArmaItem[];
@@ -36,7 +37,7 @@ export default function ArmaWebpart(Props: IArmaWebpartProps): JSX.Element {
       dataIndex: "#",
       render: (_text: string, record: ArmaItem) => (
         <Stack horizontal tokens={{ childrenGap: 5 }}>
-            <ArmaBotonInfo titulo="Arma" info={record} />
+          <ArmaBotonInfo titulo="Arma" info={record} />
           {Props.callback &&
             <ArmaBotonEliminar item={record} callback={Props.callback} />
           }
@@ -134,15 +135,18 @@ export default function ArmaWebpart(Props: IArmaWebpartProps): JSX.Element {
       ),
     },
   ];
+
   const tableStyle = {
     margin: "auto",
-    width: "fit-content",
+    width: "1100px",
   };
+
   return (
     <>
       {!cargando && (
         <div>
           <Table
+            className={commonStyles.tabla}
             columns={columns}
             dataSource={Props.Items}
             style={tableStyle}

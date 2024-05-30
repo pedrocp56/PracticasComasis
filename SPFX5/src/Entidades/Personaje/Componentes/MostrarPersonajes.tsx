@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { DefaultButton } from "@fluentui/react";
 import PersonajeTabla from "./PersonajeTabla";
 import { Modal } from "antd";
+import commonStyles from "../../../webparts/gestorPartidas/components/GestorPartidas.module.scss";
 
 export const MostrarPersonajes: React.FC<{ campañaID: number, listaPer: PersonajeLista }> = ({ campañaID, listaPer }) => {
 
@@ -42,7 +43,7 @@ export const MostrarPersonajes: React.FC<{ campañaID: number, listaPer: Persona
             }
             {Personajes.length !== 0 &&
                 <DefaultButton
-                    id="botonMostrar"
+                    className={commonStyles.botonMostrar}
                     onClick={mostrarP}
                     text="Mostrar Personajes"
                 />

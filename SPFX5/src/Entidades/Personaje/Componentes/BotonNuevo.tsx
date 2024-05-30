@@ -6,6 +6,7 @@ import { PrimaryButton, StackItem } from "@fluentui/react";
 import { PersonajeLista } from "../PersonajeLista";
 import { PersonajeItem } from "../PersonajeItem";
 import PersonajeFormProps from "./UsoGeneral/PersonajeForm";
+import commonStyles from "../../../webparts/gestorPartidas/components/GestorPartidas.module.scss";
 
 export interface IPersonajeNuevoBotonProps {
   lista: PersonajeLista;
@@ -25,7 +26,7 @@ export default function PersonajeNuevoBoton(
       setIsModalOpen(true);
     }
   }, [itemEdit]);
-  
+
   const cerrar = (): void => {
     setItemEdit(null);
     setIsModalOpen(false);
@@ -34,7 +35,7 @@ export default function PersonajeNuevoBoton(
   return (
     <StackItem>
       <PrimaryButton
-      id="botonNuevo"
+        className={commonStyles.botonNuevo}
         text={"Nuevo Personaje"}
         title={"Nuevo Personaje"}
         iconProps={{ iconName: "Add" }}

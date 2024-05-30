@@ -3,6 +3,7 @@ import { IconButton } from "@fluentui/react";
 import { useEffect, useState } from "react";
 import { ArmaItem } from "../ArmaItem";
 import ArmaFormProps from "./UsoGeneral/ArmaTodoForm";
+import commonStyles from "../../../webparts/gestorPartidas/components/GestorPartidas.module.scss";
 
 
 export interface IArmasBotonEditarProps {
@@ -36,7 +37,7 @@ export default function ArmasBotonEditar(props: IArmasBotonEditarProps): JSX.Ele
     return (
         <>
             <IconButton
-                id="botonEditar"
+                className={commonStyles.botonEditar}
                 onClick={showModal}
                 iconProps={{ iconName: "Edit" }}
             />

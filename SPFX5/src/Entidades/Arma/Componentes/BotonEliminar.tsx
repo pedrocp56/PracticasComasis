@@ -4,6 +4,7 @@ import * as React from "react";
 import { IconButton, Dialog, DialogType, DialogFooter, DefaultButton, PrimaryButton } from "@fluentui/react";
 import { useState } from "react";
 import { ArmaItem } from "../ArmaItem";
+import commonStyles from "../../../webparts/gestorPartidas/components/GestorPartidas.module.scss";
 
 
 export interface IArmaBotonEliminarProps {
@@ -27,7 +28,7 @@ export default function ArmaBotonEliminar(props: IArmaBotonEliminarProps): JSX.E
     return (
         <>
             <IconButton
-            id="botonEliminar"
+            className={commonStyles.botonEliminar}
                 onClick={handleDelete}
                 iconProps={{ iconName: "Delete" }}
                 title="Eliminar"

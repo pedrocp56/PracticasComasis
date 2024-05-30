@@ -4,6 +4,7 @@ import { useState } from "react";
 import '../..//Generales/estilos.css';
 import ArmaFotoFormProps from "../../ArmaFotos/Componentes/ArmaFotoTabla";
 import { ArmaItem } from "../ArmaItem";
+import commonStyles from "../../../webparts/gestorPartidas/components/GestorPartidas.module.scss";
 
 
 export interface IArmaBotonFotoProps {
@@ -32,7 +33,7 @@ export default function ArmaBotonFoto(
 
       <button
         onClick={showModal}
-        id="botonguapisimoeditar"
+        className={commonStyles.botonguapisimoeditar}
       >Editar</button>
       {isModalOpen &&
         <ArmaFotoFormProps

@@ -3,6 +3,8 @@ import { Modal } from "antd";
 import * as React from "react";
 import { UsarImagenArma } from "../../Generales/UsarImagen";
 import { ArmaItem } from "../ArmaItem";
+import commonStyles from "../../../webparts/gestorPartidas/components/GestorPartidas.module.scss";
+
 
 export interface infoParaTablaProps {
     info: ArmaItem;
@@ -39,14 +41,14 @@ const ArmaBotonInfo: React.FC<{ titulo: string, info: ArmaItem }> = ({ titulo, i
     return (
         <>
             <IconButton
-            id="botonMostrar"
+                className={commonStyles.botonMostrar}
                 onClick={showModal}
                 iconProps={{ iconName: "ComplianceAudit" }}>
                 {titulo}
             </IconButton>
             {isModalOpen &&
                 <Modal title={titulo} open={isModalOpen}
-                    onOk={handleOk} 
+                    onOk={handleOk}
                     cancelButtonProps={{ hidden: true }} closable={false}>
                     <p><strong>ID: </strong>{info.ID}</p>
                     <p><strong>Nombre: </strong>{info.Nombre}</p>

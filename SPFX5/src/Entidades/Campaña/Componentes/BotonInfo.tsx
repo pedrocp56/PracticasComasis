@@ -4,6 +4,7 @@ import * as React from "react";
 import UsarFecha from "../../Generales/OperacionesFecha";
 import { UsarImagen } from "../../Generales/UsarImagen";
 import { CampañaItem } from "../CampañaItem";
+import commonStyles from "../../../webparts/gestorPartidas/components/GestorPartidas.module.scss";
 
 export interface infoParaTablaProps {
     info: CampañaItem;
@@ -24,7 +25,7 @@ const CampañaBotonInfo: React.FC<infoParaTablaProps> = (Props: infoParaTablaPro
     return (
         <>
             <IconButton
-                id="botonMostrar"
+                className={commonStyles.botonMostrar}
                 onClick={showModal}
                 iconProps={{ iconName: "ComplianceAudit" }}>
                 {Props.titulo}

@@ -8,6 +8,8 @@ import "react-big-calendar/lib/sass/styles.scss";
 import CustomToolbar from "./CustomToolbar";
 import { EventoBigCalendar } from "./EventoBigCalendar";
 import EventoInfo from "./EventoModal"; // Asegúrate de que la ruta es correcta
+import commonStyles from "../../webparts/gestorPartidas/components/GestorPartidas.module.scss";
+
 
 require("globalize/lib/cultures/globalize.culture.es");
 require("globalize/lib/cultures/globalize.culture.en-US");
@@ -76,11 +78,8 @@ export default function MiCalendarioWP(props: MiCalendarioProps): JSX.Element {
         },
     });
 
-
-
-
     return (
-        <>
+        <div className={commonStyles.calendarioFondo}>
             <Calendar
                 components={components}
                 defaultDate={defaultDate}
@@ -89,6 +88,7 @@ export default function MiCalendarioWP(props: MiCalendarioProps): JSX.Element {
                 culture={UICultureName.current}
                 showMultiDayTimes
                 step={60}
+                className={commonStyles.calendario}
                 style={{ height: "480px", width: "550px" }}
                 views={["month"]}
                 startAccessor="start"
@@ -113,7 +113,7 @@ export default function MiCalendarioWP(props: MiCalendarioProps): JSX.Element {
                     onClose={() => setItemVer(null)}
                 />
             )}
-        </>
+        </div>
     );
 }
 

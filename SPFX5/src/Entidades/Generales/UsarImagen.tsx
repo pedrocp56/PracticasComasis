@@ -20,8 +20,6 @@ export const UsarUrl: React.FC<{ imageUrl: any }> = ({ imageUrl }) => {
 };
 
 export const UsarImagenArma: React.FC<{ imageUrl: any }> = ({ imageUrl }) => {
-    console.log(imageUrl);
-
     if (!imageUrl) {
         return (
             <Image

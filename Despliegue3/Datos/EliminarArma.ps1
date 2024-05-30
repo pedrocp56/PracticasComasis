@@ -15,4 +15,4 @@ for ($i = 0; $i -lt $itemsArma.Count; $i++) {
     write-host "|---- Arma eliminada" -ForegroundColor DarkMagenta
 }
 
-#$context.ExecuteQuery();
+$context.ExecuteQuery();

@@ -14,6 +14,7 @@ import PersonajeBotonEditar from "./BotonEditar";
 import { MostrarTitulo } from "../../Generales/Mostrar";
 import { UsarImagen } from "../../Generales/UsarImagen";
 import PersonajeBotonInfo from "./BotonInfo";
+import commonStyles from "../../../webparts/gestorPartidas/components/GestorPartidas.module.scss";
 
 export interface IPersonajeTablaProps {
   Items: PersonajeItem[];
@@ -125,21 +126,24 @@ export default function PersonajeTabla(
   ];
 
 
-  const tableStyle = {
-    margin: "auto",
-    width: "1100px",
-  };
-
   useEffect((): void => {
     setCargando(false);
   }, []);
 
+  const tableStyle = {
+    margin: "auto",
+    width: "1100px",
+  };
+  
   return (
     <>
       {!cargando
         &&
         <div>
-          <Table columns={columns} dataSource={Props.Items} style={tableStyle} />
+          <Table
+            className={commonStyles.tabla}
+            columns={columns} dataSource={Props.Items}
+            style={tableStyle} />
         </div>
       }
     </>

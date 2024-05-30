@@ -2,6 +2,7 @@ import * as React from "react";
 import { Modal } from "antd";
 import { ArmaItem } from "../ArmaItem";
 import { IconButton } from "@fluentui/react";
+import commonStyles from "../../../webparts/gestorPartidas/components/GestorPartidas.module.scss";
 
 export interface infoParaTablaProps {
     info: ArmaItem;
@@ -44,7 +45,7 @@ const ArmaInfo: React.FC<{ titulo: string, info: ArmaItem }> = ({ titulo, info }
     return (
         <>
             <IconButton
-                id="botonMostrar"
+                className={commonStyles.botonMostrar}
                 onClick={showModal}
                 iconProps={{ iconName: "ComplianceAudit" }}>
                 {titulo}

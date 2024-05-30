@@ -17,13 +17,13 @@ const EventoInfo: React.FC<infoParaTablaProps> = (Props: infoParaTablaProps) => 
                 visible={true}
                 cancelButtonProps={{ hidden: true }} closable={false}
                 onOk={Props.onClose} >
-                <p>ID: {Props.info.item.ID}</p>
-                <p>Nombre: {Props.info.item.Nombre}</p>
-                <p>Descripción:</p>
+                <p><strong>ID: </strong>{Props.info.item.ID}</p>
+                <p><strong>Nombre: </strong>{Props.info.item.Nombre}</p>
+                <p><strong>Descripción:</strong></p>
                 <p style={{ whiteSpace: "pre-line" }}>  {Props.info.item.Descripcion}</p>
-                <p>Próxima sesion: {<UsarFecha fecha={Props.info.item.Fecha} />}</p>
-                <p>Foto: {<UsarImagen imageUrl={Props.info.item.Foto} />}</p>
-                <p>Master: {Props.info.item.Master.Title}</p>
+                <p><strong>Próxima sesion: </strong>{<UsarFecha fecha={Props.info.item.Fecha} />}</p>
+                <p><strong>Foto: </strong>{<UsarImagen imageUrl={Props.info.item.Foto} />}</p>
+                <p><strong>aster: </strong>M{Props.info.item.Master.Title}</p>
             </Modal >
         </>
     );

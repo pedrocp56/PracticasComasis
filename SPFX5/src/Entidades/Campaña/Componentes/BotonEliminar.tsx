@@ -3,6 +3,7 @@ import { IconButton, Dialog, DialogType, DialogFooter, DefaultButton, PrimaryBut
 import { useState } from "react";
 import { CampañaItem } from "../CampañaItem";
 import '../../Generales/estilos.css';
+import commonStyles from "../../../webparts/gestorPartidas/components/GestorPartidas.module.scss";
 
 export interface ICampañaBotonEliminarProps {
     item: CampañaItem;
@@ -25,7 +26,7 @@ export default function CampañaBotonEliminar(props: ICampañaBotonEliminarProps
     return (
         <>
             <IconButton
-                id="botonEliminar"
+                className={commonStyles.botonEliminar}
                 onClick={handleDelete}
                 iconProps={{ iconName: "Delete" }}
                 title="Eliminar"
