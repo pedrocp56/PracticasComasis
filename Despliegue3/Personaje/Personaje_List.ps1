@@ -80,6 +80,7 @@ if ($contentType -ne $null) {
 $vista = $null;
 
 foreach ($view in $views) {
+            Write-Host $view.Title
 
         if ($view.Title -eq "Todos los elementos") { #Todos los documentos
             $vista = $view;

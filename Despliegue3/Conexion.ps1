@@ -1,5 +1,5 @@
-﻿$absolutePath = "C:\Users\PedroCerredelo\Documents\Trabajo\TFC\Despliegue3"
-$csvPath = $absolutePath + "/Datos/csv" 
+﻿#hay que tener instalada librería pnp Install-Module PnP.PowerShell
+#https://github.com/pnp/powershell
 
 #$siteUrl = "https://onlinecomasis.sharepoint.com/sites/Pedro"
 $siteUrl = "https://eqcdevelopment.sharepoint.com/sites/Pedro"

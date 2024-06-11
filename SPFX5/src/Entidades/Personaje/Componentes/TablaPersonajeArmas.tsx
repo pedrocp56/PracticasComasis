@@ -13,6 +13,7 @@ import { PersonajeArmaItem } from "../../PersonajeArma/PersonajeArmaItem";
 import { PersonajeArmaLista } from "../../PersonajeArma/PersonajeArmaLista";
 import { PersonajeItem } from "../PersonajeItem";
 import PersonajeArmaNuevoBoton from "../../PersonajeArma/Componentes/BotonNuevo";
+
 import commonStyles from "../../../webparts/gestorPartidas/components/GestorPartidas.module.scss";
 
 

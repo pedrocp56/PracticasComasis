@@ -18,11 +18,30 @@ $context.ExecuteQuery();
 
 $campanhasSP = $itemsCampanhas | Group-Object {$_.FieldValues["Title"]} -AsHashTable -AsString;
 
-$csvCampanhas = Import-Csv $csvPath"\Campanha.csv" ";" -Encoding UTF8;
+#$csvCampanhas = Import-Csv $csvPath"\Campanha.csv" ";" -Encoding UTF8;
+$csvCampanhas = Import-Csv $csvPath"\Campanha2.csv" ";" -Encoding UTF8;
 
 $csvCampanhas | ForEach-Object { 
 
     write-host "Revisando $($_.Titulo)"
+
+     
+    $cuenta = $_.Cuenta;
+    $user = $siteUsers | Where-Object {$_.Email -eq $cuenta } 
+    
+    if ($user -eq $null) {
+        $user = $context.Web.EnsureUser($cuenta);
+        $context.Load($user);
+        try {
+            $context.ExecuteQuery();
+        }
+        catch {
+            write-host "No se encuentra el usuario $cuenta" -ForegroundColor Red;
+            return;
+        }
+    }
+
+
     #Comprobamos si existe una campaña con el titulo
     if($campanhasSP.Count -eq 0){
         write-host "|-- No tiene registro en SP";
@@ -50,15 +69,7 @@ $csvCampanhas | ForEach-Object {
                 }
         }
     }
-    
-    $cuenta = $_.Cuenta;
-    $user = $siteUsers | Where-Object {$_.Email -eq $cuenta } 
-    
-    if ($user -eq $null) {
-        $user = $context.Web.EnsureUser($cuenta);
-        $context.Load($user);
-        $context.ExecuteQuery();
-    }
+   
 
 
     $needUpdate = $false;
@@ -105,6 +116,7 @@ $csvCampanhas | ForEach-Object {
     }
 
     if ($needUpdate) {
+        Write-Host "$($item["Title"])"
         $item.Update();
         write-host "Campaña $($_."Titulo") actualizada" -ForegroundColor Green
 

@@ -26,6 +26,16 @@ $csvArma = Import-Csv $csvPath"\Arma.csv" ";" -Encoding UTF8;
 
 $csvArma | ForEach-Object { 
 
+    #Cargar Lookup (mas bien la biblioteca y comprobamos si existe)
+    $csvFoto = $null
+    if($FotoSP[$_.LookupArmaFoto] -ne $null) {
+       $csvFoto = $FotoSP[$_.LookupArmaFoto].FieldValues["FileRef"];
+    }
+    if ($csvFoto -eq $null) {
+        write-host "|-- La foto no existe" -ForegroundColor Red
+        return;
+    }
+
     write-host "Revisando $($_.Nombre)"
     #Comprobamos si existe una arma con el titulo
     if($ArmaSP.Count -eq 0){
@@ -54,16 +64,6 @@ $csvArma | ForEach-Object {
         }
     }
 
-    #Cargar Lookup (mas bien la biblioteca y comprobamos si existe)
-    $csvFoto = $null
-    if($FotoSP[$_.LookupArmaFoto] -ne $null) {
-       $csvFoto = $FotoSP[$_.LookupArmaFoto].FieldValues["FileRef"];
-    }
-    if ($csvFoto -eq $null) {
-        write-host "|-- La foto no existe" -ForegroundColor Red
-        return;
-    }
-    
     $needUpdate = $false;
 
     #Se compruba si son distintos los valores
@@ -115,7 +115,8 @@ $csvArma | ForEach-Object {
         $needUpdate = $true;
     }
 
-    $url = "https://onlinecomasis.sharepoint.com$($csvFoto)"
+    #$url = "https://onlinecomasis.sharepoint.com$($csvFoto)"
+    $url = "https://eqcdevelopment.sharepoint.com$($csvFoto)"
     if($item.FieldValues["Arma_Foto"].Url -ne $url ){
         write-host "|---- Foto:[Viejo ($($item.FieldValues["Arma_Foto"].Url)) Nuevo ($($url))]";
         $item["Arma_Foto"] = $url

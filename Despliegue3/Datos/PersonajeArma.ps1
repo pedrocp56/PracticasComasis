@@ -50,6 +50,16 @@ $csvPersonajeArma | ForEach-Object {
         return;
     }
 
+    #Cargar Lookup (mas bien la lista y comprobamos si existe)
+    $csvArma = $null
+    if($ArmaSP[$_.NombreArma] -ne $null) {
+       $csvArma = $ArmaSP[$_.NombreArma]
+    }
+    if ($csvArma -eq $null) {
+        write-host "|-- El arma no existe" -ForegroundColor Red
+        return;
+    }
+
     write-host "Revisando $($csvPersonaje.FieldValues["Title"])- $($csvPersonaje.Id)"
     #Comprobamos si existe un personajeArma con el Personaje >=5
     if($PersonajeArmaSP.Count -eq 0){
@@ -79,15 +89,7 @@ $csvPersonajeArma | ForEach-Object {
         }
     }
 
-    #Cargar Lookup (mas bien la lista y comprobamos si existe)
-    $csvArma = $null
-    if($ArmaSP[$_.NombreArma] -ne $null) {
-       $csvArma = $ArmaSP[$_.NombreArma]
-    }
-    if ($csvArma -eq $null) {
-        write-host "|-- El arma no existe" -ForegroundColor Red
-        return;
-    }
+   
     
 
     $needUpdate = $false;

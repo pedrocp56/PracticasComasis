@@ -24,9 +24,35 @@ $PersonajeSP = $itemsPersonaje | Group-Object {$_.FieldValues["Title"]} -AsHashT
 $campanhasSP = $itemsCampanhas | Group-Object {$_.FieldValues["Title"]} -AsHashTable -AsString;
 
 
-$csvPersonaje = Import-Csv $csvPath"\Personaje.csv" ";" -Encoding UTF8;
+$csvPersonaje = Import-Csv $csvPath"\Personaje2.csv" ";" -Encoding UTF8;
 
 $csvPersonaje | ForEach-Object { 
+
+    #Cargar Lookup (mas bien la lista y comprobamos si existe)
+    $csvCampanhas = $null
+    if($campanhasSP[$_.LookupCampanha] -ne $null) {
+       $csvCampanhas = $campanhasSP[$_.LookupCampanha].Id
+    }
+    if ($csvCampanhas -eq $null) {
+        write-host "|-- La Campaña no existe" -ForegroundColor Red
+        return;
+    }
+    
+    $cuenta = $_.Cuenta;
+    $user = $siteUsers | Where-Object {$_.Email -eq $cuenta } 
+    
+    if ($user -eq $null) {
+        $user = $context.Web.EnsureUser($cuenta);
+        $context.Load($user);
+        try {
+            $context.ExecuteQuery();
+        }
+        catch {
+            write-host "No se encuentra el usuario $cuenta" -ForegroundColor Red;
+            return;
+        }
+    }
+
 
     write-host "Revisando $($_.Nombre)"
     #Comprobamos si existe una personaje con el titulo
@@ -56,30 +82,11 @@ $csvPersonaje | ForEach-Object {
         }
     }
 
-    #Cargar Lookup (mas bien la lista y comprobamos si existe)
-    $csvCampanhas = $null
-    if($campanhasSP[$_.LookupCampanha] -ne $null) {
-       $csvCampanhas = $campanhasSP[$_.LookupCampanha].Id
-    }
-    if ($csvCampanhas -eq $null) {
-        write-host "|-- La Campaña no existe" -ForegroundColor Red
-        return;
-    }
     
-    $cuenta = $_.Cuenta;
-    $user = $siteUsers | Where-Object {$_.Email -eq $cuenta } 
-    
-    if ($user -eq $null) {
-        $user = $context.Web.EnsureUser($cuenta);
-        $context.Load($user);
-        $context.ExecuteQuery();
-    }
-
     $needUpdate = $false;
 
     #Se compruba si son distintos los valores
     if ($user -ne $null){
-
        if($item.FieldValues["Personaje_Usuario"].LookupId -ne $user.Id ){
             write-host "|---- Usuario:[Viejo ($($item.FieldValues["Personaje_Usuario"].LookupId)) Nuevo ($($user.Id))]";
             $item["Personaje_Usuario"] = $user.Id
