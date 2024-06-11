@@ -1,4 +1,5 @@
 import { Version } from "@microsoft/sp-core-library";
+//estilos antd
 import "antd/dist/antd.min.css";
 import {
   IPropertyPaneConfiguration,
