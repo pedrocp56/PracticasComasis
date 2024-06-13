@@ -1,0 +1,52 @@
+.roulette-container {
+    display: flex;
+    align-items: center;
+}
+
+.lever-container {
+    margin-left: 30px; /* Ajusta el espacio entre la ruleta y la palanca */
+    transform: rotate(-90deg); /* Gira la palanca 90 grados */
+}
+
+/* Ajusta el tamaño de la palanca */
+input[type="range"] {
+    width: 250px; /* Ajusta el ancho de la palanca */
+    height: 10px; /* Ajusta la altura de la palanca */
+}
+
+/* Estilos para el control deslizante */
+.lever-container input[type="range"] {
+    -webkit-appearance: none; /* Elimina los estilos predeterminados de WebKit */
+    width: 250px; /* Ancho del control deslizante */
+    height: 10px; /* Altura de la barra del control deslizante */
+    background-color: transparent; /* Color de fondo transparente */
+    margin: 0; /* Elimina cualquier margen */
+    padding: 0; /* Elimina cualquier relleno */
+}
+.lever-container input[type="range"]::-webkit-meter-even-less-good-value{
+    width: 250px; /* Ancho del control deslizante */
+    height: 10px; /* Altura de la barra del control deslizante */
+    background-color: goldenrod; /* Color de fondo transparente */
+    margin: 0; /* Elimina cualquier margen */
+    padding: 0; /* Elimina cualquier relleno */
+}
+
+/* Estilos para la barra del control deslizante */
+.lever-container input[type="range"]::-webkit-slider-runnable-track {
+    width: 250px; /* Ajusta el ancho de la barra */
+    height: 10px; /* Ajusta la altura de la barra */
+    background-color: black; /* Color de la barra */
+    border-radius: 5px; /* Borde redondeado */
+}
+
+/* Estilos para la bola del control deslizante */
+.lever-container input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Elimina los estilos predeterminados de WebKit */
+    width: 20px; /* Ancho de la bola */
+    height: 20px; /* Altura de la bola */
+    background-color: red; /* Color de la bola */
+    border-radius: 50%; /* Borde redondeado */
+    cursor: pointer; /* Cambia el cursor a un puntero al pasar sobre la bola */
+    margin-top: -5px; /* Alinea verticalmente la bola */
+    margin-left: 2px;
+}

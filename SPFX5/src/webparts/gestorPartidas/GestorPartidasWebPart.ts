@@ -17,6 +17,7 @@ import GestorPersonajeArmaCompWebpart from "./components/GestorPersonajeArma";
 import GestorPersonajesCompWebpart from "./components/GestorPersonajes";
 import GestorArmasCompWebpart from "./components/GestorArmas";
 import GestorUsuarioCompWebpart from "./components/GestorUsuario";
+import GestorRuletaCompWebpart from "./components/GestorRuleta";
 
 
 export interface IGestorPartidasWebPartProps {
@@ -32,6 +33,7 @@ export default class GestorPartidasWebPart extends BaseClientSideWebPart<IGestor
   readonly PERSONAJES_PAGE: string = "Personajes.aspx";
   readonly PERSONAJES_ARMAS_PAGE: string = "Personajes_Armas.aspx";
   readonly USUARIO_PAGE: string = "Usuario.aspx";
+  readonly RULETA_PAGE: string = "Ruleta.aspx";
 
 
 
@@ -70,6 +72,10 @@ export default class GestorPartidasWebPart extends BaseClientSideWebPart<IGestor
         case this.USUARIO_PAGE.toLowerCase():
           element = React.createElement(GestorUsuarioCompWebpart, webpartProps);
           console.log("Cargando Usuario");
+          break;
+        case this.RULETA_PAGE.toLowerCase():
+          element = React.createElement(GestorRuletaCompWebpart, webpartProps);
+          console.log("Cargando Ruleta");
           break;
         default:
           element = React.createElement(GestorUsuarioCompWebpart, webpartProps);
